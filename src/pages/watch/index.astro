@@ -13,15 +13,15 @@ const videos = (await getCollection('videos')).sort(
   <h1>Two channels. Chosen pieces.</h1>
   <p class="lede muted">
     <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
-    and
+    {' '}and{' '}
     <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
-    stay on YouTube. Here each video gets a thesis, not just an embed.
+    {' '}stay on YouTube. Here each video gets a thesis, not just an embed.
   </p>
   {
     videos.length === 0 ? (
       <p class="empty">
-        No curated videos yet. The next slice stubs a handful from both channels — not the entire
-        backlog.
+        No curated videos yet. A few pieces from both channels will appear here — chosen, not the
+        whole backlog.
       </p>
     ) : (
       <ul class="list">

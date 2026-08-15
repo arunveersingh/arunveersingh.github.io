@@ -38,8 +38,10 @@ const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
             {
               nav.map((item) => {
                 const href = withBase(item.href);
-                const path = item.href.replace(/\/+$/, '') || '/';
-                const current = here === path || (path !== '/' && here.startsWith(path));
+                const path = href.replace(/\/+$/, '') || '/';
+                const home = withBase('/').replace(/\/+$/, '') || '/';
+                const current =
+                  here === path || (path !== home && (here === path || here.startsWith(`${path}/`)));
                 return (
                   <li>
                     <a href={href} aria-current={current ? 'page' : undefined}>
