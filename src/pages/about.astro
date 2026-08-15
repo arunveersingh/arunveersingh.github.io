@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="About" description="Who this studio is for, and what it will not become.">
+  <article class="prose">
+    <p class="kicker">About</p>
+    <h1>A studio, not a résumé</h1>
+    <p class="lede">
+      I am a Principal Architect. I teach and write because production systems punish sloppy
+      thinking, and so should the tools we use to design them.
+    </p>
+    <p>
+      The public work lives in two YouTube channels — English at
+      <a href={site.youtube[0].href}>{site.youtube[0].name}</a>, Hindi at
+      <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
+      — on <a href={site.linkedin}>LinkedIn</a>, and in GitHub repos such as
+      <a href={site.ai}>ai</a> and <a href={site.articles}>articles</a>. This site is the
+      canonical shelf. I syndicate out. I do not let a feed own the archive.
+    </p>
+    <p>
+      The <a href={site.ai}>ai</a> repo states the bar I keep coming back to: AI’s job is not
+      to make you happy. It is to force you not to make mistakes. Skills there are peer
+      reviewers and accountability mechanisms, not cheerleaders.
+    </p>
+    <p class="muted">
+      This page is not a CV. If you want employment history, that is LinkedIn. If you want
+      how I think, read the essays and the build notes.
+    </p>
+  </article>
+</Base>

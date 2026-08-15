@@ -1,0 +1,17 @@
+# build
+dist/
+.astro/
+.cache/
+
+# deps
+node_modules/
+
+# env / os
+.env
+.env.*
+.DS_Store
+*.log
+
+# editors
+.vscode/
+.idea/

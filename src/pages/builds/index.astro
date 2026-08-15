@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../data/site';
+
+const builds = (await getCollection('builds')).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+---
+
+<Base title="Builds" description="Architecture notes on selected repositories.">
+  <p class="kicker">Builds</p>
+  <h1>Repos as decisions, not stars</h1>
+  {
+    builds.length === 0 ? (
+      <p class="empty">
+        Three notes come next: the ai skills, code-intel-mcp, and sbom-parser. The other
+        repositories stay off this shelf on purpose.
+      </p>
+    ) : (
+      <ul class="list">
+        {builds.map((entry) => (
+          <li>
+            <a href={withBase(`/builds/${entry.id}/`)}>{entry.data.title}</a>
+            <p>{entry.data.problem}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>

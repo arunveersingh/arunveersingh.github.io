@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../data/site';
+
+const essays = (await getCollection('essays'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<Base title="Essays" description="Long-form writing that lives here first.">
+  <p class="kicker">Essays</p>
+  <h1>Written here. Syndicated out.</h1>
+  {
+    essays.length === 0 ? (
+      <p class="empty">
+        No essays on this shelf yet. The first ones come from the existing articles repo — void
+        methods, the null series, slowness versus latency — in the next slice.
+      </p>
+    ) : (
+      <ul class="list">
+        {essays.map((entry) => (
+          <li>
+            <a href={withBase(`/essays/${entry.id}/`)}>{entry.data.title}</a>
+            <p>{entry.data.description}</p>
+            <p class="meta">
+              <time datetime={entry.data.published.toISOString()}>
+                {entry.data.published.toLocaleDateString('en-GB', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </time>
+            </p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>

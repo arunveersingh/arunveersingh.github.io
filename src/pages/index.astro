@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, withBase } from '../data/site';
+---
+
+<Base>
+  <article class="prose">
+    <p class="kicker">Studio</p>
+    <h1>{site.tagline}</h1>
+    <p class="lede">
+      Most AI tools help you be wrong, confidently. This studio is about systems, essays, and
+      builds that hold the work to a standard — from a Principal Architect who still writes code
+      and records what he learns.
+    </p>
+    <p>
+      Essays land here first. Videos from
+      <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
+      and
+      <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
+      are curated, not dumped. GitHub repos become architecture notes, not a contribution graph.
+    </p>
+    <p>
+      The next layer is an <a href={withBase('/atlas/')}>atlas</a>: ideas such as agents, evals,
+      and null-safety, each pulling every essay, video, and build on that subject into one
+      argument.
+    </p>
+    <p class="muted">
+      The library is being moved in from
+      <a href={site.articles}>articles</a>
+      and
+      <a href={site.ai}>ai</a>. Until then the shelves are honestly empty.
+    </p>
+  </article>
+</Base>

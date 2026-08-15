@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { site, withBase } from '../../data/site';
+
+const videos = (await getCollection('videos')).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+---
+
+<Base title="Watch" description="Curated videos from both YouTube channels.">
+  <p class="kicker">Watch</p>
+  <h1>Two channels. Chosen pieces.</h1>
+  <p class="lede muted">
+    <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
+    and
+    <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
+    stay on YouTube. Here each video gets a thesis, not just an embed.
+  </p>
+  {
+    videos.length === 0 ? (
+      <p class="empty">
+        No curated videos yet. The next slice stubs a handful from both channels — not the entire
+        backlog.
+      </p>
+    ) : (
+      <ul class="list">
+        {videos.map((entry) => (
+          <li>
+            <a href={withBase(`/watch/${entry.id}/`)}>{entry.data.title}</a>
+            <p>{entry.data.thesis}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>
