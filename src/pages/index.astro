@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Player from '../components/Player.astro';
-import { site, withBase, yearsShipping } from '../data/site';
+import { channelById, site, withBase, yearsShipping } from '../data/site';
 import { featuredSkills, skillCount, skillUrl } from '../data/skills';
 import {
   canonVideos,
@@ -21,6 +21,10 @@ const allBuilds = await publishedBuilds();
 const featuredBuild = await leadBuild();
 const featuredVideo = await leadVideo();
 const restSkills = skillCount - featuredSkills.length;
+
+const [english, hindi] = site.youtube;
+// Which channel the featured talk came from, so the player can attribute itself.
+const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) : undefined;
 ---
 
 <Base>
@@ -28,11 +32,16 @@ const restSkills = skillCount - featuredSkills.length;
     <div class="hero-inner">
       <p class="kicker">Engineering judgment · public work</p>
       <h1>AI should force you not to make mistakes.</h1>
+      {/* "English" and "Hindi" are the channel links. The words were already in
+          the sentence, so this adds reach without adding a single pixel. */}
       <p class="lede">
         I write, teach, and ship the standard I want tools to hold. The public artifact is{' '}
         <a href={site.ai}>arunveersingh/ai</a>
         {' '}— {skillCount} agent skills that refuse to proceed on a guess. I teach the same
-        standard in English and Hindi. Tutorials stay in the library. Judgment stays here.
+        standard in{' '}
+        <a href={english.href}>English</a>
+        {' '}and{' '}
+        <a href={hindi.href}>Hindi</a>. Tutorials stay in the library. Judgment stays here.
       </p>
       <div class="actions">
         {
@@ -85,6 +94,22 @@ const restSkills = skillCount - featuredSkills.length;
         {
           featuredVideo?.data.youtubeId && (
             <Player youtubeId={featuredVideo.data.youtubeId} title={featuredVideo.data.title} />
+          )
+        }
+        {/* The player used to sit here unlabelled — you had to press play to
+            learn what the talk was. Naming it also puts the channel on the
+            homepage as attribution rather than as promotion. */}
+        {
+          featuredVideo && featuredChannel && (
+            <div class="window-caption">
+              <a class="quiet" href={withBase(`/watch/${featuredVideo.id}/`)}>
+                {featuredVideo.data.title}
+              </a>
+              <p class="meta">
+                <a href={featuredChannel.href}>{featuredChannel.name}</a>
+                {` · ${featuredChannel.language}`}
+              </p>
+            </div>
           )
         }
       </div>
@@ -158,10 +183,20 @@ const restSkills = skillCount - featuredSkills.length;
   }
 
   <section class="band band-quiet">
-    <p class="muted" style="max-width: 40rem; line-height: 1.65;">
+    <p class="muted colophon">
       {allBuilds.length} public repos sit behind this page. It leads with the {selected.length} that
       prove the standard — the rest is a lab, and{' '}
       <a href={site.github}>lives on GitHub</a>, not here.
+    </p>
+    {/* Both channels stated plainly at the end, where a colophon belongs — no
+        subscribe button, no count, no badge. */}
+    <p class="muted colophon">
+      Teaching happens on{' '}
+      <a href={english.href}>{english.name}</a>
+      {' '}in {english.language} and{' '}
+      <a href={hindi.href}>{hindi.name}</a>
+      {' '}in {hindi.language}. The {judgment.length} talks worth arguing with are{' '}
+      <a href={withBase('/watch/')}>collected here</a>.
     </p>
   </section>
 </Base>

@@ -7,7 +7,7 @@
  * channel IDs / playlist IDs exist in exactly one place.
  */
 
-/** @typedef {{ id: 'oopsfeedmecode' | 'developernoteshindi', name: string, href: string, channelId: string }} Channel */
+/** @typedef {{ id: 'oopsfeedmecode' | 'developernoteshindi', name: string, href: string, channelId: string, language: string }} Channel */
 
 /** @type {readonly Channel[]} */
 export const channels = [
@@ -16,12 +16,14 @@ export const channels = [
     name: 'Oops! Feed Me Code',
     href: 'https://www.youtube.com/@oopsfeedmecode',
     channelId: 'UCnVym5w_jklmzFwaBcqy53w',
+    language: 'English',
   },
   {
     id: 'developernoteshindi',
     name: 'Developer Notes Hindi',
     href: 'https://www.youtube.com/@developernoteshindi',
     channelId: 'UCiCr2n58IXBnAtPi4Je6rEA',
+    language: 'Hindi',
   },
 ];
 

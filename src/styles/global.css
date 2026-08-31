@@ -655,8 +655,11 @@ a.quiet:hover {
   color: var(--accent);
 }
 
+/* `flex: 1` here would let the player stretch to fill the window and fight its
+   own 16/9 aspect-ratio, distorting the thumbnail now that a caption shares the
+   space. Ratio wins; the caption takes the slack instead. */
 .window .player {
-  flex: 1;
+  flex: none;
   max-width: none;
   border-radius: 6px;
 }
@@ -701,6 +704,51 @@ a.quiet:hover {
   font-style: normal;
   color: var(--mute);
   font-size: 0.72rem;
+}
+
+/* Names the talk sitting in the window and attributes it to its channel.
+   `margin-top: auto` pins it to the bottom so both windows stay flush even
+   though the skills list and the player are different heights. */
+.window-caption {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--hairline-soft);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.window-caption > a {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.window-caption .meta {
+  margin: 0;
+}
+
+.window-caption .meta a {
+  color: var(--mute);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-dim);
+}
+
+.window-caption .meta a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.colophon {
+  max-width: 42rem;
+  margin: 0 0 0.65rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.colophon:last-child {
+  margin-bottom: 0;
 }
 
 .term-more {
