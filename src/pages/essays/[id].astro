@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { summaryFor } from '../../lib/content';
 
 export async function getStaticPaths() {
   const essays = await getCollection('essays', ({ data }) => !data.draft);
@@ -12,10 +13,20 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+// Falls back to the title when the synced description is just the title again,
+// so the meta description is never an empty-signal duplicate.
+const summary = summaryFor(entry.data.title, entry.data.description);
 ---
 
-<Base title={entry.data.title} description={entry.data.description}>
-  <article class="prose">
+<Base
+  title={entry.data.title}
+  description={summary ?? entry.data.title}
+  ogType="article"
+  publishedTime={entry.data.published}
+  modifiedTime={entry.data.updated}
+>
+  <article class="page">
     <p class="kicker">Essay</p>
     <h1>{entry.data.title}</h1>
     <p class="meta">
@@ -26,7 +37,23 @@ const { Content } = await render(entry);
           day: 'numeric',
         })}
       </time>
+      {
+        entry.data.updated && (
+          <>
+            {' · updated '}
+            <time datetime={entry.data.updated.toISOString()}>
+              {entry.data.updated.toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </>
+        )
+      }
     </p>
-    <Content />
+    <div class="article-body">
+      <Content />
+    </div>
   </article>
 </Base>

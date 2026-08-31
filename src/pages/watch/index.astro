@@ -1,37 +1,124 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { site, withBase } from '../../data/site';
+import Player from '../../components/Player.astro';
+import Thumb from '../../components/Thumb.astro';
+import { channelById, site, withBase } from '../../data/site';
+import { canonVideos, leadVideo, publishedVideos } from '../../lib/content';
 
-const videos = (await getCollection('videos')).sort(
-  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
-);
+const videos = await publishedVideos();
+const selected = await canonVideos();
+// Pinned by the order of `leadVideoNeedles`, not by whichever match is newest.
+const lead = await leadVideo();
+const library = videos.filter((video) => !selected.some((item) => item.id === video.id));
 ---
 
-<Base title="Watch" description="Curated videos from both YouTube channels.">
-  <p class="kicker">Watch</p>
-  <h1>Two channels. Chosen pieces.</h1>
-  <p class="lede muted">
-    <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
-    {' '}and{' '}
-    <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
-    {' '}stay on YouTube. Here each video gets a thesis, not just an embed.
-  </p>
-  {
-    videos.length === 0 ? (
-      <p class="empty">
-        No curated videos yet. A few pieces from both channels will appear here — chosen, not the
-        whole backlog.
-      </p>
-    ) : (
-      <ul class="list">
-        {videos.map((entry) => (
-          <li>
-            <a href={withBase(`/watch/${entry.id}/`)}>{entry.data.title}</a>
-            <p>{entry.data.thesis}</p>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+<Base title="Watch" description="Selected talks on engineering judgment, playable here.">
+  <div class="page">
+    <p class="kicker">Watch</p>
+    <p class="lede page-lede">
+      Selected talks on judgment first. Below that is the library pulled from{' '}
+      <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
+      {' '}and{' '}
+      <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
+      {' '}— {videos.length} indexed here, {selected.length} in the cut.
+    </p>
+
+    {
+      lead?.data.youtubeId && (
+        <div class="theater" data-theater>
+          <div class="theater-stage">
+            <Player youtubeId={lead.data.youtubeId} title={lead.data.title} />
+            <div class="theater-copy" data-theater-copy aria-live="polite">
+              <p class="meta" data-theater-channel>{channelById(lead.data.channel).name}</p>
+              <h2 data-theater-title>{lead.data.title}</h2>
+              <p data-theater-thesis>{lead.data.thesis}</p>
+            </div>
+          </div>
+          <ol class="clip-list theater-list">
+            {selected.map(
+              (video) =>
+                video.data.youtubeId && (
+                  <li>
+                    <button
+                      class:list={['clip', { 'is-current': video.id === lead.id }]}
+                      type="button"
+                      data-id={video.data.youtubeId}
+                      data-title={video.data.title}
+                      data-thesis={video.data.thesis}
+                      data-channel={channelById(video.data.channel).name}
+                    >
+                      <Thumb youtubeId={video.data.youtubeId} title={video.data.title} />
+                      <span>
+                        <span class="meta">{channelById(video.data.channel).name}</span>
+                        <strong>{video.data.title}</strong>
+                      </span>
+                    </button>
+                  </li>
+                ),
+            )}
+          </ol>
+        </div>
+      )
+    }
+
+    {
+      library.length > 0 && (
+        <>
+          <p class="kicker" style="margin-top: 2.5rem;">Library</p>
+          <ol class="clip-list">
+            {library.map(
+              (video) =>
+                video.data.youtubeId && (
+                  <li>
+                    <a class="clip" href={withBase(`/watch/${video.id}/`)}>
+                      <Thumb youtubeId={video.data.youtubeId} title={video.data.title} />
+                      <span>
+                        <span class="meta">{channelById(video.data.channel).name}</span>
+                        <strong>{video.data.title}</strong>
+                      </span>
+                    </a>
+                  </li>
+                ),
+            )}
+          </ol>
+        </>
+      )
+    }
+  </div>
 </Base>
+
+<script>
+  const theater = document.querySelector('[data-theater]');
+  if (theater) {
+    const stage = theater.querySelector('.player');
+    const titleEl = theater.querySelector('[data-theater-title]');
+    const thesisEl = theater.querySelector('[data-theater-thesis]');
+    const channelEl = theater.querySelector('[data-theater-channel]');
+
+    theater.querySelectorAll<HTMLButtonElement>('button.clip').forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.id;
+        const title = button.dataset.title ?? '';
+        if (!id || !stage) return;
+
+        theater.querySelectorAll('button.clip').forEach((item) => item.classList.remove('is-current'));
+        button.classList.add('is-current');
+
+        if (titleEl) titleEl.textContent = title;
+        if (thesisEl) thesisEl.textContent = button.dataset.thesis ?? '';
+        if (channelEl) channelEl.textContent = button.dataset.channel ?? '';
+
+        const poster = stage.querySelector<HTMLImageElement>('.player-poster');
+        const play = stage.querySelector<HTMLButtonElement>('.player-play');
+        const fallback = stage.querySelector<HTMLAnchorElement>('.player-fallback');
+        stage.querySelector('iframe')?.remove();
+        stage.classList.remove('is-playing');
+        stage.setAttribute('data-embed', `https://www.youtube.com/embed/${id}?rel=0&autoplay=1`);
+        if (poster) poster.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+        if (play) play.setAttribute('aria-label', `Play ${title}`);
+        if (fallback) fallback.href = `https://www.youtube.com/watch?v=${id}`;
+        play?.click();
+      });
+    });
+  }
+</script>

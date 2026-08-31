@@ -1,40 +1,74 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { withBase } from '../../data/site';
+import { featuredEssays, publishedEssays, summaryFor } from '../../lib/content';
 
-const essays = (await getCollection('essays'))
-  .filter((entry) => !entry.data.draft)
-  .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+const featured = await featuredEssays();
+const essays = await publishedEssays();
+const lead = featured[0] ?? essays[0];
+const rest = essays.filter((entry) => entry.id !== lead?.id);
+const leadSummary = lead ? summaryFor(lead.data.title, lead.data.description) : null;
 ---
 
 <Base title="Essays" description="Long-form writing that lives here first.">
-  <p class="kicker">Essays</p>
-  <h1>Written here. Syndicated out.</h1>
-  {
-    essays.length === 0 ? (
-      <p class="empty">
-        No essays on this shelf yet. The first ones are being moved from the articles repo: void
-        methods, the null series, and slowness versus latency.
-      </p>
-    ) : (
-      <ul class="list">
-        {essays.map((entry) => (
-          <li>
-            <a href={withBase(`/essays/${entry.id}/`)}>{entry.data.title}</a>
-            <p>{entry.data.description}</p>
-            <p class="meta">
-              <time datetime={entry.data.published.toISOString()}>
-                {entry.data.published.toLocaleDateString('en-GB', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </time>
-            </p>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+  <div class="page">
+    <p class="kicker">Essays</p>
+    <p class="lede page-lede">
+      Production writing first. The rest of the archive is listed, not leading.
+    </p>
+
+    {
+      lead && (
+        <article class="feature-essay">
+          <p class="meta">
+            <time datetime={lead.data.published.toISOString()}>
+              {lead.data.published.toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </p>
+          <h2>
+            <a class="quiet" href={withBase(`/essays/${lead.id}/`)}>
+              {lead.data.title}
+            </a>
+          </h2>
+          {leadSummary && <p class="lede">{leadSummary}</p>}
+          <a class="pill" href={withBase(`/essays/${lead.id}/`)}>
+            Read
+          </a>
+        </article>
+      )
+    }
+
+    {
+      rest.length > 0 && (
+        <ol class="index-list">
+          {rest.map((entry) => {
+            // Articles synced without frontmatter get description === title.
+            // Rendering both stacked the same sentence twice.
+            const summary = summaryFor(entry.data.title, entry.data.description);
+            return (
+              <li>
+                <a href={withBase(`/essays/${entry.id}/`)}>
+                  <span class="meta">
+                    <time datetime={entry.data.published.toISOString()}>
+                      {entry.data.published.toLocaleDateString('en-GB', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </span>
+                  <strong>{entry.data.title}</strong>
+                  {summary && <em>{summary}</em>}
+                </a>
+              </li>
+            );
+          })}
+        </ol>
+      )
+    }
+  </div>
 </Base>

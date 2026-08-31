@@ -1,32 +1,46 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
+import { site, withBase, yearsShipping } from '../data/site';
+import { skillCount } from '../data/skills';
 ---
 
-<Base title="About" description="Who this studio is for, and what it will not become.">
-  <article class="prose">
+<Base title="About" description="Public work on engineering judgment and production AI.">
+  <article class="page prose">
     <p class="kicker">About</p>
-    <h1>A studio, not a résumé</h1>
+    <h1 class="page-heading">I hold the work to a standard. Then I publish the standard.</h1>
     <p class="lede">
-      I am a Principal Architect. I teach and write because production systems punish sloppy
-      thinking, and so should the tools we use to design them.
+      I write and teach because production systems punish sloppy thinking, and most AI tools
+      make confident mistakes easier. This site is that public practice — {yearsShipping} years of it —
+      not a job title.
     </p>
     <p>
-      The public work lives in two YouTube channels — English at{' '}
-      <a href={site.youtube[0].href}>{site.youtube[0].name}</a>, Hindi at{' '}
-      <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
-      {' '}— on <a href={site.linkedin}>LinkedIn</a>, and in GitHub repos such as{' '}
-      <a href={site.ai}>ai</a> and <a href={site.articles}>articles</a>. This site is the
-      canonical shelf. I syndicate out. I do not let a feed own the archive.
+      The canonical artifact is{' '}
+      <a href={site.ai}>github.com/arunveersingh/ai</a>
+      {' '}— {skillCount} agent skills that will say no, not ready, and do not proceed. That is the
+      same bar I use on architecture: unverified assumptions do not ship.
     </p>
     <p>
-      The <a href={site.ai}>ai</a> repo states the bar I keep coming back to: AI’s job is not
-      to make you happy. It is to force you not to make mistakes. Skills there are peer
-      reviewers and accountability mechanisms, not cheerleaders.
+      I teach in English on{' '}
+      <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
+      {' '}and in Hindi on{' '}
+      <a href={site.youtube[1].href}>{site.youtube[1].name}</a>.
+      Selected talks on this site are about judgment — first principles, agent pipelines,
+      inference, seniority. Syntax drills stay in the library.
+    </p>
+    <p>
+      Writing lives here first, then{' '}
+      <a href={site.linkedin}>LinkedIn</a>.
+      Selected systems work:{' '}
+      <a href={withBase('/builds/')}>builds</a>
+      {' '}— MCP, SBOMs, protocol and architecture labs — not every repo I ever used to learn.
+    </p>
+    <p>
+      Reach me at{' '}
+      <a href={`mailto:${site.email}`}>{site.email}</a>. New essays go out over{' '}
+      <a href={withBase('rss.xml')}>RSS</a>.
     </p>
     <p class="muted">
-      This page is not a CV. If you want employment history, that is LinkedIn. If you want
-      how I think, read the essays and the build notes.
+      Employment history is LinkedIn. How I think is this site.
     </p>
   </article>
 </Base>

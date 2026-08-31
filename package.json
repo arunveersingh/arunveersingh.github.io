@@ -7,14 +7,25 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "sync": "node scripts/sync.mjs",
+    "og": "node scripts/og.mjs",
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "refresh": "npm run sync && npm run build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "verify": "npm run check && npm run build",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
-    "astro": "^7.2.2"
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "^7.2.2",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "typescript": "5.9.3"
   }
 }

@@ -1,0 +1,17 @@
+# Served at /studio/robots.txt.
+#
+# Caveat worth knowing: crawlers only read robots.txt from a domain ROOT, so
+# this file is effectively ignored while the site lives on a GitHub Project
+# Pages subpath. The root is https://arunveersingh.github.io/robots.txt, which
+# belongs to the `arunveersingh.github.io` user-pages repo, not this one.
+#
+# Until a custom domain exists, get the sitemap indexed by either:
+#   1. submitting it directly in Google Search Console, or
+#   2. adding this Sitemap line to robots.txt in the user-pages repo.
+#
+# This file becomes authoritative the moment a custom domain is pointed here.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://arunveersingh.github.io/studio/sitemap-index.xml

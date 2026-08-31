@@ -1,0 +1,12 @@
+---
+interface Props {
+  youtubeId: string;
+  title: string;
+}
+
+const { youtubeId, title } = Astro.props;
+const poster = `https://i.ytimg.com/vi/${youtubeId}/mqdefault.jpg`;
+---
+
+<img class="thumb" src={poster} alt="" width="320" height="180" />
+<span class="visually-hidden">{title}</span>

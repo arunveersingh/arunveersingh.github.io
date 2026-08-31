@@ -1,31 +1,94 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { withBase } from '../../data/site';
+import { site, withBase } from '../../data/site';
+import { archiveBuilds, leadBuild, selectedBuilds, summaryFor } from '../../lib/content';
 
-const builds = (await getCollection('builds')).sort(
-  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
-);
+const selected = await selectedBuilds();
+const archive = await archiveBuilds();
+const lead = await leadBuild();
+const restSelected = selected.slice(1);
+const leadSummary = lead
+  ? (lead.data.problem ?? summaryFor(lead.data.title, lead.data.description))
+  : null;
+const repoPath = (repo: string) => new URL(repo).pathname.slice(1);
+const activity = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' });
 ---
 
-<Base title="Builds" description="Architecture notes on selected repositories.">
-  <p class="kicker">Builds</p>
-  <h1>Repos as decisions, not stars</h1>
-  {
-    builds.length === 0 ? (
-      <p class="empty">
-        Three notes come next: the ai skills, code-intel-mcp, and sbom-parser. The other
-        repositories stay off this shelf on purpose.
-      </p>
-    ) : (
-      <ul class="list">
-        {builds.map((entry) => (
-          <li>
-            <a href={withBase(`/builds/${entry.id}/`)}>{entry.data.title}</a>
-            <p>{entry.data.problem}</p>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+<Base title="Builds" description="Selected systems work. The rest is the lab.">
+  <div class="page">
+    <p class="kicker">Builds</p>
+    <p class="lede page-lede">
+      Selected work first — the {selected.length} repos that carry an argument. Everything else is a
+      lab, kept for honesty rather than shown as proof.
+    </p>
+
+    {
+      lead && (
+        <article class="feature-essay">
+          <p class="meta">Lead · {repoPath(lead.data.repo)}</p>
+          <h2>
+            <a class="quiet" href={withBase(`/builds/${lead.id}/`)}>
+              {lead.data.title}
+            </a>
+          </h2>
+          {leadSummary && <p class="lede">{leadSummary}</p>}
+          <div class="actions">
+            <a class="pill pill-solid" href={withBase(`/builds/${lead.id}/`)}>
+              Read the note
+            </a>
+            <a class="pill" href={lead.data.repo}>Open GitHub</a>
+          </div>
+        </article>
+      )
+    }
+
+    {
+      restSelected.length > 0 && (
+        <>
+          <p class="kicker">Also selected</p>
+          <ol class="index-list">
+            {restSelected.map((entry) => (
+              <li>
+                <a href={withBase(`/builds/${entry.id}/`)}>
+                  <span class="meta">{repoPath(entry.data.repo)}</span>
+                  <strong>{entry.data.title}</strong>
+                  {entry.data.problem && <em>{entry.data.problem}</em>}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
+      )
+    }
+
+    {/* The archive is long and secondary. Rendering 40+ numbered entries at
+        full weight buried the seven that matter, so it collapses by default.
+        Nothing is removed — every page and link still resolves. */}
+    {
+      archive.length > 0 && (
+        <details class="archive">
+          <summary>
+            <span class="archive-label">The lab</span>
+            <span class="archive-count">{archive.length} more repos</span>
+          </summary>
+          <p class="muted archive-note">
+            Learning exercises, samples, and scratch work, ordered by most recent activity. Kept
+            public because deleting history is dishonest — not offered as evidence of anything.
+            The canonical list is{' '}
+            <a href={site.github}>github.com/arunveersingh</a>.
+          </p>
+          <ol class="archive-list">
+            {archive.map((entry) => (
+              <li>
+                <a href={withBase(`/builds/${entry.id}/`)}>
+                  <span>{entry.data.title}</span>
+                  {entry.data.updated && <span class="meta">{activity(entry.data.updated)}</span>}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </details>
+      )
+    }
+  </div>
 </Base>

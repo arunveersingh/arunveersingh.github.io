@@ -1,16 +1,29 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { withBase } from '../../data/site';
 ---
 
-<Base title="Atlas" description="Ideas as hubs — essays, videos, and builds on one argument.">
-  <p class="kicker">Atlas</p>
-  <h1>A map, not an index</h1>
-  <p class="lede">
-    Topic pages will pull every essay, video, and build on one idea into a single argument.
-    That is what makes this a studio instead of a blog.
-  </p>
-  <p class="empty">
-    The atlas waits until the library exists. First topics will follow the writing, not a
-    made-up taxonomy.
-  </p>
+{/*
+  Deliberately absent from the primary nav and marked noindex until it has real
+  topic pages. A site arguing that unverified claims do not ship should not put
+  a promise in its top-level navigation.
+*/}
+<Base
+  title="Atlas"
+  description="Ideas as hubs — essays, videos, and builds on one argument."
+  noindex
+>
+  <div class="page">
+    <p class="kicker">Atlas · not built yet</p>
+    <h1>A map, not an index</h1>
+    <p class="lede">
+      Topic pages will pull every essay, video, and build on one idea into a single argument.
+      That is what makes this a studio instead of a blog.
+    </p>
+    <p class="empty">
+      The atlas waits until the library exists. First topics will follow the writing, not a
+      made-up taxonomy. Until then, start with the{' '}
+      <a href={withBase('/essays/')}>essays</a>.
+    </p>
+  </div>
 </Base>
