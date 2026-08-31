@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { summaryFor } from '../../lib/content';
 
 export async function getStaticPaths() {
   const builds = await getCollection('builds');
@@ -12,16 +13,38 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+// `problem` and `description` are identical on synced repos, so rendering the
+// lede unconditionally printed the same sentence the body already opens with.
+const bodySummary = summaryFor(entry.data.title, entry.data.description);
+const lede = entry.data.problem && entry.data.problem !== entry.data.description ? entry.data.problem : null;
+const asMonth = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+
+// `updated` only exists on notes written by the fixed sync. On older notes
+// `published` still holds pushed_at, so labelling it "Created" would state
+// something untrue — render nothing until the data is trustworthy.
+const dates = entry.data.updated
+  ? [`Active ${asMonth(entry.data.updated)}`, `Created ${asMonth(entry.data.published)}`]
+  : [];
 ---
 
-<Base title={entry.data.title} description={entry.data.description}>
-  <article class="prose">
+<Base
+  title={entry.data.title}
+  description={entry.data.problem ?? bodySummary ?? entry.data.title}
+  ogType="article"
+  publishedTime={entry.data.published}
+  modifiedTime={entry.data.updated}
+>
+  <article class="page">
     <p class="kicker">Build</p>
-    <h1>{entry.data.title}</h1>
-    <p class="lede">{entry.data.problem}</p>
-    <p>
-      <a href={entry.data.repo}>Source on GitHub</a>
-    </p>
-    <Content />
+    <h1 class="page-heading">{entry.data.title}</h1>
+    {lede && <p class="lede">{lede}</p>}
+    {dates.length > 0 && <p class="meta">{dates.join(' · ')}</p>}
+    <div class="actions" style="margin-top: 1.25rem;">
+      <a class="pill pill-solid" href={entry.data.repo}>Open GitHub</a>
+    </div>
+    <div class="article-body" style="margin-top: 2rem;">
+      <Content />
+    </div>
   </article>
 </Base>

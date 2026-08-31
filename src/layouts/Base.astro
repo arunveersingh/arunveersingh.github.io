@@ -5,11 +5,35 @@ import { nav, site, withBase } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  /** `article` for essays, videos, and build notes. `website` for indexes. */
+  ogType?: 'website' | 'article';
+  /** ISO date rendered as `article:published_time`. */
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  /** Set on the 404 page so it stays out of search results. */
+  noindex?: boolean;
 }
 
-const { title, description = site.description } = Astro.props;
+const {
+  title,
+  description = site.description,
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
+  noindex = false,
+} = Astro.props;
+
 const pageTitle = title ? `${title} · ${site.title}` : `${site.title} — ${site.tagline}`;
+// Social cards want the bare headline, not the breadcrumbed document title.
+const socialTitle = title ? `${title} — ${site.title}` : `${site.title} — ${site.tagline}`;
+
 const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const home = withBase('/').replace(/\/+$/, '') || '/';
+
+// `Astro.site` comes from astro.config.mjs, so these stay absolute in the built
+// output. Social scrapers and canonical tags both reject relative URLs.
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : withBase('og.png');
 ---
 
 <!doctype html>
@@ -17,31 +41,60 @@ const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
+    <meta name="theme-color" content="#0b0a09" />
+    {/* noindex + canonical is a contradictory signal, so pages opt into one or
+        the other. A 404 in particular is served at arbitrary URLs and has no
+        canonical form. */}
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.title} />
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.title} — ${site.tagline}`} />
+    <meta property="og:locale" content="en_US" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@oopsfeedmecode" />
+
     <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <link rel="alternate" type="application/rss+xml" title={`${site.title} — essays`} href={withBase('rss.xml')} />
+    {/* robots.txt is ignored on a Project Pages subpath, so point at the sitemap here too. */}
+    <link rel="sitemap" type="application/xml" href={withBase('sitemap-index.xml')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {/* Three faces, three jobs: mono for metadata, Newsreader for headlines,
+        Inter for reading. Previously Inter did all three and Barlow Condensed
+        was downloaded at two weights without being used anywhere. */}
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,560&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
       rel="stylesheet"
     />
-    <title>{pageTitle}</title>
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
-    <header class="site-header">
-      <div class="frame">
-        <a class="brand" href={withBase('/')}>{site.title}</a>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href={withBase('/')}>Arunveer Singh</a>
         <nav aria-label="Primary">
           <ul>
             {
               nav.map((item) => {
                 const href = withBase(item.href);
                 const path = href.replace(/\/+$/, '') || '/';
-                const home = withBase('/').replace(/\/+$/, '') || '/';
-                const current =
-                  here === path || (path !== home && (here === path || here.startsWith(`${path}/`)));
+                const current = here === path || (path !== home && here.startsWith(`${path}/`));
                 return (
                   <li>
                     <a href={href} aria-current={current ? 'page' : undefined}>
@@ -55,11 +108,11 @@ const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
         </nav>
       </div>
     </header>
-    <main id="content" class="frame">
+    <main id="content" class="stage-main">
       <slot />
     </main>
     <footer class="site-footer">
-      <div class="frame">
+      <div class="site-footer-inner">
         <ul>
           <li><a href={site.github}>GitHub</a></li>
           <li><a href={site.linkedin}>LinkedIn</a></li>
@@ -71,8 +124,10 @@ const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
               </li>
             ))
           }
+          <li><a href={`mailto:${site.email}`}>Email</a></li>
+          <li><a href={withBase('rss.xml')}>RSS</a></li>
         </ul>
-        <p>Canonical writing lives here. LinkedIn and YouTube are distribution.</p>
+        <p>Canonical writing · not a feed</p>
       </div>
     </footer>
   </body>

@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../data/site';
+---
+
+<Base title="Not found" description="That page does not exist." noindex>
+  <div class="page">
+    <p class="kicker">404</p>
+    <h1 class="page-heading">That page does not exist.</h1>
+    <p class="lede">
+      The link is wrong, or the work moved. The four things that definitely exist:
+    </p>
+    <ol class="index-list">
+      <li>
+        <a href={withBase('/essays/')}>
+          <span class="meta">/essays/</span>
+          <strong>Essays</strong>
+          <em>Long-form writing that lives here first.</em>
+        </a>
+      </li>
+      <li>
+        <a href={withBase('/watch/')}>
+          <span class="meta">/watch/</span>
+          <strong>Watch</strong>
+          <em>Selected talks on judgment, playable here.</em>
+        </a>
+      </li>
+      <li>
+        <a href={withBase('/builds/')}>
+          <span class="meta">/builds/</span>
+          <strong>Builds</strong>
+          <em>Selected systems work. The rest is the lab.</em>
+        </a>
+      </li>
+      <li>
+        <a href={withBase('/about/')}>
+          <span class="meta">/about/</span>
+          <strong>About</strong>
+          <em>The standard, and why it is published.</em>
+        </a>
+      </li>
+    </ol>
+  </div>
+</Base>

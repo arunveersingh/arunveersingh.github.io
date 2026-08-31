@@ -1,34 +1,167 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, withBase } from '../data/site';
+import Player from '../components/Player.astro';
+import { site, withBase, yearsShipping } from '../data/site';
+import { featuredSkills, skillCount, skillUrl } from '../data/skills';
+import {
+  canonVideos,
+  featuredEssays,
+  leadVideo,
+  publishedBuilds,
+  leadBuild,
+  selectedBuilds,
+  summaryFor,
+} from '../lib/content';
+
+const judgment = await canonVideos();
+const selected = await selectedBuilds();
+const essays = await featuredEssays();
+const allBuilds = await publishedBuilds();
+
+const featuredBuild = await leadBuild();
+const featuredVideo = await leadVideo();
+const restSkills = skillCount - featuredSkills.length;
 ---
 
 <Base>
-  <article class="prose">
-    <p class="kicker">Studio</p>
-    <h1>{site.tagline}</h1>
-    <p class="lede">
-      Most AI tools help you be wrong, confidently. This studio is about systems, essays, and
-      builds that hold the work to a standard — from a Principal Architect who still writes code
-      and records what he learns.
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="kicker">Engineering judgment · public work</p>
+      <h1>AI should force you not to make mistakes.</h1>
+      <p class="lede">
+        I write, teach, and ship the standard I want tools to hold. The public artifact is{' '}
+        <a href={site.ai}>arunveersingh/ai</a>
+        {' '}— {skillCount} agent skills that refuse to proceed on a guess. I teach the same
+        standard in English and Hindi. Tutorials stay in the library. Judgment stays here.
+      </p>
+      <div class="actions">
+        {
+          featuredBuild && (
+            <a class="pill pill-solid" href={withBase(`/builds/${featuredBuild.id}/`)}>
+              Read the standard
+            </a>
+          )
+        }
+        <a class="pill" href={withBase('/watch/')}>Selected talks</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-lead">
+    <div class="windows">
+      <div class="window">
+        <div class="window-head">
+          <span>The standard</span>
+          {
+            featuredBuild && (
+              <a href={withBase(`/builds/${featuredBuild.id}/`)}>Read the note →</a>
+            )
+          }
+        </div>
+        {/* Each skill links to its own directory. This used to be one anchor
+            wrapped around the whole list, so named skills looked clickable
+            but only the block was. */}
+        <ul class="term">
+          {
+            featuredSkills.map((skill) => (
+              <li>
+                <a href={skillUrl(skill.name)}>
+                  <span class="ok" aria-hidden="true">▸</span>
+                  <span>{skill.name}</span>
+                  <em>{skill.note}</em>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        {restSkills > 0 && <p class="term-more">+ {restSkills} more in the repo</p>}
+      </div>
+
+      <div class="window">
+        <div class="window-head">
+          <span>Judgment, on camera</span>
+          <a href={withBase('/watch/')}>All talks →</a>
+        </div>
+        {
+          featuredVideo?.data.youtubeId && (
+            <Player youtubeId={featuredVideo.data.youtubeId} title={featuredVideo.data.title} />
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="stats">
+      <p class="stat">
+        <strong>{yearsShipping}</strong>
+        <span>years shipping production systems</span>
+      </p>
+      <p class="stat">
+        <strong>{skillCount}</strong>
+        <span>agent skills that will halt a bad plan</span>
+      </p>
+      <p class="stat">
+        <strong>{judgment.length}</strong>
+        <span>selected talks on judgment, not syntax</span>
+      </p>
+    </div>
+  </section>
+
+  {
+    selected.length > 1 && (
+      <section class="band">
+        <p class="kicker">Selected systems work</p>
+        <ol class="index-list">
+          {selected.map((entry) => (
+            <li>
+              <a href={withBase(`/builds/${entry.id}/`)}>
+                <span class="meta">{new URL(entry.data.repo).pathname.slice(1)}</span>
+                <strong>{entry.data.title}</strong>
+                {entry.data.problem && <em>{entry.data.problem}</em>}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )
+  }
+
+  {/* Renders only when there is writing worth leading with, so the section
+      disappears cleanly rather than showing an empty promise. */}
+  {
+    essays.length > 0 && (
+      <section class="band">
+        <p class="kicker">Writing</p>
+        <div class="news">
+          {essays.map((entry) => {
+            const summary = summaryFor(entry.data.title, entry.data.description);
+            return (
+              <a href={withBase(`/essays/${entry.id}/`)}>
+                <span class="meta">
+                  <time datetime={entry.data.published.toISOString()}>
+                    {entry.data.published.toLocaleDateString('en-GB', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </span>
+                <strong>{entry.data.title}</strong>
+                {summary && <p>{summary}</p>}
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="band band-quiet">
+    <p class="muted" style="max-width: 40rem; line-height: 1.65;">
+      {allBuilds.length} public repos sit behind this page. It leads with the {selected.length} that
+      prove the standard — the rest is a lab, and{' '}
+      <a href={site.github}>lives on GitHub</a>, not here.
     </p>
-    <p>
-      Essays land here first. Videos from{' '}
-      <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
-      {' '}and{' '}
-      <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
-      {' '}are curated, not dumped. GitHub repos become architecture notes, not a contribution graph.
-    </p>
-    <p>
-      The next layer is an <a href={withBase('/atlas/')}>atlas</a>: ideas such as agents, evals,
-      and null-safety, each pulling every essay, video, and build on that subject into one
-      argument.
-    </p>
-    <p class="muted">
-      The library is being moved in from{' '}
-      <a href={site.articles}>articles</a>
-      {' '}and{' '}
-      <a href={site.ai}>ai</a>. Until then the shelves are honestly empty.
-    </p>
-  </article>
+  </section>
 </Base>

@@ -1,16 +1,55 @@
+/* ============================================================================
+   Three voices, each with one job. Previously --display and --sans were both
+   Inter, so the site had no typographic voice at all: one grotesque did
+   headlines, body, and UI.
+
+     mono  — machine and metadata: wordmark, kickers, dates, labels
+     serif — the argument: headlines
+     sans  — the reading: body copy and controls
+   ========================================================================= */
+
+/* ----------------------------------------------------------------------------
+   Palette: one temperature.
+   Before, surfaces were pure neutral (sat 0%), text and borders were cool
+   (hue ~216), the accent was warm (hue 26), and the hero gradient added a navy
+   — four temperature directions, none of them chosen. Every neutral now sits
+   in a 30-40deg warm band so the orange belongs to the palette instead of
+   fighting it. Measured: worst rendered pair is 5.47:1 against a 4.5:1 floor.
+   -------------------------------------------------------------------------- */
 :root {
-  --paper: #f3ecdf;
-  --ink: #1c1712;
-  --muted: #5c5348;
-  --rule: #d4c8b4;
-  --mark: #8b3a2a;
-  --mark-soft: #c45c45;
-  --serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-  --display: "Fraunces", "Source Serif 4", Georgia, serif;
-  --sans: "Source Sans 3", "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --canvas: #0b0a09;
+  --canvas-card: #17140f;
+  --canvas-raise: #1d1a14;
+  --hairline: #2b2621;
+  --hairline-soft: #1f1b16;
+  /* Pulled off pure white: 19.8:1 was needless halation under large serif on
+     near-black. 17.9:1 still clears AAA (7:1) two and a half times over. */
+  --ink: #f6f3ee;
+  --body: #e4e0d8;
+  --mute: #9a9184;
+  --nav-idle: rgb(var(--ink-rgb) / 0.66);
+  --pill: rgb(var(--ink-rgb) / 0.24);
+
+  /* The accent existed but was only ever a 16%-opacity background gradient.
+     It now carries structure: section rules, indices, active states, links.
+     Swap this one value to #ff4a24 for the vermilion "signal" variant — the
+     accent then reads as stop/halt, matching what the skills actually do. */
+  --accent: #ff7a17;
+  --accent-dim: rgb(255 122 23 / 0.3);
+
+  /* Component form of --ink / --canvas, for translucent overlays. Hardcoded
+     rgb(255 255 255) and rgb(10 10 10) would reintroduce neutral grey on top
+     of a warm palette. */
+  --ink-rgb: 246 243 238;
+  --canvas-rgb: 11 10 9;
+
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
   --measure: 38rem;
-  --page: 68rem;
+  --page: 72rem;
+  --topbar: 4.25rem;
 }
 
 *,
@@ -20,12 +59,12 @@
 }
 
 html {
-  background: var(--paper);
+  background: var(--canvas);
   color: var(--ink);
-  font-family: var(--serif);
-  font-size: 112.5%;
-  line-height: 1.55;
-  hanging-punctuation: first last;
+  font-family: var(--sans);
+  font-size: 100%;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -33,180 +72,1162 @@ body {
   min-height: 100vh;
 }
 
+img {
+  max-width: 100%;
+}
+
 a {
-  color: var(--mark);
-  text-underline-offset: 0.15em;
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 a:hover {
-  color: var(--ink);
+  color: rgb(var(--ink-rgb) / 0.72);
 }
 
 a:focus-visible {
-  outline: 2px solid var(--mark);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
+  border-radius: 2px;
 }
+
+::selection {
+  background: var(--accent);
+  color: var(--canvas);
+}
+
+/* ---------- skip link + a11y ---------- */
 
 .skip {
   position: absolute;
-  left: 0.75rem;
+  left: 1rem;
   top: -3rem;
+  z-index: 40;
   background: var(--ink);
-  color: var(--paper);
-  padding: 0.4rem 0.7rem;
+  color: var(--canvas);
+  padding: 0.4rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
 }
 
 .skip:focus {
   top: 0.75rem;
 }
 
-.frame {
-  width: min(var(--page), calc(100% - 2.5rem));
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- topbar ---------- */
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  background: linear-gradient(to bottom, rgb(var(--canvas-rgb) / 0.94), rgb(var(--canvas-rgb) / 0.74));
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.topbar-inner {
+  width: min(var(--page), calc(100% - 3rem));
   margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.05rem 0;
 }
 
-.site-header {
-  padding: 1.75rem 0 1.25rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.site-header .brand {
-  font-family: var(--display);
-  font-size: 1.15rem;
-  font-weight: 560;
-  letter-spacing: -0.02em;
+/* Wordmark in mono: it is an identifier, not a headline. */
+.brand {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.site-header .brand:hover {
-  color: var(--mark);
+.brand:hover {
+  color: var(--ink);
 }
 
-.site-header nav {
-  margin-top: 0.85rem;
-}
-
-.site-header ul {
+.topbar nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.15rem;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 0.15rem 1.35rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: var(--sans);
-  font-size: 0.92rem;
 }
 
-.site-header a[aria-current="page"] {
-  color: var(--ink);
+.topbar nav a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+  color: var(--nav-idle);
   text-decoration: none;
-  font-weight: 600;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-main {
-  padding: 2.4rem 0 4rem;
+/* Hover and current used to resolve to var(--ink) — which every nav link
+   already was. Neither state was visible. */
+.topbar nav a:hover {
+  color: var(--ink);
 }
 
-.prose {
-  max-width: var(--measure);
+.topbar nav a[aria-current="page"] {
+  color: var(--ink);
 }
 
+.topbar nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ---------- layout + section rhythm ----------
+   Every .band used to carry identical padding and an identical hairline, so no
+   section could read as more important than another. Three tiers now. */
+
+.stage-main {
+  min-height: 0;
+}
+
+#content {
+  scroll-margin-top: calc(var(--topbar) + 1rem);
+}
+
+.page {
+  width: min(var(--page), calc(100% - 3rem));
+  margin-inline: auto;
+  padding: calc(var(--topbar) + 2.25rem) 0 4rem;
+}
+
+.band {
+  width: min(var(--page), calc(100% - 3rem));
+  margin-inline: auto;
+  padding: 3rem 0;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+/* Tier 1: the section carrying the most weight on the page. */
+.band-lead {
+  padding: 4.5rem 0;
+  border-top-color: var(--hairline);
+}
+
+/* Tier 3: supporting detail. Quieter, no rule of its own. */
+.band-quiet {
+  padding: 2rem 0 3.5rem;
+  border-top: 0;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding: calc(var(--topbar) + 5rem) 1.5rem 4rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  /* The second gradient used to be navy (#141c30), which pulled against the
+     warm glow in the opposite corner. Both are warm now. */
+  background:
+    radial-gradient(900px 400px at 8% 118%, rgb(255 122 23 / 0.18), transparent 60%),
+    radial-gradient(1100px 540px at 90% -10%, rgb(48 34 22 / 0.85), transparent 58%),
+    var(--canvas);
+}
+
+.hero-inner {
+  width: min(var(--page), 100%);
+  margin-inline: auto;
+}
+
+/* ---------- type ---------- */
+
+/* Kicker carries the accent rule. This is the accent's structural job. */
 .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.35rem;
   font-family: var(--mono);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.7rem;
+  color: var(--mute);
+}
+
+.kicker::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  flex: none;
+  background: var(--accent);
 }
 
 h1,
 h2,
 h3 {
   font-family: var(--display);
-  font-weight: 560;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  font-weight: 400;
+  /* Serifs need far less negative tracking than a grotesque. */
+  letter-spacing: -0.015em;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.1rem);
-  margin: 0 0 1rem;
-  max-width: var(--measure);
+  margin: 0 0 1.35rem;
+  font-size: clamp(2.5rem, 6.4vw, 4.75rem);
+  line-height: 1.02;
+  max-width: 22ch;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  max-width: 26ch;
 }
 
 h2 {
-  font-size: 1.45rem;
-  margin: 2.2rem 0 0.6rem;
+  font-size: clamp(1.65rem, 3.4vw, 2.5rem);
+  margin: 0 0 0.85rem;
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin: 0 0 0.5rem;
+}
+
+.page-heading {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  max-width: 26ch;
 }
 
 .lede {
-  font-size: 1.18rem;
-  color: var(--ink);
-  margin: 0 0 1.2rem;
+  margin: 0 0 1.75rem;
+  max-width: 34rem;
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  line-height: 1.68;
+  color: var(--body);
+}
+
+.hero .lede {
+  font-size: 1.1875rem;
+  max-width: 33rem;
+}
+
+.page-lede {
+  margin-top: 0.35rem;
+  margin-bottom: 1.75rem;
+}
+
+.prose {
   max-width: var(--measure);
+  color: var(--body);
+}
+
+.prose p {
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+/* Prose links pick up the accent on hover — the only place body text does. */
+.prose a:hover,
+.article-body a:hover {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
 }
 
 .muted {
-  color: var(--muted);
+  color: var(--mute);
 }
+
+.meta {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+a.quiet {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.quiet:hover {
+  color: rgb(var(--ink-rgb) / 0.74);
+}
+
+/* ---------- pills ---------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 1.15rem;
+  border: 1px solid var(--pill);
+  border-radius: 9999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  background: transparent;
+}
+
+.pill:hover {
+  border-color: rgb(var(--ink-rgb) / 0.55);
+  color: var(--ink);
+  background: rgb(var(--ink-rgb) / 0.05);
+}
+
+.pill-solid {
+  background: var(--ink);
+  color: var(--canvas);
+  border-color: var(--ink);
+}
+
+.pill-solid:hover {
+  background: #fffdf9;
+  color: var(--canvas);
+}
+
+/* ---------- clip list (watch) ---------- */
+
+.clip-list {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.clip {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.85rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.clip:hover,
+.clip.is-current {
+  color: inherit;
+  background: rgb(var(--ink-rgb) / 0.03);
+}
+
+.clip:hover strong,
+.clip.is-current strong {
+  color: var(--ink);
+}
+
+.clip.is-current {
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.clip span {
+  min-width: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.clip strong {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.9875rem;
+  color: var(--ink);
+}
+
+.thumb {
+  display: block;
+  width: 7.5rem;
+  height: 4.2rem;
+  object-fit: cover;
+  background: var(--canvas-raise);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+}
+
+/* ---------- index list ---------- */
+
+.index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: idx;
+}
+
+.index-list a {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.25rem 0.75rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--hairline-soft);
+  text-decoration: none;
+  color: inherit;
+}
+
+.index-list li {
+  counter-increment: idx;
+}
+
+/* Numbered index: the accent doing structural work again. */
+.index-list a::before {
+  content: counter(idx, decimal-leading-zero);
+  grid-row: 1 / span 3;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  padding-top: 0.15rem;
+}
+
+.index-list li:last-child a {
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.index-list .meta,
+.index-list strong,
+.index-list em {
+  grid-column: 2;
+}
+
+.index-list strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.index-list a:hover strong {
+  color: rgb(var(--ink-rgb) / 0.78);
+}
+
+.index-list em {
+  font-style: normal;
+  color: var(--mute);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  max-width: 46rem;
+}
+
+/* ---------- theater (watch) ---------- */
+
+.theater {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.8fr);
+  gap: 1.75rem;
+  align-items: start;
+  margin-top: 1.75rem;
+}
+
+.theater .player {
+  max-width: none;
+}
+
+.theater-copy {
+  margin-top: 1.15rem;
+}
+
+.theater-copy h2 {
+  margin: 0.35rem 0 0.55rem;
+  font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+}
+
+.theater-copy p:last-child {
+  margin: 0;
+  color: var(--mute);
+  max-width: 38rem;
+  line-height: 1.6;
+}
+
+.theater-list {
+  margin-top: 0;
+  max-height: 36rem;
+  overflow: auto;
+}
+
+/* ---------- feature block ---------- */
+
+.feature-essay {
+  margin: 0 0 2rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.feature-essay h2 {
+  max-width: 26ch;
+}
+
+/* ---------- homepage windows ---------- */
+
+.windows {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.window {
+  display: flex;
+  flex-direction: column;
+  min-height: 22rem;
+  padding: 1.25rem 1.35rem 1.35rem;
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.window-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--hairline-soft);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.window-head a,
+.window-head span:last-child {
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.window-head a:hover {
+  color: var(--accent);
+}
+
+.window .player {
+  flex: 1;
+  max-width: none;
+  border-radius: 6px;
+}
+
+/* Skill rows are individually linked now. Previously the whole block was a
+   single anchor wrapping a list, so six named skills looked clickable and
+   weren't. */
+.term {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  align-content: start;
+  gap: 0.1rem;
+}
+
+.term a {
+  display: grid;
+  grid-template-columns: 0.9rem minmax(0, 1fr);
+  gap: 0.05rem 0.5rem;
+  padding: 0.4rem 0.5rem 0.45rem;
+  margin-inline: -0.5rem;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--body);
+  text-decoration: none;
+}
+
+.term a:hover {
+  background: rgb(var(--ink-rgb) / 0.045);
+  color: var(--ink);
+}
+
+.term .ok {
+  color: var(--accent);
+}
+
+.term em {
+  grid-column: 2;
+  font-style: normal;
+  color: var(--mute);
+  font-size: 0.72rem;
+}
+
+.term-more {
+  margin: 0.85rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* ---------- stats ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1.75rem 2rem;
+}
+
+.stat {
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.stat strong {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.stat span {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--mute);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* ---------- cards ---------- */
+
+.news {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.85rem;
+}
+
+.news a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.35rem;
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.news a:hover {
+  border-color: var(--accent-dim);
+  background: var(--canvas-raise);
+}
+
+.news strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+
+.news p {
+  margin: 0;
+  color: var(--mute);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* ---------- archive disclosure ----------
+   A long secondary list belongs behind a toggle. Forty-plus entries rendered at
+   full weight drowned the handful of repos that carry the argument. */
+
+.archive {
+  margin-top: 3rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.archive summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.archive summary::-webkit-details-marker {
+  display: none;
+}
+
+.archive summary:hover .archive-label {
+  color: var(--accent);
+}
+
+.archive summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.archive-label {
+  color: var(--ink);
+}
+
+.archive-label::after {
+  content: " +";
+  color: var(--accent);
+}
+
+.archive[open] .archive-label::after {
+  content: " −";
+}
+
+.archive-count {
+  color: var(--mute);
+}
+
+.archive-note {
+  margin: 0 0 1.25rem;
+  max-width: 40rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.archive-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 0.1rem 1.5rem;
+}
+
+.archive-list a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.4rem 0.5rem;
+  margin-inline: -0.5rem;
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--mute);
+  text-decoration: none;
+}
+
+.archive-list a:hover {
+  background: rgb(var(--ink-rgb) / 0.04);
+  color: var(--ink);
+}
+
+.archive-list .meta {
+  font-size: 0.66rem;
+  flex: none;
+}
+
+/* ---------- empty state ---------- */
 
 .empty {
-  border-top: 1px solid var(--rule);
-  padding-top: 1rem;
-  color: var(--muted);
+  margin-top: 1.5rem;
   max-width: var(--measure);
+  padding: 1.5rem;
+  color: var(--mute);
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  line-height: 1.6;
 }
 
+/* ---------- player ---------- */
+
+.player {
+  position: relative;
+  width: 100%;
+  max-width: 56rem;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  background: var(--canvas-raise);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.player-poster,
+.player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.player-play {
+  position: absolute;
+  left: 0.85rem;
+  bottom: 0.85rem;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.player-play span {
+  display: inline-flex;
+  align-items: center;
+  min-width: 5.5rem;
+  justify-content: center;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgb(var(--ink-rgb) / 0.45);
+  border-radius: 9999px;
+  background: rgb(var(--canvas-rgb) / 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-size: 0.875rem;
+}
+
+.player-play:hover span {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--canvas);
+}
+
+/* Sits over an arbitrary thumbnail, so it carries its own backdrop rather than
+   assuming the poster behind it is dark. */
+.player-fallback {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  z-index: 3;
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  background: rgb(var(--canvas-rgb) / 0.78);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.player-fallback:hover {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.player.is-playing .player-poster,
+.player.is-playing .player-play,
+.player.is-playing .player-fallback {
+  display: none;
+}
+
+/* ---------- article body ---------- */
+
+.article-body {
+  max-width: var(--measure);
+  color: var(--body);
+}
+
+/* Synced markdown opens with its own H1, which would repeat the page heading. */
+.article-body > h1:first-child,
+.article-body > h2:first-child,
+.article-body > h3:first-child {
+  display: none;
+}
+
+.article-body h2 {
+  margin: 2.5rem 0 0.8rem;
+  font-size: 1.65rem;
+  color: var(--ink);
+}
+
+.article-body h3 {
+  margin: 2rem 0 0.6rem;
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+.article-body p,
+.article-body li {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: 1.2rem;
+}
+
+.article-body li {
+  margin-bottom: 0.35rem;
+}
+
+.article-body pre,
+.article-body code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+}
+
+.article-body pre {
+  overflow: auto;
+  padding: 1.1rem 1.2rem;
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.article-body :not(pre) > code {
+  padding: 0.1rem 0.32rem;
+  background: var(--canvas-raise);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+}
+
+.article-body img {
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Wide tables in synced markdown would otherwise break the layout. */
+.article-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.article-body th,
+.article-body td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--hairline);
+  text-align: left;
+}
+
+.article-body blockquote {
+  margin: 1.75rem 0;
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--accent);
+  color: var(--mute);
+  font-style: normal;
+}
+
+.article-body hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+/* ---------- footer ---------- */
+
 .site-footer {
-  border-top: 1px solid var(--rule);
-  padding: 1.4rem 0 2.4rem;
-  font-family: var(--sans);
-  font-size: 0.88rem;
-  color: var(--muted);
+  margin-top: 2rem;
+  border-top: 1px solid var(--hairline);
+  padding: 2.25rem 1.5rem 3rem;
+}
+
+.site-footer-inner {
+  width: min(var(--page), 100%);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--mute);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
 }
 
 .site-footer ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1rem;
+  gap: 0.4rem 1.15rem;
   list-style: none;
-  margin: 0 0 0.8rem;
+  margin: 0;
   padding: 0;
+  text-transform: uppercase;
 }
 
-.list {
-  list-style: none;
-  margin: 1.4rem 0 0;
-  padding: 0;
-  max-width: var(--measure);
-}
-
-.list li {
-  border-top: 1px solid var(--rule);
-  padding: 0.95rem 0;
-}
-
-.list a {
-  color: var(--ink);
+.site-footer a {
+  color: var(--mute);
   text-decoration: none;
-  font-family: var(--display);
-  font-size: 1.2rem;
 }
 
-.list a:hover {
-  color: var(--mark);
+.site-footer a:hover {
+  color: var(--accent);
 }
 
-.list p {
-  margin: 0.35rem 0 0;
-  color: var(--muted);
-  font-size: 0.98rem;
+.site-footer p {
+  margin: 0;
+  text-transform: uppercase;
 }
 
-.meta {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--muted);
+/* ---------- breakpoints ---------- */
+
+@media (max-width: 900px) {
+  .theater,
+  .windows {
+    grid-template-columns: 1fr;
+  }
+
+  .theater-list {
+    max-height: none;
+  }
+
+  .window {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    /* The topbar stacks to two compact rows here. Content offset derives from
+       this, so the header can no longer overlap the page heading. */
+    --topbar: 4.75rem;
+  }
+
+  .topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    width: calc(100% - 2rem);
+    padding: 0.7rem 0;
+  }
+
+  .brand {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+  }
+
+  /* Single scrollable row rather than a wrapping block: keeps the fixed header
+     from eating ~7rem of a phone viewport. */
+  .topbar nav {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .topbar nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topbar nav ul {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 1.05rem;
+  }
+
+  .topbar nav a {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .hero,
+  .page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero {
+    padding-top: calc(var(--topbar) + 3rem);
+  }
+
+  .page,
+  .band {
+    width: calc(100% - 2rem);
+  }
+
+  .band-lead {
+    padding: 3rem 0;
+  }
+
+  h1,
+  .hero h1 {
+    max-width: none;
+  }
+
+  .index-list a {
+    grid-template-columns: 1.9rem minmax(0, 1fr);
+  }
+
+  .index-list strong {
+    font-size: 1.15rem;
+  }
+
+  .clip {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .thumb {
+    width: 5.5rem;
+    height: 3.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

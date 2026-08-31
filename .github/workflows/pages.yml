@@ -21,12 +21,29 @@ jobs:
       ASTRO_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - run: npm ci
-      - run: npm run build
+
+      # Deliberately no `npm run sync` here. Content lives in the repo, so the
+      # deploy is deterministic and offline: no YouTube/GitHub calls, no rate
+      # limits, no token. It also removes a real outage mode — YouTube's RSS
+      # window only returns the latest 15 items per feed, so a rotation could
+      # delete a curated video mid-deploy and fail the build.
+      # Refresh content deliberately with `npm run sync` and commit the diff.
+
+      # Type-checks pages, layouts, and content collection schemas. `npm run
+      # check` existed but nothing ran it, so schema drift only surfaced locally.
+      - name: Type-check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

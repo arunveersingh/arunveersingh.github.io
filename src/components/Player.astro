@@ -1,0 +1,41 @@
+---
+interface Props {
+  youtubeId: string;
+  title: string;
+}
+
+const { youtubeId, title } = Astro.props;
+const poster = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
+const watchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
+const embed = `https://www.youtube.com/embed/${youtubeId}?rel=0&autoplay=1`;
+---
+
+<figure class="player" data-embed={embed}>
+  <img class="player-poster" src={poster} alt="" width="1280" height="720" />
+  <button class="player-play" type="button" aria-label={`Play ${title}`}>
+    <span>Play</span>
+  </button>
+  <a class="player-fallback" href={watchUrl} target="_blank" rel="noreferrer">
+    YouTube
+  </a>
+</figure>
+
+<script>
+  function mount(root: Element) {
+    const embed = root.getAttribute('data-embed');
+    if (!embed || root.querySelector('iframe')) return;
+    const frame = document.createElement('iframe');
+    frame.src = embed;
+    frame.title = 'YouTube video';
+    frame.allow =
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    frame.allowFullscreen = true;
+    frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    root.append(frame);
+    root.classList.add('is-playing');
+  }
+
+  document.querySelectorAll('.player').forEach((root) => {
+    root.querySelector('.player-play')?.addEventListener('click', () => mount(root));
+  });
+</script>

@@ -1,7 +1,8 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { site } from '../../data/site';
+import Player from '../../components/Player.astro';
+import { channelById } from '../../data/site';
 
 export async function getStaticPaths() {
   const videos = await getCollection('videos');
@@ -12,23 +13,36 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
-const channel =
-  entry.data.channel === 'oopsfeedmecode' ? site.youtube[0] : site.youtube[1];
+const channel = channelById(entry.data.channel);
 ---
 
-<Base title={entry.data.title} description={entry.data.thesis}>
-  <article class="prose">
+<Base
+  title={entry.data.title}
+  description={entry.data.thesis}
+  ogType="article"
+  publishedTime={entry.data.published}
+>
+  <article class="page">
     <p class="kicker">Watch · {channel.name}</p>
-    <h1>{entry.data.title}</h1>
+    <h1 class="page-heading">{entry.data.title}</h1>
     <p class="lede">{entry.data.thesis}</p>
-    <Content />
     {
       entry.data.youtubeId && (
-        <p>
-          <a href={`https://www.youtube.com/watch?v=${entry.data.youtubeId}`}>Open on YouTube</a>
-        </p>
+        <Player youtubeId={entry.data.youtubeId} title={entry.data.title} />
       )
     }
+    <p class="muted" style="margin-top: 1rem;">
+      <a href={channel.href}>Open the channel</a>
+      {
+        entry.data.youtubeId && (
+          <>
+            {' · '}
+            <a href={`https://www.youtube.com/watch?v=${entry.data.youtubeId}`}>
+              Open on YouTube
+            </a>
+          </>
+        )
+      }
+    </p>
   </article>
 </Base>
