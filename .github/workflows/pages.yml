@@ -22,6 +22,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Attempts to turn Pages on if it is off. This often fails, because the
+      # workflow's GITHUB_TOKEN is an App token and GitHub does not grant App
+      # tokens permission to enable Pages — that needs a repo admin or a PAT.
+      # Harmless when Pages is already on, so it stays as a best effort.
+      - uses: actions/configure-pages@v5
+        continue-on-error: true
+        with:
+          enablement: true
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
