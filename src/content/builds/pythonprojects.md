@@ -1,6 +1,6 @@
 ---
 title: "pythonprojects"
-description: "pythonprojects — Python repository in the public lab behind arunveersingh.github.io/studio."
+description: "pythonprojects — Python repository in the public lab."
 published: 2020-04-29
 repo: "https://github.com/arunveersingh/pythonprojects"
 topics: ["github"]

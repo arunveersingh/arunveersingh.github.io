@@ -276,7 +276,10 @@ export function describeRepo({ name, language, topics }) {
   const subject = language ? `${language} repository` : 'repository';
   const real = (topics || []).filter((topic) => topic !== 'github');
   const tail = real.length > 0 ? ` Topics: ${real.join(', ')}.` : '';
-  return `${name} — ${subject} in the public lab behind arunveersingh.github.io/studio.${tail}`;
+  // Deliberately domain-free. This text lands in `description`, which feeds
+  // <meta name="description"> and og:description, so baking a hostname in here
+  // means every generated note goes stale the moment the URL changes.
+  return `${name} — ${subject} in the public lab.${tail}`;
 }
 
 /**

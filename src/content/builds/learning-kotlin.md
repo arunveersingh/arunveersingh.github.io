@@ -1,6 +1,6 @@
 ---
 title: "learning-kotlin"
-description: "learning-kotlin — Kotlin repository in the public lab behind arunveersingh.github.io/studio."
+description: "learning-kotlin — Kotlin repository in the public lab."
 published: 2021-02-22
 repo: "https://github.com/arunveersingh/learning-kotlin"
 topics: ["github"]

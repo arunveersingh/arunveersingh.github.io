@@ -1,6 +1,6 @@
 ---
 title: "bugmeincodehaisessions"
-description: "bugmeincodehaisessions — Java repository in the public lab behind arunveersingh.github.io/studio."
+description: "bugmeincodehaisessions — Java repository in the public lab."
 published: 2024-07-20
 repo: "https://github.com/arunveersingh/bugmeincodehaisessions"
 topics: ["github"]

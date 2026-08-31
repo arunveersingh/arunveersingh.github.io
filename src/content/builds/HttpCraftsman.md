@@ -1,6 +1,6 @@
 ---
 title: "HttpCraftsman"
-description: "HttpCraftsman — TypeScript repository in the public lab behind arunveersingh.github.io/studio."
+description: "HttpCraftsman — TypeScript repository in the public lab."
 published: 2025-01-28
 repo: "https://github.com/arunveersingh/HttpCraftsman"
 topics: ["github"]

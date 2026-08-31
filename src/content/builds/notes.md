@@ -1,6 +1,6 @@
 ---
 title: "notes"
-description: "notes — repository in the public lab behind arunveersingh.github.io/studio."
+description: "notes — repository in the public lab."
 published: 2025-02-20
 repo: "https://github.com/arunveersingh/notes"
 topics: ["github"]

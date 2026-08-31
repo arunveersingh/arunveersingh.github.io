@@ -2,13 +2,17 @@
 
 Personal site for [Arunveer Singh](https://github.com/arunveersingh): essays, curated videos, and architecture notes about AI systems.
 
-Built with Astro. Hosted on GitHub Pages at `https://arunveersingh.github.io/studio/` until a custom domain exists.
+Built with Astro. Live at **https://arunveersingh.github.io/**
+
+This is a GitHub *user* site: the repo is named `arunveersingh.github.io`, which is what makes it serve from the domain root rather than `/<repo>/`. That is why `base` is `/` in `astro.config.mjs`. Renaming the repo would move the site to a subpath and require `base` to change to match.
+
+For a custom domain later: add a `CNAME` file to `public/`, point DNS at GitHub, and `base` stays `/`.
 
 ## Commands
 
 ```sh
 npm install
-npm run dev      # local: http://localhost:4321/studio/
+npm run dev      # local: http://localhost:4321/
 npm run build
 npm run preview
 

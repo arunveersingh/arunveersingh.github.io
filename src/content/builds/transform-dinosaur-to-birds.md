@@ -1,6 +1,6 @@
 ---
 title: "transform-dinosaur-to-birds"
-description: "transform-dinosaur-to-birds — repository in the public lab behind arunveersingh.github.io/studio."
+description: "transform-dinosaur-to-birds — repository in the public lab."
 published: 2021-07-13
 repo: "https://github.com/arunveersingh/transform-dinosaur-to-birds"
 topics: ["github"]

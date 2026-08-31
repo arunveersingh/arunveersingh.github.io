@@ -1,6 +1,6 @@
 ---
 title: "ai-generated-tools"
-description: "ai-generated-tools — HTML repository in the public lab behind arunveersingh.github.io/studio."
+description: "ai-generated-tools — HTML repository in the public lab."
 published: 2026-02-15
 repo: "https://github.com/arunveersingh/ai-generated-tools"
 topics: ["github"]

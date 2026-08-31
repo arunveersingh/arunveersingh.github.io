@@ -1,6 +1,6 @@
 ---
 title: "flask-python"
-description: "flask-python — Python repository in the public lab behind arunveersingh.github.io/studio."
+description: "flask-python — Python repository in the public lab."
 published: 2020-06-08
 repo: "https://github.com/arunveersingh/flask-python"
 topics: ["github"]

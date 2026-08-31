@@ -1,6 +1,6 @@
 ---
 title: "explore-git"
-description: "explore-git — repository in the public lab behind arunveersingh.github.io/studio."
+description: "explore-git — repository in the public lab."
 published: 2022-07-23
 repo: "https://github.com/arunveersingh/explore-git"
 topics: ["github"]

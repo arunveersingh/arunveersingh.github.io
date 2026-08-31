@@ -1,6 +1,6 @@
 ---
 title: "resources"
-description: "resources — repository in the public lab behind arunveersingh.github.io/studio."
+description: "resources — repository in the public lab."
 published: 2021-02-03
 repo: "https://github.com/arunveersingh/resources"
 topics: ["github"]

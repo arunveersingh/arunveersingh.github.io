@@ -1,6 +1,6 @@
 ---
 title: "spring-boot-reactive-samples"
-description: "spring-boot-reactive-samples — Java repository in the public lab behind arunveersingh.github.io/studio."
+description: "spring-boot-reactive-samples — Java repository in the public lab."
 published: 2024-06-15
 repo: "https://github.com/arunveersingh/spring-boot-reactive-samples"
 topics: ["github"]

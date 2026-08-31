@@ -71,7 +71,6 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
 
     <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
     <link rel="alternate" type="application/rss+xml" title={`${site.title} — essays`} href={withBase('rss.xml')} />
-    {/* robots.txt is ignored on a Project Pages subpath, so point at the sitemap here too. */}
     <link rel="sitemap" type="application/xml" href={withBase('sitemap-index.xml')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
