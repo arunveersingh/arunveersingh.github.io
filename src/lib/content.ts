@@ -101,7 +101,22 @@ export async function leadVideo(): Promise<CollectionEntry<'videos'> | undefined
 }
 
 export async function selectedBuilds(): Promise<CollectionEntry<'builds'>[]> {
-  return resolveCurated(selectedBuildIds, await publishedBuilds(), 'selectedBuildIds');
+  const selected = resolveCurated(selectedBuildIds, await publishedBuilds(), 'selectedBuildIds');
+
+  // A selected build with no `problem` renders as a bare title with nothing
+  // underneath, which undercuts every entry beside it. Two repos were sitting in
+  // this list that way, one of them an entirely empty repository. Curation that
+  // cannot say why an item is curated is not curation, so this is now fatal.
+  const unexplained = selected.filter((entry) => !entry.data.problem?.trim());
+  if (unexplained.length > 0) {
+    throw new Error(
+      `selectedBuildIds: ${unexplained.length} selected build(s) have no \`problem\`: ` +
+        `${unexplained.map((entry) => entry.id).join(', ')}. ` +
+        `Add a GitHub description and re-run \`npm run sync\`, write a manual note, ` +
+        `or drop it from src/data/canon.ts.`,
+    );
+  }
+  return selected;
 }
 
 /**

@@ -34,15 +34,32 @@ export const videoNeedles = [
  */
 export const leadVideoNeedles = ['why-ai-fails', 'first-principles'];
 
-/** Ordered. Position 0 leads the builds index. */
+/**
+ * Ordered. Position 0 leads the builds index and the homepage.
+ *
+ * The bar for this list is that the repo contains real work AND can say what
+ * problem it solves. `src/lib/content.ts` enforces the second half at build
+ * time: a selected entry with no `problem` fails the build, because a curated
+ * item that cannot explain itself renders as a bare name and quietly weakens
+ * every other entry beside it.
+ *
+ * Removed after checking the repos rather than trusting the list:
+ *   systemdesignlab              — GitHub reports "This repository is empty"
+ *   microservice-design-patterns — 4 KB: a LICENSE and a two-line README
+ *   httpcraftsman                — 1.35 MB of real TypeScript, but no
+ *                                  description and no README, so nothing here
+ *                                  can say why it belongs. Worth promoting back
+ *                                  the moment it has one sentence describing it.
+ *
+ * Note that size alone is a bad proxy: the largest repo on the account
+ * (microserviceswithspring, 9 MB) is a learning-samples dump and belongs in the
+ * archive, not here.
+ */
 export const selectedBuildIds = [
   'ai-skills',
   'code-intel-mcp',
   'sbom-parser',
   'json-vs-protobuf',
-  'httpcraftsman',
-  'systemdesignlab',
-  'microservice-design-patterns',
 ];
 
 /** Ordered. All of these render on the homepage; position 0 leads the essays index. */
