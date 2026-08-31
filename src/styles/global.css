@@ -16,7 +16,59 @@
    in a 30-40deg warm band so the orange belongs to the palette instead of
    fighting it. Measured: worst rendered pair is 5.47:1 against a 4.5:1 floor.
    -------------------------------------------------------------------------- */
-:root {
+
+/* ----------------------------------------------------------------------------
+   Light theme — same warm 20-40deg discipline, on paper instead of near-black.
+
+   The accent could not simply carry over. #ff7a17 measures 2.44:1 on paper, so
+   it fails outright for the small text that uses it (list numerals, markers).
+   #b8430a holds the same hue family at 5.11:1 on canvas and 5.46:1 on cards.
+   The vivid hue survives in --hero-wash, which only paints gradients.
+
+   Surface order also inverts: on dark, cards sit lighter than the canvas; on
+   light, cards are white and --canvas-raise becomes the recessed tone used for
+   code blocks and media wells.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --canvas: #fbf7f0;
+  --canvas-card: #ffffff;
+  --canvas-raise: #f2ebdd;
+  --hairline: #e6ddcd;
+  --hairline-soft: #efe8db;
+  --ink: #171310;
+  --body: #403930;
+  --mute: #6d6459;
+  --nav-idle: rgb(var(--ink-rgb) / 0.62);
+  --pill: rgb(var(--ink-rgb) / 0.22);
+
+  --accent: #b8430a;
+  --accent-dim: rgb(184 67 10 / 0.34);
+  --pill-solid-hover: #000000;
+
+  --ink-rgb: 23 19 16;
+  --canvas-rgb: 251 247 240;
+
+  /* Brighter and more saturated than the dark variant. This is where the
+     "colourful" lives — at sizes where contrast rules do not bite. */
+  --hero-wash:
+    radial-gradient(820px 380px at 6% 116%, rgb(255 122 23 / 0.3), transparent 62%),
+    radial-gradient(700px 340px at 44% -18%, rgb(255 174 90 / 0.34), transparent 60%),
+    radial-gradient(1000px 520px at 94% -12%, rgb(255 206 150 / 0.55), transparent 62%);
+}
+
+/* ----------------------------------------------------------------------------
+   Dark theme — the opt-in override.
+
+   Declared after the light block on purpose: [data-theme="dark"] and :root have
+   equal specificity, so source order is what makes this win when the attribute
+   is present.
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
   --canvas: #0b0a09;
   --canvas-card: #17140f;
   --canvas-raise: #1d1a14;
@@ -30,19 +82,25 @@
   --nav-idle: rgb(var(--ink-rgb) / 0.66);
   --pill: rgb(var(--ink-rgb) / 0.24);
 
-  /* The accent existed but was only ever a 16%-opacity background gradient.
-     It now carries structure: section rules, indices, active states, links.
-     Swap this one value to #ff4a24 for the vermilion "signal" variant — the
-     accent then reads as stop/halt, matching what the skills actually do. */
+  /* Carries structure — section rules, list numerals, active states, links —
+     so it has to clear 4.5:1 as text, not just read as a brand colour.
+     Swap for #ff4a24 to get the vermilion "signal" variant. */
   --accent: #ff7a17;
   --accent-dim: rgb(255 122 23 / 0.3);
+  --pill-solid-hover: #fffdf9;
 
   /* Component form of --ink / --canvas, for translucent overlays. Hardcoded
-     rgb(255 255 255) and rgb(10 10 10) would reintroduce neutral grey on top
-     of a warm palette. */
+     rgb(255 255 255) / rgb(10 10 10) would reintroduce neutral grey on a warm
+     palette — and would invert the wrong way in the light theme. */
   --ink-rgb: 246 243 238;
   --canvas-rgb: 11 10 9;
 
+  --hero-wash:
+    radial-gradient(900px 400px at 8% 118%, rgb(255 122 23 / 0.18), transparent 60%),
+    radial-gradient(1100px 540px at 90% -10%, rgb(48 34 22 / 0.85), transparent 58%);
+}
+
+:root {
   --sans: "Inter", system-ui, -apple-system, sans-serif;
   --display: "Newsreader", "Iowan Old Style", Georgia, serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
@@ -208,6 +266,52 @@ a:focus-visible {
   background: var(--accent);
 }
 
+/* ---------- theme toggle ---------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--pill);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--nav-idle);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle-face {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Only one face renders at a time. Because display:none also drops content from
+   the accessibility tree, the hidden label inside each face makes the button's
+   accessible name switch with no JS involvement.
+
+   The light face is matched via :not([data-theme="dark"]) rather than
+   [data-theme="light"], so the button still shows an icon when the resolution
+   script has not run and no attribute is set — light being the default. */
+:root:not([data-theme="dark"]) .theme-toggle-face[data-when="light"],
+[data-theme="dark"] .theme-toggle-face[data-when="dark"] {
+  display: inline-flex;
+}
+
 /* ---------- layout + section rhythm ----------
    Every .band used to carry identical padding and an identical hairline, so no
    section could read as more important than another. Three tiers now. */
@@ -257,12 +361,9 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   z-index: -2;
-  /* The second gradient used to be navy (#141c30), which pulled against the
-     warm glow in the opposite corner. Both are warm now. */
-  background:
-    radial-gradient(900px 400px at 8% 118%, rgb(255 122 23 / 0.18), transparent 60%),
-    radial-gradient(1100px 540px at 90% -10%, rgb(48 34 22 / 0.85), transparent 58%),
-    var(--canvas);
+  /* Washes come from --hero-wash so each theme supplies its own. The dark
+     variant is a restrained glow; the light one is deliberately brighter. */
+  background: var(--hero-wash), var(--canvas);
 }
 
 .hero-inner {
@@ -426,7 +527,7 @@ a.quiet:hover {
 }
 
 .pill-solid:hover {
-  background: #fffdf9;
+  background: var(--pill-solid-hover);
   color: var(--canvas);
 }
 
@@ -1074,7 +1175,9 @@ a.quiet:hover {
 .article-body pre {
   overflow: auto;
   padding: 1.1rem 1.2rem;
-  background: var(--canvas-card);
+  /* --canvas-card is pure white in the light theme, which would not read as a
+     block against paper. --canvas-raise is the recessed tone in both themes. */
+  background: var(--canvas-raise);
   border: 1px solid var(--hairline);
   border-radius: 8px;
   line-height: 1.6;
@@ -1192,12 +1295,32 @@ a.quiet:hover {
     --topbar: 4.75rem;
   }
 
+  /* Three children now, so a column would cost a third row. Grid keeps the
+     wordmark and the toggle on one line with the nav beneath, holding the
+     header to the same two rows --topbar is measured against. */
   .topbar-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand toggle"
+      "nav nav";
+    align-items: center;
+    gap: 0.35rem 0.75rem;
     width: calc(100% - 2rem);
     padding: 0.7rem 0;
+  }
+
+  .topbar-inner > .brand {
+    grid-area: brand;
+  }
+
+  .topbar-inner > nav {
+    grid-area: nav;
+  }
+
+  .topbar-inner > .theme-toggle {
+    grid-area: toggle;
+    justify-self: end;
   }
 
   .brand {

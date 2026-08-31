@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { nav, site, withBase } from '../data/site';
 
 interface Props {
@@ -41,10 +42,35 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/*
+      Resolves the theme before first paint, so a light-theme visitor never sees
+      a dark flash. `is:inline` keeps it out of the bundle: a deferred module
+      would run after the first frame, which is exactly the flash we are
+      avoiding. Stored choice wins over the OS setting.
+    */}
+    <script is:inline>
+      (function () {
+        var theme = 'light';
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            theme = saved;
+          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            theme = 'dark';
+          }
+        } catch (error) {
+          /* blocked storage: fall back to the light default */
+        }
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
-    <meta name="theme-color" content="#0b0a09" />
+    {/* Matches the light default; the toggle rewrites this on switch. */}
+    <meta name="theme-color" content="#fbf7f0" />
     {/* noindex + canonical is a contradictory signal, so pages opt into one or
         the other. A 404 in particular is served at arbitrary URLs and has no
         canonical form. */}
@@ -105,6 +131,7 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
             }
           </ul>
         </nav>
+        <ThemeToggle />
       </div>
     </header>
     <main id="content" class="stage-main">

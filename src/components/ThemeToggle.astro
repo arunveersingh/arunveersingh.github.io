@@ -1,0 +1,63 @@
+---
+/**
+ * Theme switch.
+ *
+ * Both icons ship in the DOM and CSS shows one per theme. Because CSS
+ * `display: none` also removes content from the accessibility tree, each icon
+ * carries its own visually-hidden label — so the button's accessible name
+ * changes with the theme without any JavaScript touching it.
+ */
+---
+
+<button class="theme-toggle" type="button" data-theme-toggle>
+  <span class="theme-toggle-face" data-when="dark">
+    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none"
+         stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+      <circle cx="12" cy="12" r="4.2" />
+      <path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6" />
+    </svg>
+    <span class="visually-hidden">Switch to light theme</span>
+  </span>
+
+  <span class="theme-toggle-face" data-when="light">
+    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none"
+         stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.5 14.3A8.6 8.6 0 1 1 9.7 3.5a6.9 6.9 0 0 0 10.8 10.8Z" />
+    </svg>
+    <span class="visually-hidden">Switch to dark theme</span>
+  </span>
+</button>
+
+<script>
+  const THEME_KEY = 'theme';
+  const root = document.documentElement;
+
+  function apply(theme: 'light' | 'dark') {
+    root.dataset.theme = theme;
+    // Keep the browser chrome (mobile address bar) in step with the page.
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'light' ? '#fbf7f0' : '#0b0a09';
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      apply(next);
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch {
+        // Private mode or blocked storage: the choice just will not persist.
+      }
+    });
+  });
+
+  // Follow the OS only while the visitor has not made an explicit choice.
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (event) => {
+    try {
+      if (localStorage.getItem(THEME_KEY)) return;
+    } catch {
+      // fall through and follow the system
+    }
+    apply(event.matches ? 'light' : 'dark');
+  });
+</script>
