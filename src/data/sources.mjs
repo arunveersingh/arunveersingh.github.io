@@ -52,7 +52,12 @@ export const articlesRepo = {
 };
 
 /** Repos that are not public work worth listing as a build. */
-export const skipRepos = ['arunveersingh', 'site', 'TechCreatorPortfolio'];
+export const skipRepos = [
+  'arunveersingh', // profile README repo
+  'arunveersingh.github.io', // this site — it must not list itself as a build
+  'site',
+  'TechCreatorPortfolio',
+];
 
 /**
  * Article paths already maintained by hand in `src/content/essays/`. Sync must

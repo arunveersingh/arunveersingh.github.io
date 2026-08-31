@@ -343,11 +343,20 @@ async function syncBuilds() {
   }
 
   const files = [];
+  let empty = 0;
   for (const repo of repos) {
     if (repo.fork || repo.archived || skipRepoSet.has(repo.name)) continue;
     if (claimedRepos.has(repo.html_url)) continue;
+    // A repo with no content does not get a page. `size` is 0 both for repos
+    // with no commits at all and for single-file stubs, which is exactly the set
+    // that should not appear as public work.
+    if (repo.size === 0) {
+      empty += 1;
+      continue;
+    }
     files.push(buildNote(repo));
   }
+  if (empty > 0) console.log(`  skipped ${empty} empty repo(s)`);
 
   assertNotCollapsed('builds', files.length, generated.length);
   await commit(buildsDir, generated, files);
