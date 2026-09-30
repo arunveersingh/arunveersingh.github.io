@@ -147,7 +147,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
             <li>
               <a href={withBase(`/builds/${entry.id}/`)}>
                 <span class="meta">{new URL(entry.data.repo).pathname.slice(1)}</span>
-                <strong style={`view-transition-name: ${transitionName('build', entry.id)}`}>
+                <strong class="vt" style={`--vt: ${transitionName('build', entry.id)}`}>
                   {entry.data.title}
                 </strong>
                 {entry.data.problem && <em>{entry.data.problem}</em>}
@@ -179,7 +179,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
                     })}
                   </time>
                 </span>
-                <strong style={`view-transition-name: ${transitionName('essay', entry.id)}`}>
+                <strong class="vt" style={`--vt: ${transitionName('essay', entry.id)}`}>
                   {entry.data.title}
                 </strong>
                 {summary && <p>{summary}</p>}

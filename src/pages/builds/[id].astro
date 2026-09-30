@@ -38,7 +38,7 @@ const dates = entry.data.updated
 >
   <article class="page">
     <p class="kicker">Build</p>
-    <h1 class="page-heading" style={`view-transition-name: ${transitionName('build', entry.id)}`}>
+    <h1 class="page-heading vt" style={`--vt: ${transitionName('build', entry.id)}`}>
       {entry.data.title}
     </h1>
     {lede && <p class="lede">{lede}</p>}

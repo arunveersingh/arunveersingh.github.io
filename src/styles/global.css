@@ -1644,3 +1644,16 @@ a.quiet {
     transform: none;
   }
 }
+
+/* ---------- shared-element names ----------
+   Elements that morph across a navigation carry `class="vt"` and set `--vt` in a
+   style attribute. The property itself lives here rather than inline, which
+   keeps it in one place and keeps the markup free of a declaration the W3C
+   validator does not yet recognise (view-transition-name is standard and
+   shipped; the validator's property database simply lags).
+
+   If --vt is unset the substitution is invalid at computed-value time, so the
+   property falls back to `none` — exactly the wanted default. */
+.vt {
+  view-transition-name: var(--vt);
+}

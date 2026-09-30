@@ -15,11 +15,11 @@ const poster = `https://i.ytimg.com/vi/${youtubeId}/mqdefault.jpg`;
 ---
 
 <img
-  class="thumb"
+  class:list={['thumb', { vt: Boolean(transitionName) }]}
   src={poster}
   alt=""
   width="320"
   height="180"
-  style={transitionName ? `view-transition-name: ${transitionName}` : undefined}
+  style={transitionName ? `--vt: ${transitionName}` : undefined}
 />
 <span class="visually-hidden">{title}</span>

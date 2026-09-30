@@ -13,9 +13,9 @@ const embed = `https://www.youtube.com/embed/${youtubeId}?rel=0&autoplay=1`;
 ---
 
 <figure
-  class="player"
+  class:list={['player', { vt: Boolean(transitionName) }]}
   data-embed={embed}
-  style={transitionName ? `view-transition-name: ${transitionName}` : undefined}
+  style={transitionName ? `--vt: ${transitionName}` : undefined}
 >
   <img class="player-poster" src={poster} alt="" width="1280" height="720" />
   <button class="player-play" type="button" aria-label={`Play ${title}`}>

@@ -29,7 +29,7 @@ const summary = summaryFor(entry.data.title, entry.data.description);
 >
   <article class="page">
     <p class="kicker">Essay</p>
-    <h1 style={`view-transition-name: ${transitionName('essay', entry.id)}`}>{entry.data.title}</h1>
+    <h1 class="vt" style={`--vt: ${transitionName('essay', entry.id)}`}>{entry.data.title}</h1>
     <p class="meta">
       <time datetime={entry.data.published.toISOString()}>
         {entry.data.published.toLocaleDateString('en-GB', {
