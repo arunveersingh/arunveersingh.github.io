@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Player from '../components/Player.astro';
 import { channelById, site, withBase, yearsShipping } from '../data/site';
 import { featuredSkills, skillCount, skillUrl } from '../data/skills';
+import { transitionName } from '../lib/motion';
 import {
   canonVideos,
   featuredEssays,
@@ -93,7 +94,11 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
         </div>
         {
           featuredVideo?.data.youtubeId && (
-            <Player youtubeId={featuredVideo.data.youtubeId} title={featuredVideo.data.title} />
+            <Player
+              youtubeId={featuredVideo.data.youtubeId}
+              title={featuredVideo.data.title}
+              transitionName={transitionName('talk', featuredVideo.id)}
+            />
           )
         }
         {/* The player used to sit here unlabelled — you had to press play to
@@ -142,7 +147,9 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
             <li>
               <a href={withBase(`/builds/${entry.id}/`)}>
                 <span class="meta">{new URL(entry.data.repo).pathname.slice(1)}</span>
-                <strong>{entry.data.title}</strong>
+                <strong style={`view-transition-name: ${transitionName('build', entry.id)}`}>
+                  {entry.data.title}
+                </strong>
                 {entry.data.problem && <em>{entry.data.problem}</em>}
               </a>
             </li>
@@ -172,7 +179,9 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
                     })}
                   </time>
                 </span>
-                <strong>{entry.data.title}</strong>
+                <strong style={`view-transition-name: ${transitionName('essay', entry.id)}`}>
+                  {entry.data.title}
+                </strong>
                 {summary && <p>{summary}</p>}
               </a>
             );

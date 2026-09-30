@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { summaryFor } from '../../lib/content';
+import { transitionName } from '../../lib/motion';
 
 export async function getStaticPaths() {
   const builds = await getCollection('builds');
@@ -37,7 +38,9 @@ const dates = entry.data.updated
 >
   <article class="page">
     <p class="kicker">Build</p>
-    <h1 class="page-heading">{entry.data.title}</h1>
+    <h1 class="page-heading" style={`view-transition-name: ${transitionName('build', entry.id)}`}>
+      {entry.data.title}
+    </h1>
     {lede && <p class="lede">{lede}</p>}
     {dates.length > 0 && <p class="meta">{dates.join(' · ')}</p>}
     <div class="actions" style="margin-top: 1.25rem;">

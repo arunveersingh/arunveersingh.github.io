@@ -2,15 +2,21 @@
 interface Props {
   youtubeId: string;
   title: string;
+  /** Shared `view-transition-name`; matches the thumbnail that linked here. */
+  transitionName?: string;
 }
 
-const { youtubeId, title } = Astro.props;
+const { youtubeId, title, transitionName } = Astro.props;
 const poster = `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`;
 const watchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
 const embed = `https://www.youtube.com/embed/${youtubeId}?rel=0&autoplay=1`;
 ---
 
-<figure class="player" data-embed={embed}>
+<figure
+  class="player"
+  data-embed={embed}
+  style={transitionName ? `view-transition-name: ${transitionName}` : undefined}
+>
   <img class="player-poster" src={poster} alt="" width="1280" height="720" />
   <button class="player-play" type="button" aria-label={`Play ${title}`}>
     <span>Play</span>

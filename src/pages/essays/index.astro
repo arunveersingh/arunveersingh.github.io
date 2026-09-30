@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { withBase } from '../../data/site';
 import { featuredEssays, publishedEssays, summaryFor } from '../../lib/content';
+import { transitionName } from '../../lib/motion';
 
 const featured = await featuredEssays();
 const essays = await publishedEssays();
@@ -30,7 +31,8 @@ const leadSummary = lead ? summaryFor(lead.data.title, lead.data.description) : 
             </time>
           </p>
           <h2>
-            <a class="quiet" href={withBase(`/essays/${lead.id}/`)}>
+            <a class="quiet" href={withBase(`/essays/${lead.id}/`)}
+               style={`view-transition-name: ${transitionName('essay', lead.id)}`}>
               {lead.data.title}
             </a>
           </h2>
@@ -61,7 +63,9 @@ const leadSummary = lead ? summaryFor(lead.data.title, lead.data.description) : 
                       })}
                     </time>
                   </span>
-                  <strong>{entry.data.title}</strong>
+                  <strong style={`view-transition-name: ${transitionName('essay', entry.id)}`}>
+                    {entry.data.title}
+                  </strong>
                   {summary && <em>{summary}</em>}
                 </a>
               </li>

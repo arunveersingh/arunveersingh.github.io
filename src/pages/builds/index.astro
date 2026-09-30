@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { site, withBase } from '../../data/site';
 import { archiveBuilds, leadBuild, selectedBuilds, summaryFor } from '../../lib/content';
+import { transitionName } from '../../lib/motion';
 
 const selected = await selectedBuilds();
 const archive = await archiveBuilds();
@@ -27,7 +28,8 @@ const activity = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numer
         <article class="feature-essay">
           <p class="meta">Lead · {repoPath(lead.data.repo)}</p>
           <h2>
-            <a class="quiet" href={withBase(`/builds/${lead.id}/`)}>
+            <a class="quiet" href={withBase(`/builds/${lead.id}/`)}
+               style={`view-transition-name: ${transitionName('build', lead.id)}`}>
               {lead.data.title}
             </a>
           </h2>
@@ -51,7 +53,9 @@ const activity = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numer
               <li>
                 <a href={withBase(`/builds/${entry.id}/`)}>
                   <span class="meta">{repoPath(entry.data.repo)}</span>
-                  <strong>{entry.data.title}</strong>
+                  <strong style={`view-transition-name: ${transitionName('build', entry.id)}`}>
+                    {entry.data.title}
+                  </strong>
                   {entry.data.problem && <em>{entry.data.problem}</em>}
                 </a>
               </li>

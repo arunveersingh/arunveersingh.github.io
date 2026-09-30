@@ -1402,3 +1402,245 @@ a.quiet:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================================
+   MOTION
+   Kept as one section so the whole motion budget is reviewable in one place.
+
+   Rules this follows:
+   - Only `transform` and `opacity` animate, so work stays on the compositor.
+   - Nothing above the fold animates in. The hero h1 is the LCP element and
+     fading it would delay the most important content to look busier.
+   - Everything degrades to the previous instant behaviour where unsupported.
+   ========================================================================= */
+
+/* ---------- cross-document view transitions ----------
+   Two lines replace the hard white-to-white cut between pages with a real
+   transition, and enable the shared-element morphs named further down.
+   Unsupported browsers simply navigate as before. */
+@view-transition {
+  navigation: auto;
+}
+
+/* The chrome stays put while content changes, instead of cross-fading with it. */
+.topbar {
+  view-transition-name: site-header;
+}
+
+.site-footer {
+  view-transition-name: site-footer;
+}
+
+::view-transition-group(site-header),
+::view-transition-group(site-footer) {
+  animation-duration: 0.01ms;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Morphing elements get a lift out of the page during the transition. */
+::view-transition-group(*) {
+  animation-duration: 340ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ---------- link + text micro-interactions ---------- */
+
+a,
+a.quiet {
+  transition:
+    color 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+/* ---------- nav ----------
+   Every link now carries the underline, scaled to zero. Hover reveals it at
+   half strength; the current page holds it at full accent. Previously hover had
+   no affordance at all and the two states had to stay distinguishable. */
+.topbar nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition:
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.2s ease;
+}
+
+.topbar nav a:hover::after {
+  transform: scaleX(1);
+  opacity: 0.45;
+}
+
+.topbar nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* ---------- pills ---------- */
+
+.pill {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+}
+
+.pill:active {
+  transform: translateY(0);
+}
+
+/* ---------- cards ---------- */
+
+.news a {
+  transition:
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.news a:hover {
+  transform: translateY(-3px);
+}
+
+.window {
+  transition: border-color 0.24s ease;
+}
+
+/* ---------- numbered index ----------
+   The accent numeral steps toward the title on hover. Small, but it makes the
+   list feel responsive rather than static. */
+.index-list a::before {
+  transition:
+    color 0.2s ease,
+    transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.index-list a:hover::before {
+  transform: translateX(4px);
+}
+
+.index-list a,
+.index-list strong {
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* ---------- watch list ---------- */
+
+.clip {
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.24s ease;
+}
+
+.thumb {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.clip:hover .thumb {
+  transform: scale(1.04);
+}
+
+/* ---------- skills terminal ---------- */
+
+.term a {
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.term a:hover .ok {
+  transform: translateX(2px);
+}
+
+.term .ok {
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ---------- player ---------- */
+
+.player-play span,
+.player-fallback {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.player-play:hover span {
+  transform: scale(1.04);
+}
+
+.player-poster {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.player:hover .player-poster {
+  transform: scale(1.02);
+}
+
+/* ---------- theme toggle + archive ---------- */
+
+.theme-toggle {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle svg {
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(18deg);
+}
+
+.archive summary,
+.archive-list a,
+.site-footer a,
+.window-head a,
+.window-caption .meta a {
+  transition:
+    color 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+/* ---------- reduced motion ----------
+   Extends the existing block: also opts out of cross-document transitions and
+   flattens the hover transforms, rather than merely shortening them. */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+
+  .news a:hover,
+  .pill:hover,
+  .clip:hover .thumb,
+  .player:hover .player-poster,
+  .player-play:hover span,
+  .index-list a:hover::before,
+  .term a:hover .ok,
+  .theme-toggle:hover svg {
+    transform: none;
+  }
+}

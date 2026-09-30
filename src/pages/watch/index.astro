@@ -4,6 +4,7 @@ import Player from '../../components/Player.astro';
 import Thumb from '../../components/Thumb.astro';
 import { channelById, site, withBase } from '../../data/site';
 import { canonVideos, leadVideo, publishedVideos } from '../../lib/content';
+import { transitionName } from '../../lib/motion';
 
 const videos = await publishedVideos();
 const selected = await canonVideos();
@@ -71,7 +72,14 @@ const library = videos.filter((video) => !selected.some((item) => item.id === vi
                 video.data.youtubeId && (
                   <li>
                     <a class="clip" href={withBase(`/watch/${video.id}/`)}>
-                      <Thumb youtubeId={video.data.youtubeId} title={video.data.title} />
+                      {/* Morphs into the player on the detail page. Only library
+                          items get a name: theater buttons play inline and never
+                          navigate, and naming both would collide in-document. */}
+                      <Thumb
+                        youtubeId={video.data.youtubeId}
+                        title={video.data.title}
+                        transitionName={transitionName('talk', video.id)}
+                      />
                       <span>
                         <span class="meta">{channelById(video.data.channel).name}</span>
                         <strong>{video.data.title}</strong>

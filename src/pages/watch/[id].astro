@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Player from '../../components/Player.astro';
 import { channelById } from '../../data/site';
+import { transitionName } from '../../lib/motion';
 
 export async function getStaticPaths() {
   const videos = await getCollection('videos');
@@ -28,7 +29,11 @@ const channel = channelById(entry.data.channel);
     <p class="lede">{entry.data.thesis}</p>
     {
       entry.data.youtubeId && (
-        <Player youtubeId={entry.data.youtubeId} title={entry.data.title} />
+        <Player
+          youtubeId={entry.data.youtubeId}
+          title={entry.data.title}
+          transitionName={transitionName('talk', entry.id)}
+        />
       )
     }
     <p class="muted" style="margin-top: 1rem;">

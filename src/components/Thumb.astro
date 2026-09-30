@@ -2,11 +2,24 @@
 interface Props {
   youtubeId: string;
   title: string;
+  /**
+   * Shared `view-transition-name`. Pair it with the same name on the player of
+   * the destination page and the thumbnail grows into the video on navigation.
+   * Omit it for thumbnails that do not navigate anywhere.
+   */
+  transitionName?: string;
 }
 
-const { youtubeId, title } = Astro.props;
+const { youtubeId, title, transitionName } = Astro.props;
 const poster = `https://i.ytimg.com/vi/${youtubeId}/mqdefault.jpg`;
 ---
 
-<img class="thumb" src={poster} alt="" width="320" height="180" />
+<img
+  class="thumb"
+  src={poster}
+  alt=""
+  width="320"
+  height="180"
+  style={transitionName ? `view-transition-name: ${transitionName}` : undefined}
+/>
 <span class="visually-hidden">{title}</span>
