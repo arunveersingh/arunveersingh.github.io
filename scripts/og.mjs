@@ -19,7 +19,7 @@ const HEIGHT = 630;
 const name = 'Arunveer Singh';
 const tagline = 'AI should force you not to make mistakes.';
 const kicker = 'ENGINEERING JUDGMENT · PUBLIC WORK';
-const domain = 'arunveersingh.github.io';
+const domain = 'reasonfrom.com';
 
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

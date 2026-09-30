@@ -3,12 +3,14 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
-// GitHub user site: https://arunveersingh.github.io/
+// Custom apex domain, served by GitHub Pages from the arunveersingh.github.io repo.
+// The CNAME file in public/ is what binds the domain on each deploy.
 export default defineConfig({
-  site: 'https://arunveersingh.github.io',
-  // Root, not a subpath: the repo is named `arunveersingh.github.io`, which
-  // makes this a GitHub *user* site served from the domain root. A project site
-  // (any other repo name) would serve from /<repo>/ and need `base` set to match.
+  // Drives every canonical URL, og:url, sitemap entry and RSS link.
+  site: 'https://reasonfrom.com',
+  // Apex domain, so the site serves from the root. This stays '/' even if the
+  // repo is renamed, because the custom domain no longer depends on the repo
+  // name the way a project-Pages subpath did.
   base: '/',
   integrations: [
     mdx(),
