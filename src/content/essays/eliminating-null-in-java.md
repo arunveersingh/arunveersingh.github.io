@@ -6,8 +6,6 @@ topics: ["java", "null-safety"]
 manual: true
 ---
 
-# Eliminating `null` in Java: Advanced Strategies for Robust, Null-Free Code
-
 The keyword `null` in Java often represents an absence of value. At first glance, this might seem innocuous—a simple sentinel to indicate "nothing here." However, in practice, `null` is a notorious source of defects, poor readability, and subtle runtime failures. An accidental dereference of a `null` reference leads to `NullPointerException` (NPE), one of the most frequent and frustrating runtime errors in the Java ecosystem.
 
 While the core language provides `null` by design (a historical legacy often referred to as the "Billion Dollar Mistake"), modern Java offers tools and design paradigms that enable you to significantly reduce or even eliminate `null` usage. Going beyond the introductory level, this article delves into advanced patterns, design strategies, and trade-offs that industry experts use to build resilient, maintainable, and null-free Java codebases.

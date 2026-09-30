@@ -1,0 +1,58 @@
+name: Verify
+
+# Deliberately separate from pages.yml. Adding a pull_request trigger there would
+# also run its deploy job, which must only ever fire for main. This workflow
+# type-checks and builds without publishing anything.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+# Read-only: nothing here publishes, so it needs no pages or id-token scope.
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Content is committed, so this needs no network and no sync step. It
+      # verifies exactly the tree that would be deployed.
+      - name: Type-check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
+      # The build-time curation assertions in src/lib/content.ts already fail on
+      # an unresolved id or needle. This catches the rest: an empty build, or a
+      # page count that silently collapses.
+      - name: Sanity-check the output
+        run: |
+          pages=$(find dist -name '*.html' | wc -l | tr -d ' ')
+          echo "built $pages pages"
+          if [ "$pages" -lt 50 ]; then
+            echo "::error::only $pages pages built; expected well over 50"
+            exit 1
+          fi
+          for f in dist/index.html dist/404.html dist/rss.xml dist/sitemap-index.xml dist/robots.txt; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          echo "required artifacts present"

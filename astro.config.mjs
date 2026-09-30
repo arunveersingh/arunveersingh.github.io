@@ -4,7 +4,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 // Custom apex domain, served by GitHub Pages from the arunveersingh.github.io repo.
-// The CNAME file in public/ is what binds the domain on each deploy.
+// The domain is repo configuration, not public/CNAME: Pages builds here via
+// GitHub Actions, and in that mode a CNAME file in the artifact is ignored.
 export default defineConfig({
   // Drives every canonical URL, og:url, sitemap entry and RSS link.
   site: 'https://reasonfrom.com',

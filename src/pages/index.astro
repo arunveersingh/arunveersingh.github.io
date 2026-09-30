@@ -58,6 +58,10 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
   </section>
 
   <section class="band band-lead">
+    {/* Sections need a heading or screen-reader users get an unlabelled
+        landmark. These three carry no visible kicker, so the label is
+        visually hidden rather than invented on screen. */}
+    <h2 class="visually-hidden">The standard and the talks</h2>
     <div class="windows">
       <div class="window">
         <div class="window-head">
@@ -122,6 +126,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
   </section>
 
   <section class="band">
+    <h2 class="visually-hidden">By the numbers</h2>
     <div class="stats">
       <p class="stat">
         <strong>{yearsShipping}</strong>
@@ -141,7 +146,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
   {
     selected.length > 1 && (
       <section class="band">
-        <p class="kicker">Selected systems work</p>
+        <h2 class="kicker">Selected systems work</h2>
         <ol class="index-list">
           {selected.map((entry) => (
             <li>
@@ -164,7 +169,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
   {
     essays.length > 0 && (
       <section class="band">
-        <p class="kicker">Writing</p>
+        <h2 class="kicker">Writing</h2>
         <div class="news">
           {essays.map((entry) => {
             const summary = summaryFor(entry.data.title, entry.data.description);
@@ -192,6 +197,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
   }
 
   <section class="band band-quiet">
+    <h2 class="visually-hidden">Colophon</h2>
     <p class="muted colophon">
       {allBuilds.length} public repos sit behind this page. It leads with the {selected.length} that
       prove the standard — the rest is a lab, and{' '}

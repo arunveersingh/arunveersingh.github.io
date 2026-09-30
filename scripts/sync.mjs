@@ -432,6 +432,12 @@ async function syncEssays() {
     const dateMatch = path.match(/(\d{2})(\d{2})(\d{4})/);
     const published = dateMatch ? `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}` : '2024-01-01';
 
+    // Drop the article's own leading heading. The page renders `title` as its
+    // h1, so keeping it produced two titles, and where upstream opened at h3 it
+    // also made the document skip a heading level — a real structure fault that
+    // the live site was flagged for.
+    const body = raw.replace(/^\s*#{1,6}[ \t]+[^\n]*\n+/, '');
+
     files.push({
       name: `${id}.md`,
       body: `---
@@ -442,7 +448,7 @@ topics: ["article"]
 generated: true
 ---
 
-${raw}
+${body}
 `,
     });
   }

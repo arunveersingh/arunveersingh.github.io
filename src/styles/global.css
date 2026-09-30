@@ -381,6 +381,10 @@ a:focus-visible {
   margin: 0 0 1.35rem;
   font-family: var(--mono);
   font-size: 0.72rem;
+  font-weight: 400;
+  /* Set explicitly because .kicker is an <h2> on sections it labels, and the
+     h1-h3 group sets line-height: 1.04 which is wrong for this. */
+  line-height: 1.5;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--mute);
@@ -1132,12 +1136,9 @@ a.quiet:hover {
   color: var(--body);
 }
 
-/* Synced markdown opens with its own H1, which would repeat the page heading. */
-.article-body > h1:first-child,
-.article-body > h2:first-child,
-.article-body > h3:first-child {
-  display: none;
-}
+/* The leading duplicate heading is removed in the markdown pipeline now — see
+   stripLeadingHeading in astro.config.mjs — rather than hidden here. Hiding it
+   left the node in the DOM, so the document skipped from h1 straight to h3. */
 
 .article-body h2 {
   margin: 2.5rem 0 0.8rem;

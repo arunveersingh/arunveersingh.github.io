@@ -6,15 +6,13 @@ topics: ["performance", "language"]
 manual: true
 ---
 
-### Choosing the Right Terminology in Software Performance: Slowness vs. Latency
-
 Effective communication is essential in software development, especially when discussing performance metrics. Choosing the right terminology ensures clarity among different teams and stakeholders. Let's explore the nuances between "slowness" and "latency," and understand when each term is most appropriate.
 
 ---
 
-### **Latency vs. Slowness**
+## **Latency vs. Slowness**
 
-#### **1. Latency**
+### **1. Latency**
 - **Definition:**  
   Latency refers to the time it takes for a specific operation or request to be completed. In the context of networked systems or microservices, it often describes the delay between sending a request and receiving a response.
 
@@ -28,7 +26,7 @@ Effective communication is essential in software development, especially when di
   - **Identifying Bottlenecks:**  
     Pinpointing delays in data fetching from external APIs in a fintech application can enhance transaction speeds by addressing specific latency issues.
 
-#### **2. Slowness**
+### **2. Slowness**
 - **Definition:**  
   Slowness is a more general and subjective term that conveys that a system or application feels slow to the user.
 
@@ -46,7 +44,7 @@ Effective communication is essential in software development, especially when di
 
 ---
 
-### **When to Use Each Term**
+## **When to Use Each Term**
 
 - **Use "Latency" When:**
   - Discussing specific, measurable delays in operations.
@@ -60,7 +58,7 @@ Effective communication is essential in software development, especially when di
 
 ---
 
-### **Potential Pitfalls of Terminology Misuse**
+## **Potential Pitfalls of Terminology Misuse**
 
 - **Miscommunication:**  
   Using "slowness" in a technical context might lead to ambiguity. For instance, a microservices team hearing "slowness" might not immediately understand whether it's a latency issue, a throughput problem, or something else.
@@ -70,7 +68,7 @@ Effective communication is essential in software development, especially when di
 
 ---
 
-### **Balancing Both Terms**
+## **Balancing Both Terms**
 
 Incorporating both terms appropriately based on the audience and context is beneficial:
 
@@ -82,7 +80,7 @@ Incorporating both terms appropriately based on the audience and context is bene
 
 ---
 
-### **Additional Considerations**
+## **Additional Considerations**
 
 - **Other Metrics:**  
   Sometimes, other performance metrics like **throughput** (the amount of work performed in a given time) or **resource utilization** might be more appropriate depending on the issue.
@@ -92,13 +90,13 @@ Incorporating both terms appropriately based on the audience and context is bene
 
 ---
 
-### **Encouraging Precision in Teams**
+## **Encouraging Precision in Teams**
 
 Using the correct terminology can also reflect the depth of a team's understanding of performance issues. For instance, if microservices teams frequently use the term "slowness," it might indicate a need to focus more on specific metrics like latency, throughput, or scalability. Encouraging a more granular approach to performance can lead to more effective optimizations and robust system architectures.
 
 ---
 
-### **Conclusion**
+## **Conclusion**
 
 Both "slowness" and "latency" have their places in software performance discussions. The key is to use each term where it best fits:
 

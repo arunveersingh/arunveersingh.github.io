@@ -1,0 +1,43 @@
+This repository contains two different kinds of work, under two different terms.
+
+
+SOFTWARE — MIT License
+
+Applies to the site's source: everything except the directories named under
+"CONTENT" below. That is the Astro components, layouts, pages, styles, and the
+scripts in scripts/.
+
+Copyright (c) 2026 Arunveer Singh
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+CONTENT — All rights reserved
+
+Applies to src/content/ and public/og.png: the essays, video notes, build notes,
+and generated imagery.
+
+Copyright (c) 2026 Arunveer Singh. All rights reserved.
+
+You may read it, quote it with attribution, and link to it. You may not
+republish it in whole or in substantial part, or use it to train machine
+learning models, without written permission.
+
+The reasoning, if it helps: the code here is worth reusing and costs nothing to
+give away. The writing is the point of the site, so it stays reserved.
