@@ -93,40 +93,40 @@ const library = videos.filter((video) => !selected.some((item) => item.id === vi
       )
     }
   </div>
-</Base>
 
-<script>
-  const theater = document.querySelector('[data-theater]');
-  if (theater) {
-    const stage = theater.querySelector('.player');
-    const titleEl = theater.querySelector('[data-theater-title]');
-    const thesisEl = theater.querySelector('[data-theater-thesis]');
-    const channelEl = theater.querySelector('[data-theater-channel]');
-
-    theater.querySelectorAll<HTMLButtonElement>('button.clip').forEach((button) => {
-      button.addEventListener('click', () => {
-        const id = button.dataset.id;
-        const title = button.dataset.title ?? '';
-        if (!id || !stage) return;
-
-        theater.querySelectorAll('button.clip').forEach((item) => item.classList.remove('is-current'));
-        button.classList.add('is-current');
-
-        if (titleEl) titleEl.textContent = title;
-        if (thesisEl) thesisEl.textContent = button.dataset.thesis ?? '';
-        if (channelEl) channelEl.textContent = button.dataset.channel ?? '';
-
-        const poster = stage.querySelector<HTMLImageElement>('.player-poster');
-        const play = stage.querySelector<HTMLButtonElement>('.player-play');
-        const fallback = stage.querySelector<HTMLAnchorElement>('.player-fallback');
-        stage.querySelector('iframe')?.remove();
-        stage.classList.remove('is-playing');
-        stage.setAttribute('data-embed', `https://www.youtube.com/embed/${id}?rel=0&autoplay=1`);
-        if (poster) poster.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
-        if (play) play.setAttribute('aria-label', `Play ${title}`);
-        if (fallback) fallback.href = `https://www.youtube.com/watch?v=${id}`;
-        play?.click();
+  <script>
+    const theater = document.querySelector('[data-theater]');
+    if (theater) {
+      const stage = theater.querySelector('.player');
+      const titleEl = theater.querySelector('[data-theater-title]');
+      const thesisEl = theater.querySelector('[data-theater-thesis]');
+      const channelEl = theater.querySelector('[data-theater-channel]');
+  
+      theater.querySelectorAll<HTMLButtonElement>('button.clip').forEach((button) => {
+        button.addEventListener('click', () => {
+          const id = button.dataset.id;
+          const title = button.dataset.title ?? '';
+          if (!id || !stage) return;
+  
+          theater.querySelectorAll('button.clip').forEach((item) => item.classList.remove('is-current'));
+          button.classList.add('is-current');
+  
+          if (titleEl) titleEl.textContent = title;
+          if (thesisEl) thesisEl.textContent = button.dataset.thesis ?? '';
+          if (channelEl) channelEl.textContent = button.dataset.channel ?? '';
+  
+          const poster = stage.querySelector<HTMLImageElement>('.player-poster');
+          const play = stage.querySelector<HTMLButtonElement>('.player-play');
+          const fallback = stage.querySelector<HTMLAnchorElement>('.player-fallback');
+          stage.querySelector('iframe')?.remove();
+          stage.classList.remove('is-playing');
+          stage.setAttribute('data-embed', `https://www.youtube.com/embed/${id}?rel=0&autoplay=1`);
+          if (poster) poster.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+          if (play) play.setAttribute('aria-label', `Play ${title}`);
+          if (fallback) fallback.href = `https://www.youtube.com/watch?v=${id}`;
+          play?.click();
+        });
       });
-    });
-  }
-</script>
+    }
+  </script>
+</Base>
