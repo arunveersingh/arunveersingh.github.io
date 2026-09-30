@@ -695,10 +695,37 @@ a.quiet:hover {
   line-height: 1.6;
 }
 
+/* Eleven selected talks overflow this container, and it previously clipped the
+   last one mid-word with nothing to indicate it scrolled. The mask fades the cut
+   edge so it reads as "more below", and the scrollbar is made visible rather
+   than left to the OS to hide. */
 .theater-list {
   margin-top: 0;
   max-height: 36rem;
-  overflow: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 2.5rem), transparent);
+  scrollbar-width: thin;
+  scrollbar-color: var(--hairline) transparent;
+}
+
+.theater-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.theater-list::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 3px;
+}
+
+.theater-list::-webkit-scrollbar-thumb:hover {
+  background: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theater-list {
+    scroll-behavior: auto;
+  }
 }
 
 /* ---------- feature block ---------- */
