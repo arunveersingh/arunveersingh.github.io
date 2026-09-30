@@ -2,11 +2,26 @@
 
 Personal site for [Arunveer Singh](https://github.com/arunveersingh): essays, curated videos, and architecture notes about AI systems.
 
-Built with Astro. Live at **https://arunveersingh.github.io/**
+Built with Astro. Live at **https://reasonfrom.com**
 
-This is a GitHub *user* site: the repo is named `arunveersingh.github.io`, which is what makes it serve from the domain root rather than `/<repo>/`. That is why `base` is `/` in `astro.config.mjs`. Renaming the repo would move the site to a subpath and require `base` to change to match.
+Served by GitHub Pages from the `arunveersingh.github.io` repo, on the apex domain `reasonfrom.com`. Two things bind that together and both must agree:
 
-For a custom domain later: add a `CNAME` file to `public/`, point DNS at GitHub, and `base` stays `/`.
+- `public/CNAME` contains `reasonfrom.com`. GitHub reads it on every deploy; delete it and the site reverts to `arunveersingh.github.io`.
+- `site` in `astro.config.mjs` is `https://reasonfrom.com`. It drives every canonical URL, `og:url`, sitemap entry and RSS link, so it must match the CNAME or social cards and canonicals point at the wrong origin.
+
+DNS at the registrar (Hostinger):
+
+```
+A     @     185.199.108.153
+A     @     185.199.109.153
+A     @     185.199.110.153
+A     @     185.199.111.153
+AAAA  @     2606:50c0:8000::153
+AAAA  @     2606:50c0:8001::153
+AAAA  @     2606:50c0:8002::153
+AAAA  @     2606:50c0:8003::153
+CNAME www   arunveersingh.github.io.
+```
 
 ## Commands
 

@@ -14,7 +14,7 @@ export async function GET(context: APIContext) {
     title: `${site.title} — Essays`,
     description: site.description,
     // Absolute origin from astro.config.mjs; item links are resolved against it.
-    site: context.site ?? 'https://arunveersingh.github.io',
+    site: context.site ?? 'https://reasonfrom.com',
     trailingSlash: true,
     items: essays.map((entry) => ({
       title: entry.data.title,
