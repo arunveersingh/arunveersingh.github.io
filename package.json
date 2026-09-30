@@ -9,6 +9,7 @@
   "scripts": {
     "sync": "node scripts/sync.mjs",
     "og": "node scripts/og.mjs",
+    "icons": "node scripts/icons.mjs",
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "refresh": "npm run sync && npm run build",

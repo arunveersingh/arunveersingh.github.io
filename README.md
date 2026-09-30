@@ -1,8 +1,20 @@
-# Studio
+# Reason From
 
-Personal site for [Arunveer Singh](https://github.com/arunveersingh): essays, curated videos, and architecture notes about AI systems.
+**Reason From** is the site; [Arunveer Singh](https://github.com/arunveersingh) is its author. Essays, curated videos, and architecture notes about AI systems.
 
 Built with Astro. Live at **https://reasonfrom.com**
+
+## Brand
+
+The brand is the domain, and the chrome says so on every page. The wordmark is `reason from` in the display serif, lowercase like the domain. The mark is a turnstile (⊢ — "derives from"), drawn as two strokes in `src/components/Mark.astro`. The author appears as a byline (hero, footer, `<meta name="author">`), never as the masthead.
+
+Names, domain, and strap live in `brand` in `src/data/site.ts`. Everything that renders the brand reads from there or restates the mark's geometry:
+
+| Asset | Source | Regenerate |
+| --- | --- | --- |
+| `public/favicon.svg` | hand-authored, same geometry as `Mark.astro` | — |
+| `public/favicon.ico`, `public/apple-touch-icon.png` | rendered from `favicon.svg` | `npm run icons` |
+| `public/og.png` | `scripts/og.mjs` | `npm run og` |
 
 Served by GitHub Pages from the `arunveersingh.github.io` repo, on the apex domain `reasonfrom.com`.
 
@@ -43,6 +55,7 @@ npm run refresh  # sync, then build
 npm run check    # astro check (types + content schemas)
 npm run verify   # check, then build — run this before pushing
 npm run og       # regenerate public/og.png
+npm run icons    # regenerate favicon.ico and apple-touch-icon.png from favicon.svg
 ```
 
 `dev` and `build` no longer run `sync`. Syncing rewrites files in `src/content`, so having it on the dev path meant starting a server churned the working tree. Pull content explicitly with `npm run sync` or `npm run refresh`.

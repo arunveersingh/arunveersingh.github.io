@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
+import Mark from '../components/Mark.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
-import { nav, site, withBase } from '../data/site';
+import { brand, nav, site, withBase } from '../data/site';
 
 interface Props {
   title?: string;
@@ -24,9 +25,14 @@ const {
   noindex = false,
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${site.title}` : `${site.title} — ${site.tagline}`;
+// The publication is the suffix on every page. The author's name is on the
+// home title because that is what people search for; elsewhere it lives in
+// the author meta and the footer byline.
+const pageTitle = title
+  ? `${title} · ${brand.name}`
+  : `${brand.name} — ${site.author} on engineering judgment`;
 // Social cards want the bare headline, not the breadcrumbed document title.
-const socialTitle = title ? `${title} — ${site.title}` : `${site.title} — ${site.tagline}`;
+const socialTitle = title ? `${title} — ${brand.name}` : `${brand.name} — ${site.tagline}`;
 
 const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const home = withBase('/').replace(/\/+$/, '') || '/';
@@ -69,6 +75,9 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
+    {/* What the site is called when pinned to a home screen or a taskbar. */}
+    <meta name="application-name" content={brand.name} />
+    <meta name="apple-mobile-web-app-title" content={brand.name} />
     {/* Matches the light default; the toggle rewrites this on switch. */}
     <meta name="theme-color" content="#fbf7f0" />
     {/* noindex + canonical is a contradictory signal, so pages opt into one or
@@ -77,14 +86,14 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
     {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
 
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content={site.title} />
+    <meta property="og:site_name" content={brand.name} />
     <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${site.title} — ${site.tagline}`} />
+    <meta property="og:image:alt" content={`${brand.name} — ${site.tagline} ${site.author}, ${brand.domain}`} />
     <meta property="og:locale" content="en_US" />
     {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
     {modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
@@ -95,8 +104,12 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:creator" content="@oopsfeedmecode" />
 
+    {/* SVG first for browsers that take it; the .ico and touch icon are
+        rendered from the same mark by `npm run icons`. */}
     <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
-    <link rel="alternate" type="application/rss+xml" title={`${site.title} — essays`} href={withBase('rss.xml')} />
+    <link rel="icon" type="image/x-icon" sizes="32x32" href={withBase('favicon.ico')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase('apple-touch-icon.png')} />
+    <link rel="alternate" type="application/rss+xml" title={`${brand.name} — essays`} href={withBase('rss.xml')} />
     <link rel="sitemap" type="application/xml" href={withBase('sitemap-index.xml')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -112,7 +125,13 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
     <a class="skip" href="#content">Skip to content</a>
     <header class="topbar">
       <div class="topbar-inner">
-        <a class="brand" href={withBase('/')}>Arunveer Singh</a>
+        {/* Masthead: the mark plus the domain as a wordmark. The author is a
+            byline (hero and footer), not the masthead — the domain is the
+            brand and the chrome should say so on every page. */}
+        <a class="brand" href={withBase('/')} aria-label={`${brand.name} — home`}>
+          <Mark class="brand-mark" />
+          <span class="brand-word">{brand.wordmark}</span>
+        </a>
         <nav aria-label="Primary">
           <ul>
             {
@@ -153,7 +172,11 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
           <li><a href={`mailto:${site.email}`}>Email</a></li>
           <li><a href={withBase('rss.xml')}>RSS</a></li>
         </ul>
-        <p>Canonical writing · not a feed</p>
+        {/* The byline lives here on every page: the domain, then the person
+            behind it. The masthead above says only the brand. */}
+        <p class="site-footer-byline">
+          <a href={withBase('/')}>{brand.domain}</a> · {site.author} · Canonical writing, not a feed
+        </p>
       </div>
     </footer>
   </body>

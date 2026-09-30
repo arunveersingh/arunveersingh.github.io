@@ -207,20 +207,50 @@ a:focus-visible {
   padding: 1.05rem 0;
 }
 
-/* Wordmark in mono: it is an identifier, not a headline. */
+/* Masthead. The mark in accent, the wordmark in the display serif, lowercase
+   like the domain — the same voice as the "reason from ___" line in the hero,
+   so the h1 reads as the masthead completing itself rather than as a second,
+   unrelated brand. Previously this was the author's name in mono caps, which
+   made the site look like it had one name in the chrome and another on the
+   domain. */
 .brand {
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
 }
 
+.brand-mark {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  color: var(--accent);
+}
+
+.brand-word {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  /* Optical: Newsreader's x-height sits a touch low against the mark. */
+  transform: translateY(-0.04em);
+}
+
 .brand:hover {
   color: var(--ink);
+}
+
+.brand:hover .brand-mark {
+  color: var(--ink);
+}
+
+/* The byline sits over the wordmark line in the hero; a kicker with less air
+   beneath it than a section kicker gets, because the h1 is the point. */
+.hero-byline {
+  margin-bottom: 1.1rem;
 }
 
 .topbar nav ul {
@@ -1299,6 +1329,12 @@ a.quiet:hover {
   text-transform: uppercase;
 }
 
+/* The domain is the one thing in the footer set in ink: it is the byline's
+   subject, and it is a link home. */
+.site-footer-byline a {
+  color: var(--ink);
+}
+
 /* ---------- breakpoints ---------- */
 
 @media (max-width: 900px) {
@@ -1351,9 +1387,13 @@ a.quiet:hover {
     justify-self: end;
   }
 
-  .brand {
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
+  .brand-mark {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .brand-word {
+    font-size: 1.2rem;
   }
 
   /* Single scrollable row rather than a wrapping block: keeps the fixed header
@@ -1684,4 +1724,116 @@ a.quiet {
    property falls back to `none` — exactly the wanted default. */
 .vt {
   view-transition-name: var(--vt);
+}
+
+/* ---------- "Reason from ___" ----------
+   One line, one voice. The rotating completion is distinguished by motion alone
+   — no second colour, no rule beneath it. Both of those were decoration added to
+   prop up the idea, and they read as artefacts rather than as a wordmark.
+
+   Words stack in a single inline-grid cell, so the slot sizes itself to the
+   longest completion and never reflows as words change. Each word fades in with
+   a small rise, holds, then fades out.
+
+   No blur. Blurred text makes the eye attempt to refocus, and on a loop at this
+   size that is actively uncomfortable rather than premium. Opacity and a short
+   translate give the same sense of one word replacing another with nothing for
+   the eye to chase.
+
+   LCP-safe: word one has zero delay and its 0% keyframe is fully opaque, so the
+   largest text on the page is painted on the first frame. The others stay at the
+   base opacity: 0 until their delay elapses, which is why fill-mode is not
+   `backwards` here — that would reveal all six at once. */
+
+.reason-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5ch;
+  max-width: none;
+  line-height: 1.1;
+  /* Lowercase to match the domain and to read as a name rather than an
+     instruction. Done in CSS rather than in the content so the DOM text stays
+     "Reason from first principles" — crawlers and screen readers get proper
+     sentence case, only the rendering is lowered. */
+  text-transform: lowercase;
+  /* Lowercase loses the cap-height spikes that were carrying the line's weight,
+     so it gets very slightly tighter tracking to keep it feeling deliberate. */
+  letter-spacing: -0.025em;
+}
+
+.reason-slot {
+  display: inline-grid;
+  /* Sizes to the longest word; nothing shifts when the text swaps. */
+  justify-items: start;
+}
+
+.reason-slot > span {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  opacity: 0;
+  animation: reason-word 21s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Word one carries no delay, so it is visible at first paint. */
+.reason-slot > span:nth-child(1) { animation-delay: 0s; }
+.reason-slot > span:nth-child(2) { animation-delay: 3.5s; }
+.reason-slot > span:nth-child(3) { animation-delay: 7s; }
+.reason-slot > span:nth-child(4) { animation-delay: 10.5s; }
+.reason-slot > span:nth-child(5) { animation-delay: 14s; }
+.reason-slot > span:nth-child(6) { animation-delay: 17.5s; }
+
+@keyframes reason-word {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  12.5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  16.6% {
+    opacity: 0;
+    transform: translateY(-0.14em);
+  }
+  95% {
+    opacity: 0;
+    transform: translateY(0.14em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The manifesto line, demoted from h1 but still the second thing read. */
+.hero-claim {
+  margin: 1.5rem 0 0;
+  max-width: 30ch;
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2.5vw, 2.05rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: var(--body);
+  text-wrap: balance;
+}
+
+.hero .lede {
+  margin-top: 1.5rem;
+}
+
+/* Rotating text is exactly the motion that triggers vestibular and attention
+   problems, so this resolves to the first word and stops. */
+@media (prefers-reduced-motion: reduce) {
+  .reason-slot > span {
+    animation: none;
+  }
+
+  .reason-slot > span:nth-child(1) {
+    opacity: 1;
+  }
+
+  .reason-slot > span:not(:nth-child(1)) {
+    display: none;
+  }
 }

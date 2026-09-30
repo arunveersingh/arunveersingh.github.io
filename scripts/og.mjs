@@ -16,13 +16,24 @@ const out = join(root, 'public/og.png');
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-const name = 'Arunveer Singh';
+// The card leads with the brand, the same way the page does: mark + wordmark,
+// then the claim, then the author as a byline. Before, it led with the name and
+// put the domain in the corner, so a share looked like a different site from
+// the one it opened.
+const wordmark = 'reason from';
 const tagline = 'AI should force you not to make mistakes.';
-const kicker = 'ENGINEERING JUDGMENT · PUBLIC WORK';
-const domain = 'reasonfrom.com';
+const kicker = 'ENGINEERING JUDGMENT · IN PUBLIC';
+const byline = 'Arunveer Singh  ·  reasonfrom.com';
 
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// Turnstile mark, same geometry as src/components/Mark.astro (32-unit box),
+// scaled so its height matches the wordmark's cap-to-baseline span.
+const MARK = 96;
+const markX = 80;
+const markY = 223;
+const mark = (u) => (u / 32) * MARK;
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <defs>
@@ -45,21 +56,24 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
         font-family="Menlo, 'DejaVu Sans Mono', monospace" font-size="22"
         letter-spacing="3.4" fill="#9a9184">${escape(kicker)}</text>
 
-  <text x="80" y="286"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="88" font-weight="400" letter-spacing="-1.5"
-        fill="#f6f3ee">${escape(name)}</text>
+  <rect x="${markX + mark(6)}" y="${markY + mark(4)}" width="${mark(4.5)}" height="${mark(24)}" rx="${mark(0.75)}" fill="#ff7a17"/>
+  <rect x="${markX + mark(6)}" y="${markY + mark(13.75)}" width="${mark(21)}" height="${mark(4.5)}" rx="${mark(0.75)}" fill="#ff7a17"/>
 
-  <text x="80" y="386"
+  <text x="${markX + MARK + 8}" y="308"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="112" font-weight="400" letter-spacing="-3"
+        fill="#f6f3ee">${escape(wordmark)}</text>
+
+  <text x="80" y="408"
         font-family="Georgia, 'Times New Roman', serif"
         font-size="46" font-weight="400" letter-spacing="-0.8"
         fill="#e4e0d8">${escape(tagline)}</text>
 
-  <rect x="80" y="452" width="132" height="2" fill="#ff7a17"/>
+  <rect x="80" y="466" width="132" height="2" fill="#ff7a17"/>
 
-  <text x="80" y="544"
+  <text x="80" y="548"
         font-family="Menlo, 'DejaVu Sans Mono', monospace" font-size="24"
-        letter-spacing="1.4" fill="#9a9184">${escape(domain)}</text>
+        letter-spacing="1.4" fill="#9a9184">${escape(byline)}</text>
 </svg>`;
 
 const png = await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toBuffer();

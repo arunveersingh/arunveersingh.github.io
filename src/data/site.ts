@@ -1,10 +1,24 @@
 import { articlesRepo, channels, githubUser, playlists } from './sources.mjs';
 
+/**
+ * The brand is the domain. Reason From is the publication; Arunveer Singh is
+ * its author. Chrome, titles, and social metadata carry the publication name,
+ * and the author is stated as a byline rather than used as the masthead.
+ */
+export const brand = {
+  name: 'Reason From',
+  /** Rendered form of the wordmark: lowercase, like the domain. */
+  wordmark: 'reason from',
+  domain: 'reasonfrom.com',
+  /** One line under the name wherever the brand is introduced. */
+  strap: 'Engineering judgment, in public',
+} as const;
+
 export const site = {
-  title: 'Arunveer Singh',
+  title: brand.name,
   tagline: 'AI should force you not to make mistakes.',
   description:
-    'Public work on engineering judgment, agent accountability, and production AI — not a tutorial dump.',
+    'Arunveer Singh’s public work on engineering judgment, agent accountability, and production AI — not a tutorial dump.',
   author: 'Arunveer Singh',
   /**
    * Year the production-systems clock started. The "years shipping" stat is
@@ -37,6 +51,28 @@ export function channelById(id: ChannelId) {
  * Primary nav. `/atlas/` is deliberately absent: it stays out of the nav until
  * it has real topic pages rather than a promise of them.
  */
+/**
+ * Completions for the "Reason from ___" line, which exists to make the domain
+ * mean something on the page.
+ *
+ * Each one maps to actual work rather than being filler: first-principles-decomposer
+ * and the First Principles talk, assumption-surfacer and bayesian-belief-tracker,
+ * pre-mortem-oracle, recontextualizer, and "Why Experts Solve the Wrong Problems".
+ *
+ * The count is load-bearing. The CSS reel keyframes are written for exactly this
+ * many words, so `src/pages/index.astro` fails the build if it changes.
+ */
+export const reasonFrom = [
+  'first principles',
+  'evidence',
+  'constraints',
+  'the failure mode',
+  'what you verified',
+  'the problem itself',
+] as const;
+
+export const REASON_FROM_COUNT = 6;
+
 export const nav = [
   { href: '/', label: 'Studio' },
   { href: '/essays/', label: 'Essays' },

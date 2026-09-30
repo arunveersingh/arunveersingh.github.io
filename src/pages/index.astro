@@ -1,7 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import Player from '../components/Player.astro';
-import { channelById, site, withBase, yearsShipping } from '../data/site';
+import {
+  brand,
+  channelById,
+  REASON_FROM_COUNT,
+  reasonFrom,
+  site,
+  withBase,
+  yearsShipping,
+} from '../data/site';
 import { featuredSkills, skillCount, skillUrl } from '../data/skills';
 import { transitionName } from '../lib/motion';
 import {
@@ -23,6 +31,16 @@ const featuredBuild = await leadBuild();
 const featuredVideo = await leadVideo();
 const restSkills = skillCount - featuredSkills.length;
 
+// The reel keyframes in global.css are written for an exact word count, so a
+// mismatch would desynchronise the animation silently. Fail the build instead.
+if (reasonFrom.length !== REASON_FROM_COUNT) {
+  throw new Error(
+    `reasonFrom has ${reasonFrom.length} words but the CSS reel is built for ` +
+      `${REASON_FROM_COUNT}. Update the @keyframes reason-reel stops in ` +
+      `src/styles/global.css and REASON_FROM_COUNT together.`,
+  );
+}
+
 const [english, hindi] = site.youtube;
 // Which channel the featured talk came from, so the player can attribute itself.
 const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) : undefined;
@@ -31,8 +49,32 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
 <Base>
   <section class="hero">
     <div class="hero-inner">
-      <p class="kicker">Engineering judgment · public work</p>
-      <h1>AI should force you not to make mistakes.</h1>
+      {/*
+        The brand leads. "Reason from ___" is the domain, so it is the h1 rather
+        than a band further down, where it read as a subordinate section.
+
+        Progressive enhancement on purpose. The served HTML contains exactly
+        "Reason from first principles" — one clean sentence. Putting all six
+        phrases in the markup made the h1's text content read as
+        "Reason fromfirst principlesevidenceconstraints…", which is fine for
+        screen readers (the reel is aria-hidden) but bad for crawlers, which read
+        DOM text. The script below swaps in the reel; with JS off you get the
+        static canonical line, which is a perfectly good hero.
+
+        Safe as the LCP element: the reel's first word sits at translateY(0), so
+        nothing is hidden at first paint. That is the difference between a reel
+        and a fade-in, and it is why my earlier "never animate the h1" rule does
+        not apply here.
+      */}
+      {/* The masthead now says the brand, so the author is introduced here —
+          a byline over the wordmark line, in the site's kicker voice. */}
+      <p class="kicker hero-byline">{site.author} · {brand.strap}</p>
+      <h1 class="reason-line" data-reason={JSON.stringify(reasonFrom)}>
+        <span>Reason from</span>
+        <span class="reason-slot">{reasonFrom[0]}</span>
+      </h1>
+
+      <p class="hero-claim">AI should force you not to make mistakes.</p>
       {/* "English" and "Hindi" are the channel links. The words were already in
           the sentence, so this adds reach without adding a single pixel. */}
       <p class="lede">
@@ -56,6 +98,38 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
       </div>
     </div>
   </section>
+
+  <script>
+    // Swaps the single canonical word for the full stack. Kept in JS so the
+    // served h1 stays one clean sentence for crawlers; with JS off the static
+    // word remains, which is a perfectly good hero.
+    const line = document.querySelector<HTMLElement>('.reason-line[data-reason]');
+    const slot = line?.querySelector<HTMLElement>('.reason-slot');
+    if (line && slot) {
+      let words: string[] = [];
+      try {
+        words = JSON.parse(line.dataset.reason ?? '[]');
+      } catch {
+        words = [];
+      }
+      if (words.length > 1) {
+        // Words stack in one grid cell and are distinguished by motion, so the
+        // stack itself is decoration; the accessible name comes from the label.
+        slot.setAttribute('aria-hidden', 'true');
+        slot.textContent = '';
+        for (const word of words) {
+          const item = document.createElement('span');
+          item.textContent = word;
+          slot.append(item);
+        }
+
+        const label = document.createElement('span');
+        label.className = 'visually-hidden';
+        label.textContent = words[0];
+        slot.after(label);
+      }
+    }
+  </script>
 
   <section class="band band-lead">
     {/* Sections need a heading or screen-reader users get an unlabelled

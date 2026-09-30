@@ -1,0 +1,30 @@
+---
+/**
+ * The Reason From mark: a turnstile (⊢), the logic symbol for "derives from".
+ * Two strokes, so it survives at 16px in a tab and reads at 96px on a card.
+ *
+ * Drawn as paths rather than typed as U+22A2 because the glyph's weight and
+ * width vary wildly between system fonts. Fills with currentColor so the
+ * surrounding CSS decides the colour; the favicon and og.mjs restate the same
+ * geometry with hard-coded colours where CSS cannot reach.
+ */
+interface Props {
+  /** Rendered size in any CSS unit. Defaults to one em of the parent. */
+  size?: string;
+  class?: string;
+}
+
+const { size = '1em', class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 32 32"
+  aria-hidden="true"
+  focusable="false"
+>
+  <rect x="6" y="4" width="4.5" height="24" rx="0.75" fill="currentColor" />
+  <rect x="6" y="13.75" width="21" height="4.5" rx="0.75" fill="currentColor" />
+</svg>
