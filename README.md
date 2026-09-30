@@ -4,10 +4,17 @@ Personal site for [Arunveer Singh](https://github.com/arunveersingh): essays, cu
 
 Built with Astro. Live at **https://reasonfrom.com**
 
-Served by GitHub Pages from the `arunveersingh.github.io` repo, on the apex domain `reasonfrom.com`. Two things bind that together and both must agree:
+Served by GitHub Pages from the `arunveersingh.github.io` repo, on the apex domain `reasonfrom.com`.
 
-- `public/CNAME` contains `reasonfrom.com`. GitHub reads it on every deploy; delete it and the site reverts to `arunveersingh.github.io`.
-- `site` in `astro.config.mjs` is `https://reasonfrom.com`. It drives every canonical URL, `og:url`, sitemap entry and RSS link, so it must match the CNAME or social cards and canonicals point at the wrong origin.
+The domain is **repo configuration, not a file in this repo**. Because Pages builds here via GitHub Actions (`build_type: workflow`), GitHub ignores `public/CNAME` — that file is only honoured by branch-based publishing. The domain lives in Settings → Pages → Custom domain, or via the API:
+
+```sh
+gh api -X PUT /repos/arunveersingh/arunveersingh.github.io/pages -f cname=reasonfrom.com
+```
+
+`public/CNAME` is kept anyway: it documents intent and would take over if publishing ever moved back to a branch. It is not what makes the domain work today.
+
+`site` in `astro.config.mjs` must match the domain. It drives every canonical URL, `og:url`, sitemap entry and RSS link, so if the two disagree the pages advertise an origin that is not serving them.
 
 DNS at the registrar (Hostinger):
 
