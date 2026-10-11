@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { courses } from '../../data/site';
+
+const count = courses.length;
+---
+
+<Base
+  title="Courses"
+  description="Written courses, read in the browser. Each card opens the course in a new tab."
+>
+  <div class="page">
+    <h1 class="kicker">Courses</h1>
+    <p class="lede page-lede">
+      {count === 1 ? 'One course, so far.' : `${count} courses.`} A card opens the course in a new tab.
+    </p>
+    <div class="news course-cards">
+      {
+        courses.map((course) => (
+          <a href={course.href} target="_blank" rel="noopener noreferrer">
+            <span class="meta">{course.meta}</span>
+            <strong>{course.title}</strong>
+            <p>{course.summary}</p>
+            <span class="visually-hidden">Opens in a new tab.</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Base>

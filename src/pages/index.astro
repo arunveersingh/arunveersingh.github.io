@@ -95,7 +95,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
           )
         }
         <a class="pill" href={withBase('/watch/')}>Selected talks</a>
-        <a class="pill" href={site.course.href}>{site.course.title}</a>
+        <a class="pill" href={site.coursesPath}>Courses</a>
       </div>
     </div>
   </section>
@@ -287,8 +287,8 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
       <a href={hindi.href}>{hindi.name}</a>
       {' '}in {hindi.language}. The {judgment.length} talks worth arguing with are{' '}
       <a href={withBase('/watch/')}>collected here</a>.
-      The written course is{' '}
-      <a href={site.course.href}>{site.course.title}</a>.
+      Written courses are{' '}
+      <a href={site.coursesPath}>listed here</a>.
     </p>
   </section>
 </Base>

@@ -961,6 +961,11 @@ a.quiet:hover {
   gap: 0.85rem;
 }
 
+/* One course must stay a card. auto-fit would stretch a single item across the page. */
+.course-cards {
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 22rem));
+}
+
 .news a {
   display: flex;
   flex-direction: column;

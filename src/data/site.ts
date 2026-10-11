@@ -15,14 +15,20 @@ export const brand = {
 } as const;
 
 /**
- * Docsify course published from `arunveersingh/faang-system-design-90-days`.
- * GitHub Pages mounts that project at this path on the user-site domain.
- * This repo only links to it.
+ * Written courses. Add an entry to put another card on `/courses/`.
+ * Each `href` is the course itself. The card opens it in a new tab.
+ * A path on this domain is a sibling GitHub Pages project. A full URL is fine too.
  */
-export const course = {
-  href: '/faang-system-design-90-days/',
-  title: 'FAANG System Design, 90 days',
-} as const;
+export const courses = [
+  {
+    title: 'FAANG System Design, 90 days',
+    summary: 'Attempt the problem, then read. Requirements before boxes. One sitting is a day.',
+    href: '/faang-system-design-90-days/',
+    meta: '90 days',
+  },
+] as const;
+
+export const coursesPath = '/courses/';
 
 export const site = {
   title: brand.name,
@@ -43,7 +49,8 @@ export const site = {
   email: 'arunveersingh9@gmail.com',
   youtube: channels,
   playlists,
-  course,
+  courses,
+  coursesPath,
 } as const;
 
 /** Whole years since `site.careerStart`, evaluated at build time. */
@@ -88,7 +95,7 @@ export const nav = [
   { href: '/', label: 'Studio' },
   { href: '/essays/', label: 'Essays' },
   { href: '/watch/', label: 'Watch' },
-  { href: course.href, label: 'Course' },
+  { href: coursesPath, label: 'Courses' },
   { href: '/builds/', label: 'Builds' },
   { href: '/about/', label: 'About' },
 ] as const;
