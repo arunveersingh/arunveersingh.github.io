@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import { site, withBase, yearsShipping } from '../data/site';
 import { skillCount } from '../data/skills';
 ---
 
 <Base title="About" description="Public work on engineering judgment and production AI.">
   <article class="page prose">
-    <p class="kicker">About</p>
+    <p class="kicker"><span class="icon-disc disc-peach page-mark"><Icon name="about" /></span>About</p>
     <h1 class="page-heading">I hold the work to a standard. Then I publish the standard.</h1>
     <p class="lede">
       I write and teach because production systems punish sloppy thinking, and most AI tools
@@ -43,5 +44,35 @@ import { skillCount } from '../data/skills';
     <p class="muted">
       Employment history is LinkedIn. How I think is this site.
     </p>
+    <div class="tiles">
+      <a class="tile tile-lilac" href={withBase('/essays/')}>
+        <span class="icon-disc disc-lilac"><Icon name="essay" /></span>
+        <span class="tile-copy">
+          <strong>Essays</strong>
+          <em>Writing that lives here</em>
+        </span>
+      </a>
+      <a class="tile tile-sky" href={withBase('/watch/')}>
+        <span class="icon-disc disc-sky"><Icon name="play" /></span>
+        <span class="tile-copy">
+          <strong>Selected talks</strong>
+          <em>Judgment, on camera</em>
+        </span>
+      </a>
+      <a class="tile tile-blue" href={site.coursesPath}>
+        <span class="icon-disc disc-blue"><Icon name="course" /></span>
+        <span class="tile-copy">
+          <strong>Courses</strong>
+          <em>Free to read</em>
+        </span>
+      </a>
+      <a class="tile tile-mint" href={withBase('/builds/')}>
+        <span class="icon-disc disc-mint"><Icon name="build" /></span>
+        <span class="tile-copy">
+          <strong>Builds</strong>
+          <em>Systems, not samples</em>
+        </span>
+      </a>
+    </div>
   </article>
 </Base>

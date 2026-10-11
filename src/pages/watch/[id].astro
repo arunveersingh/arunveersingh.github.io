@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import Player from '../../components/Player.astro';
 import { channelById } from '../../data/site';
 import { transitionName } from '../../lib/motion';
@@ -24,7 +25,7 @@ const channel = channelById(entry.data.channel);
   publishedTime={entry.data.published}
 >
   <article class="page">
-    <p class="kicker">Watch · {channel.name}</p>
+    <p class="kicker"><span class="icon-disc disc-sky page-mark"><Icon name="play" /></span>Watch · {channel.name}</p>
     <h1 class="page-heading">{entry.data.title}</h1>
     <p class="lede">{entry.data.thesis}</p>
     {

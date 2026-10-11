@@ -1,51 +1,52 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import { site, withBase } from '../data/site';
 ---
 
 <Base title="Not found" description="That page does not exist." noindex>
   <div class="page">
-    <p class="kicker">404</p>
+    <p class="kicker"><span class="icon-disc disc-sand page-mark"><Icon name="about" /></span>404</p>
     <h1 class="page-heading">That page does not exist.</h1>
     <p class="lede">
       The link is wrong, or the work moved. The five things that definitely exist:
     </p>
-    <ol class="index-list">
-      <li>
-        <a href={withBase('/essays/')}>
-          <span class="meta">/essays/</span>
+    <div class="tiles">
+      <a class="tile tile-lilac" href={withBase('/essays/')}>
+        <span class="icon-disc disc-lilac"><Icon name="essay" /></span>
+        <span class="tile-copy">
           <strong>Essays</strong>
-          <em>Long-form writing that lives here first.</em>
-        </a>
-      </li>
-      <li>
-        <a href={withBase('/watch/')}>
-          <span class="meta">/watch/</span>
-          <strong>Watch</strong>
-          <em>Selected talks on judgment, playable here.</em>
-        </a>
-      </li>
-      <li>
-        <a href={site.coursesPath}>
-          <span class="meta">{site.coursesPath}</span>
+          <em>Writing that lives here</em>
+        </span>
+      </a>
+      <a class="tile tile-sky" href={withBase('/watch/')}>
+        <span class="icon-disc disc-sky"><Icon name="play" /></span>
+        <span class="tile-copy">
+          <strong>Selected talks</strong>
+          <em>Judgment, on camera</em>
+        </span>
+      </a>
+      <a class="tile tile-blue" href={site.coursesPath}>
+        <span class="icon-disc disc-blue"><Icon name="course" /></span>
+        <span class="tile-copy">
           <strong>Courses</strong>
-          <em>Cards. Each one opens a course in a new tab.</em>
-        </a>
-      </li>
-      <li>
-        <a href={withBase('/builds/')}>
-          <span class="meta">/builds/</span>
+          <em>Free to read</em>
+        </span>
+      </a>
+      <a class="tile tile-mint" href={withBase('/builds/')}>
+        <span class="icon-disc disc-mint"><Icon name="build" /></span>
+        <span class="tile-copy">
           <strong>Builds</strong>
-          <em>Selected systems work. The rest is the lab.</em>
-        </a>
-      </li>
-      <li>
-        <a href={withBase('/about/')}>
-          <span class="meta">/about/</span>
+          <em>Systems, not samples</em>
+        </span>
+      </a>
+      <a class="tile tile-peach" href={withBase('/about/')}>
+        <span class="icon-disc disc-peach"><Icon name="about" /></span>
+        <span class="tile-copy">
           <strong>About</strong>
-          <em>The standard, and why it is published.</em>
-        </a>
-      </li>
-    </ol>
+          <em>Why it is published</em>
+        </span>
+      </a>
+    </div>
   </div>
 </Base>

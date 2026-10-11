@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { summaryFor } from '../../lib/content';
 import { transitionName } from '../../lib/motion';
 
@@ -37,7 +38,7 @@ const dates = entry.data.updated
   modifiedTime={entry.data.updated}
 >
   <article class="page">
-    <p class="kicker">Build</p>
+    <p class="kicker"><span class="icon-disc disc-mint page-mark"><Icon name="build" /></span>Build</p>
     <h1 class="page-heading vt" style={`--vt: ${transitionName('build', entry.id)}`}>
       {entry.data.title}
     </h1>

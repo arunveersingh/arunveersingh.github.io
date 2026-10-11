@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import Player from '../../components/Player.astro';
 import Thumb from '../../components/Thumb.astro';
 import { channelById, site, withBase } from '../../data/site';
@@ -15,7 +16,7 @@ const library = videos.filter((video) => !selected.some((item) => item.id === vi
 
 <Base title="Watch" description="Selected talks on engineering judgment, playable here.">
   <div class="page">
-    <h1 class="kicker">Watch</h1>
+    <h1 class="kicker"><span class="icon-disc disc-sky page-mark"><Icon name="play" /></span>Watch</h1>
     <p class="lede page-lede">
       Selected talks on judgment first. Below that is the library pulled from{' '}
       <a href={site.youtube[0].href}>{site.youtube[0].name}</a>

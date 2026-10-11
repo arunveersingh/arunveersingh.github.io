@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { courses } from '../../data/site';
 
 const count: number = courses.length;
@@ -10,7 +11,7 @@ const count: number = courses.length;
   description="Written courses, read in the browser. Each card opens the course in a new tab."
 >
   <div class="page">
-    <h1 class="kicker">Courses</h1>
+    <h1 class="kicker"><span class="icon-disc disc-blue page-mark"><Icon name="course" /></span>Courses</h1>
     <p class="lede page-lede">
       {count === 1 ? 'One course.' : `${count} courses.`} Free to read. A card opens the book in a new tab.
     </p>

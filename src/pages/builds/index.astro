@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { site, withBase } from '../../data/site';
 import { archiveBuilds, leadBuild, selectedBuilds, summaryFor } from '../../lib/content';
 import { transitionName } from '../../lib/motion';
@@ -17,7 +18,7 @@ const activity = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numer
 
 <Base title="Builds" description="Selected systems work. The rest is the lab.">
   <div class="page">
-    <h1 class="kicker">Builds</h1>
+    <h1 class="kicker"><span class="icon-disc disc-mint page-mark"><Icon name="build" /></span>Builds</h1>
     <p class="lede page-lede">
       Selected work first — the {selected.length} repos that carry an argument. Everything else is a
       lab, kept for honesty rather than shown as proof.
@@ -25,7 +26,8 @@ const activity = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numer
 
     {
       lead && (
-        <article class="feature-essay">
+        <article class="feature-essay feature-mint">
+          <span class="icon-disc disc-mint"><Icon name="build" /></span>
           <p class="meta">Lead · {repoPath(lead.data.repo)}</p>
           <h2>
             <a
@@ -51,10 +53,11 @@ const activity = (date: Date) => date.toLocaleDateString('en-GB', { year: 'numer
       restSelected.length > 0 && (
         <>
           <p class="kicker">Also selected</p>
-          <ol class="index-list">
+          <ol class="index-list icon-rows">
             {restSelected.map((entry) => (
               <li>
                 <a href={withBase(`/builds/${entry.id}/`)}>
+                  <span class="icon-disc disc-mint index-disc" aria-hidden="true"><Icon name="build" /></span>
                   <span class="meta">{repoPath(entry.data.repo)}</span>
                   <strong class="vt" style={`--vt: ${transitionName('build', entry.id)}`}>
                     {entry.data.title}

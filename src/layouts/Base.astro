@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
 import Mark from '../components/Mark.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import { brand, nav, site, withBase } from '../data/site';
@@ -34,6 +35,21 @@ const pageTitle = title
 // Social cards want the bare headline, not the breadcrumbed document title.
 const socialTitle = title ? `${title} — ${brand.name}` : `${brand.name} — ${site.tagline}`;
 
+const navIcon = {
+  '/': 'studio',
+  '/essays/': 'essay',
+  '/watch/': 'play',
+  '/courses/': 'course',
+  '/builds/': 'build',
+  '/about/': 'about',
+} as const;
+
+function iconFor(href: string): (typeof navIcon)[keyof typeof navIcon] {
+  const path = href.endsWith('/') ? href : `${href}/`;
+  if (path in navIcon) return navIcon[path as keyof typeof navIcon];
+  return 'studio';
+}
+
 const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const home = withBase('/').replace(/\/+$/, '') || '/';
 
@@ -50,7 +66,7 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {/* Light paper until the script below picks dark. It has to sit above that
         script: a tag parsed later would overwrite the color the script set. */}
-    <meta name="theme-color" content="#faf9f5" />
+    <meta name="theme-color" content="#e8e4db" />
 
     {/*
       Resolves the theme before first paint, so a light-theme visitor never sees
@@ -74,7 +90,7 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
         var chrome = document.querySelector('meta[name="theme-color"]');
-        if (chrome) chrome.content = theme === 'dark' ? '#000000' : '#faf9f5';
+        if (chrome) chrome.content = theme === 'dark' ? '#000000' : '#e8e4db';
       })();
     </script>
     <title>{pageTitle}</title>
@@ -145,7 +161,8 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
                 return (
                   <li>
                     <a href={href} aria-current={current ? 'page' : undefined}>
-                      {item.label}
+                      <Icon name={iconFor(item.href)} />
+                      <span>{item.label}</span>
                     </a>
                   </li>
                 );

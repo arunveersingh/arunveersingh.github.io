@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
 import { withBase } from '../../../data/site';
 import outline from '../../../data/course-outlines/make-ai-fail-safely.json';
 
@@ -34,7 +35,7 @@ function shortTitle(title: string): string {
 
 <Base title={entry.data.title} description={entry.data.description} ogType="article">
   <article class="page">
-    <p class="kicker"><a href={courseHref}>{outline.title}</a></p>
+    <p class="kicker"><span class="icon-disc disc-blue page-mark"><Icon name="course" /></span><a href={courseHref}>{outline.title}</a></p>
     <h1 class="page-heading">{entry.data.title}</h1>
     <p class="meta">
       {entry.data.time && <>{entry.data.time} · </>}

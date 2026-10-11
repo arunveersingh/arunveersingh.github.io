@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { withBase } from '../../data/site';
 import { featuredEssays, publishedEssays, summaryFor } from '../../lib/content';
 import { transitionName } from '../../lib/motion';
@@ -13,14 +14,15 @@ const leadSummary = lead ? summaryFor(lead.data.title, lead.data.description) : 
 
 <Base title="Essays" description="Long-form writing that lives here first.">
   <div class="page">
-    <h1 class="kicker">Essays</h1>
+    <h1 class="kicker"><span class="icon-disc disc-lilac page-mark"><Icon name="essay" /></span>Essays</h1>
     <p class="lede page-lede">
       Production writing first. The rest of the archive is listed, not leading.
     </p>
 
     {
       lead && (
-        <article class="feature-essay">
+        <article class="feature-essay feature-lilac">
+          <span class="icon-disc disc-lilac"><Icon name="essay" /></span>
           <p class="meta">
             <time datetime={lead.data.published.toISOString()}>
               {lead.data.published.toLocaleDateString('en-GB', {
@@ -49,7 +51,7 @@ const leadSummary = lead ? summaryFor(lead.data.title, lead.data.description) : 
 
     {
       rest.length > 0 && (
-        <ol class="index-list">
+        <ol class="index-list icon-rows">
           {rest.map((entry) => {
             // Articles synced without frontmatter get description === title.
             // Rendering both stacked the same sentence twice.
@@ -57,6 +59,7 @@ const leadSummary = lead ? summaryFor(lead.data.title, lead.data.description) : 
             return (
               <li>
                 <a href={withBase(`/essays/${entry.id}/`)}>
+                  <span class="icon-disc disc-lilac index-disc" aria-hidden="true"><Icon name="essay" /></span>
                   <span class="meta">
                     <time datetime={entry.data.published.toISOString()}>
                       {entry.data.published.toLocaleDateString('en-GB', {

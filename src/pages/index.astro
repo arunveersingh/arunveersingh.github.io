@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import Player from '../components/Player.astro';
 import {
   brand,
@@ -71,7 +72,7 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
       <p class="kicker hero-byline">{site.author} · {brand.strap}</p>
       <h1 class="reason-line" data-reason={JSON.stringify(reasonFrom)}>
         <span>Reason from</span>
-        <span class="reason-slot">{reasonFrom[0]}</span>
+        <span class="reason-slot"><span>{reasonFrom[0]}</span></span>
       </h1>
 
       <p class="hero-claim">AI should force you not to make mistakes.</p>
@@ -86,16 +87,53 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
         {' '}and{' '}
         <a href={hindi.href}>Hindi</a>. Tutorials stay in the library. Judgment stays here.
       </p>
-      <div class="actions">
+      <div class="tiles">
         {
           featuredBuild && (
-            <a class="pill pill-solid" href={withBase(`/builds/${featuredBuild.id}/`)}>
-              Read the standard
+            <a class="tile tile-sun" href={withBase(`/builds/${featuredBuild.id}/`)}>
+              <span class="icon-disc disc-sun"><Icon name="build" /></span>
+              <span class="tile-copy">
+                <strong>The standard</strong>
+                <em>Read the note</em>
+              </span>
             </a>
           )
         }
-        <a class="pill" href={withBase('/watch/')}>Selected talks</a>
-        <a class="pill" href={site.coursesPath}>Courses</a>
+        <a class="tile tile-sky" href={withBase('/watch/')}>
+          <span class="icon-disc disc-sky"><Icon name="play" /></span>
+          <span class="tile-copy">
+            <strong>Selected talks</strong>
+            <em>Judgment, on camera</em>
+          </span>
+        </a>
+        <a class="tile tile-blue" href={site.coursesPath}>
+          <span class="icon-disc disc-blue"><Icon name="course" /></span>
+          <span class="tile-copy">
+            <strong>Courses</strong>
+            <em>Free to read</em>
+          </span>
+        </a>
+        <a class="tile tile-lilac" href={withBase('/essays/')}>
+          <span class="icon-disc disc-lilac"><Icon name="essay" /></span>
+          <span class="tile-copy">
+            <strong>Essays</strong>
+            <em>Writing that lives here</em>
+          </span>
+        </a>
+        <a class="tile tile-mint" href={withBase('/builds/')}>
+          <span class="icon-disc disc-mint"><Icon name="build" /></span>
+          <span class="tile-copy">
+            <strong>Builds</strong>
+            <em>Systems, not samples</em>
+          </span>
+        </a>
+        <a class="tile tile-peach" href={withBase('/about/')}>
+          <span class="icon-disc disc-peach"><Icon name="about" /></span>
+          <span class="tile-copy">
+            <strong>About</strong>
+            <em>Why it is published</em>
+          </span>
+        </a>
       </div>
     </div>
   </section>
@@ -128,6 +166,8 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
         label.className = 'visually-hidden';
         label.textContent = words[0];
         slot.after(label);
+        // Turns on the fade and the per-phrase pastel. Without it every chip stacks.
+        slot.classList.add('is-reel');
       }
     }
   </script>
@@ -138,9 +178,12 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
         visually hidden rather than invented on screen. */}
     <h2 class="visually-hidden">The standard and the talks</h2>
     <div class="windows">
-      <div class="window">
+      <div class="window window-sun">
         <div class="window-head">
-          <span>The standard</span>
+          <span class="window-title">
+            <span class="icon-disc disc-sun"><Icon name="skill" /></span>
+            The standard
+          </span>
           {
             featuredBuild && (
               <a href={withBase(`/builds/${featuredBuild.id}/`)}>Read the note →</a>
@@ -166,9 +209,12 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
         {restSkills > 0 && <p class="term-more">+ {restSkills} more in the repo</p>}
       </div>
 
-      <div class="window">
+      <div class="window window-sky">
         <div class="window-head">
-          <span>Judgment, on camera</span>
+          <span class="window-title">
+            <span class="icon-disc disc-sky"><Icon name="play" /></span>
+            Judgment, on camera
+          </span>
           <a href={withBase('/watch/')}>All talks →</a>
         </div>
         {
@@ -203,15 +249,18 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
   <section class="band">
     <h2 class="visually-hidden">By the numbers</h2>
     <div class="stats">
-      <p class="stat">
+      <p class="stat stat-peach">
+        <span class="icon-disc disc-peach" aria-hidden="true"><Icon name="clock" /></span>
         <strong>{yearsShipping}</strong>
         <span>years shipping production systems</span>
       </p>
-      <p class="stat">
+      <p class="stat stat-mint">
+        <span class="icon-disc disc-mint" aria-hidden="true"><Icon name="skill" /></span>
         <strong>{skillCount}</strong>
         <span>agent skills that will halt a bad plan</span>
       </p>
-      <p class="stat">
+      <p class="stat stat-sky">
+        <span class="icon-disc disc-sky" aria-hidden="true"><Icon name="play" /></span>
         <strong>{judgment.length}</strong>
         <span>selected talks on judgment, not syntax</span>
       </p>
@@ -222,10 +271,11 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
     selected.length > 1 && (
       <section class="band">
         <h2 class="kicker">Selected systems work</h2>
-        <ol class="index-list">
+        <ol class="index-list icon-rows">
           {selected.map((entry) => (
             <li>
               <a href={withBase(`/builds/${entry.id}/`)}>
+                <span class="icon-disc disc-mint index-disc" aria-hidden="true"><Icon name="build" /></span>
                 <span class="meta">{new URL(entry.data.repo).pathname.slice(1)}</span>
                 <strong class="vt" style={`--vt: ${transitionName('build', entry.id)}`}>
                   {entry.data.title}
@@ -249,7 +299,8 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
           {essays.map((entry) => {
             const summary = summaryFor(entry.data.title, entry.data.description);
             return (
-              <a href={withBase(`/essays/${entry.id}/`)}>
+              <a class="essay-card" href={withBase(`/essays/${entry.id}/`)}>
+                <span class="icon-disc disc-lilac" aria-hidden="true"><Icon name="essay" /></span>
                 <span class="meta">
                   <time datetime={entry.data.published.toISOString()}>
                     {entry.data.published.toLocaleDateString('en-GB', {

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
 import { withBase } from '../../../data/site';
 import outline from '../../../data/course-outlines/make-ai-fail-safely.json';
 
@@ -34,7 +35,7 @@ function dayHref(day: number): string {
 
 <Base title={outline.title} description={outline.tagline}>
   <div class="page">
-    <p class="kicker">Course</p>
+    <p class="kicker"><span class="icon-disc disc-blue page-mark"><Icon name="course" /></span>Course</p>
     <h1 class="page-heading">{outline.title}</h1>
     <p class="lede page-lede">{outline.tagline}</p>
     <p class="meta">
