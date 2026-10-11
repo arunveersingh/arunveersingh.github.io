@@ -9,95 +9,57 @@
    ========================================================================= */
 
 /* ----------------------------------------------------------------------------
-   Palette: one temperature.
-   Before, surfaces were pure neutral (sat 0%), text and borders were cool
-   (hue ~216), the accent was warm (hue 26), and the hero gradient added a navy
-   — four temperature directions, none of them chosen. Every neutral now sits
-   in a 30-40deg warm band so the orange belongs to the palette instead of
-   fighting it. Measured: worst rendered pair is 5.47:1 against a 4.5:1 floor.
+   Two flat fields. Light is paper. Dark is black. The ink does the work.
+   No glow, no second brown, no saturated orange: those made the dark theme
+   look like neither a black stage nor a paper publication.
    -------------------------------------------------------------------------- */
 
-/* ----------------------------------------------------------------------------
-   Light theme — same warm 20-40deg discipline, on paper instead of near-black.
-
-   The accent could not simply carry over. #ff7a17 measures 2.44:1 on paper, so
-   it fails outright for the small text that uses it (list numerals, markers).
-   #b8430a holds the same hue family at 5.11:1 on canvas and 5.46:1 on cards.
-   The vivid hue survives in --hero-wash, which only paints gradients.
-
-   Surface order also inverts: on dark, cards sit lighter than the canvas; on
-   light, cards are white and --canvas-raise becomes the recessed tone used for
-   code blocks and media wells.
-   -------------------------------------------------------------------------- */
 :root,
 [data-theme="light"] {
   color-scheme: light;
 
-  --canvas: #fbf7f0;
-  --canvas-card: #ffffff;
-  --canvas-raise: #f2ebdd;
-  --hairline: #e6ddcd;
-  --hairline-soft: #efe8db;
-  --ink: #171310;
-  --body: #403930;
-  --mute: #6d6459;
+  --canvas: #faf9f5;
+  --canvas-card: #fffcf7;
+  --canvas-raise: #f0eee6;
+  --hairline: #e4e0d4;
+  --hairline-soft: #ece8de;
+  --ink: #141413;
+  --body: #3d3d3a;
+  --mute: #6f6e69;
   --nav-idle: rgb(var(--ink-rgb) / 0.62);
-  --pill: rgb(var(--ink-rgb) / 0.22);
+  --pill: rgb(var(--ink-rgb) / 0.18);
 
-  --accent: #b8430a;
-  --accent-dim: rgb(184 67 10 / 0.34);
-  --pill-solid-hover: #000000;
+  --accent: #141413;
+  --accent-dim: rgb(20 20 19 / 0.22);
+  --mark: #141413;
+  --pill-solid-hover: #2a2a28;
 
-  --ink-rgb: 23 19 16;
-  --canvas-rgb: 251 247 240;
-
-  /* Brighter and more saturated than the dark variant. This is where the
-     "colourful" lives — at sizes where contrast rules do not bite. */
-  --hero-wash:
-    radial-gradient(820px 380px at 6% 116%, rgb(255 122 23 / 0.3), transparent 62%),
-    radial-gradient(700px 340px at 44% -18%, rgb(255 174 90 / 0.34), transparent 60%),
-    radial-gradient(1000px 520px at 94% -12%, rgb(255 206 150 / 0.55), transparent 62%);
+  --ink-rgb: 20 20 19;
+  --canvas-rgb: 250 249 245;
 }
 
-/* ----------------------------------------------------------------------------
-   Dark theme — the opt-in override.
-
-   Declared after the light block on purpose: [data-theme="dark"] and :root have
-   equal specificity, so source order is what makes this win when the attribute
-   is present.
-   -------------------------------------------------------------------------- */
+/* Declared after the light block: equal specificity, so source order wins. */
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --canvas: #0b0a09;
-  --canvas-card: #17140f;
-  --canvas-raise: #1d1a14;
-  --hairline: #2b2621;
-  --hairline-soft: #1f1b16;
-  /* Pulled off pure white: 19.8:1 was needless halation under large serif on
-     near-black. 17.9:1 still clears AAA (7:1) two and a half times over. */
-  --ink: #f6f3ee;
-  --body: #e4e0d8;
-  --mute: #9a9184;
-  --nav-idle: rgb(var(--ink-rgb) / 0.66);
-  --pill: rgb(var(--ink-rgb) / 0.24);
+  --canvas: #000000;
+  --canvas-card: #0c0c0b;
+  --canvas-raise: #141413;
+  --hairline: #2c2c2a;
+  --hairline-soft: #1a1a19;
+  --ink: #f7f6f3;
+  --body: #d4d1c8;
+  --mute: #9a9890;
+  --nav-idle: rgb(var(--ink-rgb) / 0.62);
+  --pill: rgb(var(--ink-rgb) / 0.22);
 
-  /* Carries structure — section rules, list numerals, active states, links —
-     so it has to clear 4.5:1 as text, not just read as a brand colour.
-     Swap for #ff4a24 to get the vermilion "signal" variant. */
-  --accent: #ff7a17;
-  --accent-dim: rgb(255 122 23 / 0.3);
-  --pill-solid-hover: #fffdf9;
+  --accent: #f7f6f3;
+  --accent-dim: rgb(247 246 243 / 0.28);
+  --mark: #f7f6f3;
+  --pill-solid-hover: #e7e4dc;
 
-  /* Component form of --ink / --canvas, for translucent overlays. Hardcoded
-     rgb(255 255 255) / rgb(10 10 10) would reintroduce neutral grey on a warm
-     palette — and would invert the wrong way in the light theme. */
-  --ink-rgb: 246 243 238;
-  --canvas-rgb: 11 10 9;
-
-  --hero-wash:
-    radial-gradient(900px 400px at 8% 118%, rgb(255 122 23 / 0.18), transparent 60%),
-    radial-gradient(1100px 540px at 90% -10%, rgb(48 34 22 / 0.85), transparent 58%);
+  --ink-rgb: 247 246 243;
+  --canvas-rgb: 0 0 0;
 }
 
 :root {
@@ -191,10 +153,8 @@ a:focus-visible {
   position: fixed;
   inset: 0 0 auto;
   z-index: 20;
-  background: linear-gradient(to bottom, rgb(var(--canvas-rgb) / 0.94), rgb(var(--canvas-rgb) / 0.74));
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid var(--hairline-soft);
+  background: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .topbar-inner {
@@ -270,10 +230,9 @@ a:focus-visible {
   padding-bottom: 0.3rem;
   color: var(--nav-idle);
   text-decoration: none;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  letter-spacing: -0.011em;
 }
 
 /* Hover and current used to resolve to var(--ink) — which every nav link
@@ -391,9 +350,7 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   z-index: -2;
-  /* Washes come from --hero-wash so each theme supplies its own. The dark
-     variant is a restrained glow; the light one is deliberately brighter. */
-  background: var(--hero-wash), var(--canvas);
+  background: var(--canvas);
 }
 
 .hero-inner {
@@ -441,14 +398,15 @@ h3 {
 
 h1 {
   margin: 0 0 1.35rem;
-  font-size: clamp(2.5rem, 6.4vw, 4.75rem);
-  line-height: 1.02;
-  max-width: 22ch;
+  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
 }
 
 .hero h1 {
   margin-bottom: 1.5rem;
-  max-width: 26ch;
+  max-width: 14ch;
 }
 
 h2 {
@@ -540,7 +498,7 @@ a.quiet:hover {
   min-height: 2.5rem;
   padding: 0.45rem 1.15rem;
   border: 1px solid var(--pill);
-  border-radius: 9999px;
+  border-radius: 8px;
   color: var(--ink);
   text-decoration: none;
   font-family: var(--sans);
@@ -786,7 +744,7 @@ a.quiet:hover {
   padding: 1.25rem 1.35rem 1.35rem;
   background: var(--canvas-card);
   border: 1px solid var(--hairline);
-  border-radius: 10px;
+  border-radius: 8px;
   color: inherit;
   text-decoration: none;
 }
@@ -963,7 +921,45 @@ a.quiet:hover {
 
 /* One course must stay a card. auto-fit would stretch a single item across the page. */
 .course-cards {
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 22rem));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 26rem));
+}
+
+.course-cover {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  margin: -1.35rem -1.35rem 0.35rem;
+  background: var(--canvas-raise);
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.course-cover svg,
+.course-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Diagrams are drawn in ink on paper. A plate keeps that readable on black. */
+.course-cover img {
+  object-fit: contain;
+  padding: 0.65rem;
+  background: #faf9f5;
+}
+
+.course-cover-label {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.6rem;
+  padding: 0.12rem 0.42rem;
+  border-radius: 4px;
+  background: #faf9f5;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #141413;
 }
 
 .news a {
@@ -973,14 +969,15 @@ a.quiet:hover {
   padding: 1.35rem;
   background: var(--canvas-card);
   border: 1px solid var(--hairline);
-  border-radius: 10px;
+  border-radius: 8px;
   color: inherit;
   text-decoration: none;
+  overflow: hidden;
 }
 
 .news a:hover {
-  border-color: var(--accent-dim);
-  background: var(--canvas-raise);
+  border-color: var(--ink);
+  background: var(--canvas-card);
 }
 
 .news strong {
@@ -1149,7 +1146,7 @@ a.quiet:hover {
   justify-content: center;
   padding: 0.55rem 1.1rem;
   border: 1px solid rgb(var(--ink-rgb) / 0.45);
-  border-radius: 9999px;
+  border-radius: 8px;
   background: rgb(var(--canvas-rgb) / 0.72);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -1288,6 +1285,150 @@ a.quiet:hover {
   border-top: 1px solid var(--hairline);
 }
 
+.article-body .mermaid {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  padding: 1rem;
+  background: var(--canvas-card);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+}
+
+.article-body .mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* ---------- course reader ---------- */
+
+.course-phase {
+  margin-top: 2.75rem;
+}
+
+.course-phase h2 {
+  margin-bottom: 0.4rem;
+}
+
+.course-phase-q {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--body);
+  line-height: 1.6;
+}
+
+.course-days {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.course-days a,
+.course-days .course-pending {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.25rem 0.75rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--hairline-soft);
+  text-decoration: none;
+  color: inherit;
+}
+
+.course-days li:last-child a,
+.course-days li:last-child .course-pending {
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.course-num {
+  grid-row: 1 / span 3;
+  padding-top: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.course-days .meta,
+.course-days strong,
+.course-days em {
+  grid-column: 2;
+}
+
+.course-days strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.course-days a:hover strong {
+  color: rgb(var(--ink-rgb) / 0.78);
+}
+
+.course-days em {
+  font-style: normal;
+  color: var(--mute);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  max-width: 46rem;
+}
+
+.course-pending strong,
+.course-pending .course-num {
+  color: var(--mute);
+}
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  max-width: var(--measure);
+  margin-top: 2.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.lesson-nav a,
+.lesson-nav .lesson-pending {
+  max-width: 46%;
+  text-decoration: none;
+}
+
+.lesson-nav .next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.lesson-nav span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.lesson-nav strong {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.lesson-nav .lesson-pending strong {
+  color: var(--mute);
+}
+
+.lesson-back {
+  max-width: var(--measure);
+  margin-top: 1rem;
+}
+
 /* ---------- footer ---------- */
 
 .site-footer {
@@ -1420,8 +1561,8 @@ a.quiet:hover {
   }
 
   .topbar nav a {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    letter-spacing: -0.011em;
     white-space: nowrap;
   }
 

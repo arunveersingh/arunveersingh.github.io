@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { withBase } from '../../../data/site';
+import outline from '../../../data/course-outlines/make-ai-fail-safely.json';
+
+const lessons = await getCollection('courses', ({ data }) => data.course === outline.slug);
+const byDay = new Map(lessons.map((entry) => [entry.data.day, entry]));
+
+for (const day of outline.days) {
+  const lesson = byDay.get(day.day);
+  if (day.written !== Boolean(lesson)) {
+    throw new Error(
+      `${outline.slug} day ${day.day} is ${day.written ? 'written' : 'only an outline'} in the arc, ` +
+        `but the lesson file ${lesson ? 'exists' : 'is missing'}. Run npm run sync:course.`,
+    );
+  }
+}
+
+const writtenCount = lessons.length;
+
+function clip(text: string, max = 160): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const space = cut.lastIndexOf(' ');
+  return `${(space > 60 ? cut.slice(0, space) : cut).trim()}…`;
+}
+
+function dayHref(day: number): string {
+  return withBase(`/courses/${outline.slug}/day-${String(day).padStart(2, '0')}/`);
+}
+---
+
+<Base title={outline.title} description={outline.tagline}>
+  <div class="page">
+    <p class="kicker">Course</p>
+    <h1 class="page-heading">{outline.title}</h1>
+    <p class="lede page-lede">{outline.tagline}</p>
+    <p class="meta">
+      {writtenCount} {writtenCount === 1 ? 'lesson is' : 'lessons are'} written. The arc is {outline.days.length} days.
+      One failure mode a day.
+    </p>
+
+    {
+      outline.phases.map((phase) => {
+        const days = outline.days.filter((day) => day.phase === phase.label);
+        return (
+          <section class="course-phase">
+            <h2>
+              Days {phase.range} · {phase.label}
+            </h2>
+            <p class="course-phase-q">{phase.question}</p>
+            <ol class="course-days">
+              {days.map((day) => {
+                const lesson = byDay.get(day.day);
+                const body = (
+                  <>
+                    <span class="course-num">{String(day.day).padStart(2, '0')}</span>
+                    <span class="meta">{lesson?.data.time ?? 'Not written yet'}</span>
+                    <strong>{day.title}</strong>
+                    <em>{clip(day.failure)}</em>
+                  </>
+                );
+                return <li>{lesson ? <a href={dayHref(day.day)}>{body}</a> : <div class="course-pending">{body}</div>}</li>;
+              })}
+            </ol>
+          </section>
+        );
+      })
+    }
+
+    <p class="meta lesson-back">
+      <a href={outline.source}>Lesson source</a>
+    </p>
+  </div>
+</Base>

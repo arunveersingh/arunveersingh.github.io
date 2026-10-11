@@ -24,6 +24,7 @@ export const videoNeedles = [
   'architecture-vs-design',
   'architectural-dimensions',
   'should-developers-still-learn',
+  'prompt-skill-sub-agent',
 ];
 
 /**
@@ -32,7 +33,7 @@ export const videoNeedles = [
  * be an `||` inside `.find()` over a date-sorted array, which meant whichever
  * candidate was newest silently won regardless of the order written here.
  */
-export const leadVideoNeedles = ['why-ai-fails', 'first-principles'];
+export const leadVideoNeedles = ['prompt-skill-sub-agent', 'why-ai-fails', 'first-principles'];
 
 /**
  * Ordered. Position 0 leads the builds index and the homepage.

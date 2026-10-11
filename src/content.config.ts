@@ -59,4 +59,22 @@ const builds = defineCollection({
   }),
 });
 
-export const collections = { essays, videos, builds };
+const courses = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/courses' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    /** Course slug. One directory under `src/content/courses/`. */
+    course: z.string(),
+    day: z.number().int().positive(),
+    /** From the lesson's Time line, for example "~15 min". */
+    time: z.string().optional(),
+    phase: z.string(),
+    /** One line from the course README. Shown on the day list. */
+    failure: z.string(),
+    /** Set by `npm run sync:course`; marks the file as safe to replace. */
+    generated: z.boolean().default(false),
+  }),
+});
+
+export const collections = { essays, videos, builds, courses };

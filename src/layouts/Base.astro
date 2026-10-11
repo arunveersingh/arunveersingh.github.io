@@ -48,6 +48,9 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Light paper until the script below picks dark. It has to sit above that
+        script: a tag parsed later would overwrite the color the script set. */}
+    <meta name="theme-color" content="#faf9f5" />
 
     {/*
       Resolves the theme before first paint, so a light-theme visitor never sees
@@ -70,6 +73,8 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
         }
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
+        var chrome = document.querySelector('meta[name="theme-color"]');
+        if (chrome) chrome.content = theme === 'dark' ? '#000000' : '#faf9f5';
       })();
     </script>
     <title>{pageTitle}</title>
@@ -78,8 +83,6 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
     {/* What the site is called when pinned to a home screen or a taskbar. */}
     <meta name="application-name" content={brand.name} />
     <meta name="apple-mobile-web-app-title" content={brand.name} />
-    {/* Matches the light default; the toggle rewrites this on switch. */}
-    <meta name="theme-color" content="#fbf7f0" />
     {/* noindex + canonical is a contradictory signal, so pages opt into one or
         the other. A 404 in particular is served at arbitrary URLs and has no
         canonical form. */}

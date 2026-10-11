@@ -1,4 +1,5 @@
 import { articlesRepo, channels, githubUser, playlists } from './sources.mjs';
+import makeAiFailSafely from './course-outlines/make-ai-fail-safely.json';
 
 /**
  * The brand is the domain. Reason From is the publication; Arunveer Singh is
@@ -15,16 +16,37 @@ export const brand = {
 } as const;
 
 /**
+ * Card label for a course whose written days are exactly 1..N.
+ * A gap, or a course that does not start at day 1, falls back to a count.
+ */
+function writtenDaysLabel(days: readonly { day: number; written: boolean }[]): string {
+  const written = days.filter((day) => day.written).map((day) => day.day);
+  if (written.length === 0) return 'Outline';
+  const contiguous = written.every((day, index) => day === index + 1);
+  return contiguous ? `Days 1–${written[written.length - 1]}` : `${written.length} lessons`;
+}
+
+/**
  * Written courses. Add an entry to put another card on `/courses/`.
  * Each `href` is the course itself. The card opens it in a new tab.
- * A path on this domain is a sibling GitHub Pages project. A full URL is fine too.
+ * A path on this site can be a reader. A sibling GitHub Pages project, or a
+ * full URL, works the same way. `cover` is optional; without one the card
+ * draws the shared diagram.
  */
 export const courses = [
+  {
+    title: makeAiFailSafely.title,
+    summary: makeAiFailSafely.tagline,
+    href: `/courses/${makeAiFailSafely.slug}/`,
+    meta: writtenDaysLabel(makeAiFailSafely.days),
+    cover: '/courses/make-ai-fail-safely/day-01.svg',
+  },
   {
     title: 'FAANG System Design, 90 days',
     summary: 'Attempt the problem, then read. Requirements before boxes. One sitting is a day.',
     href: '/faang-system-design-90-days/',
     meta: '90 days',
+    cover: null,
   },
 ] as const;
 

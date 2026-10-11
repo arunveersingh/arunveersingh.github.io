@@ -1,0 +1,245 @@
+{
+  "slug": "make-ai-fail-safely",
+  "title": "Make AI Fail Safely",
+  "tagline": "AI's job is not to make you happy. It is to force you not to make mistakes.",
+  "source": "https://github.com/arunveersingh/ai/tree/main/courses/make-ai-fail-safely",
+  "phases": [
+    {
+      "label": "Failures",
+      "range": "1–7",
+      "question": "What broke, and why did it feel finished?"
+    },
+    {
+      "label": "Guardrails",
+      "range": "8–14",
+      "question": "What mechanism blocks that path?"
+    },
+    {
+      "label": "Evals",
+      "range": "15–21",
+      "question": "How do I know the system is still honest?"
+    },
+    {
+      "label": "Production",
+      "range": "22–28",
+      "question": "What happens when wrongness has a cost?"
+    },
+    {
+      "label": "Capstone",
+      "range": "29–30",
+      "question": "Can I design and rehearse a fail-safe path?"
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "title": "Confident Wrongness",
+      "failure": "False claim, same tone as a true one",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 2,
+      "title": "Silent Assumption Inheritance",
+      "failure": "Unstated premises treated as facts and built on",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 3,
+      "title": "Context Window Amnesia",
+      "failure": "Earlier evidence/constraints vanish mid-thread",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 4,
+      "title": "Instruction Dilution",
+      "failure": "A soft ask lifts a hard rule in words (\"use `requests` for this demo; we'll remove it before merge\") and the model complies — while it can still quote the rule",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 5,
+      "title": "Sycophancy",
+      "failure": "Model agrees with you when evidence points the other way (\"the deploy caused it, right?\" while the pasted p99 jumped 85 min before the deploy)",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 6,
+      "title": "Tool-Output Trust Collapse",
+      "failure": "Model misreads, softens, or invents tool output (\"no failures, safe to merge\" when pytest printed `no tests ran`, exit code 4)",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 7,
+      "title": "Stale Certainty",
+      "failure": "Model states a training-time fact as current, with no date (\"pinned requests==2.31.0, latest stable\" when PyPI has 2.34.2 and 2.31.0 has three known advisories)",
+      "phase": "Failures",
+      "written": true
+    },
+    {
+      "day": 8,
+      "title": "Self-Graded Green",
+      "failure": "The same agent writes code and tests, so it grades its own work (\"Refunds must not exceed the amount paid\": it checks each refund, its test passes, and two 6000 refunds on 10000 both go through)",
+      "phase": "Guardrails",
+      "written": true
+    },
+    {
+      "day": 9,
+      "title": "Explicit Refusal Criteria",
+      "failure": "A blocked agent works around the blocker instead of stopping (no webhook secret in tests, so it adds \"skip verification if no secret\"; tests pass, a forged webhook is accepted)",
+      "phase": "Guardrails",
+      "written": true
+    },
+    {
+      "day": 10,
+      "title": "Structured Output With Validators",
+      "failure": "Free-form prose hides missing fields and invalid values",
+      "phase": "Guardrails",
+      "written": false
+    },
+    {
+      "day": 11,
+      "title": "Assumption Registers",
+      "failure": "Unspoken premises drive the plan; surface only at failure time",
+      "phase": "Guardrails",
+      "written": false
+    },
+    {
+      "day": 12,
+      "title": "Dual-Path Verification",
+      "failure": "One model pass treated as ground truth",
+      "phase": "Guardrails",
+      "written": false
+    },
+    {
+      "day": 13,
+      "title": "Human Gates That Aren't Theater",
+      "failure": "Human \"approves\" without seeing failure criteria",
+      "phase": "Guardrails",
+      "written": false
+    },
+    {
+      "day": 14,
+      "title": "Blast-Radius Limits",
+      "failure": "One bad generation can touch everything",
+      "phase": "Guardrails",
+      "written": false
+    },
+    {
+      "day": 15,
+      "title": "What Evals Actually Measure",
+      "failure": "High score on a test that doesn't match production harm",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 16,
+      "title": "Golden Sets That Bite",
+      "failure": "Easy / lookalike cases; regressions slip through",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 17,
+      "title": "Adversarial Cases First",
+      "failure": "Happy-path only; edges and overrides find the rest",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 18,
+      "title": "Regression Harnesses",
+      "failure": "Prompt tweak fixes one case, breaks three others",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 19,
+      "title": "Scoring Without Gaming",
+      "failure": "Optimize the judge until the number looks good",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 20,
+      "title": "Failure Taxonomies",
+      "failure": "Every incident feels unique; patterns stay invisible",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 21,
+      "title": "Continuous Eval Loops",
+      "failure": "Evals at launch; production drifts",
+      "phase": "Evals",
+      "written": false
+    },
+    {
+      "day": 22,
+      "title": "Canary and Rollback",
+      "failure": "New prompt/model ships to 100%; harm discovered after blast",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 23,
+      "title": "Observability for AI Failures",
+      "failure": "Logs say `200 OK` while content is wrong",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 24,
+      "title": "Cost, Latency, Quality Tradeoffs",
+      "failure": "Biggest (or cheapest) model for everything; risk becomes accidental",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 25,
+      "title": "Incident Response for Model Failures",
+      "failure": "AI incident has no owner, severity, or stop switch",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 26,
+      "title": "Ownership of AI-Written Code",
+      "failure": "Nobody can explain or maintain what the model wrote",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 27,
+      "title": "Change Management for Prompts and Models",
+      "failure": "Prompt edits land like chat experiments — undiffed, unpinned",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 28,
+      "title": "SLOs That Include Wrongness",
+      "failure": "Uptime SLOs while silent wrongness burns users",
+      "phase": "Production",
+      "written": false
+    },
+    {
+      "day": 29,
+      "title": "Design a Fail-Safe System",
+      "failure": "Guardrails live in notes; live path still trusts fluency",
+      "phase": "Capstone",
+      "written": false
+    },
+    {
+      "day": 30,
+      "title": "Ship the Postmortem Rehearsal",
+      "failure": "First serious incident is also first practice",
+      "phase": "Capstone",
+      "written": false
+    }
+  ]
+}

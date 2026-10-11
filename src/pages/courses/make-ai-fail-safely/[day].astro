@@ -1,0 +1,113 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { withBase } from '../../../data/site';
+import outline from '../../../data/course-outlines/make-ai-fail-safely.json';
+
+export async function getStaticPaths() {
+  const lessons = await getCollection('courses', ({ data }) => data.course === outline.slug);
+  const ordered = lessons.slice().sort((a, b) => a.data.day - b.data.day);
+  return ordered.map((entry, index) => ({
+    params: { day: `day-${String(entry.data.day).padStart(2, '0')}` },
+    props: {
+      entry,
+      prev: ordered[index - 1] ?? null,
+      next: ordered[index + 1] ?? null,
+    },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content } = await render(entry);
+const courseHref = withBase(`/courses/${outline.slug}/`);
+const upcoming = next ? null : (outline.days.find((day) => day.day > entry.data.day && !day.written) ?? null);
+
+function hrefFor(day: number): string {
+  return withBase(`/courses/${outline.slug}/day-${String(day).padStart(2, '0')}/`);
+}
+
+function shortTitle(title: string): string {
+  const split = title.split(' — ');
+  return split.length > 1 ? split.slice(1).join(' — ') : title;
+}
+---
+
+<Base title={entry.data.title} description={entry.data.description} ogType="article">
+  <article class="page">
+    <p class="kicker"><a href={courseHref}>{outline.title}</a></p>
+    <h1 class="page-heading">{entry.data.title}</h1>
+    <p class="meta">
+      {entry.data.time && <>{entry.data.time} · </>}
+      {entry.data.phase}
+    </p>
+    <div class="article-body">
+      <Content />
+    </div>
+    <nav class="lesson-nav" aria-label="Lesson">
+      {
+        prev && (
+          <a href={hrefFor(prev.data.day)}>
+            <span>Previous</span>
+            <strong>{shortTitle(prev.data.title)}</strong>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a class="next" href={hrefFor(next.data.day)}>
+            <span>Next</span>
+            <strong>{shortTitle(next.data.title)}</strong>
+          </a>
+        )
+      }
+      {
+        upcoming && (
+          <p class="next lesson-pending">
+            <span>Next</span>
+            <strong>
+              Day {upcoming.day} is not written yet
+            </strong>
+          </p>
+        )
+      }
+    </nav>
+    <p class="meta lesson-back">
+      <a href={courseHref}>All days</a>
+    </p>
+  </article>
+  <script is:inline>
+    (async function () {
+      var blocks = document.querySelectorAll('pre[data-language="mermaid"] code');
+      if (!blocks.length) return;
+      var mermaid;
+      try {
+        var mod = await import('https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs');
+        mermaid = mod.default;
+      } catch (error) {
+        return;
+      }
+      var dark = document.documentElement.dataset.theme === 'dark';
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: dark ? 'dark' : 'neutral',
+        fontFamily: 'Inter, sans-serif',
+      });
+      for (var index = 0; index < blocks.length; index += 1) {
+        var code = blocks[index];
+        var text = code.textContent || '';
+        if (!text.trim()) continue;
+        var pre = code.closest('pre') || code;
+        try {
+          var drawn = await mermaid.render('lesson-mermaid-' + index, text);
+          var holder = document.createElement('div');
+          holder.className = 'mermaid';
+          holder.innerHTML = drawn.svg;
+          pre.replaceWith(holder);
+        } catch (error) {
+          /* The fence stays. The lesson also includes a text version. */
+        }
+      }
+    })();
+  </script>
+</Base>
