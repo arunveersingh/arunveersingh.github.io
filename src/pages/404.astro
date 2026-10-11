@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { withBase } from '../data/site';
+import { site, withBase } from '../data/site';
 ---
 
 <Base title="Not found" description="That page does not exist." noindex>
@@ -8,7 +8,7 @@ import { withBase } from '../data/site';
     <p class="kicker">404</p>
     <h1 class="page-heading">That page does not exist.</h1>
     <p class="lede">
-      The link is wrong, or the work moved. The four things that definitely exist:
+      The link is wrong, or the work moved. The five things that definitely exist:
     </p>
     <ol class="index-list">
       <li>
@@ -23,6 +23,13 @@ import { withBase } from '../data/site';
           <span class="meta">/watch/</span>
           <strong>Watch</strong>
           <em>Selected talks on judgment, playable here.</em>
+        </a>
+      </li>
+      <li>
+        <a href={site.course.href}>
+          <span class="meta">{site.course.href}</span>
+          <strong>Course</strong>
+          <em>FAANG system design, one day at a time, read in the browser.</em>
         </a>
       </li>
       <li>

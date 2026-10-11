@@ -14,6 +14,16 @@ export const brand = {
   strap: 'Engineering judgment, in public',
 } as const;
 
+/**
+ * Docsify course published from `arunveersingh/faang-system-design-90-days`.
+ * GitHub Pages mounts that project at this path on the user-site domain.
+ * This repo only links to it.
+ */
+export const course = {
+  href: '/faang-system-design-90-days/',
+  title: 'FAANG System Design, 90 days',
+} as const;
+
 export const site = {
   title: brand.name,
   tagline: 'AI should force you not to make mistakes.',
@@ -30,9 +40,10 @@ export const site = {
   ai: `https://github.com/${githubUser}/ai`,
   linkedin: 'https://www.linkedin.com/in/arunveersingh',
   x: 'https://x.com/oopsfeedmecode',
-  email: 'oopsfeedmecode@gmail.com',
+  email: 'arunveersingh9@gmail.com',
   youtube: channels,
   playlists,
+  course,
 } as const;
 
 /** Whole years since `site.careerStart`, evaluated at build time. */
@@ -77,6 +88,7 @@ export const nav = [
   { href: '/', label: 'Studio' },
   { href: '/essays/', label: 'Essays' },
   { href: '/watch/', label: 'Watch' },
+  { href: course.href, label: 'Course' },
   { href: '/builds/', label: 'Builds' },
   { href: '/about/', label: 'About' },
 ] as const;
