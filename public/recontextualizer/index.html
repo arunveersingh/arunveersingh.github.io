@@ -407,6 +407,7 @@ body.rec #bar{display:none}
   cursor:pointer;margin-left:5px}
 .fb:hover{border-color:var(--ink3)}
 .fb.act{color:var(--pen);border-color:var(--pen)}
+body.hold #b-next{color:var(--pen);border-color:var(--pen);background:var(--penbg)}
 .fb:focus-visible{outline:2px solid var(--pen);outline-offset:2px}
 #pp{position:fixed;top:0;right:0;bottom:48px;width:430px;z-index:15;background:#F5F4EF;border-left:1px solid var(--rule2);
   padding:22px 26px 30px;overflow-y:auto;display:none}
@@ -417,6 +418,11 @@ body.rec #pp{display:none}
 #pp .h3{margin-top:6px;font:12px/1 var(--mono);color:var(--ink3);padding-bottom:14px;border-bottom:1px solid var(--rule2);margin-bottom:16px}
 #pp p{font-size:17.5px;line-height:1.55;color:var(--ink);margin:0 0 15px}
 #pp p.cue{color:var(--pen);font-family:var(--hand);font-size:22px}
+#pp p.later{color:var(--ink4)}
+#pp p.done{color:var(--ink3)}
+#pp p.now{color:var(--ink);background:#EEF1F8;border-radius:10px;padding:10px 12px 10px 14px;margin:0 -12px 15px;box-shadow:inset 3px 0 0 var(--pen)}
+#pp p.cue.now{color:var(--pen);background:transparent;box-shadow:none;padding:0;margin:0 0 6px;font-size:24px}
+#pp p.cue.later,#pp p.cue.done{opacity:.5}
 #pp .note{margin-top:20px;padding-top:13px;border-top:1px dashed var(--rule2);font:12.5px/1.55 var(--mono);color:var(--ink3)}
 #pp .note b{color:var(--pen);font-weight:500}
 #frame{position:fixed;inset:0;z-index:45;pointer-events:none;display:none}
@@ -875,6 +881,7 @@ g.bwrap.rv,g.bfold.rv{transform:none}
 .clp .ci b{flex-shrink:0;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:600 14px/1 var(--mono);color:#fff;background:var(--grain),var(--g-peri)}
 .clp.can .ci b{background:var(--grain),linear-gradient(165deg,#9AA0AB,#6C727E)}
 .clp .ci small{display:block;margin-top:3px;font:400 16px/1.35 var(--sans);color:var(--ink2)}
+.clp .clsrc{margin-top:18px;font:500 15px/1.3 var(--mono);letter-spacing:.01em;color:var(--pen)}
 .clrecap{position:absolute;left:60px;right:60px;top:500px;padding:24px 32px;border-radius:28px;background:var(--grain),var(--g-pearl2);box-shadow:var(--rim),var(--sh);
   font:600 28px/1.4 var(--serif);color:var(--ink)}
 .pstatline{position:absolute;left:16px;right:16px;top:8px;font:500 14.5px/1.3 var(--sans);color:var(--ink)}
@@ -930,7 +937,7 @@ g.bwrap.rv,g.bfold.rv{transform:none}
   <div id="dots"></div>
   <div class="r">
     <button class="fb" id="b-prev" title="Previous scene, end state (←)">←</button>
-    <button class="fb" id="b-next" title="Next scene (→ or Space)">→</button>
+    <button class="fb" id="b-next" title="Next line (→ or Space)">→</button>
     <button class="fb" id="b-replay" title="Replay this scene (R)">Replay</button>
     <button class="fb" id="b-auto" title="Autoplay (A)">Autoplay</button>
     <button class="fb" id="b-script" title="Script panel (P)">Script</button>
@@ -941,12 +948,12 @@ g.bwrap.rv,g.bfold.rv{transform:none}
 <div id="frame"><div class="box"></div><div class="lbl"></div></div>
 <div id="toast"></div>
 <div id="fh"><div><div class="a">click anywhere to start</div>
-  <div class="b">→ or Space  next scene &nbsp;&nbsp; ← previous, end state &nbsp;&nbsp; R replay &nbsp;&nbsp; F skip to end<br>
-  A autoplay &nbsp;&nbsp; P script &nbsp;&nbsp; O pop-out script &nbsp;&nbsp; G record frame (off, setup, ready)</div></div></div>
+  <div class="b">→ or Space  next line &nbsp;&nbsp; the picture waits while you read that line<br>
+  ← previous scene &nbsp;&nbsp; R replay &nbsp;&nbsp; F end of this scene &nbsp;&nbsp; A autoplay &nbsp;&nbsp; P script &nbsp;&nbsp; O pop-out</div></div></div>
 <script>
 /* =====================================================================
    Recontextualizer demo: scene content and diagram components.
-   One scene = one key press. play(A) runs the whole scene.
+   One spoken line = one key press. play(A) holds on A.read() until you advance.
    With A.fast it runs instantly, which is how earlier state is rebuilt.
    ===================================================================== */
 const $=(s,r=document)=>r.querySelector(s);
@@ -2112,15 +2119,18 @@ const BRAIN={
   refill(A){$('#liq').style.transform='translateY(95px)';BRAIN.move(A,false);}
 };
 EXTRA_MODS.push(BRAIN);
-const PURPOSE={title:'AI drains context from our heads. This skill helps put it back.',sub:'',secs:26,
+const PURPOSE={title:'AI drains context from our heads. This skill helps put it back.',sub:'The change can still be reviewed, and it can still ship.',secs:26,
   beats:['When you wrote code yourself, the context lived in your head.',
     'When an AI agent writes it, the context goes into the code and drains out of your head.',
     'The recontextualizer helps put it back. It lists every item that changed, then asks until you can explain the risky ones in your own words.'],
-  note:'Press once. The drain and the refill play by themselves in about 10 seconds. Start speaking with the first frame.',
+  note:'The picture waits on each line. It drains on the second line and refills on the third.',
   async play(A){sim(false);rail(-1);heroView('brain');$('#sheet').classList.add('norail');BRAIN.phase(1);reveal($('#hv-brain'),A);
     if(A.fast){BRAIN.showA();BRAIN.showB();BRAIN.phase(3);return;}
-    await A.wait(1800);BRAIN.showA();BRAIN.phase(2);await A.wait(500);BRAIN.drain(A);
-    await A.wait(3300);BRAIN.showB();BRAIN.phase(3);await A.wait(500);BRAIN.refill(A);await A.wait(3400);}};
+    await A.read();
+    BRAIN.showA();BRAIN.phase(2);BRAIN.drain(A);
+    await A.read();
+    BRAIN.showB();BRAIN.phase(3);BRAIN.refill(A);
+    await A.read();}};
 (function(){SCENES.length=0;SCENES.push(PURPOSE,...SIM,OBS[1]);})();
 
 /* ---------- the spoken script: short sentences, in the order the animations play ---------- */
@@ -2317,7 +2327,7 @@ const CLOSE={
     const can=[['Block a commit or a merge.',''],['Change the code under review.',''],['Certify its own accuracy.','Tests and the diff are the real check.'],['Decide for you.','The developer is the authority.']];
     const tryit=['How often “got it” was accepted as covered','Paths the ledger missed that review or tests found later','Minutes per change, by size of change'];
     $('#hv-close').innerHTML='<div class="clp can rv" data-t="0"><h4>It can’t</h4>'+can.map((c,i)=>'<div class="ci"><b>'+(i+1)+'</b><span>'+c[0]+(c[1]?'<small>'+c[1]+'</small>':'')+'</span></div>').join('')+'</div>'+
-      '<div class="clp try rv" data-t="500"><h4>Try it, then count</h4>'+tryit.map((c,i)=>'<div class="ci"><b>'+(i+1)+'</b><span>'+c+'</span></div>').join('')+'</div>'+
+      '<div class="clp try rv" data-t="500"><h4>Try it, then count</h4>'+tryit.map((c,i)=>'<div class="ci"><b>'+(i+1)+'</b><span>'+c+'</span></div>').join('')+'<div class="clsrc">github.com/arunveersingh/ai</div></div>'+
       '<div class="clrecap rv" data-t="1200">It lists every item and path it finds. It walks every high-risk one. On a large change it offers a resume file, and writes it only if you agree. If you stop, it prints the ledger.</div>';
   }
 };
@@ -2373,108 +2383,147 @@ const T11={
 };
 
 /* ---------- the 10 scenes ---------- */
-PURPOSE.secs=26;PURPOSE.note='Press → once and start on the first frame. The drain starts at about 2 seconds, the refill at about 6.';
-PURPOSE.beats=['[the brain is full]','When we wrote the code ourselves, the context stayed in our heads. Why it exists. What breaks. The error path. The early return.',
-  '[the AI agent arrow, the brain drains]','Now an AI agent writes the change. The context goes into the code. Not into our heads.',
-  '[the recontextualizer arrow, the brain refills]','This skill helps you put it back. It lists every item and path it finds. Then it asks you to explain every risky one, in your own words. If you stop, it stops.'];
+PURPOSE.secs=26;PURPOSE.note='The picture waits on each line. → or Space advances one line. The brain stays full, then drains, then refills.';
+PURPOSE.beats=['[the brain is full]','Look at the brain. It’s full, and the chips inside it are the context we used to carry ourselves: why it exists, what breaks, the error path, the early return, and who depends on it. The card on the right is the change, and none of that has gone into it yet. That change can still be reviewed, and it can still ship.',
+  '[the AI agent arrow, the brain drains]','Now the arrow across the top, the one that says the AI agent writes the change. Watch the chips leave the brain and land in that card, and watch the level drop. The context went into the code, and you can approve that diff and still not be able to explain it.',
+  '[the recontextualizer arrow, the brain refills]','And this arrow coming back is the recontextualizer. It lists every item and every path it finds, then it asks you to explain the risky ones in your own words, and you can see the brain fill back up. If you want to stop, it stops with you.'];
 
 const V11=[PURPOSE,
-{title:'It finds the change for you, read-only.',sub:'Commands run quietly. Only the conclusion reaches the chat.',secs:40,
+{title:'You don’t hunt for the change.',sub:'Commands run quietly. Only the conclusion reaches the chat.',secs:40,
  note:'Say the first line clearly. The chat header says “simulated” until the last scene. The resume file is offered, then declined.',
- beats:['One thing first. What you see now is a simulation of the skill’s instructions. Not a recording.',
-   'The developer just asks for it. The skill says what it will do. And it says clearly: I can’t block you. If you stop, it stops.',
-   'Then it finds the change on its own. Only read-only commands. The developer sees one line and answers yes or no.',
-   'This change is big, so it offers a resume file. The developer says single-pass. Nothing is written.'],
- async play(A){sim(true);rail(0);view('disc');DISC.run(A);
-   await A.say('dev',T11.d1);await A.wait(300);await A.say('skill',T11.s1);await A.wait(300);await A.say('dev',T11.d2);
-   await A.wait(300);DISC.scope();await A.say('skill',T11.s2);await A.wait(300);await A.say('dev',T11.d3);
-   await A.wait(300);await A.say('skill',T11.s2b);await A.wait(300);await A.say('dev',T11.d3b);await A.wait(200);await A.say('skill',T11.s2c);}},
+ beats:['Before the chat starts, look at the panel on the right. Those commands are finding the change, the one you’d be about to send for review, and every one of them is marked read-only. The header says simulated: this is what the skill is told to do, not a recording.',
+   'Now the chat on the left. The developer simply asks for it, and the skill says what it’s going to do. In that first reply it says it can’t block you, and that if you want to stop, it stops, and the developer answers ready.',
+   'On the right, the scope has landed: pull request 418, the payment-retry branch into main, 23 commits, 14 files. In the chat that’s the only line they have to answer, and they say yes.',
+   'Because the change is large, the skill offers a resume file in the chat, a path they could pick up later. They choose single-pass, so nothing is written.'],
+ async play(A){sim(true);rail(0);view('disc');DISC.run(A);await A.read();
+   await A.say('dev',T11.d1);await A.wait(220);await A.say('skill',T11.s1);await A.wait(220);await A.say('dev',T11.d2);await A.read();
+   DISC.scope();await A.say('skill',T11.s2);await A.wait(220);await A.say('dev',T11.d3);await A.read();
+   await A.say('skill',T11.s2b);await A.wait(220);await A.say('dev',T11.d3b);await A.wait(160);await A.say('skill',T11.s2c);await A.read();}},
 {title:'It lists every path, not just every file.',sub:'The catch nobody ran is on the list.',secs:22,
  note:'Name the four paths as their tags appear.',
- beats:['Now the most important part. It does not stop at files. It walks the code paths inside each changed function.',
-   'The timeout catch. The last-attempt guard. The duplicate-request catch. The retries-exhausted return.',
-   'The happy path is rarely where the risk is. The paths around it are. With AI-written code, these are the paths nobody walked.'],
- async play(A){sim(true);rail(1);view('code');PATHS.scan(A);await A.wait(1200);await A.say('skill',T11.s3);await A.wait(1100);}},
+ beats:['We’re in the code now. On the right is retry, inside PaymentRetryService. This is the part I want you to notice, because it doesn’t stop once it has the file. It’s going to walk the paths inside the function.',
+   'Watch the tags land on the lines. The happy path is the dim one. Then the timeout catch, the last-attempt guard, the duplicate-request catch, which is the one marked as the risk, and the return when the retries run out.',
+   'And the message in the chat is what you just saw: 31 items, including 4 paths through retry that are easy to miss. The happy path is rarely where the risk sits. Nobody walked the paths around it.'],
+ async play(A){sim(true);rail(1);view('code');await A.read();PATHS.scan(A);await A.read();await A.say('skill',T11.s3);await A.read();}},
 {title:'Every high-risk row gets a question.',sub:'Four high-risk. The rest get a yes. Nothing is sampled away.',secs:26,
  note:'Say the ledger line slowly. A payments audience hears “ledger” as accounting first.',
- beats:['The skill calls this list a ledger. Not the payments ledger in our code.',
-   'Thirty-one items and paths. Four are high-risk. Each of those gets a real question. None of them is skipped to save time.',
-   'Nine are worth knowing. One line on why. Eighteen are mechanical. A simple yes. Your time goes where the risk is. Nothing is dropped.'],
- async play(A){sim(true);rail(2);view('lg2');LG2.show(A);await A.wait(900);LG2.classify();await A.say('skill',T11.s4);await A.wait(300);
-   await A.say('dev',T11.d4);LG2.ack(A);await A.wait(1600);}},
+ beats:['This panel is what the skill calls a ledger. If you work in payments that word means the accounting ledger, so I’ll be plain with you: it’s the list of everything that changed. The rows are coming in, thirty-one of them, and nothing on them is marked yet.',
+   'Now the counts come up across the top of the list: four high-risk, nine worth knowing, eighteen mechanical. The high-risk rows pick up the red tint, and each of those gets a real question, because it doesn’t skip any of them to save time. The chat says the same split.',
+   'Watch the status on the right of each row. The worth-knowing ones and the mechanical ones flip to acknowledged. Your time goes to the four red rows, and the other twenty-seven stay on the list.'],
+ async play(A){sim(true);rail(2);view('lg2');LG2.show(A);await A.read();
+   LG2.classify();await A.say('skill',T11.s4);await A.read();
+   await A.say('dev',T11.d4);LG2.ack(A);await A.read();}},
 {title:'The catch nobody ran: sure, and wrong.',sub:'Confidence first, then a question that names its own subject.',secs:30,
  note:'The gut check and the question are separate messages. There is no confidence grid.',
- beats:['It tells you the count once. Four high-risk rows.','Then a gut check, on its own. Sure, or shaky?',
-   'Then the question, on its own. When does the duplicate-request catch actually fire?','The developer was sure. The answer is wrong.',
-   'The skill gives one small hint. It does not give the answer, and it does not store a confidence score.'],
+ beats:['The code on the right has jumped to the duplicate-request catch, the two lines in the band. The chat tells you the count once, so you know what’s coming: four high-risk rows to walk through, and then you’re done.','The next message is on its own, a gut check, and nothing else arrives with it. Are you sure about this one, or are you shaky? The developer says sure.',
+   'Then the question arrives, also on its own, and it names the catch you’re looking at. When does this duplicate-request catch actually fire, and what does the caller get?','And this is the moment. Their answer is in the chat: the customer clicks pay twice, and they get the same receipt. The developer feels sure, and the answer is wrong.',
+   'The reply under that is one small hint. It points you at the first attempt timing out on our side, but it will not hand you the answer, and it doesn’t keep a score of how sure you said you were.'],
  async play(A){sim(true);rail(3);view('code');CODE.focus([49,50],'p1');
-   await A.say('skill',T11.s5a);await A.wait(300);await A.say('skill',T11.s5b);await A.wait(300);
-   await A.say('dev',T11.d5);await A.wait(300);await A.say('skill',T11.s5c);await A.wait(300);await A.say('dev',T11.d6);await A.wait(300);
-   await A.say('skill',T11.s6);}},
+   await A.say('skill',T11.s5a);await A.read();
+   await A.say('skill',T11.s5b);await A.wait(220);await A.say('dev',T11.d5);await A.read();
+   await A.say('skill',T11.s5c);await A.read();
+   await A.say('dev',T11.d6);await A.read();
+   await A.say('skill',T11.s6);await A.read();}},
 {title:'“Got it” is not enough. Your own words are.',sub:'The skill explains once, then asks for it in your terms.',secs:30,
- note:'Pause one second after “It stays unverified”.',
- beats:['The developer tries again. Gets half of it. Only now does the skill explain. Just once.',
-   'Then the developer says: got it, makes sense. The skill says no. That was my explanation, not yours. It stays unverified.',
-   'So it asks differently. What will you tell the on-call person at 2 am?',
-   'Now the answer is in the developer’s own words. That is covered. This is the one rule of the skill.'],
+ note:'Pause one second after “stays unverified”.',
+ beats:['On the right, the track for this item starts. The first step lights when the developer tries again and gets about halfway there, and the next step lights when the skill explains the mechanism. It explains it once, and that explanation is the message in the chat.',
+   'Then two more steps light up, got it and unverified. The developer says got it, that makes sense, and the skill refuses it, because that explanation belonged to the skill, so the row stays unverified.',
+   'So it asks the same thing another way, and this question is only in the chat for now. What would you tell the person who gets paged about this at two in the morning?',
+   'Now the last two steps light up, own words, then covered. The answer in the chat is in the developer’s own words, and that is what gets marked covered. Saying got it is not enough, because the words have to be yours.'],
  async play(A){sim(true);rail(3);view('one');
-   await A.say('dev',T11.d7);ONE.step(0);await A.wait(300);await A.say('skill',T11.s7);ONE.step(1);await A.wait(300);
-   await A.say('dev',T11.d7b);ONE.step(2);await A.wait(300);await A.say('skill',T11.s7b);ONE.step(3);await A.wait(300);
-   await A.say('skill',T11.s7c);await A.wait(300);await A.say('dev',T11.d8);ONE.step(4);await A.wait(300);
-   await A.say('skill',T11.s8);ONE.step(5);LG2.set('BEH-01','covered','covered');await A.wait(500);}},
+   await A.say('dev',T11.d7);ONE.step(0);await A.wait(220);await A.say('skill',T11.s7);ONE.step(1);await A.read();
+   await A.say('dev',T11.d7b);ONE.step(2);await A.wait(220);await A.say('skill',T11.s7b);ONE.step(3);await A.read();
+   await A.say('skill',T11.s7c);await A.read();
+   await A.say('dev',T11.d8);ONE.step(4);await A.wait(220);await A.say('skill',T11.s8);ONE.step(5);LG2.set('BEH-01','covered','covered');await A.read();}},
 {title:'Why five? One question about the design.',sub:'The developer does the arithmetic. The reason gets recorded.',secs:24,
  note:'Let the bar fill before the last line.',
- beats:['Once in a session, it asks about the design. Not the code. Why five attempts?',
-   'The developer does the maths. Five into thirty seconds. One hundred and fifty seconds, plus backoff.','[after the bar fills]',
-   'And says honestly: five came from the AI’s first draft. That sentence is stored on the row. The skill does not invent a reason.'],
- async play(A){sim(true);rail(3);view('budget');await A.say('skill',T11.s9a);await A.wait(300);await A.say('dev',T11.d9);await A.wait(300);
-   await A.say('skill',T11.s9b);await A.wait(300);await A.say('dev',T11.d9b);BUDGET.run(A);await A.wait(2400);
-   await A.say('skill',T11.s9c);LG2.set('CFG-01','covered','covered');}},
+ beats:['The file on the right is the config, and the two lines lit up are max-attempts at 5 and the gateway timeout at 30 seconds. In the chat this is item 2 of 4. They say they’re shaky, and the question leaves the lines and asks about the design: why five attempts, and not three?',
+   'Watch the bar under the file. It fills one attempt at a time, out to 150 seconds. The developer works it out on the spot: five attempts at thirty seconds each is a hundred and fifty seconds where a payment can sit pending, and that is before the backoff.','[after the bar fills]',
+   'Back in the chat, they say the honest part, that five came from the AI’s first draft, and the reply stores that sentence on the row. The skill will not invent a reason for them.'],
+ async play(A){sim(true);rail(3);view('budget');
+   await A.say('skill',T11.s9a);await A.wait(220);await A.say('dev',T11.d9);await A.wait(220);await A.say('skill',T11.s9b);await A.read();
+   await A.say('dev',T11.d9b);BUDGET.run(A);await A.read();
+   await A.say('skill',T11.s9c);LG2.set('CFG-01','covered','covered');await A.read();}},
 {title:'One path, start to finish, including the failure.',sub:'A vague step stays open. Stop ends the session.',secs:28,
  note:'Say “somehow” the way the developer would. After stop, do not ask them to continue.',
- beats:['Then one walk, start to finish, including when it goes wrong.','See where it becomes vague. Settlement picks it up… somehow.',
-   'The skill asks one question. Who actually picks up PaymentSettled?',
-   'The developer says stop, and names a next step. The skill stops. It does not ask another question. It does not invent an owner or a date.'],
- async play(A){sim(true);rail(3);view('trace');await A.say('skill',T11.s10);await A.wait(300);
-   await A.say('dev',T11.d10,{cps:70,marks:[['scheduler',()=>TRACE.node('A'),'start'],['retry()',()=>{TRACE.edge('AB');TRACE.node('B');}],
+ beats:['The panel on the right is an empty trace, and the chat asks them for one walk through the real path, from the start all the way through, including what happens when it fails.','Now follow the boxes as their message types. The scheduler, retry, the gateway, settle, the ledger, then PaymentSettled. I want you to listen for the moment it goes soft: settlement picks it up… somehow. That’s the drop down to the question mark.',
+   'The skill doesn’t pile on after that. One question in the chat: who actually picks up PaymentSettled? The question mark is still sitting on the trace.',
+   'They say stop, and they name the next thing they’ll do, look at the publish path with the settlement team. The skill stops there. The card that comes up on the trace says unverified, and it keeps their words. It doesn’t ask another question, and it doesn’t make up an owner or a date.'],
+ async play(A){sim(true);rail(3);view('trace');await A.say('skill',T11.s10);await A.read();
+   await A.say('dev',T11.d10,{cps:36,marks:[['scheduler',()=>TRACE.node('A'),'start'],['retry()',()=>{TRACE.edge('AB');TRACE.node('B');}],
      ['the gateway',()=>{TRACE.edge('BC');TRACE.node('C');}],['settle()',()=>{TRACE.edge('BD');TRACE.node('D');}],
-     ['the ledger',()=>{TRACE.edge('DE');TRACE.node('E');}],['PaymentSettled.',()=>{TRACE.edge('DF');TRACE.node('F');}],['somehow',()=>TRACE.gap()]]});
-   await A.wait(300);await A.say('skill',T11.s10b);await A.wait(300);await A.say('dev',T11.d10b);await A.wait(300);
-   await A.say('skill',T11.s10c);TRACE.hold();LG2.set('INT-01','unverified','unverified');LG2.set('INV-01','unverified','unverified');await A.wait(500);}},
-{title:'The same ledger, printed.',sub:'Every row. Two high-risk rows unverified. The developer stopped.',secs:28,
+     ['the ledger',()=>{TRACE.edge('DE');TRACE.node('E');}],['PaymentSettled.',()=>{TRACE.edge('DF');TRACE.node('F');}],['somehow',()=>TRACE.gap()]]});await A.read();
+   await A.say('skill',T11.s10b);await A.read();
+   await A.say('dev',T11.d10b);await A.wait(220);await A.say('skill',T11.s10c);TRACE.hold();LG2.set('INT-01','unverified','unverified');LG2.set('INV-01','unverified','unverified');await A.read();}},
+{title:'This page is what you hand the next person.',sub:'Two rows still open. The words on the others are theirs.',secs:28,
  note:'This is the record. Read the words off the rows. They are the chat, copied.',
- beats:['It prints the same ledger. Every row. There is no second report.',
-   'Two high-risk rows are covered, in the words they actually said. Two are unverified.',
-   'One stores what they said, including the next step. The one they never spoke about says not stated.',
-   'The worth-knowing rows carry the one line they gave. The mechanical groups carry their yes.',
-   'Owned only if every high-risk row is covered. They stopped, so this one is not.'],
- async play(A){sim(true);rail(4);view('verd2');VERD2.build(A);await A.wait(400);await A.say('skill',T11.s11);await A.wait(1500);}},
-{title:'What it can’t do, and how to try it.',sub:'Its own limits, then three numbers to count on a real change.',secs:32,
- note:'If you show a real run, cut to the recording at the cue. Hold the last frame.',
- beats:['Four things it can’t do. It can’t block a merge. It can’t change your code. It can’t certify its own accuracy. And it can’t decide for you.',
-   'The record is the ledger you just saw. It does not write a second report.',
-   'One honest note. In my own two runs, it was rougher than this demo. Longer messages. Packed questions.','[optional: cut to the real-run recording]',
-   'So try it on your own change, and count three things. How often “got it” was accepted. What the ledger missed. And minutes per change.'],
- async play(A){sim(false);rail(-1);heroView('close');reveal($('#hv-close'),A);await A.wait(2200);}}
+ beats:['What you’re looking at is this same ledger, printed. The line across the top says two high-risk rows are unverified, and that a change is owned only if every high-risk row is covered. Every row is on this page, and there is no second report waiting somewhere else.',
+   'The four cards at the top are the high-risk ones. Two of them say covered, and the words under them are the words the developer actually said. The other two still say unverified.',
+   'One of those unverified cards keeps what they said, including the stop and the settlement team. The other one, posting before the event is published, is the row they never talked about, and it simply says not stated.',
+   'Under those, the worth-knowing rows keep the one line they gave, and the mechanical groups at the bottom keep their yes.',
+   'So read that line at the top again. Owned only if every high-risk row is covered, and they stopped, so this one is not. This page is what you hand the next person. Their words are on the covered rows, and the open ones say so.'],
+ async play(A){sim(true);rail(4);view('verd2');VERD2.build(A);await A.say('skill',T11.s11);
+   await A.read();await A.read();await A.read();await A.read();await A.read();}},
+{title:'Run it on the change you are about to review.',sub:'It can’t block the merge. It can show you the rows you can’t explain.',secs:32,
+ note:'Both cards and the bottom line are up from the first key. If you show a real run, cut at the cue. The last line is the ask.',
+ beats:['The card on the right is the ask. Run this on the change you have open. The skill is recontextualizer, in github.com/arunveersingh/ai. Point your agent at that skills folder, or paste the skill file. Then count the three things on the card.',
+   'The card on the left is one breath. It can’t block a merge, it can’t change the code under review, it can’t certify its own reading, and it can’t make the decision for you.',
+   'I should be straight with you about my own two runs. They were rougher than what you just watched: the messages ran long, and the questions arrived packed together.','[optional: cut to the real-run recording]',
+   'The line along the bottom is the whole thing. It lists every item and path, walks every high-risk one, and if you stop, it prints this page. Run it before you ask for review.'],
+ async play(A){sim(false);rail(-1);heroView('close');
+   if(A.fast){reveal($('#hv-close'),A);return;}
+   const can=$('#hv-close .can'),tryEl=$('#hv-close .try'),rec=$('#hv-close .clrecap');
+   can.style.setProperty('--d','0ms');can.classList.add('on');
+   tryEl.style.setProperty('--d','80ms');tryEl.classList.add('on');
+   rec.style.setProperty('--d','160ms');rec.classList.add('on');
+   await A.read();await A.read();await A.read();await A.read();}}
 ];
 (function(){SCENES.length=0;SCENES.push(...V11);})();
 
 /* =====================================================================
    Runtime. goTo(n) rebuilds the stage, replays scenes 0..n-1 instantly,
    then animates scene n. Any scene can be entered, replayed or left
-   mid-animation without drift. One key press = one scene.
+   mid-animation without drift. One key press = one spoken line.
+   The picture holds on A.read() until that line is advanced.
    ===================================================================== */
 (function(){
 const stage=$('#stage'),msgs=$('#msgs');
 let cur=0,token=0,timers=[],auto=false,mIdx=0,ppOn=false,pw=null,busy=false;
+let beat=0,steps=[[]],arm=null,queued=false,typeGen=0,gates=[],afterPlay='';
 const MODES=['off','setup','clean'];
 const RM=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 const HOLD=3800;
 const later=(ms,fn)=>{const id=setTimeout(fn,ms);timers.push(id);return id;};
 const clearTimers=()=>{timers.forEach(clearTimeout);timers=[];};
+/* a cue that tells you to wait joins the line you are already reading */
+function lineSteps(beats){
+  const out=[],pending=[];
+  (beats||[]).forEach((b,i)=>{
+    const t=String(b).trim();
+    if(t.startsWith('[')){
+      if(/^\[[ \t]*(after|optional)\b/i.test(t)&&out.length)out[out.length-1].push(i);
+      else pending.push(i);
+    }else{out.push(pending.concat(i));pending.length=0;}
+  });
+  if(pending.length)out.push(pending.slice());
+  return out.length?out:[[]];
+}
+function skipLine(){
+  queued=true;typeGen++;
+  const g=gates.splice(0);g.forEach(fn=>fn());
+}
+function pinLine(scroller,win){
+  const curP=scroller.querySelector('p.now:not(.cue)')||scroller.querySelector('p.now');
+  if(!curP)return;
+  const top=curP.getBoundingClientRect().top-(scroller===document.documentElement?0:scroller.getBoundingClientRect().top);
+  const nextTop=(scroller.scrollTop||0)+top-(scroller.clientHeight||win.innerHeight)*0.28;
+  if(scroller===document.documentElement)win.scrollTo(0,Math.max(0,nextTop));
+  else scroller.scrollTop=Math.max(0,nextTop);
+}
 
-/* developer messages type; skill messages stream word by word */
+/* developer messages type; skill messages stream word by word. A line skip finishes the text and its marks. */
 function typeText(root,cps,stream,marks,done,tk){
+  const gen=typeGen;
   const nodes=[],w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   while(w.nextNode())nodes.push(w.currentNode);
   const full=nodes.map(n=>n.data),all=full.join('');
@@ -2482,10 +2531,15 @@ function typeText(root,cps,stream,marks,done,tk){
   nodes.forEach(n=>{n.data='';});
   const caret=document.createElement('span');caret.className='caret';
   const tick=28,per=Math.max(1,Math.round(cps*tick/1000));
-  let ni=0,ci=0,typed=0;
+  let ni=0,ci=0,typed=0,settled=false;
   const fire=()=>trig.forEach(t=>{if(!t.done&&t.at<=typed){t.done=true;t.fn();}});
+  const finish=()=>{
+    if(settled||tk!==token)return;
+    settled=true;nodes.forEach((n,i)=>{n.data=full[i];});caret.remove();typed=all.length;fire();done();
+  };
   const step=()=>{
-    if(tk!==token)return;
+    if(tk!==token||settled)return;
+    if(gen!==typeGen){finish();return;}
     let budget=per;
     while(budget>0&&ni<nodes.length){
       const f=full[ni];
@@ -2496,7 +2550,7 @@ function typeText(root,cps,stream,marks,done,tk){
     }
     fire();
     if(ni<nodes.length){const n=nodes[ni];if(n.parentNode)n.parentNode.insertBefore(caret,n.nextSibling);later(tick,step);}
-    else{caret.remove();typed=all.length;fire();done();}
+    else finish();
   };
   step();
 }
@@ -2513,8 +2567,15 @@ function say(who,html,o,fast,tk){
 }
 function makeA(fast,tk){
   const A={fast};
-  A.wait=ms=>fast?Promise.resolve():new Promise(res=>{later(ms,()=>{if(tk===token)res();});});
-  A.later=(ms,fn)=>{if(fast)fn();else later(ms,()=>{if(tk===token)fn();});};
+  A.wait=ms=>{
+    if(fast||queued)return Promise.resolve();
+    return new Promise(res=>{
+      let done=false;
+      const finish=()=>{if(done||tk!==token)return;done=true;res();};
+      gates.push(finish);later(ms,finish);
+    });
+  };
+  A.later=(ms,fn)=>{if(fast||queued)fn();else later(ms,()=>{if(tk===token)fn();});};
   A.anim=(el,cls,d)=>{if(fast||!el)return;if(d)el.style.setProperty('--d',d+'ms');el.classList.add(cls);};
   A.count=(el,to,ms,fmt)=>{
     fmt=fmt||(v=>String(v));
@@ -2524,7 +2585,28 @@ function makeA(fast,tk){
       el.textContent=fmt(Math.round(to*e));if(k<1)requestAnimationFrame(f);};
     f(t0);
   };
-  A.say=(who,html,o)=>say(who,html,o||{},fast,tk);
+  A.say=(who,html,o)=>say(who,html,o||{},fast||queued,tk);
+  /* hold until the presenter advances this spoken line. Fast rebuilds skip the hold. */
+  A.read=()=>{
+    if(fast)return Promise.resolve();
+    if(queued){
+      queued=false;
+      if(beat>=steps.length-1){afterPlay='next';return Promise.resolve();}
+      beat++;syncPrompter();updateBar();return Promise.resolve();
+    }
+    return new Promise(res=>{
+      arm=res;document.body.classList.add('hold');syncPrompter();updateBar();
+      if(!auto)return;
+      const words=(steps[beat]||[]).reduce((n,i)=>n+String(SCENES[cur].beats[i]||'').split(/\s+/).filter(Boolean).length,0);
+      const ms=Math.min(14000,Math.max(2200,words*420));
+      later(ms,()=>{
+        if(arm!==res||tk!==token)return;
+        arm=null;document.body.classList.remove('hold');
+        if(beat>=steps.length-1){afterPlay='next';res();}
+        else{beat++;syncPrompter();updateBar();res();}
+      });
+    });
+  };
   return A;
 }
 
@@ -2546,46 +2628,83 @@ function resetAll(){
 }
 async function goTo(n,opt){
   opt=opt||{};n=Math.max(0,Math.min(SCENES.length-1,n));
-  token++;const tk=token;clearTimers();cur=n;busy=true;
+  token++;const tk=token;clearTimers();
+  arm=null;queued=false;afterPlay='';gates=[];typeGen++;
+  document.body.classList.remove('hold');
+  cur=n;busy=true;beat=0;steps=lineSteps(SCENES[n].beats);
   stage.classList.add('instant');resetAll();
   const F=makeA(true,tk);
   for(let i=0;i<n;i++)await SCENES[i].play(F);
   const full=!!opt.full||RM;
   if(full)await SCENES[n].play(F);
   if(tk!==token)return;
+  if(full)beat=Math.max(0,steps.length-1);
   void stage.offsetHeight;stage.classList.remove('instant');void stage.offsetHeight;
   setTitle(n,!full);updateBar();syncPrompter();
   try{history.replaceState(null,'','#s='+(n+1));}catch(e){}
+  queued=false;afterPlay='';
   if(!full)await SCENES[n].play(makeA(false,tk));
   if(tk!==token)return;
-  busy=false;updateBar();
+  const jump=afterPlay;afterPlay='';queued=false;
+  if(!full&&beat<steps.length-1)console.warn('scene '+n+' ended before its last line');
+  busy=false;updateBar();syncPrompter();
+  if(jump==='next'&&n<SCENES.length-1){goTo(n+1);return;}
   if(auto){if(n<SCENES.length-1)later(HOLD,()=>{if(tk===token&&auto)goTo(n+1);});else{auto=false;updateBar();}}
 }
-const next=()=>{if(cur<SCENES.length-1)goTo(cur+1);};
+function next(){
+  if(arm){
+    const onLast=beat>=steps.length-1;
+    const res=arm;arm=null;document.body.classList.remove('hold');
+    if(!onLast){beat++;syncPrompter();updateBar();res();return;}
+    res();
+    if(cur<SCENES.length-1)goTo(cur+1);
+    return;
+  }
+  if(busy){skipLine();return;}
+  if(cur<SCENES.length-1)goTo(cur+1);
+}
 const prev=()=>{if(cur>0)goTo(cur-1,{full:true});};
 
 /* ---------- app furniture ---------- */
 const fmtT=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
 function updateBar(){
-  $('#pos').textContent=(cur+1)+' / '+SCENES.length;
+  const line=steps.length?Math.min(beat,steps.length-1)+1:1;
+  const leaving=beat>=steps.length-1&&(!!arm||!busy);
+  $('#pos').textContent=(cur+1)+' / '+SCENES.length+' · '+line+' / '+steps.length;
+  $('#pos').title='Scene and line';
   $('#sname').textContent=SCENES[cur].title;
   $('#dots').innerHTML=SCENES.map((s,i)=>'<i class="'+(i<cur?'d':i===cur?'c':'')+'" data-i="'+i+'" title="'+(i+1)+'"></i>').join('');
   $('#b-auto').classList.toggle('act',auto);
+  $('#b-next').title=leaving?'Next scene (→ or Space)':'Next line (→ or Space)';
 }
 function toast(m,force){
   if(MODES[mIdx]==='clean'&&!force)return;
   const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('on'),2600);
 }
 function scriptHTML(){
-  const s=SCENES[cur],t0=SCENES.slice(0,cur).reduce((a,x)=>a+x.secs,0);
-  return '<div class="h1">'+(cur+1)+' / '+SCENES.length+'</div><div class="h2">'+s.title+'</div><div class="h3">'+fmtT(t0)+' – '+fmtT(t0+s.secs)+'</div>'+
-    s.beats.map(b=>'<p'+(b.trim().startsWith('[')?' class="cue"':'')+'>'+b+'</p>').join('')+
+  const s=SCENES[cur];
+  const line=steps.length?Math.min(beat,steps.length-1)+1:1;
+  const now=new Set(steps[Math.min(beat,Math.max(0,steps.length-1))]||[]);
+  const past=new Set();
+  steps.slice(0,Math.min(beat,steps.length)).forEach(g=>g.forEach(i=>past.add(i)));
+  return '<div class="h1">scene '+(cur+1)+' / '+SCENES.length+'</div><div class="h2">'+s.title+'</div>'+
+    '<div class="h3">line '+line+' of '+steps.length+' · about '+fmtT(s.secs)+'</div>'+
+    s.beats.map((b,i)=>{
+      const cue=String(b).trim().startsWith('[');
+      const cls=(cue?'cue ':'')+(now.has(i)?'now':past.has(i)?'done':'later');
+      return '<p class="'+cls+'">'+b+'</p>';
+    }).join('')+
     '<div class="note"><b>Direction</b>&nbsp; '+(s.note||'—')+'</div>';
 }
 function syncPrompter(){
-  if(ppOn)$('#pp').innerHTML=scriptHTML();
-  if(pw&&!pw.closed){const b=pw.document.getElementById('b');if(b)b.innerHTML=scriptHTML()+'<div class="k">← → scene &nbsp; R replay &nbsp; + − text size</div>';}
-  else pw=null;
+  if(ppOn){$('#pp').innerHTML=scriptHTML();pinLine($('#pp'),window);}
+  if(pw&&!pw.closed){
+    const b=pw.document.getElementById('b');
+    if(b){
+      b.innerHTML=scriptHTML()+'<div class="k">→ or Space next line &nbsp; ← previous scene &nbsp; R replay &nbsp; + − text size</div>';
+      pinLine(pw.document.documentElement,pw);
+    }
+  }else pw=null;
 }
 function fit(){
   const rec=MODES[mIdx]!=='off';
@@ -2612,7 +2731,10 @@ function togglePP(){ppOn=!ppOn;fit();syncPrompter();$('#b-script').classList.tog
 const PCSS='*{box-sizing:border-box;margin:0;padding:0}body{background:#F5F4EF;color:#171C26;font:400 26px/1.55 "IBM Plex Sans",system-ui,sans-serif;padding:26px 34px 40px}'+
   '.h1{font:12px/1 "IBM Plex Mono",monospace;letter-spacing:.18em;color:#2F4A8C}.h2{margin-top:8px;font:600 28px/1.25 "Source Serif 4",Georgia,serif}'+
   '.h3{margin-top:6px;font:12px/1 "IBM Plex Mono",monospace;color:#80858F;padding-bottom:14px;border-bottom:1px solid #D2CFC6;margin-bottom:20px}'+
-  'p{margin:0 0 22px}p.cue{color:#2F4A8C;font-family:"Caveat",cursive}.note{margin-top:26px;padding-top:14px;border-top:1px dashed #D2CFC6;'+
+  'p{margin:0 0 22px}p.cue{color:#2F4A8C;font-family:"Caveat",cursive;font-size:32px}'+
+  'p.later{color:#B4B7BF}p.done{color:#80858F}p.now{color:#171C26;background:#EEF1F8;border-radius:12px;padding:12px 16px 12px 18px;margin:0 -16px 22px;box-shadow:inset 4px 0 0 #2F4A8C;font-size:32px;line-height:1.45}'+
+  'p.cue.now{background:transparent;box-shadow:none;padding:0;margin:0 0 8px;font-size:34px;color:#2F4A8C}'+
+  'p.cue.later,p.cue.done{opacity:.45}.note{margin-top:26px;padding-top:14px;border-top:1px dashed #D2CFC6;'+
   'font:400 15px/1.55 "IBM Plex Mono",monospace;color:#80858F}.note b{color:#2F4A8C;font-weight:500}.k{margin-top:18px;font:11px/1 "IBM Plex Mono",monospace;color:#B4B7BF}';
 function togglePop(){
   if(pw&&!pw.closed){pw.close();pw=null;$('#b-pop').classList.remove('act');toast('Pop-out closed');return;}
@@ -2622,24 +2744,30 @@ function togglePop(){
   pw.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Script</title><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet"><style>'+PCSS+'</style></head><body><div id="b"></div></body></html>');
   pw.document.close();
   pw.addEventListener('keydown',e=>{
+    if(e.repeat)return;
     const b=pw.document.body,c=parseFloat(pw.getComputedStyle(b).fontSize);
     if(e.key==='+'||e.key==='=')b.style.fontSize=(c+2)+'px';
     else if(e.key==='-')b.style.fontSize=Math.max(14,c-2)+'px';
-    else if(['ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].includes(e.key)){e.preventDefault();next();}
     else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev();}
     else if(e.key==='r'||e.key==='R')goTo(cur);
   });
   $('#b-pop').classList.add('act');syncPrompter();toast('Script popped out. Move it to your other screen.');
 }
 function toggleAuto(){
-  auto=!auto;updateBar();toast(auto?'Autoplay on':'Autoplay off');
-  if(auto&&!busy&&cur<SCENES.length-1){const tk=token;later(1200,()=>{if(tk===token&&auto)goTo(cur+1);});}
+  auto=!auto;updateBar();
+  toast(auto?'Autoplay on. Each line advances when its reading time is up.':'Autoplay off. The picture waits for you.');
+  if(auto&&arm){
+    const res=arm;arm=null;document.body.classList.remove('hold');
+    if(beat>=steps.length-1){afterPlay='next';res();}
+    else{beat++;syncPrompter();updateBar();res();}
+  }else if(auto&&!busy&&cur<SCENES.length-1){const tk=token;later(1200,()=>{if(tk===token&&auto)goTo(cur+1);});}
 }
 
 document.addEventListener('keydown',e=>{
-  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(e.metaKey||e.ctrlKey||e.altKey||e.repeat)return;
   const k=e.key;
-  if(['ArrowRight','PageDown',' ','Enter'].includes(k)){e.preventDefault();next();}
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)){e.preventDefault();next();}
   else if(['ArrowLeft','PageUp','Backspace'].includes(k)){e.preventDefault();prev();}
   else if(k==='Home')goTo(0);
   else if(k==='End')goTo(SCENES.length-1,{full:true});
@@ -2657,7 +2785,7 @@ $('#dots').addEventListener('click',e=>{const i=e.target.dataset&&e.target.datas
 window.addEventListener('resize',fit);
 document.body.tabIndex=-1;
 
-window.demo={goTo:(n,o)=>goTo(n,o),get cur(){return cur;}};
+window.demo={goTo:(n,o)=>goTo(n,o),get cur(){return cur;},get beat(){return beat;},get steps(){return steps.length;},get holding(){return !!arm;},get busy(){return busy;}};
 fit();
 const hp=new URLSearchParams(location.hash.slice(1));
 const first=Math.max(0,Math.min(SCENES.length-1,(parseInt(hp.get('s'),10)||1)-1));
