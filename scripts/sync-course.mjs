@@ -47,17 +47,44 @@ function clamp(text, max = 220) {
   return `${(space > 80 ? cut.slice(0, space) : cut).trim()}…`;
 }
 
-async function fetchText(url) {
+async function fetchResponse(url, accept) {
   const response = await fetch(url, {
     headers: {
-      Accept: 'application/vnd.github+json',
+      Accept: accept,
       'User-Agent': 'reasonfrom-course-sync',
     },
   });
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText} for ${url}`);
   }
+  return response;
+}
+
+async function fetchText(url) {
+  const response = await fetchResponse(url, 'application/vnd.github+json');
   return response.text();
+}
+
+async function fetchBytes(url) {
+  const response = await fetchResponse(url, 'application/octet-stream');
+  return Buffer.from(await response.arrayBuffer());
+}
+
+async function filesUnder(dir) {
+  let entries = [];
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+  const files = [];
+  for (const entry of entries) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) files.push(...(await filesUnder(path)));
+    else files.push(path);
+  }
+  return files;
 }
 
 /**
@@ -83,6 +110,9 @@ function rewriteHref(href, writtenDays) {
   const diagram = repoPath.match(/^courses\/make-ai-fail-safely\/(day-\d{2}\.svg)$/);
   if (diagram) return `${SITE_PREFIX}/${diagram[1]}${suffix}`;
 
+  const asset = repoPath.match(/^courses\/make-ai-fail-safely\/(assets\/.+)$/);
+  if (asset) return `${SITE_PREFIX}/${asset[1]}${suffix}`;
+
   const lesson = repoPath.match(/^courses\/make-ai-fail-safely\/(day-(\d{2}))\.md$/);
   if (lesson && writtenDays.has(Number(lesson[2]))) {
     return `${SITE_PREFIX}/${lesson[1]}/${suffix}`;
@@ -93,6 +123,45 @@ function rewriteHref(href, writtenDays) {
 
 function rewriteBody(markdown, writtenDays) {
   return markdown.replace(/\]\(([^)]+)\)/g, (_full, href) => `](${rewriteHref(href, writtenDays)})`);
+}
+
+/** Raw HTML in a lesson (`<img src>`, `<a href>`) is not a markdown link. */
+function rewriteHtml(markdown, writtenDays) {
+  return markdown.replace(/\b(src|href)="([^"]+)"/g, (full, attr, value) => {
+    if (!value.startsWith('.')) return full;
+    return `${attr}="${rewriteHref(value, writtenDays)}"`;
+  });
+}
+
+/**
+ * A 3-column table of slide images is wider than the reading column, so a
+ * phone only shows the left edge of the first slide. Lay them out as a grid
+ * the page can fit. Tables that are not slide sheets stay as they are.
+ */
+function presentSlides(markdown) {
+  return markdown.replace(/<table>([\s\S]*?)<\/table>/g, (full, inner) => {
+    const tags = [...inner.matchAll(/<img\b[^>]*>/g)];
+    if (tags.length < 2) return full;
+    const slides = tags.map((tag) => {
+      const src = tag[0].match(/\bsrc="([^"]+)"/)?.[1];
+      const alt = tag[0].match(/\balt="([^"]*)"/)?.[1] ?? '';
+      if (!src || !src.includes('/assets/')) return null;
+      return `<a href="${src}"><img src="${src}" alt="${alt}"></a>`;
+    });
+    if (slides.some((slide) => slide == null)) return full;
+    return `<div class="lesson-slides">\n${slides.join('\n')}\n</div>`;
+  });
+}
+
+function localAssetPaths(markdown) {
+  const found = new Set();
+  const pattern = /(?:\]\(|(?:src|href)=")(\.\/assets\/[^")\s]+)/g;
+  for (const match of markdown.matchAll(pattern)) {
+    const repoPath = new URL(match[1], `https://example.com/${COURSE_PATH}/`).pathname.replace(/^\/+/, '');
+    const rel = repoPath.slice(`${COURSE_PATH}/`.length);
+    if (rel.startsWith('assets/')) found.add(rel);
+  }
+  return [...found];
 }
 
 function parseOutline(readme) {
@@ -180,7 +249,9 @@ function buildLesson(markdown, meta) {
 
   let body = markdown.replace(/^#\s+.+\s*\n+/, '');
   body = body.replace(/^\*\*Time:\*\*\s*.+\s*\n+/, '');
-  body = rewriteBody(body, meta.writtenDays).trim();
+  body = rewriteBody(body, meta.writtenDays);
+  body = rewriteHtml(body, meta.writtenDays);
+  body = presentSlides(body).trim();
 
   const frontmatter = [
     '---',
@@ -387,6 +458,26 @@ async function main() {
       .map((name) => unlink(join(diagramsDir, name))),
   );
 
+  const assetRels = new Set();
+  for (const file of upstream.values()) {
+    for (const rel of localAssetPaths(file.markdown)) assetRels.add(rel);
+  }
+  const assetsWritten = new Set();
+  for (const rel of assetRels) {
+    const bytes = await fetchBytes(`${RAW}/${rel}`);
+    if (rel.endsWith('.png') && bytes[0] !== 0x89) throw new Error(`${rel} is not a PNG.`);
+    const dest = join(diagramsDir, rel);
+    await mkdir(dirname(dest), { recursive: true });
+    await writeFile(dest, bytes);
+    assetsWritten.add(dest);
+  }
+  const assetsDir = join(diagramsDir, 'assets');
+  await Promise.all(
+    (await filesUnder(assetsDir))
+      .filter((path) => !assetsWritten.has(path))
+      .map((path) => unlink(path)),
+  );
+
   for (const [day, lesson] of lessons) {
     await writeFile(join(lessonsDir, lessonFile(day)), lesson.markdown);
   }
@@ -410,7 +501,7 @@ async function main() {
 
   const written = outline.days.filter((day) => day.written).map((day) => day.day);
   console.log(
-    `${SLUG}: wrote ${lessons.size} lessons, kept ${preserved.size} manual, ${diagramsWritten.size} diagrams. ` +
+    `${SLUG}: wrote ${lessons.size} lessons, kept ${preserved.size} manual, ${diagramsWritten.size} diagrams, ${assetsWritten.size} slides. ` +
       `Written days: ${written.join(', ') || 'none'}.`,
   );
 }

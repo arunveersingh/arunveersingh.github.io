@@ -1632,6 +1632,27 @@ a.quiet:hover {
   border-radius: 6px;
 }
 
+/* Optional lesson slides. Full reading width, one after another, so the type
+   on a slide stays readable. A 3-column table was wider than the page. */
+.lesson-slides {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin: 1.25rem 0 0;
+}
+
+.lesson-slides a {
+  display: block;
+}
+
+.lesson-slides img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hairline);
+  background: var(--canvas-card);
+}
+
 /* Wide tables in synced markdown would otherwise break the layout. */
 .article-body table {
   display: block;

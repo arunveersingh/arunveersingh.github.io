@@ -173,7 +173,11 @@ Stuck on any → re-read **What you'll learn**, **Story**, and **Ask first** onc
 
 ## Day 11 in 6 slides (optional)
 
-<table>
-<tr><td><a href="./assets/day-11/slide-1.png"><img src="./assets/day-11/slide-1.png" width="240" alt="1/6: The plan flagged its premise. No task had to wait for it."></a></td><td><a href="./assets/day-11/slide-2.png"><img src="./assets/day-11/slide-2.png" width="240" alt="2/6: RECON-212 plan: T2 to T4 depend on the unsourced UTC premise; T1 doesn't."></a></td><td><a href="./assets/day-11/slide-3.png"><img src="./assets/day-11/slide-3.png" width="240" alt="3/6: File is Amsterdam time; 130.00 EUR lands on the wrong day; false tickets nightly."></a></td></tr>
-<tr><td><a href="./assets/day-11/slide-4.png"><img src="./assets/day-11/slide-4.png" width="240" alt="4/6: Checked at task start: BLOCKED, provider spec looked up, source written into the plan."></a></td><td><a href="./assets/day-11/slide-5.png"><img src="./assets/day-11/slide-5.png" width="240" alt="5/6: Premise table in the plan; check before each task starts; resolve shared premises first."></a></td><td><a href="./assets/day-11/slide-6.png"><img src="./assets/day-11/slide-6.png" width="240" alt="6/6: Rule: flagged is not gated. No source, no start."></a></td></tr>
-</table>
+<div class="lesson-slides">
+<a href="/courses/make-ai-fail-safely/assets/day-11/slide-1.png"><img src="/courses/make-ai-fail-safely/assets/day-11/slide-1.png" alt="1/6: The plan flagged its premise. No task had to wait for it."></a>
+<a href="/courses/make-ai-fail-safely/assets/day-11/slide-2.png"><img src="/courses/make-ai-fail-safely/assets/day-11/slide-2.png" alt="2/6: RECON-212 plan: T2 to T4 depend on the unsourced UTC premise; T1 doesn't."></a>
+<a href="/courses/make-ai-fail-safely/assets/day-11/slide-3.png"><img src="/courses/make-ai-fail-safely/assets/day-11/slide-3.png" alt="3/6: File is Amsterdam time; 130.00 EUR lands on the wrong day; false tickets nightly."></a>
+<a href="/courses/make-ai-fail-safely/assets/day-11/slide-4.png"><img src="/courses/make-ai-fail-safely/assets/day-11/slide-4.png" alt="4/6: Checked at task start: BLOCKED, provider spec looked up, source written into the plan."></a>
+<a href="/courses/make-ai-fail-safely/assets/day-11/slide-5.png"><img src="/courses/make-ai-fail-safely/assets/day-11/slide-5.png" alt="5/6: Premise table in the plan; check before each task starts; resolve shared premises first."></a>
+<a href="/courses/make-ai-fail-safely/assets/day-11/slide-6.png"><img src="/courses/make-ai-fail-safely/assets/day-11/slide-6.png" alt="6/6: Rule: flagged is not gated. No source, no start."></a>
+</div>
