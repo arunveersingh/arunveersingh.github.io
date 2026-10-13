@@ -190,14 +190,15 @@ const featuredChannel = featuredVideo ? channelById(featuredVideo.data.channel) 
             )
           }
         </div>
-        {/* Each skill links to its own directory. This used to be one anchor
-            wrapped around the whole list, so named skills looked clickable
-            but only the block was. */}
+        {/* Each skill links to its own directory, except one that has a
+            session on this site. This used to be one anchor wrapped around
+            the whole list, so named skills looked clickable but only the
+            block was. */}
         <ul class="term">
           {
             featuredSkills.map((skill) => (
               <li>
-                <a href={skillUrl(skill.name)}>
+                <a href={skill.demo ? withBase(skill.demo) : skillUrl(skill.name)}>
                   <span class="ok" aria-hidden="true">▸</span>
                   <span>{skill.name}</span>
                   <em>{skill.note}</em>

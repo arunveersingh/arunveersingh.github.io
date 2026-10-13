@@ -27,6 +27,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const lessonsDir = join(root, 'src/content/courses', SLUG);
 const diagramsDir = join(root, 'public/courses', SLUG);
 const outlinePath = join(root, 'src/data/course-outlines', `${SLUG}.json`);
+const launchesPath = join(root, 'src/data/launches.json');
 
 const COLLAPSE_FLOOR = 0.6;
 
@@ -154,6 +155,18 @@ function lessonFile(day) {
   return `day-${String(day).padStart(2, '0')}.md`;
 }
 
+function localToday() {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${now.getFullYear()}-${month}-${day}`;
+}
+
+/** Keep the date a lesson was first copied here. A later sync must not restamp it. */
+function publishedOf(text) {
+  return text.match(/^published:\s*"(\d{4}-\d{2}-\d{2})"\s*$/m)?.[1] ?? null;
+}
+
 function buildLesson(markdown, meta) {
   const heading = markdown.match(/^#\s+(.+)\s*$/m);
   if (!heading) throw new Error(`${lessonFile(meta.day)} has no title.`);
@@ -176,6 +189,7 @@ function buildLesson(markdown, meta) {
     `course: ${yaml(SLUG)}`,
     `day: ${meta.day}`,
     `time: ${yaml(time)}`,
+    ...(meta.published ? [`published: ${yaml(meta.published)}`] : []),
     `phase: ${yaml(meta.phase)}`,
     `failure: ${yaml(meta.failure)}`,
     'generated: true',
@@ -222,6 +236,48 @@ async function generatedLessonNames() {
   return generated;
 }
 
+/**
+ * Course days that landed in this run become notices. Other entries in the
+ * file (an essay, a talk) are left alone. A day that is no longer written
+ * drops its notice. Running the sync again does not add a second copy.
+ */
+async function recordLaunches(fresh, writtenDays) {
+  let current = [];
+  try {
+    current = JSON.parse(await readFile(launchesPath, 'utf8'));
+    if (!Array.isArray(current)) throw new Error('launches.json must be an array.');
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+
+  const live = new Set(writtenDays.map((day) => `${SLUG}-day-${String(day).padStart(2, '0')}`));
+  const kept = current.filter((item) => {
+    if (!item || typeof item.id !== 'string' || !item.id.startsWith(`${SLUG}-day-`)) return true;
+    return live.has(item.id);
+  });
+  const ids = new Set(kept.map((item) => item.id));
+
+  for (const lesson of fresh) {
+    const id = `${SLUG}-day-${String(lesson.day).padStart(2, '0')}`;
+    if (ids.has(id)) continue;
+    kept.push({
+      id,
+      label: 'New lesson',
+      title: lesson.title,
+      href: `${SITE_PREFIX}/day-${String(lesson.day).padStart(2, '0')}/`,
+      published: localToday(),
+    });
+    ids.add(id);
+  }
+
+  await mkdir(dirname(launchesPath), { recursive: true });
+  await writeFile(launchesPath, `${JSON.stringify(kept, null, 2)}\n`);
+  const added = fresh.filter((lesson) => !current.some((item) => item?.id === `${SLUG}-day-${String(lesson.day).padStart(2, '0')}`));
+  if (added.length > 0) {
+    console.log(`Announced: ${added.map((lesson) => lesson.title).join('; ')}`);
+  }
+}
+
 async function main() {
   const listing = JSON.parse(await fetchText(API));
   if (!Array.isArray(listing)) throw new Error('GitHub contents API did not return a file list.');
@@ -253,6 +309,19 @@ async function main() {
 
   const preserved = await preservedLessons();
   const existingGenerated = await generatedLessonNames();
+  const alreadyOnDisk = new Set();
+  const publishedByDay = new Map();
+  try {
+    for (const name of await readdir(lessonsDir)) {
+      if (!/^day-\d{2}\.md$/.test(name)) continue;
+      alreadyOnDisk.add(name);
+      const published = publishedOf(await readFile(join(lessonsDir, name), 'utf8'));
+      if (published) publishedByDay.set(Number(name.slice(4, 6)), published);
+    }
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  const landedOn = localToday();
   const incoming = lessonNames.filter((name) => !preserved.has(name)).length;
   if (existingGenerated.length > 0 && incoming < existingGenerated.length * COLLAPSE_FLOOR) {
     throw new Error(
@@ -269,10 +338,14 @@ async function main() {
       throw new Error(`${file.name} gained frontmatter upstream. The sync would double-wrap it.`);
     }
     const meta = outline.days.find((item) => item.day === day);
+    // A file that is already here keeps its date. A file that appears in this
+    // run is a launch, dated today, including one that replaces a preserved copy.
+    const published = publishedByDay.get(day) ?? (alreadyOnDisk.has(file.name) ? null : landedOn);
     lessons.set(day, {
-      ...buildLesson(file.markdown, { ...meta, writtenDays }),
+      ...buildLesson(file.markdown, { ...meta, writtenDays, published }),
       diagram: file.diagram,
       name: file.name,
+      published,
     });
   }
 
@@ -317,6 +390,13 @@ async function main() {
   for (const [day, lesson] of lessons) {
     await writeFile(join(lessonsDir, lessonFile(day)), lesson.markdown);
   }
+
+  await recordLaunches(
+    [...lessons.entries()]
+      .filter(([, lesson]) => lesson.published === landedOn)
+      .map(([day, lesson]) => ({ day, title: lesson.title })),
+    outline.days.filter((day) => day.written).map((day) => day.day),
+  );
 
   const payload = {
     slug: SLUG,

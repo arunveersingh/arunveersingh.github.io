@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
+import Launches from '../components/Launches.astro';
 import Mark from '../components/Mark.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import { launchesForPath } from '../data/launches';
 import { brand, nav, site, withBase } from '../data/site';
 
 interface Props {
@@ -52,6 +54,7 @@ function iconFor(href: string): (typeof navIcon)[keyof typeof navIcon] {
 
 const here = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const home = withBase('/').replace(/\/+$/, '') || '/';
+const launchIds = launchesForPath(Astro.url.pathname).map((item) => item.id);
 
 // `Astro.site` comes from astro.config.mjs, so these stay absolute in the built
 // output. Social scrapers and canonical tags both reject relative URLs.
@@ -64,34 +67,49 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/* Light paper until the script below picks dark. It has to sit above that
-        script: a tag parsed later would overwrite the color the script set. */}
+    {/* Light paper. A later script only replaces this when the visitor has
+        saved dark. */}
     <meta name="theme-color" content="#e8e4db" />
 
     {/*
-      Resolves the theme before first paint, so a light-theme visitor never sees
-      a dark flash. `is:inline` keeps it out of the bundle: a deferred module
-      would run after the first frame, which is exactly the flash we are
-      avoiding. Stored choice wins over the OS setting.
+      Light is the default, including on a phone set to dark. A saved choice
+      is the only override. `is:inline` runs before first paint, so the saved
+      dark theme does not flash white first.
     */}
     <script is:inline>
       (function () {
         var theme = 'light';
         try {
           var saved = localStorage.getItem('theme');
-          if (saved === 'light' || saved === 'dark') {
-            theme = saved;
-          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            theme = 'dark';
-          }
+          if (saved === 'dark') theme = 'dark';
         } catch (error) {
-          /* blocked storage: fall back to the light default */
+          /* blocked storage: stay on the light default */
         }
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
         var chrome = document.querySelector('meta[name="theme-color"]');
         if (chrome) chrome.content = theme === 'dark' ? '#000000' : '#e8e4db';
       })();
+    </script>
+    {/*
+      Same idea as the theme script: decide before first paint whether the
+      launch bar is still unseen, so a dismissed notice does not flash and
+      the header does not jump. The ids are the launches on this page.
+    */}
+    <script is:inline define:vars={{ launchIds }}>
+      (function (ids) {
+        var quiet = true;
+        try {
+          var seen = JSON.parse(localStorage.getItem('launches-seen') || '[]');
+          if (!Array.isArray(seen)) seen = [];
+          quiet = ids.every(function (id) {
+            return seen.indexOf(id) !== -1;
+          });
+        } catch (error) {
+          quiet = ids.length === 0;
+        }
+        document.documentElement.dataset.launches = quiet || ids.length === 0 ? 'quiet' : 'show';
+      })(launchIds);
     </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -174,6 +192,9 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
       </div>
     </header>
     <main id="content" class="stage-main">
+      {/* In the page, not the fixed header. A phone with several launches
+          was clipping the bar once the header ran out of reserved height. */}
+      <Launches />
       <slot />
     </main>
     <footer class="site-footer">

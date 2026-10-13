@@ -13,6 +13,25 @@ export default defineConfig({
   // repo is renamed, because the custom domain no longer depends on the repo
   // name the way a project-Pages subpath did.
   base: '/',
+  // Dev serves public files by exact path. `/recontextualizer/` would 404
+  // even though `public/recontextualizer/index.html` exists. GitHub Pages
+  // resolves that index on its own; this only rewrites the dev request.
+  vite: {
+    plugins: [
+      {
+        name: 'recontextualizer-directory-index',
+        configureServer(server) {
+          server.middlewares.use((req, _res, next) => {
+            const path = req.url?.split('?')[0];
+            if (path === '/recontextualizer' || path === '/recontextualizer/') {
+              req.url = '/recontextualizer/index.html';
+            }
+            next();
+          });
+        },
+      },
+    ],
+  },
   integrations: [
     mdx(),
     sitemap({

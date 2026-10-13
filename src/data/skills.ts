@@ -15,13 +15,15 @@ export interface Skill {
   note: string;
   /** Shown in the homepage terminal window. */
   featured: boolean;
+  /** Site path of a session that shows the skill working, when one exists. */
+  demo?: string;
 }
 
 export const skills: readonly Skill[] = [
   { name: 'adversarial-collaborator', note: 'requires a real update', featured: true },
   { name: 'pre-mortem-oracle', note: 'will say do not proceed', featured: true },
   { name: 'editor-not-writer', note: 'not ready is allowed', featured: true },
-  { name: 'recontextualizer', note: 'prove you own the code', featured: true },
+  { name: 'recontextualizer', note: '"got it" stays unverified', featured: true, demo: '/recontextualizer/' },
   { name: 'assumption-surfacer', note: 'contradictions block', featured: true },
   { name: 'learning-partner', note: '"I get it" is not enough', featured: true },
   { name: 'decision-pressure-tester', note: 'stops at critical failures', featured: false },

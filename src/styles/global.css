@@ -98,6 +98,8 @@
   --topbar: 4.25rem;
 }
 
+
+
 *,
 *::before,
 *::after {
@@ -283,6 +285,99 @@ a:focus-visible {
 
 .topbar nav a[aria-current="page"]::after {
   content: none;
+}
+
+/* Sits in the page under the fixed nav, so every launch stays on screen.
+   Each link is one new page. Dismiss remembers every id currently shown;
+   opening a link remembers only that one. */
+.launch-bar {
+  margin-top: var(--topbar);
+  border-bottom: 1px solid var(--hairline);
+  background-color: color-mix(in srgb, var(--tile-sun) 78%, var(--canvas));
+  background-image: var(--glass-glint);
+}
+
+html[data-launches="show"] .stage-main > .hero,
+html[data-launches="show"] .stage-main > .page {
+  padding-top: 1.5rem;
+}
+
+html[data-launches="quiet"] .launch-bar {
+  display: none;
+}
+
+.launch-bar-inner {
+  width: min(var(--page), calc(100% - 3rem));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 2.7rem;
+  padding: 0.35rem 0;
+}
+
+.launch-bar ul {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.35rem 1.1rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+}
+
+.launch-bar a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  max-width: 100%;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.launch-bar a span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.launch-label {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.launch-bar a:hover span:last-child {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.launch-dismiss {
+  flex: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  background: var(--canvas-card);
+  box-shadow: var(--pebble);
+  color: var(--mute);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.launch-dismiss:hover {
+  color: var(--ink);
+}
+
+.launch-dismiss:focus-visible,
+.launch-bar a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* ---------- theme toggle ---------- */
@@ -1793,9 +1888,14 @@ a.quiet:hover {
 
 @media (max-width: 760px) {
   :root {
-    /* The topbar stacks to two compact rows here. Content offset derives from
-       this, so the header can no longer overlap the page heading. */
-    --topbar: 4.75rem;
+    /* Two rows: wordmark and toggle, then the nav. Measured at 89px after
+       the webfonts load, which 4.75rem (76px) let the first launch slide
+       under the fixed header. */
+    --topbar: 5.6rem;
+  }
+
+  html[data-launches="show"] .stage-main > .hero {
+    padding-top: 1.25rem;
   }
 
   /* Three children now, so a column would cost a third row. Grid keeps the
@@ -1824,6 +1924,51 @@ a.quiet:hover {
   .topbar-inner > .theme-toggle {
     grid-area: toggle;
     justify-self: end;
+  }
+
+  .launch-bar {
+    margin-top: calc(var(--topbar) + 0.35rem);
+  }
+
+  /* Dismiss sits under the list. Beside it, the newest title was the one
+     that ellipsized ("Day 11 — Started on a …"). */
+  .launch-bar-inner {
+    width: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .launch-bar ul {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    gap: 0.45rem;
+  }
+
+  .launch-bar a {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .launch-bar a span:last-child {
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+  }
+
+  .launch-dismiss {
+    align-self: flex-end;
+    margin-top: 0;
   }
 
   .brand-mark {

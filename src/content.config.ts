@@ -72,6 +72,12 @@ const courses = defineCollection({
     phase: z.string(),
     /** One line from the course README. Shown on the day list. */
     failure: z.string(),
+    /**
+     * The day this lesson first landed on the site. Absent on lessons that
+     * were already published before launches were recorded. `npm run sync:course`
+     * stamps it once and then keeps it.
+     */
+    published: z.coerce.date().optional(),
     /** Set by `npm run sync:course`; marks the file as safe to replace. */
     generated: z.boolean().default(false),
   }),

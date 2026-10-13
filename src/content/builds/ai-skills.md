@@ -21,7 +21,7 @@ The rule: AI’s job is not to make you happy. It is to force you not to make mi
 - [decision-pressure-tester](https://github.com/arunveersingh/ai/tree/main/skills/decision-pressure-tester) — refuses to proceed past critical failures.
 - [first-principles-decomposer](https://github.com/arunveersingh/ai/tree/main/skills/first-principles-decomposer) — will not derive from a guess.
 - [pre-mortem-oracle](https://github.com/arunveersingh/ai/tree/main/skills/pre-mortem-oracle) — will say do not proceed.
-- [recontextualizer](https://github.com/arunveersingh/ai/tree/main/skills/recontextualizer) — you must prove you own the code you just shipped.
+- [recontextualizer](/recontextualizer/) — lists every item and path it finds, then asks you to explain the high-risk ones in your own words. “Got it” stays unverified.
 
 **Synthesis, research, code, writing, learning**
 

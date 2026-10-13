@@ -51,13 +51,4 @@
     });
   });
 
-  // Follow the OS only while the visitor has not made an explicit choice.
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (event) => {
-    try {
-      if (localStorage.getItem(THEME_KEY)) return;
-    } catch {
-      // fall through and follow the system
-    }
-    apply(event.matches ? 'light' : 'dark');
-  });
 </script>

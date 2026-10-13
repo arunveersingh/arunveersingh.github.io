@@ -1,0 +1,90 @@
+---
+import { launchesForPath } from '../data/launches';
+import { withBase } from '../data/site';
+
+const items = launchesForPath(Astro.url.pathname);
+---
+
+{
+  items.length > 0 && (
+    <div class="launch-bar" id="launches">
+      <div class="launch-bar-inner">
+        <ul>
+          {
+            items.map((item) => {
+              const external = /^https?:\/\//.test(item.href);
+              return (
+                <li>
+                  <a
+                    data-launch={item.id}
+                    href={external ? item.href : withBase(item.href)}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
+                  >
+                    <span class="launch-label">{item.label}</span>
+                    <span>{item.title}</span>
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+        <button class="launch-dismiss" type="button">Dismiss</button>
+      </div>
+    </div>
+  )
+}
+
+<script is:inline>
+  (function () {
+    var root = document.getElementById('launches');
+    if (!root) return;
+    var key = 'launches-seen';
+
+    function read() {
+      try {
+        var parsed = JSON.parse(localStorage.getItem(key) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function write(ids) {
+      try {
+        localStorage.setItem(key, JSON.stringify(ids));
+      } catch (error) {
+        /* private mode: the bar stays until the next page */
+      }
+    }
+
+    function remember(id) {
+      var ids = read();
+      if (ids.indexOf(id) === -1) ids.push(id);
+      write(ids);
+    }
+
+    function hideIfQuiet() {
+      var left = root.querySelectorAll('a[data-launch]:not([hidden])');
+      if (left.length === 0) document.documentElement.dataset.launches = 'quiet';
+    }
+
+    var seen = read();
+    root.querySelectorAll('a[data-launch]').forEach(function (link) {
+      if (seen.indexOf(link.getAttribute('data-launch')) !== -1) link.hidden = true;
+      link.addEventListener('click', function () {
+        remember(link.getAttribute('data-launch'));
+      });
+    });
+    hideIfQuiet();
+
+    var dismiss = root.querySelector('.launch-dismiss');
+    if (!dismiss) return;
+    dismiss.addEventListener('click', function () {
+      root.querySelectorAll('a[data-launch]').forEach(function (link) {
+        remember(link.getAttribute('data-launch'));
+      });
+      document.documentElement.dataset.launches = 'quiet';
+    });
+  })();
+</script>
