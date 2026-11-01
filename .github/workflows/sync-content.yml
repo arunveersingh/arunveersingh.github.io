@@ -1,0 +1,120 @@
+name: Sync content
+
+# Moves content.lock.json to each source's latest commit, rebuilds bundles,
+# and deploys — with no human step. The deploy itself (pages.yml) stays
+# offline; only this workflow touches the network.
+#
+# Triggers:
+#   repository_dispatch  a source repo merged to main (reasonfrom-kit action)
+#   schedule             catches missed dispatches and scheduled lessons
+#   workflow_dispatch    by hand
+on:
+  repository_dispatch:
+    types: [reasonfrom-source-updated]
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commit the moved pins
+  actions: write    # dispatch pages.yml (a GITHUB_TOKEN push does not trigger it)
+  issues: write     # one "Publish failing" issue, opened and closed automatically
+
+concurrency:
+  group: sync-content
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: "1"
+      GH_TOKEN: ${{ github.token }}
+      ISSUE_TITLE: "Publish failing"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Public check, fetch, build, validate, claims, collapse floor.
+      # A dispatched source is synced alone; schedule and manual sync all.
+      # The payload is untrusted input: it arrives via env (never interpolated
+      # into the script), must look like owner/name, and sync-bundles only
+      # ever acts on repos already in src/data/content-sources.json.
+      - name: Sync bundles
+        env:
+          PAYLOAD_REPO: ${{ github.event.client_payload.repo }}
+        run: |
+          src="$PAYLOAD_REPO"
+          if [ -n "$src" ] && ! [[ "$src" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]; then
+            echo "::error::ignoring malformed client_payload.repo"; exit 1
+          fi
+          if [ -n "$src" ]; then
+            node scripts/sync-bundles.mjs --update --source "$src"
+          else
+            node scripts/sync-bundles.mjs --update
+          fi
+
+      # Same gates as the deploy, run before anything is committed.
+      - name: Type-check
+        run: npm run check
+      - name: Build
+        run: npm run build
+      - name: Check internal links
+        run: node scripts/check-links.mjs
+
+      - name: Commit moved pins
+        id: commit
+        run: |
+          git add bundles content.lock.json src/data/launches.json
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          summary=$(node -e '
+            const l = require("./content.lock.json");
+            console.log(Object.entries(l.sources).map(([r, s]) => `${r}@${s.sha.slice(0, 7)}`).join(", "));')
+          git commit -q -m "Sync content: ${summary}"
+          git pull -q --rebase origin main
+          git push -q origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy
+        if: steps.commit.outputs.changed == 'true'
+        run: gh workflow run pages.yml --ref main
+
+      - name: Close failure issue
+        if: success()
+        run: |
+          n=$(gh issue list --state open --search "in:title \"$ISSUE_TITLE\"" --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue close "$n" --comment "Recovered in ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}."
+          fi
+
+      - name: Open or update failure issue
+        if: failure()
+        env:
+          TRIGGER: ${{ github.event_name }}
+          PAYLOAD_REPO: ${{ github.event.client_payload.repo }}
+        run: |
+          run="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          body="Content sync failed, so reasonfrom.com was **not** changed. The live site still serves the last good version.
+
+          Run: $run
+          Trigger: $TRIGGER $PAYLOAD_REPO
+
+          This issue closes itself on the next successful sync."
+          n=$(gh issue list --state open --search "in:title \"$ISSUE_TITLE\"" --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" --body "Still failing: $run"
+          else
+            gh issue create --title "$ISSUE_TITLE" --body "$body"
+          fi

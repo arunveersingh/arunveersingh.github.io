@@ -41,6 +41,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Every internal href/src must resolve to a built file.
+      - name: Check internal links
+        run: node scripts/check-links.mjs
+
       # The build-time curation assertions in src/lib/content.ts already fail on
       # an unresolved id or needle. This catches the rest: an empty build, or a
       # page count that silently collapses.
