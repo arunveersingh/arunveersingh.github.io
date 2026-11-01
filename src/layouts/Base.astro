@@ -42,6 +42,7 @@ const navIcon = {
   '/essays/': 'essay',
   '/watch/': 'play',
   '/courses/': 'course',
+  '/skills/': 'skill',
   '/builds/': 'build',
   '/about/': 'about',
 } as const;
@@ -211,6 +212,7 @@ const ogImage = Astro.site ? new URL(withBase('og.png'), Astro.site).href : with
             ))
           }
           <li><a href={`mailto:${site.email}`}>Email</a></li>
+          <li><a href={withBase('search/')}>Search</a></li>
           <li><a href={withBase('rss.xml')}>RSS</a></li>
         </ul>
         {/* The byline lives here on every page: the domain, then the person

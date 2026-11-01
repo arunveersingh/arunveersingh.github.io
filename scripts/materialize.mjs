@@ -25,15 +25,15 @@ import { fileURLToPath } from 'node:url';
 import { validateBundle } from 'reasonfrom-kit/validate';
 import { localToday, visibleOn } from './sync-bundles.mjs';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = {
+const SITE_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const outputs = (root) => ({
   courses: join(root, 'src/content/courses'),
   skills: join(root, 'src/content/skills'),
   pages: join(root, 'src/content/course-pages'),
   outlines: join(root, 'src/data/course-outlines'),
   publicCourses: join(root, 'public/courses'),
   publicAssets: join(root, 'public/assets'),
-};
+});
 
 const yaml = (v) => JSON.stringify(v);
 const claimed = (id, claims) => claims.some((c) => (c.endsWith('/') ? id.startsWith(c) : id === c));
@@ -58,7 +58,8 @@ async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
 
-export async function materialize({ today = localToday(), log = console.log } = {}) {
+export async function materialize({ root = SITE_ROOT, today = localToday(), log = console.log } = {}) {
+  const OUT = outputs(root);
   const registry = await readJson(join(root, 'src/data/content-sources.json'));
   const lock = await readJson(join(root, 'content.lock.json'));
 
