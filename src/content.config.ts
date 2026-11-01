@@ -103,4 +103,17 @@ const skills = defineCollection({
   }),
 });
 
-export const collections = { essays, videos, builds, courses, skills };
+/** Supporting course pages (start, problem bank, appendices), materialized from bundles. */
+const coursePages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/course-pages' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    course: z.string(),
+    section: z.string(),
+    order: z.number().int().nonnegative(),
+    generated: z.literal(true),
+  }),
+});
+
+export const collections = { essays, videos, builds, courses, skills, coursePages };

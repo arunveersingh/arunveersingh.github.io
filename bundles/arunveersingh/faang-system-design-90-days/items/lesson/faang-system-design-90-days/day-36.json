@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-36.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a single-writer partition, leave able to treat leader election as a dependency with an unavailable window, not as a protocol lecture. You buy a leader from the database. You do not build one on the whiteboard.…",
+  "id": "lesson/faang-system-design-90-days/day-36",
+  "line": "Facing a single-writer partition, leave able to treat leader election as a dependency with an unavailable window, not as a protocol lecture.",
+  "n": 36,
+  "phase": "Data and consistency",
+  "source_path": "days/36-a-leader-is-a-dependency.md",
+  "time": "35 min",
+  "title": "Day 36 — A leader is a dependency",
+  "type": "lesson"
+}

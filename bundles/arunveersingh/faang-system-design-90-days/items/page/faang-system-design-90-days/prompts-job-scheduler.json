@@ -1,0 +1,11 @@
+{
+  "body": "items/page/faang-system-design-90-days/prompts-job-scheduler.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Closed-book card for day 63. This file is the interviewer. It is not a worked example.",
+  "id": "page/faang-system-design-90-days/prompts-job-scheduler",
+  "order": 9,
+  "section": "Problem bank",
+  "source_path": "prompts/job-scheduler.md",
+  "title": "Job scheduler",
+  "type": "page"
+}

@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-27.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing your own finished design, leave able to find the holes a staff interviewer would open and patch the reasoning. The patch is a tighter rule or a bound. It is not a box you were saving for the last day.",
+  "id": "lesson/faang-system-design-90-days/day-27",
+  "line": "Facing your own finished design, leave able to find the holes a staff interviewer would open and patch the reasoning.",
+  "n": 27,
+  "phase": "First distributed design",
+  "source_path": "days/27-red-team-before-they-do.md",
+  "time": "40 min",
+  "title": "Day 27 — Red-team before they do",
+  "type": "lesson"
+}

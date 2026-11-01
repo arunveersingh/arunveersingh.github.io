@@ -4,7 +4,20 @@
     {
       "repo": "arunveersingh/ai",
       "branch": "main",
-      "claims": ["course/make-ai-fail-safely", "lesson/make-ai-fail-safely/", "skill/"]
+      "claims": [
+        "course/make-ai-fail-safely",
+        "lesson/make-ai-fail-safely/",
+        "skill/"
+      ]
+    },
+    {
+      "repo": "arunveersingh/faang-system-design-90-days",
+      "branch": "main",
+      "claims": [
+        "course/faang-system-design-90-days",
+        "lesson/faang-system-design-90-days/",
+        "page/faang-system-design-90-days/"
+      ]
     }
   ]
 }

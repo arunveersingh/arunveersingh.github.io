@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-50.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a redirect path, leave able to design create and redirect so a hot link cannot pin one row or one cache key. Ranking, vanity campaigns, and analytics pipelines stay out unless they force a number.",
+  "id": "lesson/faang-system-design-90-days/day-50",
+  "line": "Facing a redirect path, leave able to design create and redirect so a hot link cannot pin one row or one cache key.",
+  "n": 50,
+  "phase": "Product-shaped systems",
+  "source_path": "days/50-url-shortener.md",
+  "time": "35 min",
+  "title": "Day 50 — URL shortener",
+  "type": "lesson"
+}

@@ -7,6 +7,7 @@
  *
  *   src/content/courses/<course>/<lesson>.md     lessons (glob collection)
  *   src/content/skills/<name>.md                 skills (glob collection)
+ *   src/content/course-pages/<course>/<slug>.md  supporting pages (glob collection)
  *   src/data/course-outlines/<course>.json       outline + written flags
  *   public/courses/<course>/…                    course assets
  *   public/assets/<owner>/<repo>/…               other assets
@@ -28,6 +29,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = {
   courses: join(root, 'src/content/courses'),
   skills: join(root, 'src/content/skills'),
+  pages: join(root, 'src/content/course-pages'),
   outlines: join(root, 'src/data/course-outlines'),
   publicCourses: join(root, 'public/courses'),
   publicAssets: join(root, 'public/assets'),
@@ -96,6 +98,7 @@ export async function materialize({ today = localToday(), log = console.log } = 
     if (type === 'course') return rec.item.external_url ?? `/courses/${a}/`;
     if (type === 'lesson') return visible(id) ? `/courses/${a}/${b}/` : `/courses/${a}/`;
     if (type === 'skill') return `/skills/${a}/`;
+    if (type === 'page') return `/courses/${a}/${b}/`;
     return null;
   };
   const assetUrl = (repo, path) => {
@@ -123,7 +126,9 @@ export async function materialize({ today = localToday(), log = console.log } = 
   };
 
   for (const d of Object.values(OUT)) await rm(d, { recursive: true, force: true });
-  const counts = { lessons: 0, hidden: 0, skills: 0, courses: 0, assets: 0 };
+  const counts = { lessons: 0, hidden: 0, skills: 0, courses: 0, pages: 0, assets: 0 };
+  let order = 0;
+  const repoOrder = new Map(registry.sources.map((s, i) => [s.repo, i]));
 
   for (const [repo, b] of bundles) {
     // Assets.
@@ -169,6 +174,28 @@ export async function materialize({ today = localToday(), log = console.log } = 
         counts.lessons++;
       }
 
+      const pages = b.items.filter((i) => i.type === 'page' && i.course === course.id).sort((x, y) => x.order - y.order);
+      for (const pg of pages) {
+        const text = [
+          '---',
+          `title: ${yaml(pg.title)}`,
+          ...(pg.description ? [`description: ${yaml(pg.description)}`] : []),
+          `course: ${yaml(slug)}`,
+          `section: ${yaml(pg.section)}`,
+          `order: ${pg.order}`,
+          'generated: true',
+          '---',
+          '',
+          rewrite(pg._body, repo, `bundles/${repo}/${pg.body}`).trim(),
+          '',
+        ].join('\n');
+        const file = join(OUT.pages, slug, `${pg.id.split('/')[2]}.md`);
+        await mkdir(dirname(file), { recursive: true });
+        await writeFile(file, text);
+        counts.pages++;
+      }
+
+      // Core fields first, in the order the old sync-course.mjs wrote them.
       const outline = {
         slug,
         title: course.title,
@@ -176,6 +203,18 @@ export async function materialize({ today = localToday(), log = console.log } = 
         source: course.source_url,
         phases: course.outline.phases.map((p) => ({ label: p.label, range: `${p.from}–${p.to}`, question: p.question ?? '' })),
         days: course.outline.entries.map((e) => ({ day: e.n, title: e.title, failure: e.line ?? '', phase: e.phase, written: writtenNs.has(e.n) })),
+        // Fields added for the generic course templates.
+        order: repoOrder.get(repo) * 100 + order++,
+        unit: course.outline.unit,
+        lineLabel: course.outline.line_label ?? null,
+        cover: course.cover ? assetUrl(repo, course.cover) : null,
+        externalUrl: course.external_url ?? null,
+        pages: pages.map((pg) => ({ slug: pg.id.split('/')[2], title: pg.title, section: pg.section, description: pg.description ?? null })),
+        // Old source paths → new URLs, for redirecting a retired reader.
+        aliases: Object.fromEntries([
+          ...shown.filter((l) => l.source_path).map((l) => [l.source_path, `/courses/${slug}/${l.id.split('/')[2]}/`]),
+          ...pages.filter((pg) => pg.source_path).map((pg) => [pg.source_path, `/courses/${slug}/${pg.id.split('/')[2]}/`]),
+        ]),
       };
       await mkdir(OUT.outlines, { recursive: true });
       await writeFile(join(OUT.outlines, `${slug}.json`), `${JSON.stringify(outline, null, 2)}\n`);
@@ -205,7 +244,7 @@ export async function materialize({ today = localToday(), log = console.log } = 
     }
   }
 
-  log(`materialized ${counts.courses} course · ${counts.lessons} lessons${counts.hidden ? ` (+${counts.hidden} scheduled)` : ''} · ${counts.skills} skills · ${counts.assets} assets from ${bundles.size} bundle${bundles.size === 1 ? '' : 's'}`);
+  log(`materialized ${counts.courses} courses · ${counts.lessons} lessons${counts.hidden ? ` (+${counts.hidden} scheduled)` : ''} · ${counts.pages} pages · ${counts.skills} skills · ${counts.assets} assets from ${bundles.size} bundle${bundles.size === 1 ? '' : 's'}`);
   return counts;
 }
 

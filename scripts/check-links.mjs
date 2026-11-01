@@ -12,7 +12,7 @@ const dist = process.argv[2] ?? 'dist';
  * Paths served by a sibling GitHub Pages project under the same domain, so
  * they are never in this build. Remove an entry once the site serves it.
  */
-const SIBLINGS = ['/faang-system-design-90-days/'];
+const SIBLINGS = [];
 const walk = async (d) => (await Promise.all((await readdir(d, { withFileTypes: true }))
   .map((e) => (e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)])))).flat();
 const exists = async (p) => { try { await stat(p); return true; } catch { return false; } };

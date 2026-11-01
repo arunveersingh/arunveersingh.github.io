@@ -1,0 +1,11 @@
+{
+  "body": "items/page/faang-system-design-90-days/prompts.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "This folder is the problem bank. The directory is still named `prompts/` so existing links keep working. Closed-book problems live here, one file per mock. A problem file is the interviewer: a vague product, a time…",
+  "id": "page/faang-system-design-90-days/prompts",
+  "order": 3,
+  "section": "Problem bank",
+  "source_path": "prompts/README.md",
+  "title": "Problem bank",
+  "type": "page"
+}

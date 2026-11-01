@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-21.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a design that only works at the average, leave able to redo the estimate with fan-out and a stated cache-hit assumption. The new numbers are a fix for a picture that still quotes day-3 QPS at every box. They are…",
+  "id": "lesson/faang-system-design-90-days/day-21",
+  "line": "Facing a design that only works at the average, leave able to redo the estimate with fan-out and a stated cache-hit assumption.",
+  "n": 21,
+  "phase": "First distributed design",
+  "source_path": "days/21-capacity-redo-with-visible-assumptions.md",
+  "time": "40 min",
+  "title": "Day 21 — Capacity redo with visible assumptions",
+  "type": "lesson"
+}

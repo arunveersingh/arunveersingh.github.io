@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-16.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing work that should not block the response, leave able to add a queue and describe the backlog the user can see. The queue is a fix for purge, reap, and unlink. It is not a place to hide the durable write.",
+  "id": "lesson/faang-system-design-90-days/day-16",
+  "line": "Facing work that should not block the response, leave able to add a queue and describe the backlog the user can see.",
+  "n": 16,
+  "phase": "First distributed design",
+  "source_path": "days/16-queue-for-work-the-user-does-not-wait-on.md",
+  "time": "35 min",
+  "title": "Day 16 — Queue for work the user does not wait on",
+  "type": "lesson"
+}

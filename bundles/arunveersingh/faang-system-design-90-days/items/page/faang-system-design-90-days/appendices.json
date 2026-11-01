@@ -1,0 +1,11 @@
+{
+  "body": "items/page/faang-system-design-90-days/appendices.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Not part of the 90 days. Not a mock. Do not swap one in because a lesson feels unfinished, and do not open one in the middle of a timed mock.",
+  "id": "page/faang-system-design-90-days/appendices",
+  "order": 16,
+  "section": "Appendices",
+  "source_path": "appendices/README.md",
+  "title": "Appendices (optional)",
+  "type": "page"
+}

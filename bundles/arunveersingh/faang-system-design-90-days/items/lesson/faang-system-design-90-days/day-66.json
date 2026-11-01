@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-66.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a provider and a ledger that disagree, leave able to find the mismatch and repair it without a silent rewrite of history.",
+  "id": "lesson/faang-system-design-90-days/day-66",
+  "line": "Facing a provider and a ledger that disagree, leave able to find the mismatch and repair it without a silent rewrite of history.",
+  "n": 66,
+  "phase": "Product-shaped systems",
+  "source_path": "days/66-payment-reconciliation.md",
+  "time": "35 min",
+  "title": "Day 66 — Payment reconciliation",
+  "type": "lesson"
+}

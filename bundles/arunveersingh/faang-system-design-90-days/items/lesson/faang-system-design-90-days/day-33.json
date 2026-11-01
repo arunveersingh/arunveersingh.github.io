@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-33.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing stale or thundering cache entries, leave able to choose invalidation or TTL and the stale window you accept. TTL is a bound on ignorance. Invalidation is a message you must actually deliver. Using one word for…",
+  "id": "lesson/faang-system-design-90-days/day-33",
+  "line": "Facing stale or thundering cache entries, leave able to choose invalidation or TTL and the stale window you accept.",
+  "n": 33,
+  "phase": "Data and consistency",
+  "source_path": "days/33-invalidation-and-ttl.md",
+  "time": "35 min",
+  "title": "Day 33 — Invalidation and TTL",
+  "type": "lesson"
+}

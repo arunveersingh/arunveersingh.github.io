@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-69.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a purchase, leave able to snapshot price and hold stock so a retry cannot double-charge or double-commit inventory.",
+  "id": "lesson/faang-system-design-90-days/day-69",
+  "line": "Facing a purchase, leave able to snapshot price and hold stock so a retry cannot double-charge or double-commit inventory.",
+  "n": 69,
+  "phase": "Product-shaped systems",
+  "source_path": "days/69-cart-and-checkout.md",
+  "time": "40 min",
+  "title": "Day 69 — Cart and checkout",
+  "type": "lesson"
+}

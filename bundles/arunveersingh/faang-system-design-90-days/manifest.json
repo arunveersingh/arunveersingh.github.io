@@ -1,0 +1,721 @@
+{
+  "assets": [
+    {
+      "bytes": 2075,
+      "path": "faang-system-design-90-days/assets/day-01-the-hour.svg",
+      "sha256": "3173dac226b037356d74493a292484ceb2b8cac998207b9f4e08c1593e18bb56"
+    },
+    {
+      "bytes": 2271,
+      "path": "faang-system-design-90-days/assets/day-02-problem-to-requirements.svg",
+      "sha256": "e7f448d09e49ab8766062fc034b8fc597516fbcae0a920848c0b16e1e388c683"
+    },
+    {
+      "bytes": 2947,
+      "path": "faang-system-design-90-days/assets/day-03-capacity.svg",
+      "sha256": "dac98961c557a3f22236bfbd869e1155a9e82a679c21df82c9fee527bd089ef2"
+    },
+    {
+      "bytes": 2860,
+      "path": "faang-system-design-90-days/assets/day-08-second-box.svg",
+      "sha256": "880e26374d3c432e25a81ed7311fcff650b0e7bc982aec3c81fa3ea102b95d12"
+    },
+    {
+      "bytes": 2516,
+      "path": "faang-system-design-90-days/assets/day-09-drain.svg",
+      "sha256": "5f552a548a142718ba4e8cf1c3ea884769dabef2c04f7d0b696d32dfdc2f9ccc"
+    },
+    {
+      "bytes": 2239,
+      "path": "faang-system-design-90-days/assets/day-10-cache-aside.svg",
+      "sha256": "daf87fc1f3b550e0baa2421bb02c5c6e285d2c2f36c4ad8dd7bfacb3e746f807"
+    }
+  ],
+  "items": [
+    {
+      "id": "course/faang-system-design-90-days",
+      "meta": "items/course/faang-system-design-90-days.json",
+      "sha256": "2c87b18237765495d2a8df541a3fda8481a8087d11e2d136742df6056a020e86",
+      "type": "course"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-01",
+      "meta": "items/lesson/faang-system-design-90-days/day-01.json",
+      "sha256": "e9a90d8d66d156a10ce3c2ffa6a6feb55d635900c1d604582388cb1f875f34fc",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-02",
+      "meta": "items/lesson/faang-system-design-90-days/day-02.json",
+      "sha256": "5a24aad676f8cbbd34c120ed6a847c2b42af6190d15bd4d5b07bdda67ed01aa6",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-03",
+      "meta": "items/lesson/faang-system-design-90-days/day-03.json",
+      "sha256": "df88a0e43326835b3d19319fdf8504b7d06b6fd08f62b19bab56f5c758f287b7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-04",
+      "meta": "items/lesson/faang-system-design-90-days/day-04.json",
+      "sha256": "f367a3cfc6411259eeea97884d79d18dbd3fb4cca41898a0aeb21987c7ec827a",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-05",
+      "meta": "items/lesson/faang-system-design-90-days/day-05.json",
+      "sha256": "a73794545f58a4fdcc443ecd384eba66e3f5bbe16d6504fb94e71f41099b0e05",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-06",
+      "meta": "items/lesson/faang-system-design-90-days/day-06.json",
+      "sha256": "55fa98056144047d5ecbbe4df0f0bdd6e4587cebb4024f74c2b2d1700bb2a364",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-07",
+      "meta": "items/lesson/faang-system-design-90-days/day-07.json",
+      "sha256": "4532d8093acd20d4a9a876be71462e3b520ef5dd3e5f770af0b77a9e9d5d054e",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-08",
+      "meta": "items/lesson/faang-system-design-90-days/day-08.json",
+      "sha256": "3648b509447a5e8e868962c07192c3ca3e62525105e489a2c2ad8cd29a4a1002",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-09",
+      "meta": "items/lesson/faang-system-design-90-days/day-09.json",
+      "sha256": "05ad2045837764d78e31c4d3295556b6d921610328e1aaaf5dd831d30dbe5621",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-10",
+      "meta": "items/lesson/faang-system-design-90-days/day-10.json",
+      "sha256": "efc155bda754770e7e23a6b5ff9b8e98c9cd4daef50fa64920a7c9e78dbf3740",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-11",
+      "meta": "items/lesson/faang-system-design-90-days/day-11.json",
+      "sha256": "dcd5ad520e067339664c5b4d8cc150ea1ee479712db16296574b0d3d666db0aa",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-12",
+      "meta": "items/lesson/faang-system-design-90-days/day-12.json",
+      "sha256": "4d7811e5bea726bf241656c9de9a42d1017b588f6e6a0a6ca10d3ddb2c8f23b6",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-13",
+      "meta": "items/lesson/faang-system-design-90-days/day-13.json",
+      "sha256": "0680a657d9ea4b09f72ed0d4c8bb009ca6c0752a6596be4ff79af04aa9019f27",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-14",
+      "meta": "items/lesson/faang-system-design-90-days/day-14.json",
+      "sha256": "fade24db129178bd7f15845cbf8878ac71893f63d5e8e295401a9e2220860fcb",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-15",
+      "meta": "items/lesson/faang-system-design-90-days/day-15.json",
+      "sha256": "8945baea1c708764dcb6752e02947034f78100358b2e0004fad45bd43e41943a",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-16",
+      "meta": "items/lesson/faang-system-design-90-days/day-16.json",
+      "sha256": "63b257d879ece4de96c2ffda0a7a55adacf6275ab48d2eacacdd8a9c136838cd",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-17",
+      "meta": "items/lesson/faang-system-design-90-days/day-17.json",
+      "sha256": "9a0abcda7ae1e65bc6d9d4bec7ffb6ba5f4be1bfee6809624e80c4d1a162f4ea",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-18",
+      "meta": "items/lesson/faang-system-design-90-days/day-18.json",
+      "sha256": "9ebf8287d07f79b3f4502c1d0125c040c1fc13afae61c263d7402aaadeb77af3",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-19",
+      "meta": "items/lesson/faang-system-design-90-days/day-19.json",
+      "sha256": "50cd50384b789fbc9d81b29e699f147801ba352221df05a9a247715541f795ba",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-20",
+      "meta": "items/lesson/faang-system-design-90-days/day-20.json",
+      "sha256": "2eec4d985d898c9980e003f15ab2fd269630a5b9f4b3c5e418c64857caafdca8",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-21",
+      "meta": "items/lesson/faang-system-design-90-days/day-21.json",
+      "sha256": "80d5d210a8b9ac92524949fef62996e9b1868524b69f6487bc615869b03c0f58",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-22",
+      "meta": "items/lesson/faang-system-design-90-days/day-22.json",
+      "sha256": "9795ce97f31b37ab39efea27f9f52dc6166e4650307c3d252f2bc8d9d08c0401",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-23",
+      "meta": "items/lesson/faang-system-design-90-days/day-23.json",
+      "sha256": "7c0578a20b759cd587fc6955d43a2a450d0973de7f709e438ceb2f3dde52abc7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-24",
+      "meta": "items/lesson/faang-system-design-90-days/day-24.json",
+      "sha256": "93d63005cad57f892cc69a35dfb9f8e98f3fc49743567fa7e371737ceaaec85f",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-25",
+      "meta": "items/lesson/faang-system-design-90-days/day-25.json",
+      "sha256": "1e310aee0f9f5fb6837a4acd2b543d39cea68ad5097bec570059540b624fe3b7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-26",
+      "meta": "items/lesson/faang-system-design-90-days/day-26.json",
+      "sha256": "9ba9d238034359296fa2061a671425e9b6f57ef63f53e0a379efa698035268ba",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-27",
+      "meta": "items/lesson/faang-system-design-90-days/day-27.json",
+      "sha256": "12c1f3e7b2b0f782c6155a3448306a766557d76d1e0a8da1561fc81570989c43",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-28",
+      "meta": "items/lesson/faang-system-design-90-days/day-28.json",
+      "sha256": "fb173e9112c2daa224a392e888a8ca77241cd001c82ae2e26c4625208d440216",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-29",
+      "meta": "items/lesson/faang-system-design-90-days/day-29.json",
+      "sha256": "d2d8699cd60742b9030fef4912182dc9883691f18f4ec8f219e9f8aab7522c06",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-30",
+      "meta": "items/lesson/faang-system-design-90-days/day-30.json",
+      "sha256": "48505784b1df75d9493a7183528ecfa3358f1120b6b4a28a9741bf1cfb807844",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-31",
+      "meta": "items/lesson/faang-system-design-90-days/day-31.json",
+      "sha256": "ae69dce39b5f239e0c9d301dc16f553d8cf13d21c9f700d53f532304bfc30130",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-32",
+      "meta": "items/lesson/faang-system-design-90-days/day-32.json",
+      "sha256": "c8cb792f25075ccd9327ec592093611390fe90e688134a93a5312d956eac4b33",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-33",
+      "meta": "items/lesson/faang-system-design-90-days/day-33.json",
+      "sha256": "e31c16061e03cf2bc7bd2469e670b600ee9126919b450dfc0f7925a3532399c5",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-34",
+      "meta": "items/lesson/faang-system-design-90-days/day-34.json",
+      "sha256": "fa29007aa78b7faa5bad0c787ba6860e8161088c714ebda8f769bc518a825573",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-35",
+      "meta": "items/lesson/faang-system-design-90-days/day-35.json",
+      "sha256": "688703cf714bde7a21f233ea1093e8d4bba1b20dad1a329c2fb3fabf68e28123",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-36",
+      "meta": "items/lesson/faang-system-design-90-days/day-36.json",
+      "sha256": "ccc03cd3915cf8460279e91af2ca2a44610b060bcec0524e4f5d89e2c87d446e",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-37",
+      "meta": "items/lesson/faang-system-design-90-days/day-37.json",
+      "sha256": "a1029969264cae7409fffd1cd7a57b5704600bc0d775308e03772d1e8068c6f9",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-38",
+      "meta": "items/lesson/faang-system-design-90-days/day-38.json",
+      "sha256": "10941678e8f8c42d73a6c72c59f4f5d8874a57bb4d6edd996e73bb6d5cc347c7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-39",
+      "meta": "items/lesson/faang-system-design-90-days/day-39.json",
+      "sha256": "776d3d527e2581a688cf836b7670c95030804e989ebacb317d9aa02175b7e9f8",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-40",
+      "meta": "items/lesson/faang-system-design-90-days/day-40.json",
+      "sha256": "782a6cc8d95a94a3bf81a272ee74f086940a56afb4f516410c84af73f3622226",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-41",
+      "meta": "items/lesson/faang-system-design-90-days/day-41.json",
+      "sha256": "e892a1ea020200f870633316313ea6e2870436c55d45a75ecda010396839d52a",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-42",
+      "meta": "items/lesson/faang-system-design-90-days/day-42.json",
+      "sha256": "4eb81083ebf1ddcd5504234dbe5761bc49fbe0b29d454af1f33bacab146f6464",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-43",
+      "meta": "items/lesson/faang-system-design-90-days/day-43.json",
+      "sha256": "c6987d9e322137102aa8a059ae021e3e8b7a68db51a7200ef9b951a0230e0a50",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-44",
+      "meta": "items/lesson/faang-system-design-90-days/day-44.json",
+      "sha256": "37db6311511862cabe267b7d08cb8f9b11acb1a892a83c9005df178f234bbaf7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-45",
+      "meta": "items/lesson/faang-system-design-90-days/day-45.json",
+      "sha256": "e1c3dd0304262f00114a3d1335905a6b40d4600fbeac606e8ad9f251417a224c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-46",
+      "meta": "items/lesson/faang-system-design-90-days/day-46.json",
+      "sha256": "fbb57acb2325a50f1731c55b3fde99c4f73a70fa8c1ac9ead731c4c01d9e60ff",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-47",
+      "meta": "items/lesson/faang-system-design-90-days/day-47.json",
+      "sha256": "20d7ab9e5aa0b08bca13dcfd7efab33299c112d17957513abdb1eebebf6d9880",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-48",
+      "meta": "items/lesson/faang-system-design-90-days/day-48.json",
+      "sha256": "fe94b2399457986588feb44a6ec6300a03e4e46266639c05f3d9cf80e1236394",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-49",
+      "meta": "items/lesson/faang-system-design-90-days/day-49.json",
+      "sha256": "0d614a977820f1bab2e28c26f9a78f871dcb20b2099b13729ce71d5327cf0300",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-50",
+      "meta": "items/lesson/faang-system-design-90-days/day-50.json",
+      "sha256": "e5830fead60ce01487a4a429b1302566277751761203f0d7697a7907909fbace",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-51",
+      "meta": "items/lesson/faang-system-design-90-days/day-51.json",
+      "sha256": "0dce075506cf6d8c24cdbdcab2a32bb093f0272ddd6e669acf1d6d57d9fdbcad",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-52",
+      "meta": "items/lesson/faang-system-design-90-days/day-52.json",
+      "sha256": "3b283f98d19efd6069575f32fb1b1def387caf18eeb813d3ef5bd40ff8ee8c89",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-53",
+      "meta": "items/lesson/faang-system-design-90-days/day-53.json",
+      "sha256": "8032469be939b2ca0a16fadc865796e02c84e935c181d31e1809a5b7ae9363c4",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-54",
+      "meta": "items/lesson/faang-system-design-90-days/day-54.json",
+      "sha256": "a4db773f88514f7735ba206b78592b51575dfd4bacf70bd99fb280155c91e799",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-55",
+      "meta": "items/lesson/faang-system-design-90-days/day-55.json",
+      "sha256": "d5e079959c1ae307bcbf557df134126a445583d0f5001f1baf565f4e508f29d1",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-56",
+      "meta": "items/lesson/faang-system-design-90-days/day-56.json",
+      "sha256": "8cd39cc7f9fdbb75f8417513a0e1e17bfb4ed929607427dc60e559c02a5988de",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-57",
+      "meta": "items/lesson/faang-system-design-90-days/day-57.json",
+      "sha256": "6fa57a77835d7185b40283e5ec171e77de010426da9ca28a54784acd16fbd18d",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-58",
+      "meta": "items/lesson/faang-system-design-90-days/day-58.json",
+      "sha256": "78cc90a646d106a11bf7e2221d23a9f4aab31b81ac0571f989ee7b3fa14fe93f",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-59",
+      "meta": "items/lesson/faang-system-design-90-days/day-59.json",
+      "sha256": "11fa33b4d3b2c13e342bfe8f0576e8af555e287b1b9a26ae363d5e05619cb761",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-60",
+      "meta": "items/lesson/faang-system-design-90-days/day-60.json",
+      "sha256": "f5638d79a3cd70f1b186490fd5d06d24f7395e5d2e23813146f5bc6f8d2100d1",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-61",
+      "meta": "items/lesson/faang-system-design-90-days/day-61.json",
+      "sha256": "67df8b474e20695f63ef56420f0ebdc5e2a5472f1719db0a081ce6dc5ce0516a",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-62",
+      "meta": "items/lesson/faang-system-design-90-days/day-62.json",
+      "sha256": "6f5061455df0afe0bc9c61f658048c862bc8b2b413e2dbc33676d2e3a123bff0",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-63",
+      "meta": "items/lesson/faang-system-design-90-days/day-63.json",
+      "sha256": "4f5af2dd39663512bc7a79f8b349e42893c96e96964dad0360177bbd99a33b81",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-64",
+      "meta": "items/lesson/faang-system-design-90-days/day-64.json",
+      "sha256": "271bba99dd433c9c9ccaa4dfe7e19f7773ce816bdf57b371c26f2c3f32043cb7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-65",
+      "meta": "items/lesson/faang-system-design-90-days/day-65.json",
+      "sha256": "674a8bd5f4a1f3b3a568e038eadd13853d1e535e25ee2f09fdfdcfdfc063573d",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-66",
+      "meta": "items/lesson/faang-system-design-90-days/day-66.json",
+      "sha256": "bbdb1fed87d6caa47774ddd2290884547779144f51be2666c68f1fd03900f4ac",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-67",
+      "meta": "items/lesson/faang-system-design-90-days/day-67.json",
+      "sha256": "74b5803e34946fe5bbac9b8b086dbc8cd8f45d5a66693075e22095070f8f3545",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-68",
+      "meta": "items/lesson/faang-system-design-90-days/day-68.json",
+      "sha256": "c55b543c141826bc17de7184c20ed87785808fd5cac167edc3b739d9e430f0dd",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-69",
+      "meta": "items/lesson/faang-system-design-90-days/day-69.json",
+      "sha256": "5d86a6f2509dc000304a58daef2fb07620a3953d30c07cf17f76acbcf67178cb",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-70",
+      "meta": "items/lesson/faang-system-design-90-days/day-70.json",
+      "sha256": "129f0f825703b19c737dac489c745358829b5c3327ce2ea04df7cf7e22b8aa6a",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-71",
+      "meta": "items/lesson/faang-system-design-90-days/day-71.json",
+      "sha256": "304e34bb1831310e9855be783b7353ec88865c35534f8f81bd6f3ff3ae5c7403",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-72",
+      "meta": "items/lesson/faang-system-design-90-days/day-72.json",
+      "sha256": "f258bde30555fabd5e810f71bf5a2e1680ca06d40a2a10b97919579c24bdff7c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-73",
+      "meta": "items/lesson/faang-system-design-90-days/day-73.json",
+      "sha256": "84caed9d528c5c448719fa18ef369bc5e1ceafaf6d3049eaa8fabf5d0cd83adc",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-74",
+      "meta": "items/lesson/faang-system-design-90-days/day-74.json",
+      "sha256": "48f6b96156c8a0562420072a9264684c508b15b35a858134f6aad006d431ee4f",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-75",
+      "meta": "items/lesson/faang-system-design-90-days/day-75.json",
+      "sha256": "1f4bc787b72d0ebc7f5c7fa70ab7164837667e481b37788fdab4558dce9f6039",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-76",
+      "meta": "items/lesson/faang-system-design-90-days/day-76.json",
+      "sha256": "30b159f8cddd03c61451cc50fe308098634a854909756aca4aec789d934c1d82",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-77",
+      "meta": "items/lesson/faang-system-design-90-days/day-77.json",
+      "sha256": "d0798c42c09506123b96b37a4b51ca4e5d9cd77582f7a60dddddebc17797f3f1",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-78",
+      "meta": "items/lesson/faang-system-design-90-days/day-78.json",
+      "sha256": "d5ab2efde2e2476357c54e0dcf3a5f45c61cebfa9d0df08d553710319c906ed4",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-79",
+      "meta": "items/lesson/faang-system-design-90-days/day-79.json",
+      "sha256": "1b2876b71f5505b070a1368b5f83ecdce56a5948f7bef4283d5f08b981b55c80",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-80",
+      "meta": "items/lesson/faang-system-design-90-days/day-80.json",
+      "sha256": "1d4c19867ba92cc72e7f5027dd0302d92ec4f3384f19c94dc961ebcaee7ba822",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-81",
+      "meta": "items/lesson/faang-system-design-90-days/day-81.json",
+      "sha256": "c864b336a6f4d81f076e13f7ac08b8f77c4b35150c53b143ec1dd5cbd4bd9fd0",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-82",
+      "meta": "items/lesson/faang-system-design-90-days/day-82.json",
+      "sha256": "f0d8ee114a1b9d98744d7f57f9100054f31a9e6c20adbf780e2c22d98e20e883",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-83",
+      "meta": "items/lesson/faang-system-design-90-days/day-83.json",
+      "sha256": "ca0c9a9ccdcebdf3a0f9d710a40cab96a8b79e2e657b59308e3429b4456c11b7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-84",
+      "meta": "items/lesson/faang-system-design-90-days/day-84.json",
+      "sha256": "8bc37571e838849cff7c49711be646e35fb4bed254776dd801a5419a5d2ad2a0",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-85",
+      "meta": "items/lesson/faang-system-design-90-days/day-85.json",
+      "sha256": "dd695d5c3de6a84ee3ad957110abb0a5bf30eb0091762a0fa9752a037a388d93",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-86",
+      "meta": "items/lesson/faang-system-design-90-days/day-86.json",
+      "sha256": "852237cbb43b40ab298c8a3d3ec016a19431b09177c04cda1320ede46cfeaf2c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-87",
+      "meta": "items/lesson/faang-system-design-90-days/day-87.json",
+      "sha256": "9633f04b0b16397f4b28abaeb1ca0854812cb536870854991b7f2123dbaeb326",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-88",
+      "meta": "items/lesson/faang-system-design-90-days/day-88.json",
+      "sha256": "f9d9a244ba3859cf8dff3a66f703b3f9c36328925edd14212a994977a9716207",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-89",
+      "meta": "items/lesson/faang-system-design-90-days/day-89.json",
+      "sha256": "90be746939a759562b341de5539a3c20f046bf3afdad1c86a12c0c4ad2e4cf21",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/faang-system-design-90-days/day-90",
+      "meta": "items/lesson/faang-system-design-90-days/day-90.json",
+      "sha256": "14888c498d86f0a352127234d7b2a985eb315b640fb6e172d34871a6d2897c76",
+      "type": "lesson"
+    },
+    {
+      "id": "page/faang-system-design-90-days/appendices",
+      "meta": "items/page/faang-system-design-90-days/appendices.json",
+      "sha256": "d906ccb57ae2bbcf788d6d675d315a4b64ae7e8c9fa8cd25ededcb2880bd2b2b",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/appendices-classic-papers",
+      "meta": "items/page/faang-system-design-90-days/appendices-classic-papers.json",
+      "sha256": "fb334c5ed74b6d4ea38ac6dff12de82f0271ca79909dd626352e4a9fa79294d6",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/appendices-company-quirks",
+      "meta": "items/page/faang-system-design-90-days/appendices-company-quirks.json",
+      "sha256": "4a93fdd11c216197eded5c9d219850a5c8617748a68e230f3e80fc23ce86cbe5",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/appendices-dynamo",
+      "meta": "items/page/faang-system-design-90-days/appendices-dynamo.json",
+      "sha256": "0cd8cbdf71546bc00dee1d448bf5e22dee4e9d19f9fffa388b06088aa4554566",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/appendices-raft",
+      "meta": "items/page/faang-system-design-90-days/appendices-raft.json",
+      "sha256": "938dfd5f9cc83915ed4e390878921c25d3f23f1457aac186f4bf19534a3d1854",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/appendices-spanner",
+      "meta": "items/page/faang-system-design-90-days/appendices-spanner.json",
+      "sha256": "2f23ab35ff39488c2160b176a6c135d660c9b5bdb4f3e1e9d93b0e9a9f581ae1",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/checklist",
+      "meta": "items/page/faang-system-design-90-days/checklist.json",
+      "sha256": "59186f283bbe635653d88de9fe3c66b6fa69511d3823d4a08ced6244480fa9b2",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/design-log",
+      "meta": "items/page/faang-system-design-90-days/design-log.json",
+      "sha256": "60756fb40d5b516667e8acbc5d5eb7cd660af1e105957c4c88e36664a3329a12",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/design-log-template",
+      "meta": "items/page/faang-system-design-90-days/design-log-template.json",
+      "sha256": "eea2d11dc5db1c413fdd2e8b468db547c8d208be619073b1d15b2d7eb3b6fc57",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/how-to-study",
+      "meta": "items/page/faang-system-design-90-days/how-to-study.json",
+      "sha256": "6b5439389098b6ffefbcd98e27c28cea9c333ffbc7f537d03b2a7034dfea34ab",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts",
+      "meta": "items/page/faang-system-design-90-days/prompts.json",
+      "sha256": "ebedf24be4fba8631ff7024bebc12ec9fe5d06e2fdfeefada89059135e52cf0f",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-article-serving",
+      "meta": "items/page/faang-system-design-90-days/prompts-article-serving.json",
+      "sha256": "769711e2d26730295e769e961662fd585bd4c45fe3b0d5f0b874acd40fe8ea1a",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-delivery-dispatch",
+      "meta": "items/page/faang-system-design-90-days/prompts-delivery-dispatch.json",
+      "sha256": "4721d45bbe60e596f65e05d3ccee79cb117c7d1fdc342e341efe8444ff6b6a9f",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-email-inbox",
+      "meta": "items/page/faang-system-design-90-days/prompts-email-inbox.json",
+      "sha256": "6c3bf3bfbab6993d24e25f2716de040c87e69b5f2cf560d81f004dc64bdbc1ab",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-event-intake",
+      "meta": "items/page/faang-system-design-90-days/prompts-event-intake.json",
+      "sha256": "50712918a7ed56af689ec8b05cc1686aab8481d8714ba3b510392913b2bc640e",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-image-upload",
+      "meta": "items/page/faang-system-design-90-days/prompts-image-upload.json",
+      "sha256": "3c4fe3c6c66fdc20efc9d31869678746bebb17201dc40cc2f62580d494555d26",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-job-scheduler",
+      "meta": "items/page/faang-system-design-90-days/prompts-job-scheduler.json",
+      "sha256": "f70a294e3ff93111f69919a78469b6dac7d161c6978a19b17ccf90d1bc9b6b38",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-multiplayer-lobby",
+      "meta": "items/page/faang-system-design-90-days/prompts-multiplayer-lobby.json",
+      "sha256": "905349b487162d6b95763a2e3d76caffd524d3d6cb4cd00f8b40a776074c2ee0",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-pastebin",
+      "meta": "items/page/faang-system-design-90-days/prompts-pastebin.json",
+      "sha256": "57b086241734a3a84c81836dc464f93e380893f10e932d2e194b38521026fe73",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/prompts-warehouse-inventory",
+      "meta": "items/page/faang-system-design-90-days/prompts-warehouse-inventory.json",
+      "sha256": "90de0869e6a400582317ec7094143092064dafc96cc7e69aae34ae234b313fc7",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/start",
+      "meta": "items/page/faang-system-design-90-days/start.json",
+      "sha256": "27c35f9e8ed97e618fe576d6ea4590d2db4e04c36e7d2b33133ff4e10d883981",
+      "type": "page"
+    },
+    {
+      "id": "page/faang-system-design-90-days/stencils",
+      "meta": "items/page/faang-system-design-90-days/stencils.json",
+      "sha256": "ddc9992161d325192361fc1e59afbb18c611595b09409b3174fc56e9160f2b36",
+      "type": "page"
+    }
+  ],
+  "publish": true,
+  "schema": 1,
+  "source": {
+    "repo": "arunveersingh/faang-system-design-90-days",
+    "sha": "c702145bd1a115199686f5a824d65c519bb57069",
+    "url": "https://github.com/arunveersingh/faang-system-design-90-days"
+  }
+}

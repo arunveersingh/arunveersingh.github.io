@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-68.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing folders that must match across devices, leave able to sync chunks, resolve conflicts, and survive a client clock that lies.",
+  "id": "lesson/faang-system-design-90-days/day-68",
+  "line": "Facing folders that must match across devices, leave able to sync chunks, resolve conflicts, and survive a client clock that lies.",
+  "n": 68,
+  "phase": "Product-shaped systems",
+  "source_path": "days/68-file-sync.md",
+  "time": "40 min",
+  "title": "Day 68 — File sync",
+  "type": "lesson"
+}

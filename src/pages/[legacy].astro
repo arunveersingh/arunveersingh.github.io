@@ -1,0 +1,41 @@
+---
+/**
+ * Redirect pages for retired course readers. A course with a `legacyPath` in
+ * src/data/course-presentation.ts gets one here. Old Docsify links look like
+ *   /faang-system-design-90-days/#/days/01-what-the-interview-is-grading
+ * and are mapped through the outline's `aliases` (source path → new URL).
+ * Without JavaScript, or for an unknown link, the reader lands on the course.
+ */
+import { outlines, presentationFor } from '../lib/courses';
+import { withBase } from '../data/site';
+
+export function getStaticPaths() {
+  return outlines.flatMap((outline) => {
+    const legacy = presentationFor(outline.slug).legacyPath;
+    if (!legacy) return [];
+    return [{ params: { legacy: legacy.replace(/^\/|\/$/g, '') }, props: { outline } }];
+  });
+}
+
+const { outline } = Astro.props;
+const target = withBase(`/courses/${outline.slug}/`);
+const map = Object.fromEntries(Object.entries(outline.aliases).map(([from, to]) => [from.replace(/\.md$/i, ''), withBase(to)]));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>{outline.title} has moved</title>
+    <link rel="canonical" href={new URL(target, Astro.site).href} />
+    <meta http-equiv="refresh" content={`2; url=${target}`} />
+    <script is:inline define:vars={{ map, target }}>
+      var hash = decodeURIComponent((location.hash || '').replace(/^#\/?/, '').split('?')[0]).replace(/\.md$/i, '').replace(/\/$/, '');
+      location.replace(map[hash] || target);
+    </script>
+  </head>
+  <body>
+    <p>{outline.title} now lives at <a href={target}>{target}</a>.</p>
+  </body>
+</html>

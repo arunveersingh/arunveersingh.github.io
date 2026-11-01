@@ -17,6 +17,9 @@
  *   node scripts/sync-bundles.mjs            rebuild every source at its locked sha
  *   node scripts/sync-bundles.mjs --update   move every source to its branch head
  *   node scripts/sync-bundles.mjs --update --source owner/name
+ *   node scripts/sync-bundles.mjs --update --source owner/name --adopt
+ *       Onboard a source whose content is already public elsewhere: its
+ *       existing items are recorded as pre-existing (no "New lesson" flood).
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync, realpathSync } from 'node:fs';
@@ -40,6 +43,8 @@ const daysBetween = (a, b) => Math.round((Date.parse(`${b}T00:00:00Z`) - Date.pa
 const args = process.argv.slice(2);
 const update = args.includes('--update');
 const only = args.includes('--source') ? args[args.indexOf('--source') + 1] : null;
+const adopt = args.includes('--adopt');
+if (adopt && !only) throw new Error('--adopt needs --source owner/name');
 
 /** Local calendar date, matching the old sync-course.mjs. */
 export function localToday(now = new Date()) {
@@ -154,7 +159,7 @@ async function main() {
 
       const prior = lock.sources[src.repo]?.first_seen ?? {};
       const first_seen = {};
-      for (const id of [...ids].sort()) first_seen[id] = id in prior ? prior[id] : today;
+      for (const id of [...ids].sort()) first_seen[id] = id in prior ? prior[id] : adopt ? null : today;
       lock.sources[src.repo] = { sha, first_seen };
       const counts = ['course', 'lesson', 'skill'].map((t) => `${ids.filter((i) => i.startsWith(`${t}/`)).length} ${t}`).join(' · ');
       console.log(`${tag} ${sha.slice(0, 7)}${sha === locked ? ' (locked)' : locked ? ` (was ${locked.slice(0, 7)})` : ' (new)'} · ${counts}`);

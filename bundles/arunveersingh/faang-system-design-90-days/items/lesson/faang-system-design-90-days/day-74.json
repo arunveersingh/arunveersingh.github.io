@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-74.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing buy and sell orders, leave able to match one instrument on a single sequence and rebuild the book after the matcher crashes.",
+  "id": "lesson/faang-system-design-90-days/day-74",
+  "line": "Facing buy and sell orders, leave able to match one instrument on a single sequence and rebuild the book after the matcher crashes.",
+  "n": 74,
+  "phase": "Product-shaped systems",
+  "source_path": "days/74-order-book.md",
+  "time": "40 min",
+  "title": "Day 74 — Order book",
+  "type": "lesson"
+}

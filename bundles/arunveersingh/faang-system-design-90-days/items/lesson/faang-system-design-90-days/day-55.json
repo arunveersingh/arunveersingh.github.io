@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-55.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a user who is not in the app, leave able to design push plus an inbox with preferences, dedupe, and a dead provider.",
+  "id": "lesson/faang-system-design-90-days/day-55",
+  "line": "Facing a user who is not in the app, leave able to design push plus an inbox with preferences, dedupe, and a dead provider.",
+  "n": 55,
+  "phase": "Product-shaped systems",
+  "source_path": "days/55-notifications.md",
+  "time": "40 min",
+  "title": "Day 55 — Notifications",
+  "type": "lesson"
+}

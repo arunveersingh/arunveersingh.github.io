@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-53.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing two people messaging, leave able to keep per-conversation order, receipts, and offline catch-up without a global total order.",
+  "id": "lesson/faang-system-design-90-days/day-53",
+  "line": "Facing two people messaging, leave able to keep per-conversation order, receipts, and offline catch-up without a global total order.",
+  "n": 53,
+  "phase": "Product-shaped systems",
+  "source_path": "days/53-one-to-one-chat.md",
+  "time": "40 min",
+  "title": "Day 53 — One-to-one chat",
+  "type": "lesson"
+}

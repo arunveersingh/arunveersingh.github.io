@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-13.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a durability or read-scale wall, leave able to add replicas and refuse a lagging replica for reads that cannot lie. The replica is a fix for \"the primary disk took the rows with it.\" It is not a place to hide…",
+  "id": "lesson/faang-system-design-90-days/day-13",
+  "line": "Facing a durability or read-scale wall, leave able to add replicas and refuse a lagging replica for reads that cannot lie.",
+  "n": 13,
+  "phase": "First distributed design",
+  "source_path": "days/13-replication-and-the-lagging-read.md",
+  "time": "40 min",
+  "title": "Day 13 — Replication and the lagging read",
+  "type": "lesson"
+}

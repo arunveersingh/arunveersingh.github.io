@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-19.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a dependency slower than arrivals, leave able to apply backpressure or shed load and say who feels it. Shedding is a fix for a pile-up that would otherwise take the healthy path down with the sick one. It is not…",
+  "id": "lesson/faang-system-design-90-days/day-19",
+  "line": "Facing a dependency slower than arrivals, leave able to apply backpressure or shed load and say who feels it.",
+  "n": 19,
+  "phase": "First distributed design",
+  "source_path": "days/19-backpressure-and-load-shedding.md",
+  "time": "35 min",
+  "title": "Day 19 — Backpressure and load shedding",
+  "type": "lesson"
+}

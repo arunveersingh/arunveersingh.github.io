@@ -3,7 +3,18 @@ import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import { withBase } from '../../../data/site';
-import outline from '../../../data/course-outlines/make-ai-fail-safely.json';
+import { outlineFor, outlines, presentationFor } from '../../../lib/courses';
+
+export function getStaticPaths() {
+  return outlines.filter((o) => !o.externalUrl).map((o) => ({ params: { course: o.slug } }));
+}
+
+const outline = outlineFor(Astro.params.course!);
+const { blurb } = presentationFor(outline.slug);
+const pageSections = [...new Set(outline.pages.map((p) => p.section))].map((section) => ({
+  section,
+  pages: outline.pages.filter((p) => p.section === section),
+}));
 
 const lessons = await getCollection('courses', ({ data }) => data.course === outline.slug);
 const byDay = new Map(lessons.map((entry) => [entry.data.day, entry]));
@@ -13,7 +24,7 @@ for (const day of outline.days) {
   if (day.written !== Boolean(lesson)) {
     throw new Error(
       `${outline.slug} day ${day.day} is ${day.written ? 'written' : 'only an outline'} in the arc, ` +
-        `but the lesson file ${lesson ? 'exists' : 'is missing'}. Run npm run sync:course.`,
+        `but the lesson file ${lesson ? 'exists' : 'is missing'}. Run npm run materialize.`,
     );
   }
 }
@@ -39,8 +50,7 @@ function dayHref(day: number): string {
     <h1 class="page-heading">{outline.title}</h1>
     <p class="lede page-lede">{outline.tagline}</p>
     <p class="meta">
-      {writtenCount} {writtenCount === 1 ? 'lesson is' : 'lessons are'} written. The arc is {outline.days.length} days.
-      One failure mode a day.
+      {writtenCount} {writtenCount === 1 ? 'lesson is' : 'lessons are'} written. The arc is {outline.days.length} days.{blurb && <>{' '}{blurb}</>}
     </p>
 
     {
@@ -69,6 +79,24 @@ function dayHref(day: number): string {
           </section>
         );
       })
+    }
+
+    {
+      pageSections.map((group) => (
+        <section class="course-phase course-pages">
+          <h2>{group.section}</h2>
+          <ol class="course-days">
+            {group.pages.map((page) => (
+              <li>
+                <a href={withBase(`/courses/${outline.slug}/${page.slug}/`)}>
+                  <strong>{page.title}</strong>
+                  {page.description && <em>{clip(page.description)}</em>}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))
     }
 
     <p class="meta lesson-back">

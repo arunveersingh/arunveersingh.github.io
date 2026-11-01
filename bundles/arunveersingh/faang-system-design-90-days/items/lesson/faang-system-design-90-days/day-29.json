@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-29.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing the word \"consistent,\" leave able to state the guarantee per operation instead of one label for the whole system. \"The pastebin is consistent\" is not a design. It is a word you hid behind.",
+  "id": "lesson/faang-system-design-90-days/day-29",
+  "line": "Facing the word \"consistent,\" leave able to state the guarantee per operation instead of one label for the whole system.",
+  "n": 29,
+  "phase": "Data and consistency",
+  "source_path": "days/29-the-guarantee-per-operation.md",
+  "time": "35 min",
+  "title": "Day 29 — The guarantee per operation",
+  "type": "lesson"
+}

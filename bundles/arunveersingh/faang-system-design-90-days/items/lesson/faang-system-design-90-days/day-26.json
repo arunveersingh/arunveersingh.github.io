@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-26.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a full interview on the spine, leave able to assemble the distributed pastebin in one interview-shaped pass. This is the phase in one sitting. It is not a new feature, and it is not the day-28 product.",
+  "id": "lesson/faang-system-design-90-days/day-26",
+  "line": "Facing a full interview on the spine, leave able to assemble the distributed pastebin in one interview-shaped pass.",
+  "n": 26,
+  "phase": "First distributed design",
+  "source_path": "days/26-end-to-end-distributed-pastebin.md",
+  "time": "40 min",
+  "title": "Day 26 — End-to-end distributed pastebin",
+  "type": "lesson"
+}

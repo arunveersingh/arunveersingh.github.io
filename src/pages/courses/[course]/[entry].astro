@@ -3,25 +3,33 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import { withBase } from '../../../data/site';
-import outline from '../../../data/course-outlines/make-ai-fail-safely.json';
+import { lessonSlug, outlineFor, outlines } from '../../../lib/courses';
 
 export async function getStaticPaths() {
-  const lessons = await getCollection('courses', ({ data }) => data.course === outline.slug);
-  const ordered = lessons.slice().sort((a, b) => a.data.day - b.data.day);
-  return ordered.map((entry, index) => ({
-    params: { day: `day-${String(entry.data.day).padStart(2, '0')}` },
-    props: {
-      entry,
-      prev: ordered[index - 1] ?? null,
-      next: ordered[index + 1] ?? null,
-    },
-  }));
+  const all = await getCollection('courses');
+  const pages = await getCollection('coursePages');
+  return outlines.filter((o) => !o.externalUrl).flatMap((outline) => {
+    const ordered = all.filter(({ data }) => data.course === outline.slug).sort((a, b) => a.data.day - b.data.day);
+    const lessons = ordered.map((entry, index) => ({
+      params: { course: outline.slug, entry: lessonSlug(entry.data.day) },
+      props: { kind: 'lesson' as const, outline, entry, prev: ordered[index - 1] ?? null, next: ordered[index + 1] ?? null },
+    }));
+    const extras = pages
+      .filter(({ data }) => data.course === outline.slug)
+      .map((page) => ({
+        params: { course: outline.slug, entry: page.id.split('/').at(-1)! },
+        props: { kind: 'page' as const, outline, entry: page, prev: null, next: null },
+      }));
+    return [...lessons, ...extras];
+  });
 }
 
-const { entry, prev, next } = Astro.props;
+const { kind, outline, entry, prev, next } = Astro.props;
 const { Content } = await render(entry);
 const courseHref = withBase(`/courses/${outline.slug}/`);
-const upcoming = next ? null : (outline.days.find((day) => day.day > entry.data.day && !day.written) ?? null);
+const lesson = kind === 'lesson' && 'day' in entry.data ? (entry as typeof entry & { data: { day: number } }) : null;
+const section = kind === 'page' && 'section' in entry.data ? entry.data.section : null;
+const upcoming = !lesson || next ? null : (outline.days.find((day) => day.day > lesson.data.day && !day.written) ?? null);
 
 function hrefFor(day: number): string {
   return withBase(`/courses/${outline.slug}/day-${String(day).padStart(2, '0')}/`);
@@ -38,13 +46,12 @@ function shortTitle(title: string): string {
     <p class="kicker"><span class="icon-disc disc-blue page-mark"><Icon name="course" /></span><a href={courseHref}>{outline.title}</a></p>
     <h1 class="page-heading">{entry.data.title}</h1>
     <p class="meta">
-      {entry.data.time && <>{entry.data.time} · </>}
-      {entry.data.phase}
+      {lesson ? <>{lesson.data.time && <>{lesson.data.time} · </>}{lesson.data.phase}</> : section}
     </p>
     <div class="article-body">
       <Content />
     </div>
-    <nav class="lesson-nav" aria-label="Lesson">
+    {lesson && <nav class="lesson-nav" aria-label="Lesson">
       {
         prev && (
           <a href={hrefFor(prev.data.day)}>
@@ -71,9 +78,9 @@ function shortTitle(title: string): string {
           </p>
         )
       }
-    </nav>
+    </nav>}
     <p class="meta lesson-back">
-      <a href={courseHref}>All days</a>
+      <a href={courseHref}>{lesson ? 'All days' : outline.title}</a>
     </p>
   </article>
   <script is:inline>

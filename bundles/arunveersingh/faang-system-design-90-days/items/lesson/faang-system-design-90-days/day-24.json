@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-24.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a large jump in traffic, leave able to name the first component that breaks and the fix you would reach for next. Ten times is a question about order, not a shopping list.",
+  "id": "lesson/faang-system-design-90-days/day-24",
+  "line": "Facing a large jump in traffic, leave able to name the first component that breaks and the fix you would reach for next.",
+  "n": 24,
+  "phase": "First distributed design",
+  "source_path": "days/24-the-order-of-magnitude-break.md",
+  "time": "35 min",
+  "title": "Day 24 — The order-of-magnitude break",
+  "type": "lesson"
+}

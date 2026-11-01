@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-38.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing a consumer that can see a message twice, leave able to dedupe with an inbox and a defined retention for those keys. The broker's at-least-once delivery is not a defect you configure away. The inbox is how the…",
+  "id": "lesson/faang-system-design-90-days/day-38",
+  "line": "Facing a consumer that can see a message twice, leave able to dedupe with an inbox and a defined retention for those keys.",
+  "n": 38,
+  "phase": "Data and consistency",
+  "source_path": "days/38-dedupe-and-the-inbox.md",
+  "time": "35 min",
+  "title": "Day 38 — Dedupe and the inbox",
+  "type": "lesson"
+}

@@ -1,0 +1,11 @@
+{
+  "body": "items/page/faang-system-design-90-days/prompts-multiplayer-lobby.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Closed-book fallback card for day 90 when you are not using a separate kit realtime card. This file is the interviewer. It is not a worked example.",
+  "id": "page/faang-system-design-90-days/prompts-multiplayer-lobby",
+  "order": 10,
+  "section": "Problem bank",
+  "source_path": "prompts/multiplayer-lobby.md",
+  "title": "Multiplayer lobby",
+  "type": "page"
+}

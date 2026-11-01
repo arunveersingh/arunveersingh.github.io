@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/faang-system-design-90-days/day-70.md",
+  "course": "course/faang-system-design-90-days",
+  "description": "Facing an arrival spike on scarce stock, leave able to queue buyers with a fairness rule instead of letting them pile onto the database.",
+  "id": "lesson/faang-system-design-90-days/day-70",
+  "line": "Facing an arrival spike on scarce stock, leave able to queue buyers with a fairness rule instead of letting them pile onto the database.",
+  "n": 70,
+  "phase": "Product-shaped systems",
+  "source_path": "days/70-flash-sale.md",
+  "time": "40 min",
+  "title": "Day 70 — Flash sale",
+  "type": "lesson"
+}
