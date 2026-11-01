@@ -58,7 +58,7 @@ async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
 
-export async function materialize({ root = SITE_ROOT, today = localToday(), log = console.log } = {}) {
+export async function materialize({ root = SITE_ROOT, today = localToday(), log = console.log, preview = process.env.REASONFROM_PREVIEW || null } = {}) {
   const OUT = outputs(root);
   const registry = await readJson(join(root, 'src/data/content-sources.json'));
   const lock = await readJson(join(root, 'content.lock.json'));
@@ -68,18 +68,31 @@ export async function materialize({ root = SITE_ROOT, today = localToday(), log 
   /** repo → { dir, items, courseSlugs } */
   const bundles = new Map();
 
-  for (const src of registry.sources) {
-    const entry = lock.sources[src.repo];
+  // Local preview (scripts/preview-source.mjs): one extra bundle built from a
+  // folder on this machine, possibly private. It replaces the same repo's
+  // published bundle for this run only; nothing in bundles/ or the lock moves.
+  let sources = registry.sources;
+  if (preview) {
+    const pm = await readJson(join(preview, 'manifest.json'));
+    sources = [
+      ...sources.filter((s) => s.repo !== pm.source.repo),
+      { repo: pm.source.repo, claims: ['course/', 'lesson/', 'skill/', 'page/'], previewDir: preview },
+    ];
+    log(`PREVIEW: ${pm.source.repo} from a local folder — local only, never published`);
+  }
+
+  for (const src of sources) {
+    const entry = src.previewDir ? { sha: null, first_seen: {} } : lock.sources[src.repo];
     if (!entry) throw new Error(`${src.repo} is in the registry but not in content.lock.json; run npm run sync:bundles`);
-    const dir = join(root, 'bundles', src.repo);
+    const dir = src.previewDir ?? join(root, 'bundles', src.repo);
     const res = await validateBundle(dir);
     if (!res.ok) throw new Error(`bundles/${src.repo} is invalid:\n${res.errors.map((e) => `  ${e.file}: ${e.message}`).join('\n')}`);
     if (res.manifest.source.repo !== src.repo) throw new Error(`bundles/${src.repo} claims to come from ${res.manifest.source.repo}`);
-    if (res.manifest.source.sha !== entry.sha) throw new Error(`bundles/${src.repo} is from ${res.manifest.source.sha.slice(0, 7)} but the lock pins ${entry.sha.slice(0, 7)}`);
+    if (!src.previewDir && res.manifest.source.sha !== entry.sha) throw new Error(`bundles/${src.repo} is from ${res.manifest.source.sha.slice(0, 7)} but the lock pins ${entry.sha.slice(0, 7)}`);
     for (const it of res.items) {
       if (!claimed(it.id, src.claims ?? [])) throw new Error(`${src.repo} publishes ${it.id} outside its claims`);
       if (all.has(it.id)) throw new Error(`${it.id} is published by both ${all.get(it.id).repo} and ${src.repo}`);
-      all.set(it.id, { item: it, repo: src.repo, firstSeen: entry.first_seen?.[it.id] ?? null });
+      all.set(it.id, { item: it, repo: src.repo, firstSeen: src.previewDir ? today : entry.first_seen?.[it.id] ?? null });
     }
     bundles.set(src.repo, { dir, items: res.items, courseSlugs: new Set(res.items.filter((i) => i.type === 'course').map((i) => i.id.slice('course/'.length))) });
   }
@@ -129,7 +142,7 @@ export async function materialize({ root = SITE_ROOT, today = localToday(), log 
   for (const d of Object.values(OUT)) await rm(d, { recursive: true, force: true });
   const counts = { lessons: 0, hidden: 0, skills: 0, courses: 0, pages: 0, assets: 0 };
   let order = 0;
-  const repoOrder = new Map(registry.sources.map((s, i) => [s.repo, i]));
+  const repoOrder = new Map(sources.map((s, i) => [s.repo, i]));
 
   for (const [repo, b] of bundles) {
     // Assets.

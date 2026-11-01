@@ -85,3 +85,22 @@ describe('visibleOn', () => {
     assert.equal(visibleOn({}, null), null);
   });
 });
+
+describe('local preview', () => {
+  test('a preview bundle renders for this run only and needs no lock entry', async () => {
+    const root = await site();
+    const preview = join(TMP, `preview-${n++}`);
+    const draft = input();
+    draft.source = { repo: 'local/draft', sha: '0'.repeat(40), url: 'https://github.com/local/draft' };
+    draft.items = draft.items.map((it) => JSON.parse(JSON.stringify(it).replaceAll('tiny', 'draft')));
+    await writeBundle(preview, draft);
+    const withPreview = await materialize({ root, today: '2026-11-15', log: quiet, preview });
+    assert.equal(withPreview.courses, 2);
+    assert.equal(await exists(join(root, 'src/content/courses/draft/day-01.md')), true);
+    const lock = await readFile(join(root, 'content.lock.json'), 'utf8');
+    assert.doesNotMatch(lock, /local\/draft/, 'preview never touches the lock');
+    const normal = await materialize({ root, today: '2026-11-15', log: quiet, preview: null });
+    assert.equal(normal.courses, 1);
+    assert.equal(await exists(join(root, 'src/content/courses/draft/day-01.md')), false, 'next normal run drops it');
+  });
+});
