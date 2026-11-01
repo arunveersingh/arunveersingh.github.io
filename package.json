@@ -21,7 +21,8 @@
     "materialize": "node scripts/materialize.mjs",
     "predev": "node scripts/materialize.mjs",
     "prebuild": "node scripts/materialize.mjs",
-    "precheck": "node scripts/materialize.mjs"
+    "precheck": "node scripts/materialize.mjs",
+    "test:scripts": "node --test \"scripts/test/**/*.test.mjs\""
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
