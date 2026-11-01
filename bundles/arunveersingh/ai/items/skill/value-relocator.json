@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/value-relocator.md",
+  "description": "For professionals wondering whether their work is still theirs — or still worth anything — now that AI does much of what they used to be proud of. It refuses both false comfort (\"AI will never replace you\") and doom, and works only from your real tasks in a real recent week, not your job title. Each task is marked as generation or as judgment, accountability, taste, relationship, or problem-finding; the skill shows which parts of your identity were attached to generation, builds an evidence-backed map of where your value now sits, and ends with a concrete 30-day experiment to grow it. Not therapy. Use when you feel diminished, anxious about your craft, or unsure what you're for anymore.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/value-relocator.md"
+  },
+  "id": "skill/value-relocator",
+  "license": "Apache-2.0",
+  "name": "value-relocator",
+  "resource": "self",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/value-relocator/SKILL.md",
+  "symptom": "Craft identity disruption — 'if the AI can do my work, what am I?'",
+  "type": "skill",
+  "version": "1.0"
+}

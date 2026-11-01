@@ -83,4 +83,24 @@ const courses = defineCollection({
   }),
 });
 
-export const collections = { essays, videos, builds, courses };
+/**
+ * Agent skills, materialized from bundles by scripts/materialize.mjs.
+ * Never edited by hand: the source of truth is each skill's SKILL.md.
+ */
+const skills = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/skills' }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    resource: z.enum(['truth', 'ownership', 'intent', 'attention', 'authority', 'capability', 'originality', 'self', 'meta']),
+    symptom: z.string(),
+    version: z.string(),
+    license: z.string(),
+    source: z.url(),
+    evalCases: z.number().int().nonnegative().optional(),
+    evalsUrl: z.url().optional(),
+    generated: z.literal(true),
+  }),
+});
+
+export const collections = { essays, videos, builds, courses, skills };

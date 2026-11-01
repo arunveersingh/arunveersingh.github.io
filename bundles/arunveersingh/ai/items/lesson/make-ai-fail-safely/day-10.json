@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-10.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 9 gave stopping a fixed shape. Today every reply a program reads gets one.",
+  "id": "lesson/make-ai-fail-safely/day-10",
+  "line": "Lenient code turns a model reply into a wrong value with no error (\"1.250,00 EUR\" copied as written, comma stripped, 1.25 refunded; no amount in the email becomes a 0.00 refund)",
+  "n": 10,
+  "phase": "Guardrails",
+  "time": "~15 min",
+  "title": "Day 10 — Parse or Reject",
+  "type": "lesson"
+}

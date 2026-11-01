@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-05.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Days 1–4 were about what the model makes up, fills in, forgets, or gives up. Today is about what it hands back to you: **your own belief**.",
+  "id": "lesson/make-ai-fail-safely/day-05",
+  "line": "Model agrees with you when evidence points the other way (\"the deploy caused it, right?\" while the pasted p99 jumped 85 min before the deploy)",
+  "n": 5,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 5 — Sycophancy",
+  "type": "lesson"
+}

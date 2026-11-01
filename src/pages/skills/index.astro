@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../data/site';
+import { skillsByResource, skillTitle } from '../../lib/skills';
+
+const groups = await skillsByResource();
+const total = groups.reduce((n, g) => n + g.skills.length, 0);
+---
+
+<Base
+  title="Skills"
+  description="Agent skills that protect what AI made scarce: truth, ownership, intent, attention, authority, capability, originality, self."
+>
+  <div class="page">
+    <h1 class="kicker"><span class="icon-disc disc-lilac page-mark"><Icon name="skill" /></span>Skills</h1>
+    <p class="lede page-lede">
+      AI made producing work nearly free. Checking it, understanding it, and owning it still cost
+      what they always did. These {total} skills each protect one of those scarce things, with a
+      mechanism you can’t satisfy by nodding along.
+    </p>
+    <p class="meta">
+      Open standard <a href="https://github.com/agentskills/agentskills">Agent Skills</a> · works in
+      Claude Code, Copilot, Cursor, Gemini CLI and more · or paste one into any chat.
+    </p>
+
+    {
+      groups.map((group) => (
+        <section class="skill-group" id={group.key}>
+          <p class="kicker">{group.label}</p>
+          <p class="muted">{group.question}</p>
+          <ol class="index-list icon-rows">
+            {group.skills.map((entry) => (
+              <li>
+                <a href={withBase(`/skills/${entry.data.name}/`)}>
+                  <span class="icon-disc disc-lilac index-disc" aria-hidden="true"><Icon name="skill" /></span>
+                  <span class="meta">{entry.data.name}</span>
+                  <strong>{skillTitle(entry)}</strong>
+                  <em>{entry.data.symptom}</em>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))
+    }
+  </div>
+</Base>

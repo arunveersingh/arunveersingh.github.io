@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-09.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 8 set what \"right\" means before the agent works. Today sets the other half: when it must stop instead of working. (Days 6 and 7 each gave the agent one stop word for one situation. Today you write your own, for any…",
+  "id": "lesson/make-ai-fail-safely/day-09",
+  "line": "A blocked agent works around the blocker instead of stopping (no webhook secret in tests, so it adds \"skip verification if no secret\"; tests pass, a forged webhook is accepted)",
+  "n": 9,
+  "phase": "Guardrails",
+  "time": "~15 min",
+  "title": "Day 9 — Explicit Refusal Criteria",
+  "type": "lesson"
+}

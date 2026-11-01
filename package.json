@@ -8,7 +8,6 @@
   },
   "scripts": {
     "sync": "node scripts/sync.mjs",
-    "sync:course": "node scripts/sync-course.mjs",
     "og": "node scripts/og.mjs",
     "icons": "node scripts/icons.mjs",
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
@@ -17,13 +16,19 @@
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
     "verify": "npm run check && npm run build",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:bundles": "node scripts/sync-bundles.mjs",
+    "materialize": "node scripts/materialize.mjs",
+    "predev": "node scripts/materialize.mjs",
+    "prebuild": "node scripts/materialize.mjs",
+    "precheck": "node scripts/materialize.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.3",
     "astro": "^7.3.5",
+    "reasonfrom-kit": "github:arunveersingh/reasonfrom-kit#v0.3.0",
     "zod": "^4.5.4"
   },
   "devDependencies": {

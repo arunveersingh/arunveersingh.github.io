@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-07.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 6 was about trusting the model's account of what a tool printed. Today there is no tool. The model answers from memory: what it learned in training. **That memory stops at a cut-off date, and the model doesn't mark…",
+  "id": "lesson/make-ai-fail-safely/day-07",
+  "line": "Model states a training-time fact as current, with no date (\"pinned requests==2.31.0, latest stable\" when PyPI has 2.34.2 and 2.31.0 has three known advisories)",
+  "n": 7,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 7 — Stale Certainty",
+  "type": "lesson"
+}

@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/bayesian-belief-tracker.md",
+  "description": "Enforces calibrated reasoning by challenging unjustified priors, blocking asymmetric evidence processing, and refusing to let motivated reasoning pass uncorrected. Use when reasoning about an uncertain question. This is not a passive ledger — it intervenes when your reasoning is corrupted and won't process further evidence until the corruption is addressed.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/bayesian-belief-tracker.md"
+  },
+  "id": "skill/bayesian-belief-tracker",
+  "license": "Apache-2.0",
+  "name": "bayesian-belief-tracker",
+  "resource": "truth",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/bayesian-belief-tracker/SKILL.md",
+  "symptom": "Evidence is weighed asymmetrically: confirming evidence accepted, disconfirming explained away.",
+  "type": "skill",
+  "version": "1.1"
+}

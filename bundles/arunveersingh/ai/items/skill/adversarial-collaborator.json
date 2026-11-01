@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/adversarial-collaborator.md",
+  "description": "Falsification engine that won't stop until your position is genuinely sound or you've explicitly acknowledged its flaws. Use when you have a thesis, plan, or belief you want to stress-test. Does not concede to eloquence, does not stop at an arbitrary round count, and requires you to demonstrate — not just assert — that you've updated.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/adversarial-collaborator.md"
+  },
+  "id": "skill/adversarial-collaborator",
+  "license": "Apache-2.0",
+  "name": "adversarial-collaborator",
+  "resource": "truth",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/adversarial-collaborator/SKILL.md",
+  "symptom": "Positions survive because the arguer stops, not because they're sound; 'good point' replaces an actual update.",
+  "type": "skill",
+  "version": "1.1"
+}

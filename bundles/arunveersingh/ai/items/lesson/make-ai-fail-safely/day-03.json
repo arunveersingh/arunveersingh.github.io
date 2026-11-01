@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-03.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "A rule you gave AI early in a long thread can stop shaping its answers later, with no warning and no error. After today you will stop treating \"I told it at the start\" as protection, and you'll have two moves that keep…",
+  "id": "lesson/make-ai-fail-safely/day-03",
+  "line": "Earlier evidence/constraints vanish mid-thread",
+  "n": 3,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 3 — Context Window Amnesia",
+  "type": "lesson"
+}

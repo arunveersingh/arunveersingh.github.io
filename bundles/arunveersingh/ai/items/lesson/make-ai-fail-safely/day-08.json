@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-08.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Days 1–7 showed seven ways AI work goes wrong. Look back and they share one move: you judged the work by its own account. Its confident claim, its summary of a tool run, its memory of what's \"latest.\" Part 2 is about…",
+  "id": "lesson/make-ai-fail-safely/day-08",
+  "line": "The same agent writes code and tests, so it grades its own work (\"Refunds must not exceed the amount paid\": it checks each refund, its test passes, and two 6000 refunds on 10000 both go through)",
+  "n": 8,
+  "phase": "Guardrails",
+  "time": "~15 min",
+  "title": "Day 8 — Self-Graded Green",
+  "type": "lesson"
+}

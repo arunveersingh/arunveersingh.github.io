@@ -118,6 +118,7 @@ export const nav = [
   { href: '/essays/', label: 'Essays' },
   { href: '/watch/', label: 'Watch' },
   { href: coursesPath, label: 'Courses' },
+  { href: '/skills/', label: 'Skills' },
   { href: '/builds/', label: 'Builds' },
   { href: '/about/', label: 'About' },
 ] as const;

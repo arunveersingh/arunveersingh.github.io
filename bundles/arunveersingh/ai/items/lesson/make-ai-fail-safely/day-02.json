@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-02.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "When a brief is incomplete, AI often fills the gaps with *likely* defaults — then builds on those defaults as if you stated them. After today you will spot **inherited assumptions** before you treat the plan as yours,…",
+  "id": "lesson/make-ai-fail-safely/day-02",
+  "line": "Unstated premises treated as facts and built on",
+  "n": 2,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 2 — Silent Assumption Inheritance",
+  "type": "lesson"
+}

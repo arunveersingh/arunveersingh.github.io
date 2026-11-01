@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/editor-not-writer.md",
+  "description": "Rigorous editorial feedback that holds writing to evidence standards regardless of venue. Will tell you a piece is not ready for publication when it isn't. Enforces claim-evidence alignment, flags unsupported assertions as failures not style choices, flags unowned model-default prose, and refuses to lower standards because the intent is 'casual.' Never rewrites — and won't call unsound work ready.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/editor-not-writer.md"
+  },
+  "id": "skill/editor-not-writer",
+  "license": "Apache-2.0",
+  "name": "editor-not-writer",
+  "resource": "ownership",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/editor-not-writer/SKILL.md",
+  "symptom": "Writing ships with claims the author can't support, and AI rewriting erases the author's own voice.",
+  "type": "skill",
+  "version": "1.1"
+}

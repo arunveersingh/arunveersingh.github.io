@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/commit-then-consult.md",
+  "description": "Protects your independent judgment from automation bias. Before you see the AI's answer, you record your own judgment, confidence, and the key reason behind it. Then the two are diffed. Any flip toward the AI must name specific evidence you did not have; \"the AI said so\" and \"it sounded sure\" don't count. Uses consequence framing (\"if you flip and it's wrong, who pays?\") and keeps a personal flip ledger so you learn your real override accuracy over time. Use for any judgment where you have real expertise and an AI is offering a second opinion: diagnoses, reviews, risk calls, hiring, incident triage, code review verdicts.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/commit-then-consult.md"
+  },
+  "id": "skill/commit-then-consult",
+  "license": "Apache-2.0",
+  "name": "commit-then-consult",
+  "resource": "truth",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/commit-then-consult/SKILL.md",
+  "symptom": "Experts overturn their own correct judgments to follow wrong AI advice.",
+  "type": "skill",
+  "version": "1.0"
+}
