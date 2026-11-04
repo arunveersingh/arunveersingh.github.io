@@ -7,14 +7,14 @@
  * channel IDs / playlist IDs exist in exactly one place.
  */
 
-/** @typedef {{ id: 'oopsfeedmecode' | 'developernoteshindi', name: string, href: string, channelId: string, language: string }} Channel */
+/** @typedef {{ id: 'engineeringjudgment' | 'developernoteshindi', name: string, href: string, channelId: string, language: string }} Channel */
 
 /** @type {readonly Channel[]} */
 export const channels = [
   {
-    id: 'oopsfeedmecode',
-    name: 'Oops! Feed Me Code',
-    href: 'https://www.youtube.com/@oopsfeedmecode',
+    id: 'engineeringjudgment',
+    name: 'Arun | Engineering Judgment',
+    href: 'https://www.youtube.com/@imarunveersingh',
     channelId: 'UCnVym5w_jklmzFwaBcqy53w',
     language: 'English',
   },

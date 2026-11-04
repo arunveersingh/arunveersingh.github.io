@@ -27,8 +27,8 @@ function fakeYouTube({ oembed = {}, shorts = new Set() } = {}) {
     throw new Error(`unexpected ${url}`);
   };
 }
-const feed = (...items) => new Map(items.map((i) => [i.youtubeId, { channel: 'oopsfeedmecode', description: `${i.title} explained in enough words to be a thesis line.`, ...i }]));
-const note = (id, title, extra = {}) => writeNote({ title, thesis: `${title} thesis`, published: '2026-09-01', channel: 'oopsfeedmecode', youtubeId: id, format: 'long', ...extra });
+const feed = (...items) => new Map(items.map((i) => [i.youtubeId, { channel: 'engineeringjudgment', description: `${i.title} explained in enough words to be a thesis line.`, ...i }]));
+const note = (id, title, extra = {}) => writeNote({ title, thesis: `${title} thesis`, published: '2026-09-01', channel: 'engineeringjudgment', youtubeId: id, format: 'long', ...extra });
 
 beforeEach(async () => {
   await rm(TMP, { recursive: true, force: true });
@@ -87,7 +87,7 @@ describe('sync-videos', () => {
   });
 
   test('hand-written notes are never touched', async () => {
-    const manual = '---\ntitle: "Mine"\ndescription: "x"\npublished: 2026-01-01\nchannel: oopsfeedmecode\nyoutubeId: "mmmmmmmmmmm"\ntopics: ["youtube"]\nthesis: "x"\nmanual: true\n---\n\nhand\n';
+    const manual = '---\ntitle: "Mine"\ndescription: "x"\npublished: 2026-01-01\nchannel: engineeringjudgment\nyoutubeId: "mmmmmmmmmmm"\ntopics: ["youtube"]\nthesis: "x"\nmanual: true\n---\n\nhand\n';
     await writeFile(join(V, 'mine.md'), manual);
     await syncVideos({ now: '2026-11-04', fetcher: fakeYouTube({ oembed: { mmmmmmmmmmm: 404 } }), feedItems: feed({ youtubeId: 'mmmmmmmmmmm', title: 'Feed title', published: '2026-01-01' }) });
     assert.equal(await readFile(join(V, 'mine.md'), 'utf8'), manual);

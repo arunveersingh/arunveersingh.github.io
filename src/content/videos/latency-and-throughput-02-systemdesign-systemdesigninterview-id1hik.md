@@ -2,7 +2,7 @@
 title: "Latency and Throughput | 02 #systemdesign #systemdesigninterview"
 description: "Latency and Throughput | 02 #systemdesign #systemdesigninterview"
 published: 2026-10-23
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "Id1HIKbaLQ0"
 format: short
 topics: ["youtube"]

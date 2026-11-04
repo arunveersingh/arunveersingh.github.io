@@ -2,7 +2,7 @@
 title: "Percentiles | 03 #systemdesign #fundamentals #firstprinciple"
 description: "The average hides the requests users complain about."
 published: 2026-10-24
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "x6puTcIQGPU"
 format: short
 topics: ["youtube"]

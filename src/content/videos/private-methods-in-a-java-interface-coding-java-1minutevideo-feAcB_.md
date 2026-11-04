@@ -2,7 +2,7 @@
 title: "private methods in a Java interface! #coding #java  #1minutevideo"
 description: "private methods in a Java interface! #coding #java #1minutevideo"
 published: 2024-01-10
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "feAcB_X_p_A"
 format: long
 topics: ["youtube"]

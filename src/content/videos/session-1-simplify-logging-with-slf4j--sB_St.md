@@ -2,7 +2,7 @@
 title: "Session 1 - Simplify Logging with SLF4J"
 description: "🚀 Master SLF4J & Java Logging Frameworks"
 published: 2025-02-17
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "-sB_StcysAI"
 format: long
 topics: ["youtube"]
