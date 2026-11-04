@@ -26,6 +26,7 @@ permissions:
   contents: write        # push the bot branch
   pull-requests: write   # open the PR, enable auto-merge
   actions: write         # dispatch verify.yml and pages.yml
+  deployments: read      # compare what Pages serves with main
   issues: write          # one "Publish failing" issue, opened and closed automatically
 
 concurrency:
@@ -125,6 +126,25 @@ jobs:
           fi
           gh workflow run pages.yml --ref main
           echo "Published ${sha:0:7} via PR #$n; deploy dispatched."
+
+      # Self-healing: if the live site is behind main for any reason (a merge
+      # that landed after this job stopped waiting, a Pages deploy that failed
+      # or timed out on GitHub's side), deploy main. Runs every sync.
+      - name: Deploy if the live site is behind main
+        run: |
+          main=$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha)
+          live=""
+          for id in $(gh api "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=20" --jq '.[].id'); do
+            if [ "$(gh api "repos/${{ github.repository }}/deployments/$id/statuses" --jq '.[0].state')" = "success" ]; then
+              live=$(gh api "repos/${{ github.repository }}/deployments/$id" --jq .sha); break
+            fi
+          done
+          echo "live=${live:0:7} main=${main:0:7}"
+          if [ "$live" = "$main" ]; then echo "Live site is current."; exit 0; fi
+          running=$(gh run list --workflow pages.yml --branch main --json status --jq '[.[] | select(.status != "completed")] | length')
+          if [ "$running" != "0" ]; then echo "A deploy is already running."; exit 0; fi
+          gh workflow run pages.yml --ref main
+          echo "Live site was behind main; deploy dispatched."
 
       - name: Close failure issue
         if: success()
