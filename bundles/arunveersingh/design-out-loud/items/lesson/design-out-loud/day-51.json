@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-51.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a home feed, leave able to choose fan-out-on-write or fan-out-on-read from follower skew, with ranking models left out. Chronological (or a simple recency+author filter) is enough. Day 52 is the celebrity…",
+  "id": "lesson/design-out-loud/day-51",
+  "line": "Facing a home feed, leave able to choose fan-out-on-write or fan-out-on-read from follower skew, with ranking models left out.",
+  "n": 51,
+  "phase": "Product-shaped systems",
+  "source_path": "days/51-news-feed.md",
+  "time": "40 min",
+  "title": "Day 51 — News feed",
+  "type": "lesson"
+}

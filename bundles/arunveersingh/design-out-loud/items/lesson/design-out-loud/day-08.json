@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-08.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a saturated process, leave able to split a stateless app tier and say where session and file state still sit. The second box is a fix for a process that cannot take the peak, not a new architecture.",
+  "id": "lesson/design-out-loud/day-08",
+  "line": "Facing a saturated process, leave able to split a stateless app tier and say where session and file state still sit.",
+  "n": 8,
+  "phase": "First distributed design",
+  "source_path": "days/08-the-second-box.md",
+  "time": "35 min",
+  "title": "Day 8 — The second box",
+  "type": "lesson"
+}

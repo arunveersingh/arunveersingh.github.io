@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-37.md",
+  "course": "course/design-out-loud",
+  "description": "Facing retries, leave able to make an at-least-once write safe with idempotency keys and name what can still arrive twice. At-least-once is a delivery fact. Idempotency is how the second delivery stops being a second…",
+  "id": "lesson/design-out-loud/day-37",
+  "line": "Facing retries, leave able to make an at-least-once write safe with idempotency keys and name what can still arrive twice.",
+  "n": 37,
+  "phase": "Data and consistency",
+  "source_path": "days/37-idempotency-on-an-at-least-once-path.md",
+  "time": "40 min",
+  "title": "Day 37 — Idempotency on an at-least-once path",
+  "type": "lesson"
+}

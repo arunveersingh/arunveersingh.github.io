@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/checklist.md",
+  "course": "course/design-out-loud",
+  "description": "Print this page, or copy the lines into your notes. A tick in the browser is not saved. Nothing here is shared progress, and nothing should be committed back to the course.",
+  "id": "page/design-out-loud/checklist",
+  "order": 2,
+  "section": "Start",
+  "source_path": "CHECKLIST.md",
+  "title": "Checklist",
+  "type": "page"
+}

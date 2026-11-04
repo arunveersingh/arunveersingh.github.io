@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/prompts-job-scheduler.md",
+  "course": "course/design-out-loud",
+  "description": "Closed-book card for day 63. This file is the interviewer. It is not a worked example.",
+  "id": "page/design-out-loud/prompts-job-scheduler",
+  "order": 9,
+  "section": "Problem bank",
+  "source_path": "prompts/job-scheduler.md",
+  "title": "Job scheduler",
+  "type": "page"
+}

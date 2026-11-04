@@ -1,0 +1,721 @@
+{
+  "assets": [
+    {
+      "bytes": 2075,
+      "path": "design-out-loud/assets/day-01-the-hour.svg",
+      "sha256": "3173dac226b037356d74493a292484ceb2b8cac998207b9f4e08c1593e18bb56"
+    },
+    {
+      "bytes": 2271,
+      "path": "design-out-loud/assets/day-02-problem-to-requirements.svg",
+      "sha256": "e7f448d09e49ab8766062fc034b8fc597516fbcae0a920848c0b16e1e388c683"
+    },
+    {
+      "bytes": 2947,
+      "path": "design-out-loud/assets/day-03-capacity.svg",
+      "sha256": "dac98961c557a3f22236bfbd869e1155a9e82a679c21df82c9fee527bd089ef2"
+    },
+    {
+      "bytes": 2860,
+      "path": "design-out-loud/assets/day-08-second-box.svg",
+      "sha256": "880e26374d3c432e25a81ed7311fcff650b0e7bc982aec3c81fa3ea102b95d12"
+    },
+    {
+      "bytes": 2516,
+      "path": "design-out-loud/assets/day-09-drain.svg",
+      "sha256": "5f552a548a142718ba4e8cf1c3ea884769dabef2c04f7d0b696d32dfdc2f9ccc"
+    },
+    {
+      "bytes": 2239,
+      "path": "design-out-loud/assets/day-10-cache-aside.svg",
+      "sha256": "daf87fc1f3b550e0baa2421bb02c5c6e285d2c2f36c4ad8dd7bfacb3e746f807"
+    }
+  ],
+  "items": [
+    {
+      "id": "course/design-out-loud",
+      "meta": "items/course/design-out-loud.json",
+      "sha256": "5a58ea8d719249d588c421fc9fba7705ab33c7ba5eb753f7d0a350eeaac33dc4",
+      "type": "course"
+    },
+    {
+      "id": "lesson/design-out-loud/day-01",
+      "meta": "items/lesson/design-out-loud/day-01.json",
+      "sha256": "7274880431a6d790ac670cf2a4dfcb0121aac9d634bf65b1f0a9b29a420e0588",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-02",
+      "meta": "items/lesson/design-out-loud/day-02.json",
+      "sha256": "ca6bb56f5245f5e48277ce870e2d7d80a981819d0cd64ce57afb8e0408d2eb28",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-03",
+      "meta": "items/lesson/design-out-loud/day-03.json",
+      "sha256": "98482876fbe2177e8ac0d703a6b30340e4aa8c6b3df137c5bf692c4b85a4f049",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-04",
+      "meta": "items/lesson/design-out-loud/day-04.json",
+      "sha256": "58f6c75e61aa11fbad385e3cbdcb40236f48c783efc1c12ed90d3c86bce9bc2f",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-05",
+      "meta": "items/lesson/design-out-loud/day-05.json",
+      "sha256": "bc814828d9e661161f5fda35a684d420bfa189022bd8ddd865d484113d86e18d",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-06",
+      "meta": "items/lesson/design-out-loud/day-06.json",
+      "sha256": "aec81dc4500084b8900325926390554868918585d6f2459d08ead5126b1fa124",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-07",
+      "meta": "items/lesson/design-out-loud/day-07.json",
+      "sha256": "554ca0744d648b016d4b9288bf0fbdbfb50d16e1e48ab0801e196f53bbee1429",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-08",
+      "meta": "items/lesson/design-out-loud/day-08.json",
+      "sha256": "abcfb03c3c29cb43b188bfc996c613da2bda8b23c63d62faa62f24558feb561c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-09",
+      "meta": "items/lesson/design-out-loud/day-09.json",
+      "sha256": "7f85f73dc2ed8085ea44c17809d2522c782036b1672832491a4c8acf5d9cd57f",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-10",
+      "meta": "items/lesson/design-out-loud/day-10.json",
+      "sha256": "0c5d86bd0cb08ea6037d0e3a970be5cc675a6074f83280b839136ba4054e99d1",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-11",
+      "meta": "items/lesson/design-out-loud/day-11.json",
+      "sha256": "dfab3b871456451a8fd786daf2e8633422cfef88a5833a2afc6e8186538b0181",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-12",
+      "meta": "items/lesson/design-out-loud/day-12.json",
+      "sha256": "8e218e44b6574ba1501549798487aeedee31ca4baef20f264b655e3035279e55",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-13",
+      "meta": "items/lesson/design-out-loud/day-13.json",
+      "sha256": "b3b4e0971c37bbc03a8d0685a08705728ad622b4cedb33a0a8678adcdb9e8ad7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-14",
+      "meta": "items/lesson/design-out-loud/day-14.json",
+      "sha256": "cf8157f66648bbcda7b46d51a01c6edcd588f7b2409be828585b1a9504f2d22c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-15",
+      "meta": "items/lesson/design-out-loud/day-15.json",
+      "sha256": "cb045ab8338eb394466a994695b47d98f3e2bdc9f65045ff611610c3c73cca12",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-16",
+      "meta": "items/lesson/design-out-loud/day-16.json",
+      "sha256": "c44e1d36a72efc326cc14bbcd8e8177cb834bc26f9f93b050388c378bcd4a16c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-17",
+      "meta": "items/lesson/design-out-loud/day-17.json",
+      "sha256": "0c272349ea82c39d2e66f1d80ba11eae75e1e7fabdeb2ceb4dc96201fc477266",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-18",
+      "meta": "items/lesson/design-out-loud/day-18.json",
+      "sha256": "d83df4d3f1fedf52b778a35c16827a19af74597a3d639391e6df007bae1773a5",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-19",
+      "meta": "items/lesson/design-out-loud/day-19.json",
+      "sha256": "145d3a97afa561464c6edd187864b086490640acf78d0714d17acb6b4c13c356",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-20",
+      "meta": "items/lesson/design-out-loud/day-20.json",
+      "sha256": "83b55f7fa2ab2c02877fa722efdbe0212082b46bf8a3d328489646ab8a3e6096",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-21",
+      "meta": "items/lesson/design-out-loud/day-21.json",
+      "sha256": "2013868278b7296e8eed2dfaaa1b3d696c67552a82fa6a058211a139d05dba71",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-22",
+      "meta": "items/lesson/design-out-loud/day-22.json",
+      "sha256": "194b33b6d5458e1fc0697118ff5e527d112039a7a44f29d00fb6bd3f7ef0b3cf",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-23",
+      "meta": "items/lesson/design-out-loud/day-23.json",
+      "sha256": "a175646308f9914f4f7ed675b779b0b813205ba7daaba0a4a45377846b104bdd",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-24",
+      "meta": "items/lesson/design-out-loud/day-24.json",
+      "sha256": "825f007169627423f9573e54535e53f80913b6c9420b0d3466095378647e8811",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-25",
+      "meta": "items/lesson/design-out-loud/day-25.json",
+      "sha256": "e1f8f6032c616964e5e5915ab57540e5932343bc70e1ae3fcb629284800e3549",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-26",
+      "meta": "items/lesson/design-out-loud/day-26.json",
+      "sha256": "d4a0ad451b95e0312efbce3ebf7cdfc4385883092f646d9eed91da1edc23e6a6",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-27",
+      "meta": "items/lesson/design-out-loud/day-27.json",
+      "sha256": "14c10809225bed5a18e61b00f1c933dbad19b2dc4ef0bce912559c26e1812720",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-28",
+      "meta": "items/lesson/design-out-loud/day-28.json",
+      "sha256": "0583da0abe92c368277af0b9e9d2216b8dc413db659125d310caed194bd84db8",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-29",
+      "meta": "items/lesson/design-out-loud/day-29.json",
+      "sha256": "90d37eaed1223977239a85804e28dfca45d8ca879f3028c12b358fa75ba641ec",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-30",
+      "meta": "items/lesson/design-out-loud/day-30.json",
+      "sha256": "7b21cc6e68cab5c27e03f18c8cccdca1a1fe9ff1d1e8a431f4c5e01ece08ac40",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-31",
+      "meta": "items/lesson/design-out-loud/day-31.json",
+      "sha256": "b8a5253d525073e5ee9f2a5d54de9d9a2370889ea5f55f98e90269ddaa73d9d3",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-32",
+      "meta": "items/lesson/design-out-loud/day-32.json",
+      "sha256": "b3236888403727b2a791f635efc8be4d8646c6a14725df06fa5e7230524bc5dc",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-33",
+      "meta": "items/lesson/design-out-loud/day-33.json",
+      "sha256": "b8432fded0204b31267aa7547a7f1c267ee2fcabe6e2924222c6873c68204dfb",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-34",
+      "meta": "items/lesson/design-out-loud/day-34.json",
+      "sha256": "e5cc733ee2a7eda37def3a5bb9cc4a2818e97c313b187a81ffc3d94cb264af57",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-35",
+      "meta": "items/lesson/design-out-loud/day-35.json",
+      "sha256": "63096018542dadd9653854ddc0bdf0d78d5912e414c8feaecd59cce1facf45e4",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-36",
+      "meta": "items/lesson/design-out-loud/day-36.json",
+      "sha256": "6f7dec58cba3c4e970c804c2e13431c3e77559a8c7e650edf849fcc24206f131",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-37",
+      "meta": "items/lesson/design-out-loud/day-37.json",
+      "sha256": "11e2ce508eae3d46551be5df327c89fe23f0f459a1827a494aa6e4912f1a492e",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-38",
+      "meta": "items/lesson/design-out-loud/day-38.json",
+      "sha256": "7a3e2b0e81b458209b24953ffad533de40073065631e717400794164fdd8ef81",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-39",
+      "meta": "items/lesson/design-out-loud/day-39.json",
+      "sha256": "972f407aa951314c4ef6b89bf881febd4be397e13a1946de8293323467079fda",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-40",
+      "meta": "items/lesson/design-out-loud/day-40.json",
+      "sha256": "6fe8544259718edd9e4d81015b369b5a35c318b01b83396e92c14f321260c931",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-41",
+      "meta": "items/lesson/design-out-loud/day-41.json",
+      "sha256": "77c2adc8171ba42fad3e667789b54c0ccc82b8af4c82b0c34fbe8fd5e942acb8",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-42",
+      "meta": "items/lesson/design-out-loud/day-42.json",
+      "sha256": "9fad205298d5550aebd79e5dfbd89b236ad441f59f3efa4fba391a14e56a3bc8",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-43",
+      "meta": "items/lesson/design-out-loud/day-43.json",
+      "sha256": "8e9f4c1206ac61293a7ceff697ac29f363b7837351f3999dddc43805c465f600",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-44",
+      "meta": "items/lesson/design-out-loud/day-44.json",
+      "sha256": "0cc246213bee9a892149c18b3ebd6917af8b989411120be49f422cf56eb312e0",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-45",
+      "meta": "items/lesson/design-out-loud/day-45.json",
+      "sha256": "62be6906d5cd26834a5968785771ba5bc4d66ef17f6339b7805f97d43e5877ac",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-46",
+      "meta": "items/lesson/design-out-loud/day-46.json",
+      "sha256": "e6665a8d4d22a5d0b424ec616ceb0aa99737a7f58e5a6f9f4286b025e0f478d7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-47",
+      "meta": "items/lesson/design-out-loud/day-47.json",
+      "sha256": "59f299afdf28bd4f606768eeca133c1e4d3eea38e8af245feaf3cd962aecc103",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-48",
+      "meta": "items/lesson/design-out-loud/day-48.json",
+      "sha256": "0dc6a8fd916219e5b24c70d6bfff9579ed27b86fdd127e92b981b6d54054d1fa",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-49",
+      "meta": "items/lesson/design-out-loud/day-49.json",
+      "sha256": "d5c55f03aa85bef08ae1220231357dc9eea847b0ab81794de1b5378a7923cc41",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-50",
+      "meta": "items/lesson/design-out-loud/day-50.json",
+      "sha256": "24b9c275744a8fb092ed39ca666dd9236fba618fe0d907e24c120b697ed0ca79",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-51",
+      "meta": "items/lesson/design-out-loud/day-51.json",
+      "sha256": "11ed254494d202ee0a48e3f6be1c8e45c730e54fb8c2f92481107839d43e393f",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-52",
+      "meta": "items/lesson/design-out-loud/day-52.json",
+      "sha256": "fa4a35660d51473224a24230ef17642addeab3d481f497ce3d5d2f747d5e75d7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-53",
+      "meta": "items/lesson/design-out-loud/day-53.json",
+      "sha256": "e5c7425430e74ae87dc6a65e5259c19752dfc4ccc5b984ec5791bbc5be379f66",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-54",
+      "meta": "items/lesson/design-out-loud/day-54.json",
+      "sha256": "cc52ec4da0ea458c7deac8333d89d0500f5c2e4bc371d3e09b961df9709eae47",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-55",
+      "meta": "items/lesson/design-out-loud/day-55.json",
+      "sha256": "c81711e51ccb574f750e98aafea76caebceaaa7b57262367dcc84d2766f469f5",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-56",
+      "meta": "items/lesson/design-out-loud/day-56.json",
+      "sha256": "9b3535afd730fc1105b6de1894a0f599e31121f0880e8cc9c0ada7247a68d488",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-57",
+      "meta": "items/lesson/design-out-loud/day-57.json",
+      "sha256": "a2e765d38ae396ca903231ffd00803617a0d7f5f395cc3c8ab059094028b60ee",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-58",
+      "meta": "items/lesson/design-out-loud/day-58.json",
+      "sha256": "0e818b823c8c03d3a75c563a3ddefd6e5fde40db0f31aeb71fa2de90f09d59ee",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-59",
+      "meta": "items/lesson/design-out-loud/day-59.json",
+      "sha256": "2d5efc0fed19645f18eea76cd86febf970f101c24e8bdd76e6c3789aa01178b8",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-60",
+      "meta": "items/lesson/design-out-loud/day-60.json",
+      "sha256": "379bdf2e20fb900adbf262e1f86091a56791719e2122db76ad3c97cf0c4fdfe9",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-61",
+      "meta": "items/lesson/design-out-loud/day-61.json",
+      "sha256": "0a328fe6f46bce884a55fc859ba1128b43a4993b95ad36cc950db4a4d7fff0b9",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-62",
+      "meta": "items/lesson/design-out-loud/day-62.json",
+      "sha256": "68ada1a659beb7cf8b81c25133632dceb62d430e444d25ae28d94be0464ad6f9",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-63",
+      "meta": "items/lesson/design-out-loud/day-63.json",
+      "sha256": "79fe6cf015095a19db088ccb17fecd530d8961720d4c4e12c9a6edad3539d563",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-64",
+      "meta": "items/lesson/design-out-loud/day-64.json",
+      "sha256": "2e5b59629a41d4146ea76d7fcb327b26587e64942dcedd9bbde2d57def2e3c41",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-65",
+      "meta": "items/lesson/design-out-loud/day-65.json",
+      "sha256": "20d411f52f51a11c77d53b08a08931c2e502c89d9c326dc8349fe11fd1beb216",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-66",
+      "meta": "items/lesson/design-out-loud/day-66.json",
+      "sha256": "0054f59ad1d1ebe46e453ff228500c77f48941f6ddc9e5c7ccea88487e6c7c2a",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-67",
+      "meta": "items/lesson/design-out-loud/day-67.json",
+      "sha256": "ce0481f5ee8baf1cc50386d57ad24ce5ea1d278f6bf6ca0dbe687281fc1f7183",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-68",
+      "meta": "items/lesson/design-out-loud/day-68.json",
+      "sha256": "d3cd0ac41158a03e54143b49d199880123e44d1850dfa436ccf49e49a15105be",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-69",
+      "meta": "items/lesson/design-out-loud/day-69.json",
+      "sha256": "aa038241b56685df10fcfb248e25dca3cb4ce63855587ded620b0c991d7e9774",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-70",
+      "meta": "items/lesson/design-out-loud/day-70.json",
+      "sha256": "1fdf5253cdad4a49cdf33100800a71568310be6b8badccc51e1f6260238ff8ff",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-71",
+      "meta": "items/lesson/design-out-loud/day-71.json",
+      "sha256": "d63a4c45841166a7b975dde4397157108c116f8198bea2a71d7afafc99b8103b",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-72",
+      "meta": "items/lesson/design-out-loud/day-72.json",
+      "sha256": "493a146752d1c905db6e4b101bb9b0ad6db74f54bdfcc7e25dd20098d023858c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-73",
+      "meta": "items/lesson/design-out-loud/day-73.json",
+      "sha256": "25cc445522de7db3a005635c76d776f7aa55de4aebf2dc8aa29577f80282a5a4",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-74",
+      "meta": "items/lesson/design-out-loud/day-74.json",
+      "sha256": "f20d320be034c1d5f186c1acdb6e97170c59f77fa9b808cf427772ad98c1bfc4",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-75",
+      "meta": "items/lesson/design-out-loud/day-75.json",
+      "sha256": "cada3d47258841e1727605cd080609c5ae59dcf3227059e17e04835f37614925",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-76",
+      "meta": "items/lesson/design-out-loud/day-76.json",
+      "sha256": "83c965fd3f35e23dc9cc5fdbc9fa36efadcb68c40aab543bbb7a03a5fc500660",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-77",
+      "meta": "items/lesson/design-out-loud/day-77.json",
+      "sha256": "949591edc169e54059b66495ddbce66c2837fcb26799fac1155886452355d2e9",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-78",
+      "meta": "items/lesson/design-out-loud/day-78.json",
+      "sha256": "e5e19b3168a81dd38736eda4b47a80201da90be34d8933c8189069224127be8b",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-79",
+      "meta": "items/lesson/design-out-loud/day-79.json",
+      "sha256": "d860cae22097e9c2b4adbf24ea4e5b84b65cd3558880b2a22ece29b436276723",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-80",
+      "meta": "items/lesson/design-out-loud/day-80.json",
+      "sha256": "8ecb2c4aea721bd0cd587db36c18600c6f5fd9d0f2260bc6dab196e701c804c0",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-81",
+      "meta": "items/lesson/design-out-loud/day-81.json",
+      "sha256": "38e1256b1ed479db85f6f0fa475bb278f118ce33ea5e7f4ee85943fc220cd7a6",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-82",
+      "meta": "items/lesson/design-out-loud/day-82.json",
+      "sha256": "488ae7aeea4eabc380179022607591a5b448c3031bc460d076af28ceab7a3f22",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-83",
+      "meta": "items/lesson/design-out-loud/day-83.json",
+      "sha256": "08c05000dfa018b474a12ceab403595b396ab20343c8fdbfe8076edcf676ea87",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-84",
+      "meta": "items/lesson/design-out-loud/day-84.json",
+      "sha256": "11835cc013e730c543e46869bf9cae03c8d573033cf84556ec2776329ceeba94",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-85",
+      "meta": "items/lesson/design-out-loud/day-85.json",
+      "sha256": "596b229fc9611c5649049e1d8b8d7a11db50c547b2aff7ae951f071e43583851",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-86",
+      "meta": "items/lesson/design-out-loud/day-86.json",
+      "sha256": "d7177b19391273779db298d55a3268528e5048f3a64fe64375dff2a0bbfd370d",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-87",
+      "meta": "items/lesson/design-out-loud/day-87.json",
+      "sha256": "b16846d7cf45f3586e1950fc6e747519ade7c38778f1ccd156062f911fd49795",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-88",
+      "meta": "items/lesson/design-out-loud/day-88.json",
+      "sha256": "4b6953c1990bc13559e2ddc6c1fca01750f973ea439aeee1fcd8296d26ccee07",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-89",
+      "meta": "items/lesson/design-out-loud/day-89.json",
+      "sha256": "207dcf580c4ab8a321c389fa7212801d613ddddf17a2d049a29cd6cc1a6cb890",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/design-out-loud/day-90",
+      "meta": "items/lesson/design-out-loud/day-90.json",
+      "sha256": "cc548eb0ddd222cefd6b9401f9bf35be8bd7c7fadc4a05ad0bb48cb2bff9bfd6",
+      "type": "lesson"
+    },
+    {
+      "id": "page/design-out-loud/appendices",
+      "meta": "items/page/design-out-loud/appendices.json",
+      "sha256": "d70cd8bff99899a09d1b9476463ed71788411302160f2127ce155cef249b3124",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/appendices-classic-papers",
+      "meta": "items/page/design-out-loud/appendices-classic-papers.json",
+      "sha256": "3ac830077c4874a4100f9d4ab77c2acdd00cf1b6256832e578638070fe071cf2",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/appendices-company-quirks",
+      "meta": "items/page/design-out-loud/appendices-company-quirks.json",
+      "sha256": "613e948f95625ff5107b42a7996acbe908dc7c0eebc5d95d94e26a4b8aeb8247",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/appendices-dynamo",
+      "meta": "items/page/design-out-loud/appendices-dynamo.json",
+      "sha256": "013d911807e0b8bcc31c3fd166694001ba1b4a349a27918ecf5d1c52bdd4c193",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/appendices-raft",
+      "meta": "items/page/design-out-loud/appendices-raft.json",
+      "sha256": "4248edd6d639de5b4b335d2ab4e5cae495cafa1e7063819e68f3acfe6781fc20",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/appendices-spanner",
+      "meta": "items/page/design-out-loud/appendices-spanner.json",
+      "sha256": "8bcf25b0728a28f65fb362d16090f34fbdad0d031e6c0cda499f454932a4eb79",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/checklist",
+      "meta": "items/page/design-out-loud/checklist.json",
+      "sha256": "6a0b41a7433538e9a77e6b9ccec4bc2d712c01308aaefcea55ba848495ecf93c",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/design-log",
+      "meta": "items/page/design-out-loud/design-log.json",
+      "sha256": "77ac2a7a2cd3cb9d90f5f73e6f7f85b2354568255d861b78d81c0af1d5a43bab",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/design-log-template",
+      "meta": "items/page/design-out-loud/design-log-template.json",
+      "sha256": "18690477e2ad206f724c09b6f8c5d880e5bb8651a7f1d0b247e19b82bec1c1b5",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/how-to-study",
+      "meta": "items/page/design-out-loud/how-to-study.json",
+      "sha256": "4dc3c790695d8d6006142d23c81ef98037375ced33efb02defcb029bcbe1be93",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts",
+      "meta": "items/page/design-out-loud/prompts.json",
+      "sha256": "7b69488213227ce2e0e858aae77bb4598a102d5b38f64ecff2617983c0fe7abd",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-article-serving",
+      "meta": "items/page/design-out-loud/prompts-article-serving.json",
+      "sha256": "284e3f599b38e0fa8fb97c9198dcbaf9caafdedabcd2cd86ccce65893cf7ed95",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-delivery-dispatch",
+      "meta": "items/page/design-out-loud/prompts-delivery-dispatch.json",
+      "sha256": "6ae7c974655df9094b6b970d59c8e658281f1dd5a3f15d89a0160bca28431291",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-email-inbox",
+      "meta": "items/page/design-out-loud/prompts-email-inbox.json",
+      "sha256": "498e4b66cc051753bcca3271abec7a8126cba531dc005b97661e115480cfa39f",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-event-intake",
+      "meta": "items/page/design-out-loud/prompts-event-intake.json",
+      "sha256": "f2b0156a520bfdba40f9b30402d0e96322b583c3707bc78cc3ece4bdc129978b",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-image-upload",
+      "meta": "items/page/design-out-loud/prompts-image-upload.json",
+      "sha256": "68b158a1c853399b44f4b6fbdac6a488a4392a9dc71afec8af60992d64cbe802",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-job-scheduler",
+      "meta": "items/page/design-out-loud/prompts-job-scheduler.json",
+      "sha256": "374c20791b0389a9250e81b4c4888b67d61bfa121c2cdb91d934a17c9c2399c8",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-multiplayer-lobby",
+      "meta": "items/page/design-out-loud/prompts-multiplayer-lobby.json",
+      "sha256": "9513427cff1477ba3c19fe26068a134ed7bfa6e013daf63f1f595761a1231b84",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-pastebin",
+      "meta": "items/page/design-out-loud/prompts-pastebin.json",
+      "sha256": "e5ec4965f8033f5e2da959ff973c9a15a9a1515c7b92b6207e73f8543aae774d",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/prompts-warehouse-inventory",
+      "meta": "items/page/design-out-loud/prompts-warehouse-inventory.json",
+      "sha256": "6af217592967f3ad215bf6fb56d6ec84aaa185a6593eaf4afc4721508a3388dc",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/start",
+      "meta": "items/page/design-out-loud/start.json",
+      "sha256": "9dbb6abba5ae5fcc31d2c2d253e5b635747a96175b4f0c50e328bd79dc1e11e5",
+      "type": "page"
+    },
+    {
+      "id": "page/design-out-loud/stencils",
+      "meta": "items/page/design-out-loud/stencils.json",
+      "sha256": "5bdf29ce26675a118cee419fb17a5c653934a4a7c751c1d2674195fa7eacfab7",
+      "type": "page"
+    }
+  ],
+  "publish": true,
+  "schema": 1,
+  "source": {
+    "repo": "arunveersingh/design-out-loud",
+    "sha": "f5d61fb76c07e9b93439db7f61a953c510b02660",
+    "url": "https://github.com/arunveersingh/design-out-loud"
+  }
+}

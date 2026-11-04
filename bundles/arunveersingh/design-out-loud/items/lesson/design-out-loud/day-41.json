@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-41.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a workflow that crosses partitions, leave able to use a saga and name the compensation and the crash window. A saga is what you do because day 40's transaction stopped. It is not a distributed transaction with a…",
+  "id": "lesson/design-out-loud/day-41",
+  "line": "Facing a workflow that crosses partitions, leave able to use a saga and name the compensation and the crash window.",
+  "n": 41,
+  "phase": "Data and consistency",
+  "source_path": "days/41-sagas-and-compensation.md",
+  "time": "40 min",
+  "title": "Day 41 — Sagas and compensation",
+  "type": "lesson"
+}

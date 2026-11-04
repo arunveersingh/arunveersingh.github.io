@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-49.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a problem that is not this week's schema, index, or retention lesson, leave able to reserve inventory so two buyers cannot take the last unit, then log a self-score. Days 45–47 stay closed. So does the pastebin.",
+  "id": "lesson/design-out-loud/day-49",
+  "line": "Facing a problem that is not this week's schema, index, or retention lesson, leave able to reserve inventory so two buyers cannot take the last unit, then log a self-score.",
+  "n": 49,
+  "phase": "Data and consistency",
+  "source_path": "days/49-mock-warehouse-inventory-reservation.md",
+  "time": "35 min",
+  "title": "Day 49 — Mock: warehouse inventory reservation",
+  "type": "lesson"
+}

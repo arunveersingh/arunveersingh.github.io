@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/prompts-image-upload.md",
+  "course": "course/design-out-loud",
+  "description": "Closed-book card for day 28. This file is the interviewer. It is not a worked example.",
+  "id": "page/design-out-loud/prompts-image-upload",
+  "order": 8,
+  "section": "Problem bank",
+  "source_path": "prompts/image-upload.md",
+  "title": "Image upload and thumbnails",
+  "type": "page"
+}

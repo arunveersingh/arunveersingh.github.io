@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-88.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a write-heavy problem, leave able to design event intake with dedupe, late events, and a durable sink, and leave a complete design-log entry.",
+  "id": "lesson/design-out-loud/day-88",
+  "line": "Facing a write-heavy problem, leave able to design event intake with dedupe, late events, and a durable sink, and leave a complete design-log entry.",
+  "n": 88,
+  "phase": "Mocks and the kit",
+  "source_path": "days/88-mock-event-intake-write-heavy.md",
+  "time": "35 min",
+  "title": "Day 88 — Mock: event intake (write-heavy)",
+  "type": "lesson"
+}

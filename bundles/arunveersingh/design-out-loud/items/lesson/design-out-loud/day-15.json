@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-15.md",
+  "course": "course/design-out-loud",
+  "description": "Facing origin bandwidth on public reads, leave able to place a CDN and say what stays origin-authoritative. The CDN is a fix for public bytes the origin should not be the one to ship. It is not where you put creates,…",
+  "id": "lesson/design-out-loud/day-15",
+  "line": "Facing origin bandwidth on public reads, leave able to place a CDN and say what stays origin-authoritative.",
+  "n": 15,
+  "phase": "First distributed design",
+  "source_path": "days/15-cdn-in-front-of-public-bytes.md",
+  "time": "35 min",
+  "title": "Day 15 — CDN in front of public bytes",
+  "type": "lesson"
+}

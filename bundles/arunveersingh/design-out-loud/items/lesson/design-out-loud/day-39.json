@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-39.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a write that must also become a message, leave able to replace a dual write with an outbox. Two commits to two systems is how a paste is deleted in the database and kept on the edge forever, or purged when it…",
+  "id": "lesson/design-out-loud/day-39",
+  "line": "Facing a write that must also become a message, leave able to replace a dual write with an outbox.",
+  "n": 39,
+  "phase": "Data and consistency",
+  "source_path": "days/39-outbox-not-dual-write.md",
+  "time": "35 min",
+  "title": "Day 39 — Outbox, not dual write",
+  "type": "lesson"
+}

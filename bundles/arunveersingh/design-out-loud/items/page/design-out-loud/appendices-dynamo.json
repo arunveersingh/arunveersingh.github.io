@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/appendices-dynamo.md",
+  "course": "course/design-out-loud",
+  "description": "Leave able to use **consistent hashing**, **sloppy quorum**, **hinted handoff**, and **application-level conflict handling** when the interviewer forbids a leader or hands you a leaderless store. Leave unable to hide…",
+  "id": "page/design-out-loud/appendices-dynamo",
+  "order": 19,
+  "section": "Appendices",
+  "source_path": "appendices/dynamo.md",
+  "title": "Dynamo (appendix)",
+  "type": "page"
+}

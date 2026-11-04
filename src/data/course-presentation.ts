@@ -15,8 +15,9 @@ export interface CoursePresentation {
 
 export const coursePresentation: Record<string, CoursePresentation> = {
   'make-ai-fail-safely': { blurb: 'One failure mode a day.' },
-  'faang-system-design-90-days': {
+  'design-out-loud': {
     blurb: 'One sitting is a day. Attempt before you read.',
+    // The course's first home (a Docsify reader, under its old name).
     legacyPath: '/faang-system-design-90-days/',
   },
 };

@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/start.md",
+  "course": "course/design-out-loud",
+  "description": "1. Set a timer. 2. Attempt the problem on [Day 1](days/01-what-the-interview-is-grading.md). Do not scroll past the attempt line. 3. Then read.",
+  "id": "page/design-out-loud/start",
+  "order": 0,
+  "section": "Start",
+  "source_path": "START.md",
+  "title": "Start here",
+  "type": "page"
+}

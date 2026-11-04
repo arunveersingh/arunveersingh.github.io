@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/prompts-warehouse-inventory.md",
+  "course": "course/design-out-loud",
+  "description": "Closed-book card for day 49. This file is the interviewer. It is not a worked example.",
+  "id": "page/design-out-loud/prompts-warehouse-inventory",
+  "order": 12,
+  "section": "Problem bank",
+  "source_path": "prompts/warehouse-inventory.md",
+  "title": "Warehouse inventory reservation",
+  "type": "page"
+}

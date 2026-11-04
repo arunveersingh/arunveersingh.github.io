@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-78.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a vague reliability ask, leave able to state an SLO and the user-visible miss when it is breached. Staff signal is not a poster of nines. It is one operation, one window, one miss the customer can feel, and a…",
+  "id": "lesson/design-out-loud/day-78",
+  "line": "Facing a vague reliability ask, leave able to state an SLO and the user-visible miss when it is breached.",
+  "n": 78,
+  "phase": "Failure and senior signal",
+  "source_path": "days/78-slos-and-the-miss-a-user-sees.md",
+  "time": "35 min",
+  "title": "Day 78 — SLOs and the miss a user sees",
+  "type": "lesson"
+}

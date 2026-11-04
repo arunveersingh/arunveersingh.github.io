@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-09.md",
+  "course": "course/design-out-loud",
+  "description": "Facing uneven load, leave able to choose balancing, health checks, and drain behavior, and say what each does to in-flight work. The balancer is the fix for four processes that clients cannot see. It is not a product.",
+  "id": "lesson/design-out-loud/day-09",
+  "line": "Facing uneven load, leave able to choose balancing, health checks, and drain behavior and what each does to in-flight work.",
+  "n": 9,
+  "phase": "First distributed design",
+  "source_path": "days/09-load-balancing-and-draining.md",
+  "time": "35 min",
+  "title": "Day 9 — Load balancing and draining",
+  "type": "lesson"
+}

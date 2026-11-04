@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-65.md",
+  "course": "course/design-out-loud",
+  "description": "Facing money movement, leave able to authorize and capture against an idempotent ledger so a retry cannot move money twice.",
+  "id": "lesson/design-out-loud/day-65",
+  "line": "Facing money movement, leave able to authorize and capture against an idempotent ledger so a retry cannot move money twice.",
+  "n": 65,
+  "phase": "Product-shaped systems",
+  "source_path": "days/65-payments.md",
+  "time": "40 min",
+  "title": "Day 65 — Payments",
+  "type": "lesson"
+}

@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/appendices-spanner.md",
+  "course": "course/design-out-loud",
+  "description": "Leave able to say **external consistency** and **why a multi-region transaction costs latency and availability**, without inventing a clock protocol on the whiteboard. Leave able to refuse a cross-region transaction…",
+  "id": "page/design-out-loud/appendices-spanner",
+  "order": 21,
+  "section": "Appendices",
+  "source_path": "appendices/spanner.md",
+  "title": "Spanner (appendix)",
+  "type": "page"
+}

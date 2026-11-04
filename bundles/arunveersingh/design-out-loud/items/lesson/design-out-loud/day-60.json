@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-60.md",
+  "course": "course/design-out-loud",
+  "description": "Facing \"what is near me,\" leave able to index points, bound staleness, and avoid leaking a precise location.",
+  "id": "lesson/design-out-loud/day-60",
+  "line": "Facing \"what is near me,\" leave able to index points, bound staleness, and avoid leaking a precise location.",
+  "n": 60,
+  "phase": "Product-shaped systems",
+  "source_path": "days/60-nearby.md",
+  "time": "35 min",
+  "title": "Day 60 — Nearby",
+  "type": "lesson"
+}
