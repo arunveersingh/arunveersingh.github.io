@@ -50,7 +50,7 @@
         "skill/value-relocator": "2026-11-02",
         "skill/workslop-interceptor": "2026-11-02"
       },
-      "sha": "85a5413748b34ea3bef24e0f8cf4d39b35d38070"
+      "sha": "1e2a87b6a12941d7e38edafd217da4904d96044a"
     },
     "arunveersingh/design-out-loud": {
       "first_seen": {
@@ -168,7 +168,7 @@
         "page/design-out-loud/start": null,
         "page/design-out-loud/stencils": null
       },
-      "sha": "f5d61fb76c07e9b93439db7f61a953c510b02660"
+      "sha": "40fbb1188625f0630bca6502fdd41dd713767ea7"
     }
   }
 }
