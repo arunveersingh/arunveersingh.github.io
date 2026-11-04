@@ -17,13 +17,16 @@ on:
   workflow_dispatch:
 
 # main is protected: a change lands only through a PR whose 'verify' check
-# passes. The bot opens that PR with REASONFROM_BOT_TOKEN (a fine-grained token
-# for this repo). Its pushes and PRs trigger verify — the built-in token's do
-# not — and auto-merge lands the PR only when verify passes. The merge, made as
-# the token's owner, triggers pages.yml, so the deploy follows on its own.
+# passes. Pushes and PRs made with the built-in token do not trigger other
+# workflows, but a manual dispatch does. So the bot opens its PR, dispatches
+# the real verify.yml on its branch (an independent run, same gates, same
+# check name), enables auto-merge, waits for GitHub to merge, then dispatches
+# the deploy. No personal token is involved; protection on main is unchanged.
 permissions:
-  contents: read
-  issues: write     # one "Publish failing" issue, opened and closed automatically
+  contents: write        # push the bot branch
+  pull-requests: write   # open the PR, enable auto-merge
+  actions: write         # dispatch verify.yml and pages.yml
+  issues: write          # one "Publish failing" issue, opened and closed automatically
 
 concurrency:
   group: sync-content
@@ -38,9 +41,6 @@ jobs:
       ISSUE_TITLE: "Publish failing"
     steps:
       - uses: actions/checkout@v7
-        with:
-          # Pushes made with this token trigger verify on the bot's branch.
-          token: ${{ secrets.REASONFROM_BOT_TOKEN || github.token }}
 
       - uses: actions/setup-node@v7
         with:
@@ -83,19 +83,13 @@ jobs:
       - name: Check internal links
         run: node scripts/check-links.mjs
 
-      - name: Open or update the bot PR
+      - name: Publish through a verified PR
         env:
-          BOT_TOKEN: ${{ secrets.REASONFROM_BOT_TOKEN }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           git add bundles content.lock.json src/data/launches.json src/content/videos
           if git diff --cached --quiet; then
             echo "Nothing changed."
-            exit 0
-          fi
-          if [ -z "$BOT_TOKEN" ]; then
-            echo "::warning::Content changed, but REASONFROM_BOT_TOKEN is not set, so the bot cannot open its PR. Nothing was published."
-            git diff --cached --stat
             exit 0
           fi
           git config user.name "github-actions[bot]"
@@ -105,18 +99,32 @@ jobs:
             console.log(Object.entries(l.sources).map(([r, s]) => `${r}@${s.sha.slice(0, 7)}`).join(", "));')
           git commit -q -m "Sync content: ${summary}"
           git push -q -f origin HEAD:refs/heads/bot/sync-content
-          export GH_TOKEN="$BOT_TOKEN"
+          sha=$(git rev-parse HEAD)
+
           n=$(gh pr list --head bot/sync-content --state open --json number --jq '.[0].number // empty')
           if [ -z "$n" ]; then
-            gh pr create --base main --head bot/sync-content \
-              --title "Sync content" \
-              --body "Automatic content sync: ${summary}. Merges itself once \`verify\` passes. Run: $RUN_URL"
+            gh pr create --base main --head bot/sync-content --title "Sync content" \
+              --body "Automatic content sync: ${summary}. verify runs on this branch; the PR merges itself when it passes. Run: $RUN_URL"
             n=$(gh pr list --head bot/sync-content --state open --json number --jq '.[0].number')
-          else
-            gh pr comment "$n" --body "Updated by $RUN_URL: ${summary}"
           fi
+
+          # An independent verify run on exactly this commit (the required check).
+          gh workflow run verify.yml --ref bot/sync-content
           gh pr merge "$n" --auto --merge
-          echo "PR #$n will merge itself when verify passes."
+
+          # Wait (up to 20 min) for GitHub to merge it, then deploy.
+          for i in $(seq 1 80); do
+            state=$(gh pr view "$n" --json state --jq .state)
+            [ "$state" = "MERGED" ] && break
+            [ "$state" = "CLOSED" ] && { echo "::error::PR #$n was closed without merging"; exit 1; }
+            sleep 15
+          done
+          if [ "$state" != "MERGED" ]; then
+            echo "::error::PR #$n did not merge within 20 minutes (verify failing or still queued). Nothing was deployed."
+            exit 1
+          fi
+          gh workflow run pages.yml --ref main
+          echo "Published ${sha:0:7} via PR #$n; deploy dispatched."
 
       - name: Close failure issue
         if: success()
