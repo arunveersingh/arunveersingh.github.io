@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { withBase } from '../../data/site';
 import { resourceLabel, skillTitle } from '../../lib/skills';
+import { videosFor } from '../../lib/related';
+import Thumb from '../../components/Thumb.astro';
 
 export async function getStaticPaths() {
   const skills = await getCollection('skills');
@@ -13,6 +15,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const title = skillTitle(entry);
+const videos = await videosFor('skill', entry.data.name);
 const raw = entry.data.source.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('/blob/', '/');
 ---
 
@@ -35,5 +38,22 @@ const raw = entry.data.source.replace('https://github.com/', 'https://raw.github
     <div class="article-body" style="margin-top: 2rem;">
       <Content />
     </div>
+    {
+      videos.length > 0 && (
+        <section style="margin-top: 2.5rem;">
+          <p class="kicker">Watch</p>
+          <ol class="clip-list">
+            {videos.map((v) => (
+              <li>
+                <a class="clip" href={withBase(`/watch/${v.id}/`)}>
+                  <Thumb youtubeId={v.data.youtubeId!} title={v.data.title} />
+                  <span><span class="meta">{v.data.format === 'short' ? 'Short' : 'Talk'}</span><strong>{v.data.title}</strong></span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
   </article>
 </Base>

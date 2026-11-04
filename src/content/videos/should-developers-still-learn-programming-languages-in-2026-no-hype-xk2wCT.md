@@ -1,12 +1,13 @@
 ---
 title: "Should Developers Still Learn Programming Languages in 2026? (No Hype)"
-description: "In this data-driven video I reveal the latest 2025–2026 research from GitHub, JetBrains, and Anthropic, plus real job market trends and what’s actually happening inside production codebases."
+description: "Should you still learn a programming language now that AI writes code? This video says yes, explains why understanding code matters more when AI does the typing, and ends with a 30-day plan for using AI without losing y…"
 published: 2026-04-16
 channel: oopsfeedmecode
 youtubeId: "xk2wCTYekKw"
+format: long
 topics: ["youtube"]
-thesis: "In this data-driven video I reveal the latest 2025–2026 research from GitHub, JetBrains, and Anthropic, plus real job market trends and what’s actually happening inside production codebases."
+thesis: "Should you still learn a programming language now that AI writes code? This video says yes, explains why understanding code matters more when AI does the typing, and ends with a 30-day plan for using AI without losing y…"
 generated: true
 ---
 
-In this data-driven video I reveal the latest 2025–2026 research from GitHub, JetBrains, and Anthropic, plus real job market trends and what’s actually happening inside production codebases.
+Should you still learn a programming language now that AI writes code? This video says yes, explains why understanding code matters more when AI does the typing, and ends with a 30-day plan for using AI without losing y…

@@ -1,12 +1,13 @@
 ---
 title: "Sycophancy and Hallucinations: Ways to stop it"
-description: "Have you ever felt like ChatGPT is just telling you what you want to hear? Or caught it completely making up a fake fact? You are not alone! In this video, we break down two of the biggest hidden problems in AI today: S…"
+description: "Why ChatGPT and other AI chatbots agree with you too easily (sycophancy) or make up facts (hallucinations), and simple prompt instructions that make their answers more honest and accurate. You'll see an example of a mod…"
 published: 2026-04-15
 channel: oopsfeedmecode
 youtubeId: "rFSoFfboPgI"
+format: long
 topics: ["youtube"]
-thesis: "Have you ever felt like ChatGPT is just telling you what you want to hear? Or caught it completely making up a fake fact? You are not alone! In this video, we break down two of the biggest hidden problems in AI today: S…"
+thesis: "Why ChatGPT and other AI chatbots agree with you too easily (sycophancy) or make up facts (hallucinations), and simple prompt instructions that make their answers more honest and accurate. You'll see an example of a mod…"
 generated: true
 ---
 
-Have you ever felt like ChatGPT is just telling you what you want to hear? Or caught it completely making up a fake fact? You are not alone! In this video, we break down two of the biggest hidden problems in AI today: S…
+Why ChatGPT and other AI chatbots agree with you too easily (sycophancy) or make up facts (hallucinations), and simple prompt instructions that make their answers more honest and accurate. You'll see an example of a mod…

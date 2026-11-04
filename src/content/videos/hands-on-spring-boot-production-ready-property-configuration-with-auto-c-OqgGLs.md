@@ -4,6 +4,7 @@ description: "Hands on session to demonstrate how to setup and Configure propert
 published: 2025-01-15
 channel: oopsfeedmecode
 youtubeId: "OqgGLsKkkjc"
+format: long
 topics: ["youtube"]
 thesis: "Hands on session to demonstrate how to setup and Configure properties in a spring boot app using @ConfigurationProperties and @EnableConfigurationProperties. It also explains the use of Spring Configuration Processor to…"
 generated: true

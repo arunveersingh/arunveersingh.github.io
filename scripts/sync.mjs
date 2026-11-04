@@ -211,6 +211,7 @@ ${thesis}
   };
 }
 
+/** @deprecated Destructive rebuild from 15-item feeds; kept only for reference. Use scripts/sync-videos.mjs. */
 async function syncVideos() {
   const { generated, preserved } = await partitionDir(videosDir);
 
@@ -465,10 +466,10 @@ export { assertNotCollapsed, descriptionFrom, parseFeed, thesisFrom };
 // Only sync when executed directly. Importing this module (to test the note
 // builders against fixtures) must not touch the network or the filesystem.
 if (import.meta.filename === process.argv[1]) {
-  const videos = await syncVideos();
-  console.log(
-    `videos  written=${videos.written} preserved=${videos.preserved} failedFeeds=${videos.failures}`,
-  );
+  // Videos moved to scripts/sync-videos.mjs, which remembers videos instead of
+  // rebuilding from YouTube's 15-item feeds (that rebuild deleted older videos).
+  const { syncVideos: syncVideosKeeping } = await import('./sync-videos.mjs');
+  await syncVideosKeeping();
 
   const builds = await syncBuilds();
   console.log(`builds  written=${builds.written} preserved=${builds.preserved}`);

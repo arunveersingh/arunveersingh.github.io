@@ -3,7 +3,9 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Player from '../../components/Player.astro';
-import { channelById } from '../../data/site';
+import { channelById, withBase } from '../../data/site';
+import { linksForVideo } from '../../lib/related';
+import { outlines } from '../../lib/courses';
 import { transitionName } from '../../lib/motion';
 
 export async function getStaticPaths() {
@@ -16,6 +18,10 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const channel = channelById(entry.data.channel);
+const links = linksForVideo(entry);
+const skillNames = new Set((await getCollection('skills')).map((s) => s.data.name));
+const relatedSkills = links.skills.filter((n) => skillNames.has(n));
+const relatedCourses = outlines.filter((o) => links.courses.includes(o.slug));
 ---
 
 <Base
@@ -50,5 +56,20 @@ const channel = channelById(entry.data.channel);
         )
       }
     </p>
+    {
+      (relatedSkills.length > 0 || relatedCourses.length > 0) && (
+        <section style="margin-top: 2.5rem;">
+          <p class="kicker">Related on reasonfrom.com</p>
+          <ol class="index-list">
+            {relatedCourses.map((c) => (
+              <li><a href={withBase(`/courses/${c.slug}/`)}><span class="meta">Course</span><strong>{c.title}</strong><em>{c.tagline}</em></a></li>
+            ))}
+            {relatedSkills.map((n) => (
+              <li><a href={withBase(`/skills/${n}/`)}><span class="meta">Skill</span><strong>{n}</strong></a></li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
   </article>
 </Base>

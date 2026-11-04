@@ -4,6 +4,7 @@ description: "🚀 Discover Amazon's CodeWhisperer - Your AI based Free Code Ass
 published: 2024-01-19
 channel: oopsfeedmecode
 youtubeId: "Aey-ykoLllA"
+format: short
 topics: ["youtube"]
 thesis: "🚀 Discover Amazon's CodeWhisperer - Your AI based Free Code Assistant! 🚀"
 generated: true

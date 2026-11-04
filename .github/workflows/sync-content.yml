@@ -6,13 +6,14 @@ name: Sync content
 #
 # Triggers:
 #   repository_dispatch  a source repo merged to main (reasonfrom-kit action)
-#   schedule             catches missed dispatches and scheduled lessons
+#   schedule             every 3h: new YouTube uploads, missed dispatches,
+#                        scheduled lessons
 #   workflow_dispatch    by hand
 on:
   repository_dispatch:
     types: [reasonfrom-source-updated]
   schedule:
-    - cron: "17 */6 * * *"
+    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -60,6 +61,13 @@ jobs:
             node scripts/sync-bundles.mjs --update
           fi
 
+      # New uploads, Shorts detection, "New video" notices. Soft: a YouTube
+      # outage must not block course updates; it shows as a warning instead.
+      - name: Sync videos
+        if: github.event_name != 'repository_dispatch'
+        continue-on-error: true
+        run: node scripts/sync-videos.mjs
+
       # Same gates as the deploy, run before anything is committed.
       - name: Type-check
         run: npm run check
@@ -71,7 +79,7 @@ jobs:
       - name: Commit moved pins
         id: commit
         run: |
-          git add bundles content.lock.json src/data/launches.json
+          git add bundles content.lock.json src/data/launches.json src/content/videos
           if git diff --cached --quiet; then
             echo "Nothing changed."
             echo "changed=false" >> "$GITHUB_OUTPUT"

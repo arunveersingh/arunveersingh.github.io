@@ -4,6 +4,8 @@ import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
 import { withBase } from '../../../data/site';
 import { outlineFor, outlines, presentationFor } from '../../../lib/courses';
+import { videosFor } from '../../../lib/related';
+import Thumb from '../../../components/Thumb.astro';
 
 export function getStaticPaths() {
   return outlines.filter((o) => !o.externalUrl).map((o) => ({ params: { course: o.slug } }));
@@ -11,6 +13,7 @@ export function getStaticPaths() {
 
 const outline = outlineFor(Astro.params.course!);
 const { blurb } = presentationFor(outline.slug);
+const videos = await videosFor('course', outline.slug);
 const pageSections = [...new Set(outline.pages.map((p) => p.section))].map((section) => ({
   section,
   pages: outline.pages.filter((p) => p.section === section),
@@ -97,6 +100,24 @@ function dayHref(day: number): string {
           </ol>
         </section>
       ))
+    }
+
+    {
+      videos.length > 0 && (
+        <section class="course-phase">
+          <h2>Watch</h2>
+          <ol class="clip-list">
+            {videos.map((v) => (
+              <li>
+                <a class="clip" href={withBase(`/watch/${v.id}/`)}>
+                  <Thumb youtubeId={v.data.youtubeId!} title={v.data.title} />
+                  <span><span class="meta">{v.data.format === 'short' ? 'Short' : 'Talk'}</span><strong>{v.data.title}</strong></span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
     }
 
     <p class="meta lesson-back">

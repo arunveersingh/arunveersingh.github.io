@@ -4,6 +4,7 @@ description: "🎯 Part 1: https://youtube.com/shorts/IjjjBzMc7No?feature=share"
 published: 2024-01-17
 channel: oopsfeedmecode
 youtubeId: "f2wHpAJItKs"
+format: short
 topics: ["youtube"]
 thesis: "🎯 Part 1: https://youtube.com/shorts/IjjjBzMc7No?feature=share"
 generated: true

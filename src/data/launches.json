@@ -89,5 +89,40 @@
     "title": "Day 21 — Fewer Complaints, More Mistakes",
     "href": "/courses/make-ai-fail-safely/day-21/",
     "published": "2026-11-02"
+  },
+  {
+    "id": "video-M8yFkWkdWBY",
+    "label": "New video",
+    "title": "RAG from first principles: chunking to evals",
+    "href": "/watch/rag-from-first-principles-chunking-to-evals-m8yfkw/",
+    "published": "2026-11-03"
+  },
+  {
+    "id": "video-2Lv1z0tK7qg",
+    "label": "New video",
+    "title": "Why AI now thinks before it answers?",
+    "href": "/watch/why-ai-now-thinks-before-it-answers-2lv1z0/",
+    "published": "2026-10-31"
+  },
+  {
+    "id": "video-Akj7KFHEmu8",
+    "label": "New video",
+    "title": "Making OKF Production Ready: Tools, Linting & Sync | Part 2",
+    "href": "/watch/making-okf-production-ready-tools-linting-sync-part-2-akj7kf/",
+    "published": "2026-10-29"
+  },
+  {
+    "id": "video-UZV6EhvKc0g",
+    "label": "New video",
+    "title": "OKF explained: the Open Knowledge Format for AI agents",
+    "href": "/watch/okf-explained-the-open-knowledge-format-for-ai-agents-uzv6eh/",
+    "published": "2026-10-25"
+  },
+  {
+    "id": "video-iUtE8K7KJ5U",
+    "label": "New video",
+    "title": "Spec-Driven AI Coding Has a Blind Spot",
+    "href": "/watch/spec-driven-ai-coding-has-a-blind-spot-iute8k/",
+    "published": "2026-10-20"
   }
 ]

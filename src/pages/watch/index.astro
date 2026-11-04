@@ -6,12 +6,18 @@ import Thumb from '../../components/Thumb.astro';
 import { channelById, site, withBase } from '../../data/site';
 import { canonVideos, leadVideo, publishedVideos } from '../../lib/content';
 import { transitionName } from '../../lib/motion';
+import { latest, shortsBySeries } from '../../lib/related';
 
 const videos = await publishedVideos();
 const selected = await canonVideos();
 // Pinned by the order of `leadVideoNeedles`, not by whichever match is newest.
 const lead = await leadVideo();
-const library = videos.filter((video) => !selected.some((item) => item.id === video.id));
+const fresh = latest(videos).filter((v) => v.id !== lead?.id);
+const inCut = (v: (typeof videos)[number]) => selected.some((item) => item.id === v.id);
+// Long talks only; Shorts get their own grouped section below.
+const library = videos.filter((video) => !inCut(video) && video.data.format !== 'short');
+const shortGroups = shortsBySeries(videos.filter((v) => !inCut(v)));
+const shortCount = shortGroups.reduce((n, g) => n + g.items.length, 0);
 ---
 
 <Base title="Watch" description="Selected talks on engineering judgment, playable here.">
@@ -22,8 +28,29 @@ const library = videos.filter((video) => !selected.some((item) => item.id === vi
       <a href={site.youtube[0].href}>{site.youtube[0].name}</a>
       {' '}and{' '}
       <a href={site.youtube[1].href}>{site.youtube[1].name}</a>
-      {' '}— {videos.length} indexed here, {selected.length} in the cut.
+      {' '}— {videos.length} indexed here, {selected.length} in the cut. New uploads appear on their own.
     </p>
+
+    {
+      fresh.length > 0 && (
+        <>
+          <p class="kicker">Latest</p>
+          <ol class="clip-list">
+            {fresh.map((video) => (
+              <li>
+                <a class="clip" href={withBase(`/watch/${video.id}/`)}>
+                  <Thumb youtubeId={video.data.youtubeId!} title={video.data.title} transitionName={transitionName('talk', video.id)} />
+                  <span>
+                    <span class="meta">{channelById(video.data.channel).name} · {video.data.published.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</span>
+                    <strong>{video.data.title}</strong>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
+      )
+    }
 
     {
       lead?.data.youtubeId && (
@@ -79,7 +106,7 @@ const library = videos.filter((video) => !selected.some((item) => item.id === vi
                       <Thumb
                         youtubeId={video.data.youtubeId}
                         title={video.data.title}
-                        transitionName={transitionName('talk', video.id)}
+                        transitionName={fresh.some((f) => f.id === video.id) ? undefined : transitionName('talk', video.id)}
                       />
                       <span>
                         <span class="meta">{channelById(video.data.channel).name}</span>
@@ -91,6 +118,35 @@ const library = videos.filter((video) => !selected.some((item) => item.id === vi
             )}
           </ol>
         </>
+      )
+    }
+
+    {
+      shortCount > 0 && (
+        <details class="archive" style="margin-top: 2.5rem;">
+          <summary>
+            <span class="archive-label">Shorts</span>
+            <span class="archive-count">{shortCount} short{shortCount === 1 ? '' : 's'}, by series</span>
+          </summary>
+          {shortGroups.map((group) => (
+            <>
+              <p class="kicker" style="margin-top: 1.5rem;">{group.series}</p>
+              <ol class="clip-list">
+                {group.items.map((video) => (
+                  <li>
+                    <a class="clip" href={withBase(`/watch/${video.id}/`)}>
+                      <Thumb youtubeId={video.data.youtubeId!} title={video.data.title} />
+                      <span>
+                        <span class="meta">{channelById(video.data.channel).name}</span>
+                        <strong>{video.data.title.replace(/\s*(#[\w-]+\s*)+$/, '').replace(/\s*\|\s*\d+\s*$/, '')}</strong>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </>
+          ))}
+        </details>
       )
     }
   </div>

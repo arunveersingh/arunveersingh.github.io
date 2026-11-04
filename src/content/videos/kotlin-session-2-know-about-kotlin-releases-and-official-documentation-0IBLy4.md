@@ -4,6 +4,7 @@ description: "In this session we discovers how Kotlin manages the versioning of 
 published: 2021-10-08
 channel: oopsfeedmecode
 youtubeId: "0IBLy46aV7E"
+format: long
 topics: ["youtube"]
 thesis: "In this session we discovers how Kotlin manages the versioning of releases and official documentation which can be used for referencing and learning purposes."
 generated: true

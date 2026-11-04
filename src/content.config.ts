@@ -30,6 +30,8 @@ const videos = defineCollection({
     published: z.coerce.date(),
     channel: z.enum(['oopsfeedmecode', 'developernoteshindi']),
     youtubeId: z.string().optional(),
+    /** Set by scripts/sync-videos.mjs: Shorts are listed apart from talks. */
+    format: z.enum(['short', 'long']).optional(),
     topics,
     thesis: z.string(),
     manual: z.boolean().default(false),

@@ -4,6 +4,7 @@ description: "✅ Validation Service - clean management of validations in projec
 published: 2024-07-20
 channel: developernoteshindi
 youtubeId: "t_3VG64GC0g"
+format: long
 topics: ["youtube"]
 thesis: "✅ Validation Service - clean management of validations in project"
 generated: true

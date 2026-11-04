@@ -4,6 +4,7 @@ description: "In this hands-on session we setup Kotlin compiler and use command-
 published: 2021-10-09
 channel: oopsfeedmecode
 youtubeId: "WqjGSeA3GHg"
+format: long
 topics: ["youtube"]
 thesis: "In this hands-on session we setup Kotlin compiler and use command-line to compile and execute Kotlin code. It gives an idea of why we need to package Kotlin runtime with source code."
 generated: true

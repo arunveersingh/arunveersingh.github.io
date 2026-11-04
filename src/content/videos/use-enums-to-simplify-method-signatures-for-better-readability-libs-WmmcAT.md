@@ -4,6 +4,7 @@ description: "✅ The power of Enums in Java for clearer method signatures."
 published: 2024-01-08
 channel: oopsfeedmecode
 youtubeId: "WmmcATsJqIs"
+format: long
 topics: ["youtube"]
 thesis: "✅ The power of Enums in Java for clearer method signatures."
 generated: true
