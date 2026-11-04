@@ -1,12 +1,13 @@
 ---
-title: "Using Solid SRP Eliminated The Nested If Else And Null Check"
-description: "✅ Strategies for reducing code complexity with method overloading."
+title: "Fix Nested If-Else in Java with Method Overloading"
+description: "See how to remove a nested if-else full of null checks from a Java method by splitting it into overloaded methods: the same method name, with different inputs. The result is shorter code where each method does one job, …"
 published: 2024-01-01
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "_kdyaK-Uwyg"
+format: long
 topics: ["youtube"]
-thesis: "✅ Strategies for reducing code complexity with method overloading."
+thesis: "See how to remove a nested if-else full of null checks from a Java method by splitting it into overloaded methods: the same method name, with different inputs. The result is shorter code where each method does one job, …"
 generated: true
 ---
 
-✅ Strategies for reducing code complexity with method overloading.
+See how to remove a nested if-else full of null checks from a Java method by splitting it into overloaded methods: the same method name, with different inputs. The result is shorter code where each method does one job, …

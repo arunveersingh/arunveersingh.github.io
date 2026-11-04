@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-10.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a database melted by reads, leave able to add cache-aside and name the miss path and what must not be cached. The cache is a fix for the primary's read ceiling. It is not a faster disk, and it is not where…",
+  "id": "lesson/design-out-loud/day-10",
+  "line": "Facing a database melted by reads, leave able to add cache-aside and name the miss path and what must not be cached.",
+  "n": 10,
+  "phase": "First distributed design",
+  "source_path": "days/10-cache-aside-for-the-melted-read.md",
+  "time": "40 min",
+  "title": "Day 10 — Cache-aside for the melted read",
+  "type": "lesson"
+}

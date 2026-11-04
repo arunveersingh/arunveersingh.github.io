@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-06.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Days 1–5 were about what the model says from its own head, or from yours. Today it has a tool: it runs a command, calls an API, or searches, and gets real output back. **What you read is its summary of that output.**",
+  "id": "lesson/make-ai-fail-safely/day-06",
+  "line": "Model misreads, softens, or invents tool output (\"no failures, safe to merge\" when pytest printed `no tests ran`, exit code 4)",
+  "n": 6,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 6 — Tool-Output Trust Collapse",
+  "type": "lesson"
+}

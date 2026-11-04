@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-80.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a region that is already dark, leave able to state RPO, RTO, and which side is authoritative for new writes. Day 43 chose the topology while healthy. This day operates the failure: the writer region is gone,…",
+  "id": "lesson/design-out-loud/day-80",
+  "line": "Facing a region that is already dark, leave able to state RPO, RTO, and which side is authoritative for new writes.",
+  "n": 80,
+  "phase": "Failure and senior signal",
+  "source_path": "days/80-losing-a-region.md",
+  "time": "40 min",
+  "title": "Day 80 — Losing a region",
+  "type": "lesson"
+}

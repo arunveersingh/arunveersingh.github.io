@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-17.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a public write API, leave able to put rate limits and abuse control on the path before the expensive store. The limiter is a fix for a client who can spend your PUT budget. It is not a classifier, and it is not…",
+  "id": "lesson/design-out-loud/day-17",
+  "line": "Facing a public write API, leave able to put rate limits and abuse control on the path before the expensive store.",
+  "n": 17,
+  "phase": "First distributed design",
+  "source_path": "days/17-rate-limits-and-abuse.md",
+  "time": "35 min",
+  "title": "Day 17 — Rate limits and abuse",
+  "type": "lesson"
+}

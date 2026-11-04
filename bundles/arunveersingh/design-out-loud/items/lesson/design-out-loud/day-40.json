@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-40.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a multi-row change, leave able to draw the transaction at one shard and pick an isolation level on purpose. A transaction that \"covers everything\" is a wish. A transaction that covers the rows that must not…",
+  "id": "lesson/design-out-loud/day-40",
+  "line": "Facing a multi-row change, leave able to draw the transaction at one shard and pick an isolation level on purpose.",
+  "n": 40,
+  "phase": "Data and consistency",
+  "source_path": "days/40-transactions-that-stop-at-the-shard.md",
+  "time": "40 min",
+  "title": "Day 40 — Transactions that stop at the shard",
+  "type": "lesson"
+}

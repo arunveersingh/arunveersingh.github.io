@@ -4,6 +4,7 @@ description: "🎯 https://github.com/arunveersingh/bugmeincodehaisessions/tree/
 published: 2024-07-20
 channel: developernoteshindi
 youtubeId: "gXKq18WfxAU"
+format: long
 topics: ["youtube"]
 thesis: "🎯 https://github.com/arunveersingh/bugmeincodehaisessions/tree/main/20July2024"
 generated: true

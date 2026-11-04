@@ -4,6 +4,7 @@ description: "Your daily meetings are not just wasting your time — they are ac
 published: 2026-05-30
 channel: developernoteshindi
 youtubeId: "sE6Lfsvtw1Q"
+format: long
 topics: ["youtube"]
 thesis: "Your daily meetings are not just wasting your time — they are actively making you incompetent. Here's the science, the data, and what to do about it starting Monday."
 generated: true

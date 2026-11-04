@@ -1,38 +1,17 @@
 ---
 title: "AI skills that will not let you be wrong in peace"
-description: "Peer reviewers and accountability mechanisms for agents — not cheerleaders."
+description: "Agent skills that protect what AI made scarce — truth, ownership, intent, attention, authority, capability, originality, self."
 published: 2026-07-12
 repo: "https://github.com/arunveersingh/ai"
 topics: ["ai", "agents", "skills"]
-problem: "Smart assistants make it easier to be wrong, confidently. These skills refuse to proceed on unverified assumptions."
+problem: "AI made producing work nearly free. Checking it, understanding it, and owning it did not get cheaper — so that is where things now go wrong."
 manual: true
 ---
 
-Most prompt packs try to make the model more helpful. This repo does the opposite. It packages **standards** as [Agent Skills](https://github.com/arunveersingh/ai): blocks, gates, and follow-ups that close the loop.
+Most prompt packs try to make the model more helpful. This repo protects the things that helpfulness quietly uses up. Each skill targets one documented failure, names the mechanism behind it, and adds one step that can't be satisfied by nodding along: your judgment written down before you see the AI's, a sealed spec, a counted ledger, a measured comparison.
 
-The rule: AI’s job is not to make you happy. It is to force you not to make mistakes.
+The skills are honest about their limits. A prompt can't block you, so none of them pretend to. They say what they control, what they don't, and when to stand down.
 
-## What is in the box
+**Browse all of them, grouped by what they protect: [Skills](/skills/).** Each page has the full skill, its eval cases, and a link to the `SKILL.md` you can load into Claude Code, Copilot, Cursor, Gemini CLI, or paste into any chat.
 
-**Thinking**
-
-- [adversarial-collaborator](https://github.com/arunveersingh/ai/tree/main/skills/adversarial-collaborator) — no round limits. Requires demonstrated updates.
-- [assumption-surfacer](https://github.com/arunveersingh/ai/tree/main/skills/assumption-surfacer) — contradicted assumptions must be resolved before you continue.
-- [decision-pressure-tester](https://github.com/arunveersingh/ai/tree/main/skills/decision-pressure-tester) — refuses to proceed past critical failures.
-- [first-principles-decomposer](https://github.com/arunveersingh/ai/tree/main/skills/first-principles-decomposer) — will not derive from a guess.
-- [pre-mortem-oracle](https://github.com/arunveersingh/ai/tree/main/skills/pre-mortem-oracle) — will say do not proceed.
-- [recontextualizer](/recontextualizer/) — lists every item and path it finds, then asks you to explain the high-risk ones in your own words. “Got it” stays unverified.
-
-**Synthesis, research, code, writing, learning**
-
-- [concept-synthesizer](https://github.com/arunveersingh/ai/tree/main/skills/concept-synthesizer) — no aesthetic resonance without a falsifiable prediction.
-- [bayesian-belief-tracker](https://github.com/arunveersingh/ai/tree/main/skills/bayesian-belief-tracker) — blocks motivated reasoning.
-- [bug-hypothesis-generator](https://github.com/arunveersingh/ai/tree/main/skills/bug-hypothesis-generator) — “be more careful” is not a fix.
-- [editor-not-writer](https://github.com/arunveersingh/ai/tree/main/skills/editor-not-writer) — will say not ready.
-- [learning-partner](https://github.com/arunveersingh/ai/tree/main/skills/learning-partner) — “I get it” is not verification.
-
-## How to use it
-
-Point any Agent Skills–compatible tool at the `skills/` directory, or paste a `SKILL.md` as a system prompt. Compatible with Claude Code, Cursor, GitHub Copilot, Gemini CLI, Windsurf, and others.
-
-Source: [github.com/arunveersingh/ai](https://github.com/arunveersingh/ai). Apache 2.0.
+Start with [symptom-triage](/skills/symptom-triage/) if you're not sure which one you need, or try the [recontextualizer session](/recontextualizer/).

@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-13.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 11 taught the agent to stop and ask. Today is about you, at the moment it does.",
+  "id": "lesson/make-ai-fail-safely/day-13",
+  "line": "The 38th approval of the day reads \"Dry run OK, schema valid, retry 1,184 failed SEPA debits in prod?\" and is approved in four seconds; the bank had already booked 211 of them, so 211 customers are debited twice",
+  "n": 13,
+  "phase": "Guardrails",
+  "time": "~15 min",
+  "title": "Day 13 — Approved in Four Seconds",
+  "type": "lesson"
+}

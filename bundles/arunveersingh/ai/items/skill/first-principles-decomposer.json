@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/first-principles-decomposer.md",
+  "description": "Strips solutions to fundamental constraints and rebuilds from atoms — but demands that stated constraints are verified, not assumed. Blocks 'it depends' without data-gathering commitment. Challenges every constraint claim with 'prove it' before accepting it into the derivation. Garbage in, beautiful reasoning, garbage out — so the inputs must be verified first.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/first-principles-decomposer.md"
+  },
+  "id": "skill/first-principles-decomposer",
+  "license": "Apache-2.0",
+  "name": "first-principles-decomposer",
+  "resource": "intent",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/first-principles-decomposer/SKILL.md",
+  "symptom": "Elegant reasoning built on constraints nobody verified.",
+  "type": "skill",
+  "version": "1.1"
+}

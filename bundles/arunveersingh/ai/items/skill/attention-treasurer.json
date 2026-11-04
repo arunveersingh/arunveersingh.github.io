@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/attention-treasurer.md",
+  "description": "Treats your attention as the scarce budget it is when you run several AI agents or threads at once. Inventories every open agent thread and its unreviewed output, prices each by review effort and context-switch cost, and sets a work-in-progress limit from your own measured review throughput — not from how many terminals you can open. Unreviewed output goes on a verification-debt queue as a liability, not progress. While the queue is over the limit, it won't help launch more work unless you explicitly choose to take on debt, which it logs. Ends each session with an honest accounting: closed, parked, abandoned. Use when juggling parallel agents, feeling \"busy but nothing lands,\" or when review has quietly become the bottleneck.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/attention-treasurer.md"
+  },
+  "id": "skill/attention-treasurer",
+  "license": "Apache-2.0",
+  "name": "attention-treasurer",
+  "resource": "attention",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/attention-treasurer/SKILL.md",
+  "symptom": "Agents generate faster than the human can review; output piles up, errors slip through, and the human feels fried.",
+  "type": "skill",
+  "version": "1.0"
+}

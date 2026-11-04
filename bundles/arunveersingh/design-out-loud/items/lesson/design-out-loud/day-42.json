@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-42.md",
+  "course": "course/design-out-loud",
+  "description": "Facing two writers, leave able to choose versions, last write, or a merge, and say when a CRDT is worth naming. Conflict is not a failure mode you discover at the end. It is a rule you publish before two regions write,…",
+  "id": "lesson/design-out-loud/day-42",
+  "line": "Facing two writers, leave able to choose versions, last write, or a merge, and say when a CRDT is worth naming.",
+  "n": 42,
+  "phase": "Data and consistency",
+  "source_path": "days/42-conflicts-you-can-explain.md",
+  "time": "40 min",
+  "title": "Day 42 — Conflicts you can explain",
+  "type": "lesson"
+}

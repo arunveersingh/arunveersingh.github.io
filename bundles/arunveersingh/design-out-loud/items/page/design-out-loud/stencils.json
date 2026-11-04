@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/stencils.md",
+  "course": "course/design-out-loud",
+  "description": "Six types, used the same way every day. Week 1 fills them for the pastebin on [day 6](../days/06-a-diagram-that-survives.md). Later days only mark them up. If a figure needs a legend, it will not fit a whiteboard.",
+  "id": "page/design-out-loud/stencils",
+  "order": 13,
+  "section": "Tools",
+  "source_path": "stencils/README.md",
+  "title": "Diagram stencils",
+  "type": "page"
+}

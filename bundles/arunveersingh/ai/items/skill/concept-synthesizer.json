@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/concept-synthesizer.md",
+  "description": "Finds deep structural patterns across ideas, but refuses to let synthesis remain abstract. Every synthesis must produce falsifiable predictions and connect to specific action — or be downgraded to aesthetic association. Use when you have concepts that feel connected and want to discover if the link is real, testable, and useful — not just intellectually pleasing.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/concept-synthesizer.md"
+  },
+  "id": "skill/concept-synthesizer",
+  "license": "Apache-2.0",
+  "name": "concept-synthesizer",
+  "resource": "originality",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/concept-synthesizer/SKILL.md",
+  "symptom": "Ideas that feel connected get mistaken for insight without a testable prediction.",
+  "type": "skill",
+  "version": "1.1"
+}

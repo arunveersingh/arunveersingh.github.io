@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-20.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Days 15 to 19 gave you tests and checks for an AI step. They catch mistakes. Today is about what you do with the pile of mistakes they catch.",
+  "id": "lesson/make-ai-fail-safely/day-20",
+  "line": "A parcel app's AI changes deliveries from customers' messages. Each loud complaint gets its own fix (nine in six weeks, instructions grow from 14 to 31 lines) and mistakes stay at about 40 a week. Sorted by cause, the biggest kind, \"changed the wrong parcel\" (41 of 120, 59 of 182 harm points), had no fixes; the kind with four fixes had 7 mistakes",
+  "n": 20,
+  "phase": "Evals",
+  "time": "~15 min",
+  "title": "Day 20 — Nine Fixes, Still 40 a Week",
+  "type": "lesson"
+}

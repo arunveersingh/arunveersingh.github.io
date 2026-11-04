@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-34.md",
+  "course": "course/design-out-loud",
+  "description": "Facing replica lag, leave able to give the right operations monotonic reads or read-your-writes. \"Read from the replica\" is not a strategy until you say which client is allowed to go backwards, and which client just…",
+  "id": "lesson/design-out-loud/day-34",
+  "line": "Facing replica lag, leave able to give the right operations monotonic reads or read-your-writes.",
+  "n": 34,
+  "phase": "Data and consistency",
+  "source_path": "days/34-lag-monotonic-reads-read-your-writes.md",
+  "time": "40 min",
+  "title": "Day 34 — Lag, monotonic reads, read-your-writes",
+  "type": "lesson"
+}

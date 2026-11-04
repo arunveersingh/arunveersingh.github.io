@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/assumption-surfacer.md",
+  "description": "Surfaces implicit assumptions, evaluates them against available evidence, and refuses to treat unexamined foundations as settled. Use when you suspect you're trapped in a frame you can't see. Doesn't just make assumptions visible — classifies them as supported, unsupported, or contradicted, and requires you to deal with the contradicted ones.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/assumption-surfacer.md"
+  },
+  "id": "skill/assumption-surfacer",
+  "license": "Apache-2.0",
+  "name": "assumption-surfacer",
+  "resource": "truth",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/assumption-surfacer/SKILL.md",
+  "symptom": "Work proceeds on premises nobody stated, so nobody checked them.",
+  "type": "skill",
+  "version": "1.1"
+}

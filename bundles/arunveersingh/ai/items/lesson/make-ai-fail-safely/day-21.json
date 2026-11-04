@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-21.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 20 sorted your mistakes into kinds. But that pile only holds the mistakes someone reported. Today is about the ones nobody reports.",
+  "id": "lesson/make-ai-fail-safely/day-21",
+  "line": "A maths homework app's AI marks about 60,000 children's answers a week. A line added to stop \"right answer marked wrong\" complaints (\"if it means the same, like 0.5 and 1/2, mark it right\") cuts complaints from 85 a week to 52, while a random sample of 200, re-marked by a teacher, shows wrong answers marked right rising from 2 to 10 (about 3,000 a week, 1 complaint) and total mistakes from 7 to 13",
+  "n": 21,
+  "phase": "Evals",
+  "time": "~15 min",
+  "title": "Day 21 — Fewer Complaints, More Mistakes",
+  "type": "lesson"
+}

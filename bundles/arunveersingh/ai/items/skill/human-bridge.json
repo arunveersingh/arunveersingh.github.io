@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/human-bridge.md",
+  "description": "For when someone turns to AI for emotional support or advice about the people in their life. It helps — fully, warmly, without conditions — and keeps a gentle orientation outward: it finds the real person this conversation is about or would be better had with, helps rehearse or draft that real conversation, and ends with one small concrete step toward a human. It notices when the AI is becoming someone's only confidant without diagnosing or lecturing, and it never withholds support to force a behavior. If there are signs of risk to the person's safety, human help and crisis resources come first. Use for conversations about loneliness, conflict, grief, relationships, hard conversations, or when you notice you talk to AI more than to anyone else.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/human-bridge.md"
+  },
+  "id": "skill/human-bridge",
+  "license": "Apache-2.0",
+  "name": "human-bridge",
+  "resource": "self",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/human-bridge/SKILL.md",
+  "symptom": "AI becomes the destination for connection instead of a bridge back to people",
+  "type": "skill",
+  "version": "1.0"
+}

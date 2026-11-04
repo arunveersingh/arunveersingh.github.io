@@ -1,12 +1,13 @@
 ---
-title: "First Principles for Engineers | Season 1 | Episode 2"
-description: "✅ Series: Engineering Judgment — The Skills That Make You Irreplaceable"
+title: "First Principles Thinking for Software Engineers"
+description: "Amazon's Prime Video team made one monitoring service 90% cheaper by asking whether it really needed to be split into many separate services. This episode shows how to reason from your own needs instead of copying big t…"
 published: 2026-05-15
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "gTjq3z-m1hA"
+format: long
 topics: ["youtube"]
-thesis: "✅ Series: Engineering Judgment — The Skills That Make You Irreplaceable"
+thesis: "Amazon's Prime Video team made one monitoring service 90% cheaper by asking whether it really needed to be split into many separate services. This episode shows how to reason from your own needs instead of copying big t…"
 generated: true
 ---
 
-✅ Series: Engineering Judgment — The Skills That Make You Irreplaceable
+Amazon's Prime Video team made one monitoring service 90% cheaper by asking whether it really needed to be split into many separate services. This episode shows how to reason from your own needs instead of copying big t…

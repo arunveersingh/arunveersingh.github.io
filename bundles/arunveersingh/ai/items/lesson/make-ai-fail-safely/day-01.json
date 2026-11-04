@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-01.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "AI can state something false in the same calm, finished voice it uses for something true. After today you will stop treating \"sounds right\" as proof that it *is* right — and you'll have two moves you can actually use:…",
+  "id": "lesson/make-ai-fail-safely/day-01",
+  "line": "False claim, same tone as a true one",
+  "n": 1,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 1 — Confident Wrongness",
+  "type": "lesson"
+}

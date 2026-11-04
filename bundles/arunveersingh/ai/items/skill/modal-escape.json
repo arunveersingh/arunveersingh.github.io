@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/modal-escape.md",
+  "description": "Gets you ideas that aren't the ones everyone else asking the same question will get. A model's default answer sits near the center of its training distribution, so \"give me ideas\" returns the mode — individually polished, collectively identical. This skill seals your own raw ideas before the AI speaks, has the AI name the obvious answers out loud so they can be banned, generates from forced distant constraints, and runs a \"would a thousand other people get this too?\" test on every candidate. It protects your weird ideas instead of smoothing them into consensus. Use for naming, strategy, product ideas, research angles, creative writing, talks — anywhere being different is the point.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/modal-escape.md"
+  },
+  "id": "skill/modal-escape",
+  "license": "Apache-2.0",
+  "name": "modal-escape",
+  "resource": "originality",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/modal-escape/SKILL.md",
+  "symptom": "AI-assisted ideas are better one by one and more alike across everyone",
+  "type": "skill",
+  "version": "1.0"
+}

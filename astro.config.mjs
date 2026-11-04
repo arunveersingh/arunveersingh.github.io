@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 // Custom apex domain, served by GitHub Pages from the arunveersingh.github.io repo.
 // The domain is repo configuration, not public/CNAME: Pages builds here via
 // GitHub Actions, and in that mode a CNAME file in the artifact is ignored.
+// Retired course readers that now only redirect (see src/data/course-presentation.ts).
+const LEGACY_PATHS = ['/faang-system-design-90-days/'];
+
 export default defineConfig({
   // Drives every canonical URL, og:url, sitemap entry and RSS link.
   site: 'https://reasonfrom.com',
@@ -35,9 +38,9 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      // `/atlas/` is a stub and `/404` is not content. Neither belongs in a
-      // sitemap submitted to search engines.
-      filter: (page) => !page.includes('/atlas/') && !page.includes('/404'),
+      // `/atlas/` is a stub, `/404` is not content, and legacy reader paths are
+      // redirects. None belongs in a sitemap submitted to search engines.
+      filter: (page) => !page.includes('/atlas/') && !page.includes('/404') && !LEGACY_PATHS.includes(new URL(page).pathname),
     }),
   ],
 });

@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/prompts-email-inbox.md",
+  "course": "course/design-out-loud",
+  "description": "Closed-book card for day 77. This file is the interviewer. It is not a worked example.",
+  "id": "page/design-out-loud/prompts-email-inbox",
+  "order": 6,
+  "section": "Problem bank",
+  "source_path": "prompts/email-inbox.md",
+  "title": "Email inbox",
+  "type": "page"
+}

@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../data/site';
+import { resourceLabel, skillTitle } from '../../lib/skills';
+import { videosFor } from '../../lib/related';
+import Thumb from '../../components/Thumb.astro';
+
+export async function getStaticPaths() {
+  const skills = await getCollection('skills');
+  return skills.map((entry) => ({ params: { name: entry.data.name }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const title = skillTitle(entry);
+const videos = await videosFor('skill', entry.data.name);
+const raw = entry.data.source.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('/blob/', '/');
+---
+
+<Base title={title} description={entry.data.symptom} ogType="article">
+  <article class="page">
+    <p class="kicker">
+      <span class="icon-disc disc-lilac page-mark"><Icon name="skill" /></span>
+      <a href={withBase('/skills/')}>Skills</a> · <a href={withBase(`/skills/#${entry.data.resource}`)}>{resourceLabel(entry.data.resource)}</a>
+    </p>
+    <p class="lede">{entry.data.symptom}</p>
+    <p class="meta">
+      v{entry.data.version} · {entry.data.license}
+      {entry.data.evalCases !== undefined && <> · {entry.data.evalCases} eval cases</>}
+    </p>
+    <div class="actions" style="margin-top: 1.25rem;">
+      <a class="pill pill-solid" href={entry.data.source}>SKILL.md on GitHub</a>
+      <a class="pill" href={raw}>Raw file</a>
+      {entry.data.evalsUrl && <a class="pill" href={entry.data.evalsUrl}>Eval cases</a>}
+    </div>
+    <div class="article-body" style="margin-top: 2rem;">
+      <Content />
+    </div>
+    {
+      videos.length > 0 && (
+        <section style="margin-top: 2.5rem;">
+          <p class="kicker">Watch</p>
+          <ol class="clip-list">
+            {videos.map((v) => (
+              <li>
+                <a class="clip" href={withBase(`/watch/${v.id}/`)}>
+                  <Thumb youtubeId={v.data.youtubeId!} title={v.data.title} />
+                  <span><span class="meta">{v.data.format === 'short' ? 'Short' : 'Talk'}</span><strong>{v.data.title}</strong></span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+  </article>
+</Base>

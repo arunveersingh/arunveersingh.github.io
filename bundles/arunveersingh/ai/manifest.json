@@ -1,0 +1,724 @@
+{
+  "assets": [
+    {
+      "bytes": 163408,
+      "path": "make-ai-fail-safely/assets/day-11/slide-1.png",
+      "sha256": "bbc341cb461d7c397880470078abe80c586511bc206dbede69fb7b56c1cb354f"
+    },
+    {
+      "bytes": 160364,
+      "path": "make-ai-fail-safely/assets/day-11/slide-2.png",
+      "sha256": "4be5934565c84ddf36011345e6f996954f5c0b82254d7f7e2612ecdc566fb80c"
+    },
+    {
+      "bytes": 143015,
+      "path": "make-ai-fail-safely/assets/day-11/slide-3.png",
+      "sha256": "57bbbbe75b8a3553c03bd401985b33339de73be22946590bdec0fc6ff0894792"
+    },
+    {
+      "bytes": 167880,
+      "path": "make-ai-fail-safely/assets/day-11/slide-4.png",
+      "sha256": "674d77451d1d7134b6c0ee844b82e20d6a29100789d7e1e1cddc1b7090dceeda"
+    },
+    {
+      "bytes": 175622,
+      "path": "make-ai-fail-safely/assets/day-11/slide-5.png",
+      "sha256": "40fd4c103056a003f5775a3124c82d764cfaf53d9055eb3a4e29b8da98ca924e"
+    },
+    {
+      "bytes": 148186,
+      "path": "make-ai-fail-safely/assets/day-11/slide-6.png",
+      "sha256": "3bcdd7bfbb5bed0d2c3207bf9fb985324177a3a2e662d5e25f935c4d5e939f18"
+    },
+    {
+      "bytes": 171959,
+      "path": "make-ai-fail-safely/assets/day-12/slide-1.png",
+      "sha256": "0920aa8e4f56a278658b5af691a8d4fd73a01712e5d032f5abb264f486f444be"
+    },
+    {
+      "bytes": 177108,
+      "path": "make-ai-fail-safely/assets/day-12/slide-2.png",
+      "sha256": "95a54cc278908dd393f3d2862d86167490a6b698ac7986a37799cf401633cbba"
+    },
+    {
+      "bytes": 152945,
+      "path": "make-ai-fail-safely/assets/day-12/slide-3.png",
+      "sha256": "da33bddbcaa8c25138aa1a56ef708cdefebc1174e2d7ed82d96914eb7a84f33f"
+    },
+    {
+      "bytes": 168531,
+      "path": "make-ai-fail-safely/assets/day-12/slide-4.png",
+      "sha256": "0136f6bd017fae31d7bcebf8014c466866afa2414dbb44b4f8afce128066b2d0"
+    },
+    {
+      "bytes": 174119,
+      "path": "make-ai-fail-safely/assets/day-12/slide-5.png",
+      "sha256": "67bd18277c66993f449c1dab6cf9ade9ca2cdd066abca3eaa736a6211c5a2b12"
+    },
+    {
+      "bytes": 147410,
+      "path": "make-ai-fail-safely/assets/day-12/slide-6.png",
+      "sha256": "f0fc093cae552af6e556440cd74bc705a8c5c0916ad6649241cee67ebfef15c1"
+    },
+    {
+      "bytes": 265190,
+      "path": "make-ai-fail-safely/assets/day-13/slide-1.png",
+      "sha256": "438c461eb1009406e85f18ab8222e08b8df7c0c8ea97d9ffda193d795dc2be20"
+    },
+    {
+      "bytes": 312168,
+      "path": "make-ai-fail-safely/assets/day-13/slide-2.png",
+      "sha256": "231a67d7a8e143e89a01a199a85ba9b7eaabb3b19e4cabcdef0caac995b215da"
+    },
+    {
+      "bytes": 326900,
+      "path": "make-ai-fail-safely/assets/day-13/slide-3.png",
+      "sha256": "e3c01b822b06d07c4aa902c1e1441ee51d711f5a4d16af1ef7a23c31a35b2a50"
+    },
+    {
+      "bytes": 258408,
+      "path": "make-ai-fail-safely/assets/day-13/slide-4.png",
+      "sha256": "3265021d6c454cce48179614dbcc73ad5da20c933470db5a751a9e19282ebf5a"
+    },
+    {
+      "bytes": 344278,
+      "path": "make-ai-fail-safely/assets/day-13/slide-5.png",
+      "sha256": "21862e55ae364f7e2db94a89490799d1e9bcf2697e4dc6585d8de37d23062af8"
+    },
+    {
+      "bytes": 256563,
+      "path": "make-ai-fail-safely/assets/day-13/slide-6.png",
+      "sha256": "634ddfc2b98851e15c14114972d936581b59dc413b57f4c80ed25513327f8576"
+    },
+    {
+      "bytes": 257664,
+      "path": "make-ai-fail-safely/assets/day-14/slide-1.png",
+      "sha256": "bdf750fe1bd67adffe3b6bab9118d005178d53d553a06b70c5df091c6d724aba"
+    },
+    {
+      "bytes": 328962,
+      "path": "make-ai-fail-safely/assets/day-14/slide-2.png",
+      "sha256": "a2b4caf32829dfbf09ffe4656e99cf2528b27d69b8a85ffa1b28b13623deb05c"
+    },
+    {
+      "bytes": 318571,
+      "path": "make-ai-fail-safely/assets/day-14/slide-3.png",
+      "sha256": "b8562e874f575455a48e22c58ef4004e21a8d774ae38c2772d1145412fa606f2"
+    },
+    {
+      "bytes": 302188,
+      "path": "make-ai-fail-safely/assets/day-14/slide-4.png",
+      "sha256": "d3d710fc81a25013cd287b9f7ca38100bcdb34671798c71b4b472db0ceec79d6"
+    },
+    {
+      "bytes": 343382,
+      "path": "make-ai-fail-safely/assets/day-14/slide-5.png",
+      "sha256": "ed54f15ac13eebb4aa1e74b81719d20b9a276b0c703f21b5aaf67e5124899e96"
+    },
+    {
+      "bytes": 256841,
+      "path": "make-ai-fail-safely/assets/day-14/slide-6.png",
+      "sha256": "cc91c73272c9b49a905037da72a39ce2065f331601b500c542bba06579148a2e"
+    },
+    {
+      "bytes": 259908,
+      "path": "make-ai-fail-safely/assets/day-15/slide-1.png",
+      "sha256": "0e60ab402a7a2834519cd4bc19a1e9a20c8cdfae401bea0ae962d3ee9f738bb7"
+    },
+    {
+      "bytes": 334137,
+      "path": "make-ai-fail-safely/assets/day-15/slide-2.png",
+      "sha256": "48c7c454d639b2ccbf89b6aad39d5fd9fbdb2082ec864680ffa08bcf8a67d48f"
+    },
+    {
+      "bytes": 319739,
+      "path": "make-ai-fail-safely/assets/day-15/slide-3.png",
+      "sha256": "333d278a49bf8de982daaae0e0916e1db7d8b9f65839c2be55df7a488e390c1c"
+    },
+    {
+      "bytes": 302754,
+      "path": "make-ai-fail-safely/assets/day-15/slide-4.png",
+      "sha256": "a9f7c1c7c28fd1d039479d083922dcb64f286416b7f893860dcbba83de07d5b6"
+    },
+    {
+      "bytes": 342985,
+      "path": "make-ai-fail-safely/assets/day-15/slide-5.png",
+      "sha256": "fb6339e884f738885c4ef964d6d98cc07c27ae1ff34c3622672c23474063cb84"
+    },
+    {
+      "bytes": 257738,
+      "path": "make-ai-fail-safely/assets/day-15/slide-6.png",
+      "sha256": "5e90dd52e2deb92f0f0ecc9af7859d616232a4e3d8ab7c4305bc1d2b9b01b22a"
+    },
+    {
+      "bytes": 258643,
+      "path": "make-ai-fail-safely/assets/day-16/slide-1.png",
+      "sha256": "fd3faa7223cd75c31de0034a442eb7a35f42e3c0730016d27c1b0b5566288ae7"
+    },
+    {
+      "bytes": 336462,
+      "path": "make-ai-fail-safely/assets/day-16/slide-2.png",
+      "sha256": "2ac4039900728821619f4b9e34ebb91fab530e4b22ba4bd0f61805564a261c80"
+    },
+    {
+      "bytes": 317067,
+      "path": "make-ai-fail-safely/assets/day-16/slide-3.png",
+      "sha256": "507e1e4f638a3db7ba5e1092444a3a091ffdbf1e66fad9bbe19e68828dc16fa6"
+    },
+    {
+      "bytes": 260707,
+      "path": "make-ai-fail-safely/assets/day-16/slide-4.png",
+      "sha256": "556c4f4a976e047415e3789254bce85a3b4f387b079b3063ff4bd0a5671534df"
+    },
+    {
+      "bytes": 346111,
+      "path": "make-ai-fail-safely/assets/day-16/slide-5.png",
+      "sha256": "e268c7f0c35f85fb6f6ccd17098671cd38d39498cd7a8916d32dcc5c91a433d3"
+    },
+    {
+      "bytes": 258683,
+      "path": "make-ai-fail-safely/assets/day-16/slide-6.png",
+      "sha256": "7254795edb6290db891e35c551582c854155a727aa64aa9e469179a2dfd8562f"
+    },
+    {
+      "bytes": 174183,
+      "path": "make-ai-fail-safely/assets/day-17/slide-1.png",
+      "sha256": "360512f71bc511beadcd6eb56070cf12a8e80ecdf3fca9e67ac9788dcc7eaa03"
+    },
+    {
+      "bytes": 201015,
+      "path": "make-ai-fail-safely/assets/day-17/slide-2.png",
+      "sha256": "7897e77089fbc00ada9d841e70074be290c3c438e1c5e10ba824516f993ee944"
+    },
+    {
+      "bytes": 207664,
+      "path": "make-ai-fail-safely/assets/day-17/slide-3.png",
+      "sha256": "a03a12d766c97f29df07e21a5a73574efc2eac777aad9f79622301e4d948f597"
+    },
+    {
+      "bytes": 250771,
+      "path": "make-ai-fail-safely/assets/day-17/slide-4.png",
+      "sha256": "0791bc6712d802243090c0e25d2b1cbee53be9ab3f61732c7de6d32158527dab"
+    },
+    {
+      "bytes": 193809,
+      "path": "make-ai-fail-safely/assets/day-17/slide-5.png",
+      "sha256": "a2a3cd3607465fd3dd148d8157d753c6a629f24275b8c8e7b8d64d97e9b197e9"
+    },
+    {
+      "bytes": 156156,
+      "path": "make-ai-fail-safely/assets/day-17/slide-6.png",
+      "sha256": "5fa7aefb2096dffd71c82577012288950187481eb55c3078d7f8c784219c09ed"
+    },
+    {
+      "bytes": 288895,
+      "path": "make-ai-fail-safely/assets/day-18/slide-1.png",
+      "sha256": "b99832d5594caadc638f84875c42bb6bf9dd334858bb931592aa619dcfa0f249"
+    },
+    {
+      "bytes": 366456,
+      "path": "make-ai-fail-safely/assets/day-18/slide-2.png",
+      "sha256": "07d7cf0503851ca07f72f1bcea2c586aa1a8dcce4c3cc76fbb1ddd8c55f201b7"
+    },
+    {
+      "bytes": 395396,
+      "path": "make-ai-fail-safely/assets/day-18/slide-3.png",
+      "sha256": "ed13690c26b1090e84aa3caf648be7bcc31258cb54c210e75fae60153231eb9e"
+    },
+    {
+      "bytes": 385284,
+      "path": "make-ai-fail-safely/assets/day-18/slide-4.png",
+      "sha256": "0fb7383e86f4361c4220eeb5904b307047b24b3694811959f5438d014e9b79ff"
+    },
+    {
+      "bytes": 363224,
+      "path": "make-ai-fail-safely/assets/day-18/slide-5.png",
+      "sha256": "cceccbe5db909383d80d9706b37c21f77477a99505274fbc83ee41a129d02491"
+    },
+    {
+      "bytes": 343482,
+      "path": "make-ai-fail-safely/assets/day-18/slide-6.png",
+      "sha256": "2f3d0bae00bfc823c2661e8d26fc91c08db4ca3048f3f1ffc6e102f1e19550d1"
+    },
+    {
+      "bytes": 321133,
+      "path": "make-ai-fail-safely/assets/day-19/slide-1.png",
+      "sha256": "c2e14f848c95bbe08009b4c3d438d2dfc6115b2833163384f81eb379229a6015"
+    },
+    {
+      "bytes": 364619,
+      "path": "make-ai-fail-safely/assets/day-19/slide-2.png",
+      "sha256": "7312dbcca3de13fed26da7e99f26ef4911b1d830760f7611bad7fd20240cdc7f"
+    },
+    {
+      "bytes": 392387,
+      "path": "make-ai-fail-safely/assets/day-19/slide-3.png",
+      "sha256": "4ddf827f94007ebbd1d6ff984f378c2bec36f1fb091b8b29363ac3e0505db3dd"
+    },
+    {
+      "bytes": 389043,
+      "path": "make-ai-fail-safely/assets/day-19/slide-4.png",
+      "sha256": "500b8ac2e468d2f94277210c27a3979d3d3e1d8d8d429acfaf440c2fc2de6245"
+    },
+    {
+      "bytes": 368318,
+      "path": "make-ai-fail-safely/assets/day-19/slide-5.png",
+      "sha256": "bf03f21f4a45fe003feb17bffb405071b9d0574ed0cc05cade433bb610ce6bfd"
+    },
+    {
+      "bytes": 388505,
+      "path": "make-ai-fail-safely/assets/day-19/slide-6.png",
+      "sha256": "d848169d9e81e91c76fddb96de51e2417e86288becd2c6aa0f09c261daf8d2c5"
+    },
+    {
+      "bytes": 342635,
+      "path": "make-ai-fail-safely/assets/day-20/slide-1.png",
+      "sha256": "9b0f2ed6b2a3c6129a81a6ada5029e7e6702df58eef92949e5783c986cfc942c"
+    },
+    {
+      "bytes": 392608,
+      "path": "make-ai-fail-safely/assets/day-20/slide-2.png",
+      "sha256": "bc7c263e3dc601d2500725fa0f195c16a99707bca2193051ccd957160070c56e"
+    },
+    {
+      "bytes": 387983,
+      "path": "make-ai-fail-safely/assets/day-20/slide-3.png",
+      "sha256": "30fe5caedf5b93df43aca9eaa58cec9c07df45ad16d5da2ffd8401b95e867512"
+    },
+    {
+      "bytes": 348040,
+      "path": "make-ai-fail-safely/assets/day-20/slide-4.png",
+      "sha256": "15f347009cfa7f7378aff88ced5168045a381733285237cae5b7a846cfc184d3"
+    },
+    {
+      "bytes": 368625,
+      "path": "make-ai-fail-safely/assets/day-20/slide-5.png",
+      "sha256": "1aaafe7f2e9e8d6f1de73e01eb38449799f87785a43ccd7c31514a30b0295182"
+    },
+    {
+      "bytes": 386939,
+      "path": "make-ai-fail-safely/assets/day-20/slide-6.png",
+      "sha256": "70d6cd0c2823e6661ca0ec7728e37ebd5a8b5d2d31999abede26f415f634bb10"
+    },
+    {
+      "bytes": 341741,
+      "path": "make-ai-fail-safely/assets/day-21/slide-1.png",
+      "sha256": "5b857e97a899de9fe1e0f2b050442b582889f5cd3f2589313ce2058c4cebb0d0"
+    },
+    {
+      "bytes": 398642,
+      "path": "make-ai-fail-safely/assets/day-21/slide-2.png",
+      "sha256": "f57ed1f9825dce1efa30c8dc9cbbbae736d0f5539a5a2c6d4ca952f805f84a61"
+    },
+    {
+      "bytes": 358394,
+      "path": "make-ai-fail-safely/assets/day-21/slide-3.png",
+      "sha256": "d4487aec4f424cb5e4bbfb3bf01dd6738db7dcd5e0bb9f272fdc717f01b79ee1"
+    },
+    {
+      "bytes": 377256,
+      "path": "make-ai-fail-safely/assets/day-21/slide-4.png",
+      "sha256": "111df1548d96b3133c91490592ed766e18b65ba6680f230f56ca3240ca1b34e5"
+    },
+    {
+      "bytes": 366801,
+      "path": "make-ai-fail-safely/assets/day-21/slide-5.png",
+      "sha256": "84115004ed626d8e0c5a7098868b23cea45966a92abfe8a713a006e41b5eea78"
+    },
+    {
+      "bytes": 389552,
+      "path": "make-ai-fail-safely/assets/day-21/slide-6.png",
+      "sha256": "0e984b6ab045f9e778ccae7b4882ae534ec87c56ccb32624d89d8bf3fbc4d537"
+    },
+    {
+      "bytes": 2855,
+      "path": "make-ai-fail-safely/day-01.svg",
+      "sha256": "c1f6fe67066c149bc6be6246b1786d62cfc2edb29cce441d3810fd1e807ecbf9"
+    },
+    {
+      "bytes": 2492,
+      "path": "make-ai-fail-safely/day-02.svg",
+      "sha256": "983d8199794436896d1302176c064c29bc065219e041b13c0bf404a678b2d25e"
+    },
+    {
+      "bytes": 2503,
+      "path": "make-ai-fail-safely/day-03.svg",
+      "sha256": "4cdf8a98f5eb5be77388d898e9e06420075002667c0dbadd6dee4e58b05a31e0"
+    },
+    {
+      "bytes": 4043,
+      "path": "make-ai-fail-safely/day-04.svg",
+      "sha256": "644e12a5cdec89ea62cf814a2fe4e0738b469388ef0e338b80f5f0f710ee2cfb"
+    },
+    {
+      "bytes": 4037,
+      "path": "make-ai-fail-safely/day-05.svg",
+      "sha256": "7df0e08ed5c8be87bde9eafa587fb8fe9513c8073235dbeacd5d163fe52059d9"
+    },
+    {
+      "bytes": 5552,
+      "path": "make-ai-fail-safely/day-06.svg",
+      "sha256": "615d944a2c20d3b78e07ea3c906f39c348e6fafee32fc5329862662c8d8fdfc7"
+    },
+    {
+      "bytes": 5920,
+      "path": "make-ai-fail-safely/day-07.svg",
+      "sha256": "27fd5e997cd21cfba85247bc9449e10b2f9ae7765187af132a5b999b0ff824f4"
+    },
+    {
+      "bytes": 5833,
+      "path": "make-ai-fail-safely/day-08.svg",
+      "sha256": "7797a283f4c469d6a8376e6ff4109eab535533de21f3f074587224c078ed7d27"
+    },
+    {
+      "bytes": 6031,
+      "path": "make-ai-fail-safely/day-09.svg",
+      "sha256": "4f2c8adf7db826fe28dfc84f761412e6f486aa799e226a3734fae877a3187acf"
+    },
+    {
+      "bytes": 6186,
+      "path": "make-ai-fail-safely/day-10.svg",
+      "sha256": "2d1dc1445f21b2d30d4d4e3bb7c69d13b8ed095f695cf3ca36d3a60c68151574"
+    },
+    {
+      "bytes": 12485,
+      "path": "make-ai-fail-safely/day-11.svg",
+      "sha256": "d7ac2952325597d35c3361c1116071059dbe309d345523352a6f4d4bef70bfcf"
+    },
+    {
+      "bytes": 12308,
+      "path": "make-ai-fail-safely/day-12.svg",
+      "sha256": "e39d89e7361b1c5377a84106876ff7a4c5660cfea2c42e870650ff73bdc77f89"
+    },
+    {
+      "bytes": 12194,
+      "path": "make-ai-fail-safely/day-13.svg",
+      "sha256": "126eb06651ff656e6f5bba704b1dc63e85b9054a1bf408fd19cd4cc197862a1c"
+    },
+    {
+      "bytes": 12250,
+      "path": "make-ai-fail-safely/day-14.svg",
+      "sha256": "1ffec90ee287d61c008820cd26c47a43ae6bcfc44f4fe157eda56135208019ee"
+    },
+    {
+      "bytes": 12164,
+      "path": "make-ai-fail-safely/day-15.svg",
+      "sha256": "d5e0f15d6d3255397a1e690921066f7b71d1cfb75a5321b22c58d2a0eaf08565"
+    },
+    {
+      "bytes": 12484,
+      "path": "make-ai-fail-safely/day-16.svg",
+      "sha256": "b2fa6d4078ae6e0050545d1574c60baa7ef97da634f528f47060268540ce69cd"
+    },
+    {
+      "bytes": 17870,
+      "path": "make-ai-fail-safely/day-17.svg",
+      "sha256": "7943094971a43fa28ce23e2ed419b2199b2f6dfcb9b9e0e8c0ce51c9c10aee22"
+    },
+    {
+      "bytes": 21703,
+      "path": "make-ai-fail-safely/day-18.svg",
+      "sha256": "3eaa0d321be13ce610a3d87e8c074debed4a58d0684d92ba9de0dcbb746459ab"
+    },
+    {
+      "bytes": 19665,
+      "path": "make-ai-fail-safely/day-19.svg",
+      "sha256": "1b4d3df2a1b02f09647f2dfe981b87fd5321fadc474f99e8ebaf03e4c30c1914"
+    },
+    {
+      "bytes": 18925,
+      "path": "make-ai-fail-safely/day-20.svg",
+      "sha256": "e21b5c7ef712274c0649c95bede118c3582fc5852fb411fd925edec205fe1092"
+    },
+    {
+      "bytes": 20226,
+      "path": "make-ai-fail-safely/day-21.svg",
+      "sha256": "cf50a1578a376078b7dc6bce4d243a496a4edac319fb5969851f62c4ad9bdd0c"
+    }
+  ],
+  "items": [
+    {
+      "id": "course/make-ai-fail-safely",
+      "meta": "items/course/make-ai-fail-safely.json",
+      "sha256": "a593e72e821c4213b4568a836e2becf7a8d1f7754adbf2a644ce6e487dbf16ec",
+      "type": "course"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-01",
+      "meta": "items/lesson/make-ai-fail-safely/day-01.json",
+      "sha256": "f7e1cfbe34e9d47362aa58202c0cba52da6e6a4ac66f3af81d442584de0d55c0",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-02",
+      "meta": "items/lesson/make-ai-fail-safely/day-02.json",
+      "sha256": "8a342f29ccb9f39ab74a7c058861f8ea0f28925f589c315725694dbec8a2c0b2",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-03",
+      "meta": "items/lesson/make-ai-fail-safely/day-03.json",
+      "sha256": "f4561abdfb2a377d5620082a33b55b0cb12eef5b7d7d3437b6dd441089de9af5",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-04",
+      "meta": "items/lesson/make-ai-fail-safely/day-04.json",
+      "sha256": "7c62fb3fcf3463b822bef9efb79c5b02d7ed718b703648e957c0c78a256c8608",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-05",
+      "meta": "items/lesson/make-ai-fail-safely/day-05.json",
+      "sha256": "ba8ad967267ebaa1245a86ba29db833f04c1519e579742646719a50ec39d14ca",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-06",
+      "meta": "items/lesson/make-ai-fail-safely/day-06.json",
+      "sha256": "ecbd0d4a5484612f371455807d55679054f2901918aa9b96358b71dc4f07bac4",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-07",
+      "meta": "items/lesson/make-ai-fail-safely/day-07.json",
+      "sha256": "f2445a799caca839afc09bec1c332dd0f630b1d8688a1bbdc5f9fe7f142477d5",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-08",
+      "meta": "items/lesson/make-ai-fail-safely/day-08.json",
+      "sha256": "0e04645c86a36df317be419ba9829deb009595ca7718fdabf0c0da373a7105f7",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-09",
+      "meta": "items/lesson/make-ai-fail-safely/day-09.json",
+      "sha256": "0ff8f96e33e920e20c60d23b14f72289504b05e55e85e4de00f096a9f7f154ed",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-10",
+      "meta": "items/lesson/make-ai-fail-safely/day-10.json",
+      "sha256": "d0b8bb17781d9b03eb35e50d5ab3fe894065ba4e759ff5a17694e6fcb020e214",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-11",
+      "meta": "items/lesson/make-ai-fail-safely/day-11.json",
+      "sha256": "53235151b831286607052b3005effaf4346394bec6b8042cb32ea2e94616ffae",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-12",
+      "meta": "items/lesson/make-ai-fail-safely/day-12.json",
+      "sha256": "e38a4d3ea95b500b4fef21a967fc11151a43b2c1c57c18ad357e6e77df118753",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-13",
+      "meta": "items/lesson/make-ai-fail-safely/day-13.json",
+      "sha256": "f7370e258b77d5c60edb2e475007596b230ff2c9c07cfeb93529d7d1c2be9c40",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-14",
+      "meta": "items/lesson/make-ai-fail-safely/day-14.json",
+      "sha256": "23957410a1efa1e6c7669f1b320d9dc155c10290ab1bf284a234618c4c68b4e3",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-15",
+      "meta": "items/lesson/make-ai-fail-safely/day-15.json",
+      "sha256": "f88018cb24148d21d4b4049253886e023c79a154f5255ed2487de6cb62f4d473",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-16",
+      "meta": "items/lesson/make-ai-fail-safely/day-16.json",
+      "sha256": "92483a2b9733d71eb25e779596ea78a6f0f0564ff3145133827b1f48a4f785fb",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-17",
+      "meta": "items/lesson/make-ai-fail-safely/day-17.json",
+      "sha256": "34900f64f17a8e698a9ae63f6052f12556e09ce4adea6eaf909a6f4d616dbeef",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-18",
+      "meta": "items/lesson/make-ai-fail-safely/day-18.json",
+      "sha256": "a5af68a8d10cbb9ee166254b8ebecb2d264314a9ce50043c56f21b50def10b26",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-19",
+      "meta": "items/lesson/make-ai-fail-safely/day-19.json",
+      "sha256": "901b1f596361afeb03657e9c9650063de8f8517b03ee3e326e34b7b6c193b55c",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-20",
+      "meta": "items/lesson/make-ai-fail-safely/day-20.json",
+      "sha256": "68320ffc83c450ec92786fc0380ecb028cb789fb8c3bc63a4218a56e886d04ff",
+      "type": "lesson"
+    },
+    {
+      "id": "lesson/make-ai-fail-safely/day-21",
+      "meta": "items/lesson/make-ai-fail-safely/day-21.json",
+      "sha256": "331832db8d187ed6bff95cf3de43acb72c3b3370d89f948fea93ac2ba695c650",
+      "type": "lesson"
+    },
+    {
+      "id": "skill/adversarial-collaborator",
+      "meta": "items/skill/adversarial-collaborator.json",
+      "sha256": "91bf0aab76b5fecc3126264321414d15c1c7fc82c63f15f0e839b812785626a0",
+      "type": "skill"
+    },
+    {
+      "id": "skill/assumption-surfacer",
+      "meta": "items/skill/assumption-surfacer.json",
+      "sha256": "2b2ccff7201ba327c244d2ab6b5709258170534c8812e709999066ff7fda76ff",
+      "type": "skill"
+    },
+    {
+      "id": "skill/attention-treasurer",
+      "meta": "items/skill/attention-treasurer.json",
+      "sha256": "dd58b5fe27b5796de449cd5a19cf2866818474193d03f2b47044c9ee463ddb10",
+      "type": "skill"
+    },
+    {
+      "id": "skill/bayesian-belief-tracker",
+      "meta": "items/skill/bayesian-belief-tracker.json",
+      "sha256": "ac03c90e02f718a9168eeea7de27d29d988e030aa5d08d46127bb33f21cc99ad",
+      "type": "skill"
+    },
+    {
+      "id": "skill/bug-hypothesis-generator",
+      "meta": "items/skill/bug-hypothesis-generator.json",
+      "sha256": "061758d5a28c48aef28dcc4df8bbda3c09f8de4746d6e95a53093f243d139799",
+      "type": "skill"
+    },
+    {
+      "id": "skill/bus-factor-zero",
+      "meta": "items/skill/bus-factor-zero.json",
+      "sha256": "9c00f5089532f1f42cb2d9392b3ba689a4045437ab31675df41acef135c52691",
+      "type": "skill"
+    },
+    {
+      "id": "skill/capability-reserve",
+      "meta": "items/skill/capability-reserve.json",
+      "sha256": "ad801998e33db83b4c593766eccd5ec01062af993f24e807cb955bc449467e1d",
+      "type": "skill"
+    },
+    {
+      "id": "skill/commit-then-consult",
+      "meta": "items/skill/commit-then-consult.json",
+      "sha256": "3f8b93208ddd183e7f00938210d00b8a1f947848a68e5d35b3eba23ded59e8ac",
+      "type": "skill"
+    },
+    {
+      "id": "skill/concept-synthesizer",
+      "meta": "items/skill/concept-synthesizer.json",
+      "sha256": "2c7064da839ae2df9532d7903316b631a2266cdf59cb0accc1151d4c6211b7f1",
+      "type": "skill"
+    },
+    {
+      "id": "skill/decision-pressure-tester",
+      "meta": "items/skill/decision-pressure-tester.json",
+      "sha256": "05d030736c4eb7e47d88b785af2f482471fc29b61af8d04d8478869362402840",
+      "type": "skill"
+    },
+    {
+      "id": "skill/define-good-first",
+      "meta": "items/skill/define-good-first.json",
+      "sha256": "30b3cc44e1b221040bc820ebde60064ff7f0ae90ae711e24f0bb35419a898519",
+      "type": "skill"
+    },
+    {
+      "id": "skill/delegation-contract",
+      "meta": "items/skill/delegation-contract.json",
+      "sha256": "c0db4c34edd2c8365d50fd75b9870c1145e428772fd149763c60968de7ca60d0",
+      "type": "skill"
+    },
+    {
+      "id": "skill/editor-not-writer",
+      "meta": "items/skill/editor-not-writer.json",
+      "sha256": "8f2e7743719d4b8ca2ea207959cecf52976a7d65b1a9da7d3ebc2f76a1565736",
+      "type": "skill"
+    },
+    {
+      "id": "skill/first-principles-decomposer",
+      "meta": "items/skill/first-principles-decomposer.json",
+      "sha256": "97400fe5af630369087653dafcd218904bdbff18945bf89b251971d8ae3ccdca",
+      "type": "skill"
+    },
+    {
+      "id": "skill/human-bridge",
+      "meta": "items/skill/human-bridge.json",
+      "sha256": "64187e7b92d437ec4c77a196a3d7efa0da02a2abf0d116c6093f4c7ac7ad4370",
+      "type": "skill"
+    },
+    {
+      "id": "skill/learning-partner",
+      "meta": "items/skill/learning-partner.json",
+      "sha256": "92a65b99cdab821d316baae1df77226f5c4676884cfbfac7692ddb71efe5263b",
+      "type": "skill"
+    },
+    {
+      "id": "skill/mirror-test",
+      "meta": "items/skill/mirror-test.json",
+      "sha256": "8c0dca7a2efe6fda9b92c0cbbaf345125c8adb73ef00be34d50178373e0d7d32",
+      "type": "skill"
+    },
+    {
+      "id": "skill/modal-escape",
+      "meta": "items/skill/modal-escape.json",
+      "sha256": "292d81aab7ac6e26d25fe6ab2119f29c61b09b2003b1631d5a749aadae609f4c",
+      "type": "skill"
+    },
+    {
+      "id": "skill/perception-gap-auditor",
+      "meta": "items/skill/perception-gap-auditor.json",
+      "sha256": "58da5d104b967eabf9763e6038cde609b70cb9e2e88149115941ece1cd7de22f",
+      "type": "skill"
+    },
+    {
+      "id": "skill/pre-mortem-oracle",
+      "meta": "items/skill/pre-mortem-oracle.json",
+      "sha256": "f74503743de590b70261928e69b82410c9b78bd70bbc145d53911407983f1491",
+      "type": "skill"
+    },
+    {
+      "id": "skill/recontextualizer",
+      "meta": "items/skill/recontextualizer.json",
+      "sha256": "58b6c08e9b2465e5f8a8aa02d40e6967b65865c42adda8f1d4ae2a0c88acc93f",
+      "type": "skill"
+    },
+    {
+      "id": "skill/symptom-triage",
+      "meta": "items/skill/symptom-triage.json",
+      "sha256": "80cbbde2904f46c5fd45999f28cbb7335b3001919b336d9ac56252cb8995ac97",
+      "type": "skill"
+    },
+    {
+      "id": "skill/value-relocator",
+      "meta": "items/skill/value-relocator.json",
+      "sha256": "0778846cb7893f0c1058168a3bbce5df6ad728b49b2e88aec131f8f048695d7b",
+      "type": "skill"
+    },
+    {
+      "id": "skill/workslop-interceptor",
+      "meta": "items/skill/workslop-interceptor.json",
+      "sha256": "656d4c2fc36d999647003c1d136a2586abf195d6327c4a6bd21b92530f6e5598",
+      "type": "skill"
+    }
+  ],
+  "publish": true,
+  "schema": 1,
+  "source": {
+    "repo": "arunveersingh/ai",
+    "sha": "85a5413748b34ea3bef24e0f8cf4d39b35d38070",
+    "url": "https://github.com/arunveersingh/ai"
+  }
+}

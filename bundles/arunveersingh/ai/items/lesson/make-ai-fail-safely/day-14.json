@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-14.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 13 gave you a real reason to say no. Today is for the day your yes is still wrong.",
+  "id": "lesson/make-ai-fail-safely/day-14",
+  "line": "An approved apology to 340 merchants crashes after 200; the agent resumes with a rebuilt list (\"merchants with a Tuesday payout\" is every merchant) and the main key in `.env`, so 48,212 apologies go out in 11 minutes",
+  "n": 14,
+  "phase": "Guardrails",
+  "time": "~15 min",
+  "title": "Day 14 — 48,212 Apologies",
+  "type": "lesson"
+}

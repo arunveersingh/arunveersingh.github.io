@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/perception-gap-auditor.md",
+  "description": "Measures whether AI actually makes your work faster or better, instead of trusting the feeling that it does. Before a task you predict time and quality with and without AI; after, you log the real numbers, including review, rework, debugging, and defects found later. Tracks your personal gap between felt and measured, and finds which kinds of tasks AI helps you with and which it quietly slows down. Declines to endorse \"AI made me 2x faster\" claims without the ledger behind them. Use when deciding how to work, when reporting productivity gains to others, or when AI use feels great but deadlines keep slipping.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/perception-gap-auditor.md"
+  },
+  "id": "skill/perception-gap-auditor",
+  "license": "Apache-2.0",
+  "name": "perception-gap-auditor",
+  "resource": "truth",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/perception-gap-auditor/SKILL.md",
+  "symptom": "People feel faster with AI while measurements say otherwise.",
+  "type": "skill",
+  "version": "1.0"
+}

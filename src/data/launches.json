@@ -19,5 +19,110 @@
     "title": "Day 11 — Started on a Guess",
     "href": "/courses/make-ai-fail-safely/day-11/",
     "published": "2026-10-13"
+  },
+  {
+    "id": "make-ai-fail-safely-day-12",
+    "label": "New lesson",
+    "title": "Day 12 — Same Source Twice",
+    "href": "/courses/make-ai-fail-safely/day-12/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-13",
+    "label": "New lesson",
+    "title": "Day 13 — Approved in Four Seconds",
+    "href": "/courses/make-ai-fail-safely/day-13/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-14",
+    "label": "New lesson",
+    "title": "Day 14 — 48,212 Apologies",
+    "href": "/courses/make-ai-fail-safely/day-14/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-15",
+    "label": "New lesson",
+    "title": "Day 15 — Up 3 Points, 6× Worse",
+    "href": "/courses/make-ai-fail-safely/day-15/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-16",
+    "label": "New lesson",
+    "title": "Day 16 — A Perfect Score for the Broken Version",
+    "href": "/courses/make-ai-fail-safely/day-16/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-17",
+    "label": "New lesson",
+    "title": "Day 17 — The Message That Opened the Door",
+    "href": "/courses/make-ai-fail-safely/day-17/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-18",
+    "label": "New lesson",
+    "title": "Day 18 — Three Changes, One Test",
+    "href": "/courses/make-ai-fail-safely/day-18/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-19",
+    "label": "New lesson",
+    "title": "Day 19 — 86% Resolved, Nothing Fixed",
+    "href": "/courses/make-ai-fail-safely/day-19/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-20",
+    "label": "New lesson",
+    "title": "Day 20 — Nine Fixes, Still 40 a Week",
+    "href": "/courses/make-ai-fail-safely/day-20/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "make-ai-fail-safely-day-21",
+    "label": "New lesson",
+    "title": "Day 21 — Fewer Complaints, More Mistakes",
+    "href": "/courses/make-ai-fail-safely/day-21/",
+    "published": "2026-11-02"
+  },
+  {
+    "id": "video-M8yFkWkdWBY",
+    "label": "New video",
+    "title": "RAG from first principles: chunking to evals",
+    "href": "/watch/rag-from-first-principles-chunking-to-evals-m8yfkw/",
+    "published": "2026-11-03"
+  },
+  {
+    "id": "video-2Lv1z0tK7qg",
+    "label": "New video",
+    "title": "Why AI now thinks before it answers?",
+    "href": "/watch/why-ai-now-thinks-before-it-answers-2lv1z0/",
+    "published": "2026-10-31"
+  },
+  {
+    "id": "video-Akj7KFHEmu8",
+    "label": "New video",
+    "title": "Making OKF Production Ready: Tools, Linting & Sync | Part 2",
+    "href": "/watch/making-okf-production-ready-tools-linting-sync-part-2-akj7kf/",
+    "published": "2026-10-29"
+  },
+  {
+    "id": "video-UZV6EhvKc0g",
+    "label": "New video",
+    "title": "OKF explained: the Open Knowledge Format for AI agents",
+    "href": "/watch/okf-explained-the-open-knowledge-format-for-ai-agents-uzv6eh/",
+    "published": "2026-10-25"
+  },
+  {
+    "id": "video-iUtE8K7KJ5U",
+    "label": "New video",
+    "title": "Spec-Driven AI Coding Has a Blind Spot",
+    "href": "/watch/spec-driven-ai-coding-has-a-blind-spot-iute8k/",
+    "published": "2026-10-20"
   }
 ]

@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-12.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "On Day 11 we made a premise KNOWN once it had one source you can open. Today's question is the natural next one: when one source isn't enough, what actually counts as a second?",
+  "id": "lesson/make-ai-fail-safely/day-12",
+  "line": "A critical premise has three agreeing sources, but all three copy one page (\"minor units, e.g. 1000 = 10.00 EUR\", read as divide by 100); when JPY is enabled later, every JPY payout is booked at 1/100 of its value",
+  "n": 12,
+  "phase": "Guardrails",
+  "time": "~15 min",
+  "title": "Day 12 — Same Source Twice",
+  "type": "lesson"
+}

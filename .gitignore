@@ -15,3 +15,12 @@ node_modules/
 # editors
 .vscode/
 .idea/
+
+# reasonfrom: sync cache + build-time outputs (generated from bundles/ by scripts/materialize.mjs)
+.reasonfrom/
+src/content/courses/
+src/content/skills/
+public/courses/
+src/data/course-outlines/
+src/content/course-pages/
+scripts/test/.tmp/

@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/bug-hypothesis-generator.md",
+  "description": "Scientific debugging that goes beyond the immediate bug to the process failure that allowed it to exist. Generates ranked hypotheses with falsification experiments, confirms root cause, then demands the root-cause-of-the-root-cause — what systemic gap let this happen, and what prevents the entire class of bug, not just this instance.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/bug-hypothesis-generator.md"
+  },
+  "id": "skill/bug-hypothesis-generator",
+  "license": "Apache-2.0",
+  "name": "bug-hypothesis-generator",
+  "resource": "ownership",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/bug-hypothesis-generator/SKILL.md",
+  "symptom": "Bugs get patched one at a time while the process gap that produced them stays open.",
+  "type": "skill",
+  "version": "1.1"
+}

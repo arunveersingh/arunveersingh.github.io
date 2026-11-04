@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/appendices-raft.md",
+  "course": "course/design-out-loud",
+  "description": "Leave able to treat consensus as a **bought dependency**: one writer per shard, a replicated log, and a bounded time with no writer. Leave unable to spend the hour on vote messaging, term numbers, or log matching proofs.",
+  "id": "page/design-out-loud/appendices-raft",
+  "order": 20,
+  "section": "Appendices",
+  "source_path": "appendices/raft.md",
+  "title": "Raft (appendix)",
+  "type": "page"
+}

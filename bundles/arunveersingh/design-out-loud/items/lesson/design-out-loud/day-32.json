@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-32.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a celebrity key, leave able to salt or split it without destroying the lookup you still need. A salt you cannot reassemble is a lost write. A salt that hashes to the same shard is a shorter lock and the same fire.",
+  "id": "lesson/design-out-loud/day-32",
+  "line": "Facing a celebrity key, leave able to salt or split it without destroying the lookup you still need.",
+  "n": 32,
+  "phase": "Data and consistency",
+  "source_path": "days/32-hot-keys-and-salting.md",
+  "time": "40 min",
+  "title": "Day 32 — Hot keys and salting",
+  "type": "lesson"
+}

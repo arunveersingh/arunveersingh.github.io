@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-16.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 15 gave the harm you fear its own line in the eval. Today is about the cases on that line, and whether they can fail at all.",
+  "id": "lesson/make-ai-fail-safely/day-16",
+  "line": "A prompt change (\"if the remittance contains an open invoice number, match it\") scores 240/240 on the golden set and ships; 37 payments are booked to another customer's invoice (\"PO 10452\" was the payer's own PO), and replayed on that version the set still scores 240/240",
+  "n": 16,
+  "phase": "Evals",
+  "time": "~15 min",
+  "title": "Day 16 — A Perfect Score for the Broken Version",
+  "type": "lesson"
+}

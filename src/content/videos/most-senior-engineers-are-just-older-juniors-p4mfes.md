@@ -4,6 +4,7 @@ description: "Tum 8 saal se code likh rahe ho. LinkedIn pe \"Senior Software Eng
 published: 2026-05-29
 channel: developernoteshindi
 youtubeId: "p4mfesLUZ0Q"
+format: long
 topics: ["youtube"]
 thesis: "Tum 8 saal se code likh rahe ho. LinkedIn pe \"Senior Software Engineer\" likha hai. Lekin kya tum ACTUALLY senior ho? Ya bas... purane junior ho?"
 generated: true

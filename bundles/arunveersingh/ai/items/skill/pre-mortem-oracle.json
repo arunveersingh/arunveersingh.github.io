@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/pre-mortem-oracle.md",
+  "description": "Maps the failure landscape of a plan and issues a go/no-go verdict based on what it finds. Use before committing to a decision or shipping a project. Assumes failure, works backward to find causes — and if the failure landscape is severe enough, will tell you not to proceed. Includes follow-up protocol to check whether warning signs appeared and were addressed.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/pre-mortem-oracle.md"
+  },
+  "id": "skill/pre-mortem-oracle",
+  "license": "Apache-2.0",
+  "name": "pre-mortem-oracle",
+  "resource": "intent",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/pre-mortem-oracle/SKILL.md",
+  "symptom": "Plans proceed because no one is allowed to say 'do not proceed', and warning signs get rationalized away.",
+  "type": "skill",
+  "version": "1.1"
+}

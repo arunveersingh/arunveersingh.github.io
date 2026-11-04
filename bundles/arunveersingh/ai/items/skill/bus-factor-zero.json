@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/bus-factor-zero.md",
+  "description": "Maps a whole codebase (or a set of modules) to find the regions no living human can explain — code that exists, runs, and passes tests, but has a bus factor of zero. Built for teams where AI generated code faster than anyone absorbed it. Scans read-only (history, churn, size, criticality), then probes named people with cold behavioral questions — predict what the code does on a concrete input, without reading it — and scores the answer against what the code actually does. A region is owned only when a named human predicted it correctly. Produces a debt map ranked by criticality × unexplainability and a repayment plan, smallest high-value probes first. Use when a team suspects it ships more than it understands, before an incident, a reorg, a handover, or an audit.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/bus-factor-zero.md"
+  },
+  "id": "skill/bus-factor-zero",
+  "license": "Apache-2.0",
+  "name": "bus-factor-zero",
+  "resource": "ownership",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/bus-factor-zero/SKILL.md",
+  "symptom": "The codebase works, but for whole regions of it nobody can say what it does or why.",
+  "type": "skill",
+  "version": "1.0"
+}

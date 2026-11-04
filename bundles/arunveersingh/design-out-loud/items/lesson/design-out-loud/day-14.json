@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-14.md",
+  "course": "course/design-out-loud",
+  "description": "Facing large bodies in the database — or, in this pastebin, hundreds of millions of small files that are just as stuck — leave able to move bytes to object storage and name the orphan-object failure. Object storage is…",
+  "id": "lesson/design-out-loud/day-14",
+  "line": "Facing large bodies in the database, leave able to move bytes to object storage and name the orphan-object failure.",
+  "n": 14,
+  "phase": "First distributed design",
+  "source_path": "days/14-object-storage-for-the-body.md",
+  "time": "40 min",
+  "title": "Day 14 — Object storage for the body",
+  "type": "lesson"
+}

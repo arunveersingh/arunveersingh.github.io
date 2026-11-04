@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-43.md",
+  "course": "course/design-out-loud",
+  "description": "Facing users in more than one region, leave able to choose a write topology and the conflict or failover cost that comes with it. Two regions is not a checkbox for \"HA.\" It is a decision about who may commit, and what…",
+  "id": "lesson/design-out-loud/day-43",
+  "line": "Facing users in more than one region, leave able to choose a write topology and the conflict or failover cost that comes with it.",
+  "n": 43,
+  "phase": "Data and consistency",
+  "source_path": "days/43-active-passive-or-active-active.md",
+  "time": "40 min",
+  "title": "Day 43 — Active-passive or active-active",
+  "type": "lesson"
+}

@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/appendices.md",
+  "course": "course/design-out-loud",
+  "description": "Not part of the 90 days. Not a mock. Do not swap one in because a lesson feels unfinished, and do not open one in the middle of a timed mock.",
+  "id": "page/design-out-loud/appendices",
+  "order": 16,
+  "section": "Appendices",
+  "source_path": "appendices/README.md",
+  "title": "Appendices (optional)",
+  "type": "page"
+}

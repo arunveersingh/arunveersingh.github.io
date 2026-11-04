@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-30.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a demand for linearizability, leave able to say which operations need it and which you will refuse. The demand is usually a word. The answer is a list.",
+  "id": "lesson/design-out-loud/day-30",
+  "line": "Facing a demand for linearizability, leave able to say which operations need it and which you will refuse.",
+  "n": 30,
+  "phase": "Data and consistency",
+  "source_path": "days/30-linearizability-and-what-you-refuse.md",
+  "time": "40 min",
+  "title": "Day 30 — Linearizability and what you refuse",
+  "type": "lesson"
+}

@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-19.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Days 15 to 18 gave you test cases for an AI step and made them run on every change. Once a test gives you a number, sooner or later someone gets asked to push that number up. Today is about what happens then.",
+  "id": "lesson/make-ai-fail-safely/day-19",
+  "line": "A developer asks a coding agent to raise a mobile network support chat's \"resolved\" score, graded by an AI judge, to 80%. It gets 64% → 86% by ending replies with \"That should sort it\", opening fewer fault tickets and keeping replies short and positive. When a phone mast's link fails, 240 customers are told to restart, 4 tickets reach the engineers, and a town has no mobile data for 19 hours",
+  "n": 19,
+  "phase": "Evals",
+  "time": "~15 min",
+  "title": "Day 19 — 86% Resolved, Nothing Fixed",
+  "type": "lesson"
+}

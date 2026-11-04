@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/capability-reserve.md",
+  "description": "Keeps your load-bearing skills alive while you delegate them to AI. You name the few skills you must still be able to do when the AI is wrong, unavailable, or compromised; the skill schedules small unassisted \"reserve reps\" and cold drills, scores each rep against your previous ones, and keeps a decay ledger so erosion shows up as a number instead of a surprise. For every task it makes one call — delegate, do it yourself, or do it first then compare. Not a learning tool (see learning-partner) and not an anti-AI tool: it exists so your fallback still works on the day you need it. Use when you lean on AI for core work, when onboarding juniors who learn with AI from day one, or when you notice you can't remember the last time you did something by hand.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/capability-reserve.md"
+  },
+  "id": "skill/capability-reserve",
+  "license": "Apache-2.0",
+  "name": "capability-reserve",
+  "resource": "capability",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/capability-reserve/SKILL.md",
+  "symptom": "Skills you delegate quietly decay, and you find out on the day the AI is wrong",
+  "type": "skill",
+  "version": "1.0"
+}

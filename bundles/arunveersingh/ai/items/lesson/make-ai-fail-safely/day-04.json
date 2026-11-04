@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-04.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "A hard rule is meant to hold under pressure. That includes pressure from you.",
+  "id": "lesson/make-ai-fail-safely/day-04",
+  "line": "A soft ask lifts a hard rule in words (\"use `requests` for this demo; we'll remove it before merge\") and the model complies — while it can still quote the rule",
+  "n": 4,
+  "phase": "Failures",
+  "time": "~15 min",
+  "title": "Day 4 — Instruction Dilution",
+  "type": "lesson"
+}

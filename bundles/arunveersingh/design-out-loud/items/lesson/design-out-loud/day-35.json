@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-35.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a quorum design, leave able to explain what N, R, and W buy and the unavailable or stale outcome you took. A quorum is an overlap rule. It is not a personality you assign to the storage engine, and it is not…",
+  "id": "lesson/design-out-loud/day-35",
+  "line": "Facing a quorum design, leave able to explain what N, R, and W buy and the unavailable or stale outcome you took.",
+  "n": 35,
+  "phase": "Data and consistency",
+  "source_path": "days/35-quorums-in-plain-language.md",
+  "time": "35 min",
+  "title": "Day 35 — Quorums in plain language",
+  "type": "lesson"
+}

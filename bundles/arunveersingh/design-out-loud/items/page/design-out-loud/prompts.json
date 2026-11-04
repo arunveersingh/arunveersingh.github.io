@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/prompts.md",
+  "course": "course/design-out-loud",
+  "description": "This folder is the problem bank. The directory is still named `prompts/` so existing links keep working. Closed-book problems live here, one file per mock. A problem file is the interviewer: a vague product, a time…",
+  "id": "page/design-out-loud/prompts",
+  "order": 3,
+  "section": "Problem bank",
+  "source_path": "prompts/README.md",
+  "title": "Problem bank",
+  "type": "page"
+}

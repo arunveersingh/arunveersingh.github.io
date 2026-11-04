@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/learning-partner.md",
+  "description": "Guided learning that verifies understanding rather than assuming it. Calibrates to your level, teaches through progressive depth, and requires you to PROVE comprehension — not just nod along. Uses retrieval practice, explanation demands, and application challenges because feeling smarter is not being smarter.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/learning-partner.md"
+  },
+  "id": "skill/learning-partner",
+  "license": "Apache-2.0",
+  "name": "learning-partner",
+  "resource": "capability",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/learning-partner/SKILL.md",
+  "symptom": "'I get it' substitutes for demonstrated understanding; feeling smarter replaces being smarter.",
+  "type": "skill",
+  "version": "1.1"
+}

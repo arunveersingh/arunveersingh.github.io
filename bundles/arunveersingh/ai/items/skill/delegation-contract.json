@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/delegation-contract.md",
+  "description": "Before you hand a task to an AI agent, this skill writes the contract that decides what the agent can actually do, not just what it's told to do. Enumerates every action the task could require, classifies each by reversibility × blast radius × verification cost, and sorts them into free, checkpointed, and made-impossible. Any boundary that exists only as prompt text is labeled \"a request, not a boundary\" until a capability enforces it. Names in advance the obstacles the agent will hit (credential mismatch, failed migration, missing permission) and the stop it must take instead of improvising. Use before giving an agent credentials, shell, infra, database, deploy, email, or payment access, and whenever \"I told it not to\" is your only safeguard.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/delegation-contract.md"
+  },
+  "id": "skill/delegation-contract",
+  "license": "Apache-2.0",
+  "name": "delegation-contract",
+  "resource": "authority",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/delegation-contract/SKILL.md",
+  "symptom": "An agent did something irreversible that its instructions forbade, because nothing actually prevented it.",
+  "type": "skill",
+  "version": "1.0"
+}

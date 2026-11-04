@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-83.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a system that must change shape, leave able to migrate with a dual path and a rollback while writes continue. Schema expand/backfill was day 45. This day is **shape** change: new primary store, new key layout,…",
+  "id": "lesson/design-out-loud/day-83",
+  "line": "Facing a system that must change shape, leave able to migrate with a dual path and a rollback while writes continue.",
+  "n": 83,
+  "phase": "Failure and senior signal",
+  "source_path": "days/83-migration-while-live.md",
+  "time": "40 min",
+  "title": "Day 83 — Migration while live",
+  "type": "lesson"
+}

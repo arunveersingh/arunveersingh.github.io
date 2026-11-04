@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/define-good-first.md",
+  "description": "Makes you define what \"good\" means before you see any AI output, because once a plausible answer is on screen your standard quietly bends toward it. You write acceptance criteria, rejection triggers, a rough sketch of the answer you expect, and a prediction of how the output will most likely be \"almost right.\" The skill seals that spec, judges the output against it instead of against vibes, and logs any later edit to the spec as moving the goalposts, with your reason. Use before generating anything you'll ship, send, or build on: code, docs, analyses, designs, plans.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/define-good-first.md"
+  },
+  "id": "skill/define-good-first",
+  "license": "Apache-2.0",
+  "name": "define-good-first",
+  "resource": "intent",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/define-good-first/SKILL.md",
+  "symptom": "Once you see a plausible output, your standard bends toward it, so almost-right ships.",
+  "type": "skill",
+  "version": "1.0"
+}

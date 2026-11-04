@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/symptom-triage.md",
+  "description": "Entry point for this repo. Diagnoses what is actually going wrong in someone's work with AI — from a concrete recent incident, not a general feeling — and routes them to the one skill built for that failure. Distinguishes the complaint people bring (\"AI is unreliable\", \"I'm drowning\", \"it feels hollow\") from the scarce resource actually being depleted (truth, ownership, intent, attention, authority, capability, originality, self). Runs one disconfirming question before naming a diagnosis. Use when someone says AI work \"isn't going well\" but can't say why, when choosing which skill to load, or at a team retro about AI adoption.",
+  "evals": {
+    "cases": 6,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/symptom-triage.md"
+  },
+  "id": "skill/symptom-triage",
+  "license": "Apache-2.0",
+  "name": "symptom-triage",
+  "resource": "meta",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/symptom-triage/SKILL.md",
+  "symptom": "People can feel that AI-assisted work is going wrong but misname the failure, so they reach for the wrong fix.",
+  "type": "skill",
+  "version": "1.0"
+}

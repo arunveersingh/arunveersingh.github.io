@@ -1,0 +1,100 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { withBase } from '../../data/site';
+---
+
+<Base title="Search" description="Search every lesson, course page, skill and essay on reasonfrom.com.">
+  <div class="page">
+    <h1 class="kicker"><span class="icon-disc disc-sky page-mark"><Icon name="studio" /></span>Search</h1>
+    <p class="lede page-lede">Lessons, course pages, skills and essays. Every word you type must appear.</p>
+
+    <form class="search-form" role="search" onsubmit="return false">
+      <label for="q" class="meta">Search reasonfrom.com</label>
+      <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="e.g. sycophancy, idempotency, retry storm" />
+    </form>
+    <p id="search-status" class="meta" aria-live="polite"></p>
+    <ol id="search-results" class="index-list"></ol>
+    <noscript><p class="muted">Search needs JavaScript. The <a href={withBase('/courses/')}>courses</a> and <a href={withBase('/skills/')}>skills</a> pages list everything.</p></noscript>
+  </div>
+
+  <script is:inline define:vars={{ indexUrl: withBase('/search.json') }}>
+    (function () {
+      var input = document.getElementById('q');
+      var status = document.getElementById('search-status');
+      var list = document.getElementById('search-results');
+      var docs = null;
+      var loading = null;
+
+      function load() {
+        if (docs) return Promise.resolve(docs);
+        if (!loading) {
+          loading = fetch(indexUrl)
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+              docs = d.map(function (x) {
+                x._t = x.title.toLowerCase();
+                x._s = (x.summary || '').toLowerCase();
+                x._x = (x.text || '').toLowerCase();
+                return x;
+              });
+              return docs;
+            });
+        }
+        return loading;
+      }
+
+      function score(doc, terms) {
+        var s = 0;
+        for (var i = 0; i < terms.length; i++) {
+          var t = terms[i];
+          var inT = doc._t.indexOf(t) !== -1, inS = doc._s.indexOf(t) !== -1, inX = doc._x.indexOf(t) !== -1;
+          if (!inT && !inS && !inX) return 0;
+          s += (inT ? 10 : 0) + (inS ? 4 : 0) + (inX ? 1 : 0);
+        }
+        return s;
+      }
+
+      function el(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text) e.textContent = text;
+        return e;
+      }
+
+      function render(q) {
+        var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+        list.textContent = '';
+        if (!terms.length) { status.textContent = ''; return; }
+        var hits = docs
+          .map(function (d) { return { d: d, s: score(d, terms) }; })
+          .filter(function (h) { return h.s > 0; })
+          .sort(function (a, b) { return b.s - a.s; })
+          .slice(0, 40);
+        status.textContent = hits.length ? hits.length + (hits.length === 40 ? '+' : '') + ' results' : 'No results.';
+        hits.forEach(function (h) {
+          var li = el('li');
+          var a = el('a');
+          a.href = h.d.url;
+          a.appendChild(el('span', 'meta', h.d.kind + ' · ' + h.d.where));
+          a.appendChild(el('strong', null, h.d.title));
+          if (h.d.summary) a.appendChild(el('em', null, h.d.summary));
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      }
+
+      var timer;
+      input.addEventListener('input', function () {
+        clearTimeout(timer);
+        var q = input.value;
+        timer = setTimeout(function () {
+          load().then(function () { render(q); history.replaceState(null, '', q ? '?q=' + encodeURIComponent(q) : location.pathname); });
+        }, 120);
+      });
+
+      var initial = new URLSearchParams(location.search).get('q');
+      if (initial) { input.value = initial; load().then(function () { render(initial); }); }
+    })();
+  </script>
+</Base>

@@ -1,0 +1,11 @@
+{
+  "body": "items/page/design-out-loud/design-log.md",
+  "course": "course/design-out-loud",
+  "description": "The log is the artifact. There is no certificate.",
+  "id": "page/design-out-loud/design-log",
+  "order": 14,
+  "section": "Tools",
+  "source_path": "design-log/README.md",
+  "title": "Design log",
+  "type": "page"
+}

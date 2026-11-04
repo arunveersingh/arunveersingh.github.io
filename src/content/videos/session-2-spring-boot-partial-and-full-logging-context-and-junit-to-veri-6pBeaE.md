@@ -1,12 +1,13 @@
 ---
-title: "Session 2 - Spring boot partial and full logging context and JUnit to verify logs"
-description: "🚀 Welcome to today’s session where we kick off our deep dive into Spring Boot’s logging mechanisms! In this video, I’ll guide you through setting up a Spring Boot project, integrating SLF4J with Logback, and demonstrat…"
+title: "How to Test Log Messages in Spring Boot with JUnit"
+description: "Learn how to check log messages in a JUnit test with Spring Boot's OutputCaptureExtension, so a test fails if an important log line goes missing. Along the way, see why a log printed before SpringApplication.run looks d…"
 published: 2025-02-20
-channel: oopsfeedmecode
+channel: engineeringjudgment
 youtubeId: "6pBeaE7spPw"
+format: long
 topics: ["youtube"]
-thesis: "🚀 Welcome to today’s session where we kick off our deep dive into Spring Boot’s logging mechanisms! In this video, I’ll guide you through setting up a Spring Boot project, integrating SLF4J with Logback, and demonstrat…"
+thesis: "Learn how to check log messages in a JUnit test with Spring Boot's OutputCaptureExtension, so a test fails if an important log line goes missing. Along the way, see why a log printed before SpringApplication.run looks d…"
 generated: true
 ---
 
-🚀 Welcome to today’s session where we kick off our deep dive into Spring Boot’s logging mechanisms! In this video, I’ll guide you through setting up a Spring Boot project, integrating SLF4J with Logback, and demonstrat…
+Learn how to check log messages in a JUnit test with Spring Boot's OutputCaptureExtension, so a test fails if an important log line goes missing. Along the way, see why a log printed before SpringApplication.run looks d…

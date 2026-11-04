@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/decision-pressure-tester.md",
+  "description": "Evaluates decisions through structured pressure, then refuses to call the test complete until every critical failure found is mitigated, redesigned, or explicitly accepted. Maps the system, applies pressure from five angles, traces consequences — and holds you accountable for what the pressure test revealed. Does not end with 'here are the risks' — ends with 'what are you doing about them.'",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/decision-pressure-tester.md"
+  },
+  "id": "skill/decision-pressure-tester",
+  "license": "Apache-2.0",
+  "name": "decision-pressure-tester",
+  "resource": "intent",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/decision-pressure-tester/SKILL.md",
+  "symptom": "Decisions end at 'here are the risks' with no commitment about what to do about them.",
+  "type": "skill",
+  "version": "1.1"
+}

@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-15.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Day 14 capped what a miss can cost. Today opens a new part of the course: how do you know an AI feature is still doing its job?",
+  "id": "lesson/make-ai-fail-safely/day-15",
+  "line": "A triage prompt change lifts accuracy from 91% to 94% on 1,000 labelled support messages and ships past the 92% bar, while unauthorised-payment reports sent to the wrong queue rise from 3 to 18 of 30; under PSD2 they need a refund by the end of the next business day",
+  "n": 15,
+  "phase": "Evals",
+  "time": "~15 min",
+  "title": "Day 15 — Up 3 Points, 6× Worse",
+  "type": "lesson"
+}

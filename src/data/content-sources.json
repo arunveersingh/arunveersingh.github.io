@@ -1,0 +1,23 @@
+{
+  "$comment": "Key 1 of 3 for publishing. A repo appears on reasonfrom.com only if it is listed here, its own reasonfrom.yml says publish: true, and it is public. `claims` are the id prefixes this repo may publish; an item outside them fails the sync.",
+  "sources": [
+    {
+      "repo": "arunveersingh/ai",
+      "branch": "main",
+      "claims": [
+        "course/make-ai-fail-safely",
+        "lesson/make-ai-fail-safely/",
+        "skill/"
+      ]
+    },
+    {
+      "repo": "arunveersingh/design-out-loud",
+      "branch": "main",
+      "claims": [
+        "course/design-out-loud",
+        "lesson/design-out-loud/",
+        "page/design-out-loud/"
+      ]
+    }
+  ]
+}

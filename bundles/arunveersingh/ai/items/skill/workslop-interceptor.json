@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/workslop-interceptor.md",
+  "description": "Catches AI-assisted work before it lands on someone else's desk looking finished but costing them hours. Before you send a doc, PR, email, deck, or report, it checks what the work costs the recipient: what decision or action it enables, which claims you personally verified versus what the AI asserted, and how much of it the reader needs. It cuts rather than polishes, measures words per decision enabled, and ends with a short sender's signature: what you stand behind and what you didn't check. Use whenever AI helped produce something another person will have to read, review, or act on.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/workslop-interceptor.md"
+  },
+  "id": "skill/workslop-interceptor",
+  "license": "Apache-2.0",
+  "name": "workslop-interceptor",
+  "resource": "attention",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/workslop-interceptor/SKILL.md",
+  "symptom": "Polished AI-generated work that looks done but shifts the real work — decoding, checking, redoing — onto the person who receives it.",
+  "type": "skill",
+  "version": "1.0"
+}

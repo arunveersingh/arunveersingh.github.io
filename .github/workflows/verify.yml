@@ -33,6 +33,10 @@ jobs:
 
       - run: npm ci
 
+      # Publishing rules: scheduled lessons, cross-references, claims, lock pins.
+      - name: Test content scripts
+        run: npm run test:scripts
+
       # Content is committed, so this needs no network and no sync step. It
       # verifies exactly the tree that would be deployed.
       - name: Type-check
@@ -40,6 +44,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # Every internal href/src must resolve to a built file.
+      - name: Check internal links
+        run: node scripts/check-links.mjs
 
       # The build-time curation assertions in src/lib/content.ts already fail on
       # an unresolved id or needle. This catches the rest: an empty build, or a

@@ -44,6 +44,11 @@ jobs:
       # window only returns the latest 15 items per feed, so a rotation could
       # delete a curated video mid-deploy and fail the build.
       # Refresh content deliberately with `npm run sync` and commit the diff.
+      #
+      # Course and skills content comes from bundles/ (pinned by
+      # content.lock.json). `npm run build` materializes them offline first.
+      # sync-content.yml is what moves the pins; it commits, then dispatches
+      # this workflow.
 
       # Type-checks pages, layouts, and content collection schemas. `npm run
       # check` existed but nothing ran it, so schema drift only surfaced locally.
@@ -52,6 +57,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # Every internal href/src must resolve to a built file.
+      - name: Check internal links
+        run: node scripts/check-links.mjs
 
       - uses: actions/upload-pages-artifact@v5
         with:

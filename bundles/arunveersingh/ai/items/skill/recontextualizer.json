@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/recontextualizer.md",
+  "description": "Rebuilds a developer's complete, accurate ownership of work they directed but did not fully author. Especially effective on large or multi-file AI-generated changes where whole regions — and whole code paths — were never in the developer's head. Enumerates every unit of change into a coverage ledger, classifies by risk, and requires the developer to explain high-risk items, and every non-obvious branch through the changed logic, in their own words at mechanism depth. Completeness is counted; accuracy is grounded. Never pretends to block the owner. Use after finishing meaningful AI-assisted work, particularly on systems with invariants, money movement, compliance, or cross-service contracts.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/recontextualizer.md"
+  },
+  "id": "skill/recontextualizer",
+  "license": "Apache-2.0",
+  "name": "recontextualizer",
+  "resource": "ownership",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/recontextualizer/SKILL.md",
+  "symptom": "Developers ship AI-generated changes they directed but cannot explain, especially the branches they never walked.",
+  "type": "skill",
+  "version": "1.3"
+}

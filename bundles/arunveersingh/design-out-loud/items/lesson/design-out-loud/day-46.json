@@ -1,0 +1,13 @@
+{
+  "body": "items/lesson/design-out-loud/day-46.md",
+  "course": "course/design-out-loud",
+  "description": "Facing a delete, leave able to use tombstones and retention so replicas and indexes do not resurrect the row. A hard delete is not \"gone everywhere.\" It is gone from the log that applied it. Systems that replicate by…",
+  "id": "lesson/design-out-loud/day-46",
+  "line": "Facing a delete, leave able to use tombstones and retention so replicas and indexes do not resurrect the row.",
+  "n": 46,
+  "phase": "Data and consistency",
+  "source_path": "days/46-delete-tombstone-retention.md",
+  "time": "40 min",
+  "title": "Day 46 — Delete, tombstone, retention",
+  "type": "lesson"
+}

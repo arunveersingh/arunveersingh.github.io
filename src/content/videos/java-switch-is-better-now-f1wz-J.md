@@ -4,6 +4,7 @@ description: "In new Java version how switch has evolved is discussed in this se
 published: 2024-08-27
 channel: developernoteshindi
 youtubeId: "f1wz-JgQKvY"
+format: long
 topics: ["youtube"]
 thesis: "In new Java version how switch has evolved is discussed in this session."
 generated: true

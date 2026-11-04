@@ -1,0 +1,12 @@
+{
+  "body": "items/lesson/make-ai-fail-safely/day-18.md",
+  "course": "course/make-ai-fail-safely",
+  "description": "Days 15 to 17 gave you four kinds of eval case: everyday ones, a harm line, cases from real mistakes and attacks. Today is about when they run.",
+  "id": "lesson/make-ai-fail-safely/day-18",
+  "line": "An allergen tagger with 1,307 cases on four lines gets three changes in nine days (prompt v12 \"tag only what the ingredient list names\", the provider's \"latest\" alias moving to a new snapshot, the menu import cutting text at 300 characters); each breaks a line the eval already covered (incidents 9/12, attacks 13/15, harm 71/80) while everyday stays above its bar; only the prompt change was tested, on one case, and a wrap shown sesame-free sends a customer to the emergency room",
+  "n": 18,
+  "phase": "Evals",
+  "time": "~15 min",
+  "title": "Day 18 — Three Changes, One Test",
+  "type": "lesson"
+}

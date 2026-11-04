@@ -28,8 +28,10 @@ const videos = defineCollection({
     title: z.string(),
     description: z.string(),
     published: z.coerce.date(),
-    channel: z.enum(['oopsfeedmecode', 'developernoteshindi']),
+    channel: z.enum(['engineeringjudgment', 'developernoteshindi']),
     youtubeId: z.string().optional(),
+    /** Set by scripts/sync-videos.mjs: Shorts are listed apart from talks. */
+    format: z.enum(['short', 'long']).optional(),
     topics,
     thesis: z.string(),
     manual: z.boolean().default(false),
@@ -83,4 +85,37 @@ const courses = defineCollection({
   }),
 });
 
-export const collections = { essays, videos, builds, courses };
+/**
+ * Agent skills, materialized from bundles by scripts/materialize.mjs.
+ * Never edited by hand: the source of truth is each skill's SKILL.md.
+ */
+const skills = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/skills' }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    resource: z.enum(['truth', 'ownership', 'intent', 'attention', 'authority', 'capability', 'originality', 'self', 'meta']),
+    symptom: z.string(),
+    version: z.string(),
+    license: z.string(),
+    source: z.url(),
+    evalCases: z.number().int().nonnegative().optional(),
+    evalsUrl: z.url().optional(),
+    generated: z.literal(true),
+  }),
+});
+
+/** Supporting course pages (start, problem bank, appendices), materialized from bundles. */
+const coursePages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/course-pages' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    course: z.string(),
+    section: z.string(),
+    order: z.number().int().nonnegative(),
+    generated: z.literal(true),
+  }),
+});
+
+export const collections = { essays, videos, builds, courses, skills, coursePages };

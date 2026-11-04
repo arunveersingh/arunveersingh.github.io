@@ -1,0 +1,16 @@
+{
+  "body": "items/skill/mirror-test.md",
+  "description": "Tests whether an AI conclusion you are about to rely on survives a change of framing. Re-poses the same question with your belief removed, and again with the opposite belief asserted, then compares the verdicts. A conclusion that flips with framing is labeled framing-dependent and cannot be cited as support. Also runs a drift check on long conversations, counting how often the AI agreed versus pushed back. Use before acting on, publishing, or repeating anything an AI told you that happens to match what you already believed, and whenever a long chat has started to feel unusually affirming.",
+  "evals": {
+    "cases": 5,
+    "url": "https://github.com/arunveersingh/ai/blob/main/evals/skills/mirror-test.md"
+  },
+  "id": "skill/mirror-test",
+  "license": "Apache-2.0",
+  "name": "mirror-test",
+  "resource": "truth",
+  "source_url": "https://github.com/arunveersingh/ai/blob/main/skills/mirror-test/SKILL.md",
+  "symptom": "The AI agrees with whatever framing you bring, and long chats spiral into validation.",
+  "type": "skill",
+  "version": "1.0"
+}
