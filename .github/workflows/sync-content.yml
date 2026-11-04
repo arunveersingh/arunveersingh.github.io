@@ -16,9 +16,13 @@ on:
     - cron: "17 */3 * * *"
   workflow_dispatch:
 
+# main is protected: a change lands only through a PR whose 'verify' check
+# passes. The bot opens that PR with REASONFROM_BOT_TOKEN (a fine-grained token
+# for this repo). Its pushes and PRs trigger verify — the built-in token's do
+# not — and auto-merge lands the PR only when verify passes. The merge, made as
+# the token's owner, triggers pages.yml, so the deploy follows on its own.
 permissions:
-  contents: write   # commit the moved pins
-  actions: write    # dispatch pages.yml (a GITHUB_TOKEN push does not trigger it)
+  contents: read
   issues: write     # one "Publish failing" issue, opened and closed automatically
 
 concurrency:
@@ -34,6 +38,9 @@ jobs:
       ISSUE_TITLE: "Publish failing"
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Pushes made with this token trigger verify on the bot's branch.
+          token: ${{ secrets.REASONFROM_BOT_TOKEN || github.token }}
 
       - uses: actions/setup-node@v7
         with:
@@ -76,13 +83,19 @@ jobs:
       - name: Check internal links
         run: node scripts/check-links.mjs
 
-      - name: Commit moved pins
-        id: commit
+      - name: Open or update the bot PR
+        env:
+          BOT_TOKEN: ${{ secrets.REASONFROM_BOT_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           git add bundles content.lock.json src/data/launches.json src/content/videos
           if git diff --cached --quiet; then
             echo "Nothing changed."
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "$BOT_TOKEN" ]; then
+            echo "::warning::Content changed, but REASONFROM_BOT_TOKEN is not set, so the bot cannot open its PR. Nothing was published."
+            git diff --cached --stat
             exit 0
           fi
           git config user.name "github-actions[bot]"
@@ -91,13 +104,19 @@ jobs:
             const l = require("./content.lock.json");
             console.log(Object.entries(l.sources).map(([r, s]) => `${r}@${s.sha.slice(0, 7)}`).join(", "));')
           git commit -q -m "Sync content: ${summary}"
-          git pull -q --rebase origin main
-          git push -q origin HEAD:main
-          echo "changed=true" >> "$GITHUB_OUTPUT"
-
-      - name: Deploy
-        if: steps.commit.outputs.changed == 'true'
-        run: gh workflow run pages.yml --ref main
+          git push -q -f origin HEAD:refs/heads/bot/sync-content
+          export GH_TOKEN="$BOT_TOKEN"
+          n=$(gh pr list --head bot/sync-content --state open --json number --jq '.[0].number // empty')
+          if [ -z "$n" ]; then
+            gh pr create --base main --head bot/sync-content \
+              --title "Sync content" \
+              --body "Automatic content sync: ${summary}. Merges itself once \`verify\` passes. Run: $RUN_URL"
+            n=$(gh pr list --head bot/sync-content --state open --json number --jq '.[0].number')
+          else
+            gh pr comment "$n" --body "Updated by $RUN_URL: ${summary}"
+          fi
+          gh pr merge "$n" --auto --merge
+          echo "PR #$n will merge itself when verify passes."
 
       - name: Close failure issue
         if: success()
